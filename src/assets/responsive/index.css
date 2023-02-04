@@ -1,0 +1,1437 @@
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .apparel-optimization-card-area {
+        transition: 0.3s;
+        background-color: #FFFFFF;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    .contact-info-one p {
+        margin-top: 1px;
+        margin-left: 0px;
+    }
+
+    .top-menu-bar-content ul li {
+        padding: 19px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 17px;
+    }
+
+    .send-a-message-card {
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+        transition: 0.3s;
+        width: 105%;
+        background-color: aliceblue;
+        padding: 20px;
+        height: 761px;
+    }
+
+    .contact-info-card {
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+        transition: 0.3s;
+        width: 100%;
+        background-color: #253239;
+        padding: 20px 0px 121px 0px;
+    }
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .send-a-message-card {
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+        transition: 0.3s;
+        width: 106%;
+        background-color: aliceblue;
+        padding: 20px;
+        height: 753px;
+    }
+    .contact-info-card {
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+        transition: 0.3s;
+        width: 87%;
+        height: 753px;
+        background-color: #253239;
+        padding: 20px;
+        margin-left: 0px;
+    }
+
+    .more-values-img img {
+        margin-left: 55px;
+    }
+
+    .market-faster-content-two {
+        padding-left: 20px;
+    }
+    .more-values-content-two{
+        margin-left: 20px;
+
+    }
+
+    .contact-info-one p {
+        margin-top: 1px;
+        margin-left: 17px;
+    }
+
+    .card-center{
+        display: grid;
+        justify-content: center;
+    }
+
+    .partner-content-img{
+        margin-bottom: 33px;
+      }
+
+      .top-menu-bar-content ul li {
+        padding: 8px;
+        text-align: center;
+        cursor: pointer;
+       font-size: 17px;
+    }
+
+
+    
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    
+
+    .contact-info-icon-three img {
+        display: none;
+     }
+
+    .top-menu-bar-content ul li {
+        padding: 5px;
+        text-align: center;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .vision-img-shape {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 0%;
+        width: 0%;
+        background: white;
+        z-index: -1;
+        bottom: 0px;
+    }
+    .vision-img img {
+        padding-top: 30px;
+        margin-left: 0px;
+    }
+
+    .market-faster-area {
+        background-color: #F9F8FF;
+        padding-bottom: 121px;
+        text-align: center;
+    }
+
+    .icon-card {
+        border: none;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 9%);
+        transition: 0.3s;
+        height: 55px;
+        width: 59px;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 64px;
+        margin-bottom: 20px;
+    }
+
+    
+.card-center{
+    display: grid;
+    justify-content: center;
+}
+
+.apparel-optimization-card-area {
+    transition: 0.3s;
+    width: 100%;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 38px;
+}
+.showcase-design-area {
+    background-color: #FFF8F8;
+    padding-bottom: 118px;
+    text-align: center;
+}
+
+.contact-info-card {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    width: 100%;
+    height: 647px;
+    background-color: #253239;
+    margin-left: 0px;
+    margin-top: 131px;
+}
+.send-a-message-card {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    width: 100%;
+    background-color: aliceblue;
+    padding: 20px;
+}
+
+.augment-resources-antiqueWhite1-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+
+.augment-resources-img img {
+    margin-left: 0px;
+    margin-top: 0px;
+    padding-top: 30px;
+}
+
+.market-faster-img img {
+    max-width: 100%;
+    height: auto;
+    pointer-events: none;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+.white-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+
+
+.AntiqueWhite1-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+.more-values-img img {
+    margin-left: 0px;
+    margin-top: 0px;
+    padding-top: 46px;
+}
+
+.showcase-white-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+
+.showcase-design-img img {
+    max-width: 100%;
+    height: auto;
+    pointer-events: none;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+
+
+.top-menu-bar-content-item ul li {
+    list-style: none;
+    padding-right: 0px;
+}
+
+.more-values-content-two{
+    text-align: center;
+    margin-left: 0px;
+}
+
+.more-values-img {
+    position: relative;
+    z-index: 44;
+    text-align: center;
+}
+
+.contact-card-area {
+    border: 1px solid gainsboro;
+    transition: 0.3s;
+    width: auto;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    text-align: left;
+    margin-bottom: 28px;
+}
+/* 
+.customer-review-img-two {
+    padding-top: 152px;
+} */
+/* .customer-review-box {
+    background-color: #FFFFFF;
+    border: 2px solid gainsboro;
+    position: absolute;
+    margin-top: -344px;
+    margin-left: 187px;
+    height: auto;
+    width: 49%;
+    z-index: 22;
+    padding: 38px 25px 104px 25px;
+    line-height: 28px;
+} */
+.culture-img img {
+    margin-bottom: 33px;
+    max-width: 88%;
+    margin-left: 20px;
+}
+.culture-img-two img {
+    margin-top: 21px;
+    max-width: 88%;
+    margin-left: 23px;
+    margin-bottom: 42px;
+}
+
+.partner-content-img{
+    margin-bottom: 33px;
+  }
+
+  .contact-info-one p {
+    margin-top: 5px;
+    margin-left: 0px;
+}
+
+.footer-soial-action {
+    text-align: center;
+}
+
+.footer-responsive-padding{
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+.contact-info-container {
+    padding: 2px 16px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.vision-content {
+    padding-top: 0px;
+}
+
+.destop-menu{
+    display: none;
+}
+.mobile-btn{
+    display: inline-block;
+    position: absolute;
+    right: 14px;
+    font-size: 26px;
+    cursor: pointer;
+    width: 30px;
+  }
+
+
+
+   .mobile-navbar-area{
+    position: absolute;
+    background-color: #AB1E1F;
+    width: 100%;
+    margin-top: -63px;
+   
+  }
+  
+  
+  .mobile-navbar-content ul{
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .mobile-navbar-content ul li{
+  padding: 4px;
+  font-weight: bold;
+  color: aliceblue;
+  }
+  
+  .mobile-navbar-content ul li:hover{
+    background-color: #FF1901;
+    color: aliceblue;
+    }
+
+.top-menu-bar-content-item {
+    display: none;
+}
+
+.mission-image-shape {
+position: absolute;
+top: 0px;
+left: 0px;
+height: 0%;
+width: 0%;
+background: white;
+z-index: -1;
+bottom: 0px;
+}
+
+.customer-review-box {
+    background-color: #FFFFFF;
+    border: 2px solid gainsboro;
+    height: auto;
+    z-index: 22;
+    padding: 25px 25px 55px 25px;
+    line-height: 28px;
+    margin-bottom: 25px;
+}
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .top-menu-bar-content-title {
+        padding-top: 61px;
+        line-height: 30px;
+        display: grid;
+        justify-content: right;
+        margin-left: 0px;
+    }
+
+    .top-menu-bar-content-item {
+        display: none;
+    }
+
+    .apparel-optimization-card-area {
+        transition: 0.3s;
+        height: 400px;
+        width: 100%;
+        background-color: #FFFFFF;
+        border-radius: 20px;
+        text-align: center;
+        margin-bottom: 38px;
+    }
+
+    .market-faster-content{
+        display: block;
+        padding-bottom: 0px;
+        text-align: center;
+    
+    }
+
+    .vision-img-shape {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 0%;
+        width: 0%;
+        background: white;
+        z-index: -1;
+        bottom: 0px;
+    }
+    .vision-img img {
+        padding-top: 30px;
+        margin-left: 0px;
+    }
+
+    .icon-card {
+        border: none;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 9%);
+        transition: 0.3s;
+        height: 55px;
+        width: 59px;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 64px;
+        /* margin-left: 13px; */
+        margin-bottom: 20px;
+    }
+
+    .send-a-message-title i {
+        display: none;
+        }
+
+    
+.card-center{
+    display: grid;
+    justify-content: center;
+}
+
+.contact-info-card {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    width: 100%;
+    background-color: #253239;
+    margin-left: 0px;
+    margin-top: 25px;
+
+}
+.send-a-message-card {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    width: 100%;
+    background-color: aliceblue;
+    padding: 20px;
+    margin-left: 0px;
+    margin-top: -164px;
+    height: 760px;
+
+}
+
+.contact-info-one p {
+    margin-top: 5px;
+    margin-left: 0px;
+}
+
+.send-a-message-card-content {
+    margin-top: 0px
+}
+
+
+.more-values-area{
+    text-align: center;
+}
+
+/* .customer-review-img img {
+    height: 121px;
+    border-radius: 50%;
+    border: 7px solid #00007C;
+    width: 122px;
+    margin-bottom: 20px;
+} */
+
+
+
+
+.market-faster-content-two{
+    text-align: center;
+}
+
+.augment-resources-antiqueWhite1-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+
+.augment-resources-img img {
+    margin-left: 0px;
+    margin-top: 0px;
+    padding-top: 30px;
+}
+
+.market-faster-img img {
+    max-width: 100%;
+    height: auto;
+    pointer-events: none;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+.white-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+
+
+.AntiqueWhite1-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+.more-values-img img {
+    margin-left: 0px;
+    margin-top: 0px;
+    padding-top: 46px;
+}
+
+.showcase-white-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+
+.showcase-design-img img {
+    max-width: 100%;
+    height: auto;
+    pointer-events: none;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+.contact-card-area {
+    border: 1px solid gainsboro;
+    transition: 0.3s;
+    width: auto;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    text-align: left;
+    margin-bottom: 28px;
+}
+
+/* .customer-review-box {
+    background-color: #FFFFFF;
+    border: 2px solid gainsboro;
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 0px;
+    height: auto;
+    width: 78%;
+    z-index: 22;
+    padding: 25px;
+    line-height: 28px;
+    border-radius: 16px;
+} */
+/* 
+.customer-review-img-two {
+    padding-top: 335px;
+}
+
+.customer-review-img {
+    text-align: center;
+} */
+
+.customer-review-area{
+    text-align: center;
+}
+
+.more-long-section-padding {
+    padding: 296px 0px 65px 0px;
+}
+
+.culture-area {
+    text-align: center;
+}
+.culture-img-two img {
+    margin-top: 9px;
+    max-width: 88%;
+    margin-left: 0px;
+}
+
+.partner-content-img{
+    margin-bottom: 33px;
+  }
+
+  .footer-soial-action{
+    text-align: center;
+}
+
+.footer-responsive-padding{
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.top-menu-bar-content ul li {
+    padding: 25px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+}
+.destop-menu{
+    display: none;
+}
+.mobile-btn{
+    display: inline-block;
+    position: absolute;
+    right: 14px;
+    font-size: 26px;
+    cursor: pointer;
+    width: 30px;
+  }
+
+
+   .mobile-navbar-area{
+    position: absolute;
+    background-color: #AB1E1F;
+    width: 100%;
+    margin-top: -63px;
+   
+  }
+  
+  
+  .mobile-navbar-content ul{
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .mobile-navbar-content ul li{
+  padding: 4px;
+  font-weight: bold;
+  color: aliceblue;
+  }
+  
+  .mobile-navbar-content ul li:hover{
+    background-color: #FF1901;
+    color: aliceblue;
+    }
+
+    .top-menu-bar-content-title {
+        padding-top: 120px;
+        line-height: 30px;
+        display: grid;
+        justify-content: right;
+        margin-left: 0px;
+    }
+
+    .bblack-color button i {
+        color: black;
+    }
+
+    .footer-logo {
+        text-align: center;
+    }
+
+    .contact-info-container {
+        padding: 2px 16px;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    
+.contact-info-icon-three img {
+    display: none;
+ }
+
+ .vision-content {
+    padding-top: 0px;
+}
+.mission-image-shape {
+position: absolute;
+top: 0px;
+left: 0px;
+height: 0%;
+width: 0%;
+background: white;
+z-index: -1;
+bottom: 0px;
+}
+.customer-review-box {
+    background-color: #FFFFFF;
+    border: 2px solid gainsboro;
+    height: auto;
+    z-index: 22;
+    padding: 25px 25px 55px 25px;
+    line-height: 28px;
+    margin-bottom: 25px;
+}
+
+
+}
+@media (min-width: 320px) and (max-width: 575px) {
+
+    input[type=text] {
+        width: 96%;
+        padding: 12px 20px;
+        margin-right: 25px;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 1px solid #7D7D7D;
+        background-color: aliceblue;
+        padding-left: 0px;
+        margin-bottom: 45px;
+    }
+    input[type=number] {
+        width: 96%;
+        padding: 12px 20px;
+        margin-right: 25px;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 1px solid #7D7D7D;
+        background-color: aliceblue;
+        padding-left: 0px;
+        margin-bottom: 45px;
+    }
+    .message-alert-img svg {
+        max-width: 100%;
+        height: 120px;
+    }
+
+    .message-alert-card {
+        transition: all .3s linear;
+        background-color: #FFFFFF;
+        border-radius: 20px;
+        text-align: center;
+        height: 427px;
+        box-shadow: 0px 0px 8px rgb(0 0 0 / 10%);
+        padding: 19px;
+    }
+
+    .more-values-content-two-special-padding{
+        margin-left: 0px;
+      }
+      
+      .more-values-content-two-special-padding-single{
+        margin-left: 0px;
+      }
+
+
+    .more-values-content-Transparency-padding-responsive{
+        margin-left: 7%;
+    }
+
+    .augment-resources-icon svg{
+        margin-left: -7px;
+        max-width: 207%;
+      }
+
+      .augment-resources-content-item-special-margin {
+        margin-left: 36px;
+    }
+
+    .augment-resources-content-item-special-margin-responsive{
+        margin-left: 16px;
+
+    }
+      
+.destop-menu{
+    display: none;
+}
+
+  .mobile-btn{
+    display: inline-block;
+    position: absolute;
+    right: 14px;
+    font-size: 26px;
+    cursor: pointer;
+    width: 30px;
+  }
+
+
+
+   .bblack-color button i{
+    color: black;
+   }
+
+   .navbar-area {
+    margin-top: 15px;
+}
+
+    .top-menu-bar-content-title h1 {
+        font-size: 30px;
+        line-height: 42px;
+        font-weight: 700;
+    }
+
+    .top-menu-bar-content-title h6 {
+        font-size: 15px;
+        line-height: 25px;
+    }
+
+    .top-menu-bar-content ul li {
+        padding: 7px;
+        text-align: center;
+        cursor: pointer;
+        color: aliceblue;
+        font-weight: bold;
+    }
+
+
+    .top-menu-bar-content-title button {
+        width: 151px;
+        height: 46px;
+        background-color: #FF1901;
+        border: none;
+        color: aliceblue;
+    }
+    .apparel-optimization-card-area {
+        transition: 0.3s;
+        height: 353px;
+
+        width: 100%;
+        background-color: #FFFFFF;
+        border-radius: 20px;
+        text-align: center;
+        margin-bottom: 18px;
+    }
+    .section-title {
+        text-align: center;
+    }
+    .top-menu-bar-content-item {
+        display: none;
+    }
+
+    h2 {
+        font-size: 24px;
+        line-height: 35px;
+        font-weight: 700;
+    }
+
+    h4 {
+        font-size: 13px;
+        line-height: 22px;
+        font-weight: 700;
+    }
+/* 
+    .customer-review-img img {
+        height: 121px;
+        border-radius: 50%;
+        border: 7px solid #00007C;
+        width: 122px;
+    } */
+
+    .pb-77{
+        padding-bottom: 55px;
+        padding-top: 55px;
+      }
+
+      .more-long-section-padding {
+        padding: 296px 0px 65px 0px;
+    }
+
+    /* .customer-review-img {
+        position: relative;
+        text-align: center;
+        padding-bottom: 27px;
+        padding-top: 33px;
+    } */
+
+    /* .customer-review-box {
+        background-color: #FFFFFF;
+        border: 2px solid gainsboro;
+        position: absolute;
+        margin-top: 0px;
+        margin-left:0px;
+        height: auto;
+        width: 93%;
+        z-index: 22;
+        padding: 25px;
+        line-height: 28px;
+        border-radius: 16px;
+    } */
+
+    
+
+    /* .customer-review-img-two{
+       padding-top: 335px;
+    
+    } */
+
+    .contact-card-area {
+        border: 1px solid gainsboro;
+        transition: 0.3s;
+        width: auto;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        text-align: left;
+        margin-bottom: 28px;
+    }
+
+    .round-icon-card {
+        border: none;
+        box-shadow: 0 7px 8px 0 rgb(0 0 0 / 14%);
+        transition: 0.3s;
+        height: 42px;
+        width: 42px;
+        background-color: #FFFFFF;
+        border-radius: 50%;
+        text-align: center;
+        margin-right: 20px;
+    }
+
+    .vertical-line {
+        border-left: 2px solid gainsboro;
+        margin-left: 22px;
+    }
+
+
+    p {
+        margin: 0;
+        color: #7D7D7D;
+        font-size: 12px;
+    }
+
+    
+
+.send-a-message-card {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    width: 100%;
+    background-color: aliceblue;
+    padding: 20px;
+    margin-top: -164px;
+    height: 931px;
+}
+
+.contact-info-card {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    width: 100%;
+    background-color: #253239;
+    padding: 20px;
+    margin-left: 0px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+
+.contact-info-icon-three img {
+   display: none;
+}
+
+
+
+.contact-info-container i{
+    padding-left: 0px;
+    margin-bottom: 13px;
+
+}
+
+.augment-resources-content-area {
+    margin-top: 0px;
+}
+
+
+
+.contact-info-container h3 {
+    color: aliceblue;
+    padding-left: 0px;
+}
+
+.send-a-message-button button {
+    margin-top: 30px;
+    width: 137px;
+    padding: 16px;
+    background-color: #e62d26;
+    color: aliceblue;
+    border: none;
+    margin-right: 0px;
+}
+
+.market-faster-content {
+    display: block;
+    padding-bottom: 5px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.market-faster-content-two h4{
+    margin-top: 10px;
+}
+
+.more-values-content {
+    display: block;
+    padding-bottom: 5px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.augment-resources-content {
+    padding-bottom: 5px;
+    text-align: left;
+}
+
+
+
+.more-values-content-two h4{
+    margin-top: 10px;
+}
+
+
+
+.showcase-design-content  {
+    display: block;
+    padding-bottom: 5px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+
+
+.contact-info-icon-two i{
+    padding-left: 20px;
+}
+
+.input-field-area {
+    display: block;
+}
+
+.send-a-message-title {
+    display: block;
+}
+
+.send-a-message-title svg{
+    display: none;
+}
+
+.long-section-padding {
+    padding: 32px 0px 45px 0px;
+}
+
+.icon-card {
+    border: none;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 9%);
+    transition: 0.3s;
+    height: 64px;
+    width: 65px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    text-align: center;
+    
+    
+}
+
+.card-center{
+    display: grid;
+    justify-content: center;
+}
+
+
+
+.more-values-content {
+    padding-bottom: 0px;
+}
+
+.showcase-design-content {
+    padding-bottom: 0px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+.market-faster-img img {
+    max-width: 100%;
+    height: auto;
+    pointer-events: none;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+.white-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+
+.augment-resources-antiqueWhite1-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+
+.augment-resources-img img {
+    margin-left: 0px;
+    margin-top: 0px;
+    padding-top: 30px;
+}
+
+
+.AntiqueWhite1-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+.more-values-img img {
+    margin-left: 0px;
+    margin-top: 0px;
+    padding-top: 46px;
+}
+
+.showcase-white-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+
+.showcase-design-img img {
+    max-width: 100%;
+    height: auto;
+    pointer-events: none;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+.vision-img-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+}
+
+
+
+
+.apparel-optimization-card-content h3 {
+    font-size: 26px;
+    line-height: 38px;
+    font-weight: 700;
+}
+
+
+
+  .augment-resources-area {
+    padding-bottom: 63px;
+}
+
+.showcase-design-content{
+    text-align: center;
+  }
+
+
+.augment-resources-content-item h3 {
+    font-size: 12px;
+    line-height: 22px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+
+.about-us-image img {
+    height: auto;
+    width: 100%;
+    margin-top: -47px;
+}
+
+.vision-content{
+    text-align: center;
+}
+
+.vision-img img {
+    padding-top: 30px;
+    margin-left: 0px;
+}
+
+h5 {
+    font-size: 14px;
+    line-height: 25px;
+    font-weight: 600;
+}
+
+.partner-content-one ul {
+    display: block;
+    text-align: center;
+}
+
+.partner-content-two ol {
+    display: block;
+}
+
+.partner-content{
+display: block;
+}
+
+.culture-img-two img {
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+.culture-area {
+    text-align: center;
+}
+
+.mission-img img {
+    max-width: 100%;
+    height: auto;
+    pointer-events: none;
+    margin-top: 0px; 
+    margin-left: 0px;
+}
+
+.partner-content-one img {
+    height: 27px;
+    margin-right: 0%; 
+    padding-left: 0%; 
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.send-a-message-title i {
+display: none;
+}
+
+.send-a-message-card-content{
+    margin-top: 0px;
+   
+  }
+
+  .partner-content-img{
+    margin-bottom: 33px;
+  }
+
+  .contact-info-one p {
+    margin-top: 5px;
+    margin-left: 0px;
+}
+
+.our-culture-mt-20 h2{
+    margin-top: 20px;
+}
+
+.footer-soial-action{
+    text-align: center;
+}
+
+.footer-responsive-padding{
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.send-a-message-area {
+    padding-bottom: 24px;
+}
+
+.short-section-padding {
+    padding: 20px 0px 40px 0px;
+}
+
+.long-section-padding {
+    padding: 1px 0px 47px 0px;
+}
+
+.footer-logo {
+    text-align: center;
+}
+
+.mobile-navbar-area{
+    position: absolute;
+    background-color: #AB1E1F;
+    width: 94%;
+    margin-top: -63px;
+   
+  }
+  
+  
+  .mobile-navbar-content ul{
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .mobile-navbar-content ul li{
+  padding: 1px;
+  font-weight: bold;
+  color: aliceblue;
+  }
+  
+  .mobile-navbar-content ul li:hover{
+    background-color: #FF1901;
+    color: aliceblue;
+    }
+
+    .top-menu-bar-area {
+        background-image: url(/public/img/lds-banner.png);
+        padding-bottom: 15px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: aliceblue;
+    }
+
+    .vision-content {
+        padding-top: 0px;
+    }
+    .video-border{
+        
+        width:auto;
+         height:auto;
+      }
+      .video-wrapper{
+        margin-top: 10px;
+      }
+ 
+
+    .mission-image-shape {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 0%;
+    width: 0%;
+    background: white;
+    z-index: -1;
+    bottom: 0px;
+    }
+
+    .customer-review-box {
+        background-color: #FFFFFF;
+        border: 2px solid gainsboro;
+        height: auto;
+        z-index: 22;
+        padding: 25px 25px 55px 25px;
+        line-height: 28px;
+        margin-bottom: 25px;
+    }
+    .stock-fabrics-area {
+        background-color: aliceblue;
+        margin-top: 117px;
+        height: 800px;
+        margin-bottom: 50px;
+    }
+
+    .tech-pack-home-area {
+        background-color: aliceblue;
+        margin-top: 117px;
+        height: 800px;
+        margin-bottom: 50px;
+    }
+
+    .top-menu-bar-content-title {
+        line-height: 30px;
+        padding: 65px 0px 50px 0px;
+    }
+
+}
