@@ -1,25 +1,31 @@
 import axios from "axios";
-import { useState } from "react";
-import { Col, Row } from "antd";
 import SignUp from "./SignUp";
 import { useNavigate } from "react-router-dom";
-
+import { Button, Form, Input } from "antd";
+import { useState } from "react";
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
   const sendDatatoApp = async () => {
+    const values = await form.validateFields();
+
+    console.log("values", values);
     try {
       let res = await axios.post("http://localhost:8080/api/auth/signin", {
-        username,
-        password,
+        username: values?.username,
+        password: values?.password,
       });
 
       if (res?.status === 200) {
+        console.log(res?.data, "response login");
         localStorage.setItem(
           "accessToken",
           JSON.stringify(res?.data?.accessToken)
         );
+
+        localStorage.setItem("logedinData", JSON.stringify(res?.data));
+
+        console.log("res", res);
 
         navigate("/deshboard");
       }
@@ -27,8 +33,11 @@ function Login() {
       console.log(res, "success result");
     } catch (er) {
       console.log(er?.response?.data?.message);
+      setErrorMsg(er?.response?.data?.message);
     }
   };
+
+  const [form] = Form.useForm();
 
   return (
     <>
@@ -37,43 +46,46 @@ function Login() {
           <div className="login-card">
             <div className="row">
               <div className="col-lg-6">
-                <div>
-                  <h4>Login here</h4>
+                <div className="login-area mb-4">
+                  <h4>Login</h4>
                 </div>
-                <form action="">
-                  <div className="form-group mt-3">
-                    <label htmlFor="">Enter User Name</label>
-                    <input
-                      className="form-control mt-2"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      placeholder="Enter username"
-                      required
-                    />
-                  </div>
+                <Form onSubmit={sendDatatoApp} form={form} layout="vertical">
+                  <Form.Item
+                    name="username"
+                    label="User Name"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the username!",
+                      },
+                    ]}
+                  >
+                    <Input placeholder="User Name" />
+                  </Form.Item>
+                  <Form.Item
+                    label="Password"
+                    name="password"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the password!",
+                      },
+                    ]}
+                  >
+                    <Input placeholder="Password" />
+                  </Form.Item>
 
-                  <div className="form-group">
-                    <label className="mt-2" htmlFor="">
-                      Enter Password
-                    </label>
-                    <input
-                      className="form-control mt-2"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Enter password"
-                      required
-                    />
-                  </div>
-                  <div className="save-btn-area">
+                  <p className="text-danger">{errorMsg}</p>
+
+                  <Form.Item>
                     <button
-                      className="btn btn-primary mt-3"
-                      type="button"
                       onClick={sendDatatoApp}
+                      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm"
                     >
-                      Login{" "}
+                      Login
                     </button>
-                  </div>
-                </form>
+                  </Form.Item>
+                </Form>
               </div>
               <div class="col-lg-6">
                 <SignUp />

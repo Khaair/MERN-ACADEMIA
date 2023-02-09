@@ -1,8 +1,21 @@
 import React from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { UserOutlined, BorderInnerOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  BorderInnerOutlined,
+  FullscreenExitOutlined,
+  DiffOutlined,
+  PieChartOutlined,
+  SlackOutlined,
+  FileTextOutlined,
+  UsergroupAddOutlined,
+  BellOutlined,
+  QrcodeOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons";
 import { Button, Dropdown, Space } from "antd";
+import Search from "antd/es/transfer/search";
 const items = [
   {
     label: <a href="https://www.antgroup.com">1st menu item</a>,
@@ -26,8 +39,12 @@ const Layout = ({ children }) => {
 
   const handleLogOut = () => {
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("logedinData");
+
     navigate("/");
   };
+
+  const onSearch = (value) => console.log(value);
   return (
     <React.Fragment>
       <div class="layer-area">
@@ -36,7 +53,10 @@ const Layout = ({ children }) => {
             <nav className="navv">
               <div className="top-navbar-wrapper">
                 <div className="accademia-logo">
-                  <img src="/uploads/academia-logo-transparent.png" alt="" />
+                  <Link to="/home">
+                    {" "}
+                    <img src="/uploads/academia-logo-transparent.png" alt="" />
+                  </Link>
                 </div>
 
                 <div>
@@ -47,19 +67,45 @@ const Layout = ({ children }) => {
                     Info
                   </Button>
                   <Button onClick={handleLogOut} type="primary" ghost>
-                    Logout
+                    Event
                   </Button>
+                </div>
+
+                <div className="searchbar-wrapper">
+                  <Search
+                    placeholder="input search text"
+                    allowClear
+                    onSearch={onSearch}
+                    style={{
+                      width: 200,
+                    }}
+                  />
+                </div>
+
+                <div className="top-nav-right-icon d-flex">
+                  <div>
+                    <BellOutlined role="button" />
+                  </div>
+                  <div>
+                    {" "}
+                    <QrcodeOutlined role="button" />
+                  </div>
+                  <div>
+                    {" "}
+                    <LogoutOutlined onClick={handleLogOut} />
+                  </div>
                 </div>
               </div>
             </nav>
           </div>
           <div className="sub-nabar-area shadow-sm ">
             <nav className="navv">
-              <div className="title-deshboard-wrapper text-bold text-primary">
-                <div>
-                  <BorderInnerOutlined />
+              <div className="title-deshboard-wrapper text-center text-bold">
+                <div className="title-deshboard-wrapper-icon">
+                  {" "}
+                  <QrcodeOutlined role="button" />
                 </div>
-                <div className="mx-2 mt-1">Deshboard</div>
+                <div className="deshboar-word">Deshboard</div>
               </div>
             </nav>
           </div>
@@ -67,11 +113,11 @@ const Layout = ({ children }) => {
           <div class="sidebar-area">
             <div class="row">
               <div class="col-lg-2 deshboard-sidebar">
-                <div className="mt-5">
+                <div className="mt-3">
                   <ul>
                     <li>
                       <Link to="/deshboard" className="ll d-flex">
-                        <UserOutlined />
+                        <UsergroupAddOutlined />
                         <Space className="mx-2 click-me">
                           Student Management
                         </Space>
@@ -80,18 +126,20 @@ const Layout = ({ children }) => {
 
                     <li>
                       {" "}
-                      <Link to="/deshboard" className="ll d-flex">
+                      <Link to="/teacher-manage" className="ll d-flex">
                         <UserOutlined />
-                        <Space className="mx-2 click-me">User Management</Space>
+                        <Space className="mx-2 click-me">
+                          Teacher Management
+                        </Space>
                       </Link>
                     </li>
 
                     <li>
                       {" "}
                       <Link to="/student-manage" className="ll d-flex">
-                        <UserOutlined />
+                        <FileTextOutlined />
                         <Space className="mx-2 click-me">
-                          Student Management 2
+                          Course Management&nbsp;&nbsp;
                         </Space>
                       </Link>
                     </li>
@@ -99,9 +147,10 @@ const Layout = ({ children }) => {
                     <li>
                       {" "}
                       <Link to="/deshboard" className="ll d-flex">
-                        <UserOutlined />
+                        <SlackOutlined />
                         <Space className="mx-2 click-me">
-                          Staff Management
+                          Staff
+                          Management&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </Space>
                       </Link>
                     </li>
@@ -109,9 +158,18 @@ const Layout = ({ children }) => {
                     <li>
                       {" "}
                       <Link to="/deshboard" className="ll d-flex">
+                        <DiffOutlined />
+                        <Space className="mx-2 click-me">
+                          Course Management &nbsp;
+                        </Space>
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link to="/teacher-manage" className="ll d-flex">
                         <UserOutlined />
                         <Space className="mx-2 click-me">
-                          Course Management
+                          Teacher Management
                         </Space>
                       </Link>
                     </li>
@@ -119,19 +177,45 @@ const Layout = ({ children }) => {
                     <li>
                       {" "}
                       <Link to="/deshboard" className="ll d-flex">
-                        <UserOutlined />
+                        <PieChartOutlined />
                         <Space className="mx-2 click-me">
-                          Billing and Fees
+                          Reporting and Analytic
                         </Space>
                       </Link>
                     </li>
-
                     <li>
                       {" "}
                       <Link to="/deshboard" className="ll d-flex">
                         <UserOutlined />
                         <Space className="mx-2 click-me">
-                          Reporting and Analytics
+                          Reporting and Analytic
+                        </Space>
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link to="/deshboard" className="ll d-flex">
+                        <UserOutlined />
+                        <Space className="mx-2 click-me">
+                          Reporting and Analytic
+                        </Space>
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link to="/deshboard" className="ll d-flex">
+                        <UserOutlined />
+                        <Space className="mx-2 click-me">
+                          Reporting and Analytic
+                        </Space>
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link to="/deshboard" className="ll d-flex">
+                        <FullscreenExitOutlined />
+                        <Space className="mx-2 click-me">
+                          Reporting and Analytic
                         </Space>
                       </Link>
                     </li>

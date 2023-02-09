@@ -32,9 +32,9 @@ router.post(
 
   upload.single("file"),
   [
-    check("title").not().isEmpty().withMessage("Title is required"),
-    check("author").not().isEmpty().withMessage("Author is required"),
-    check("body").not().isEmpty().withMessage("Body is required"),
+    check("fullName").not().isEmpty().withMessage("fullName is required"),
+    check("phoneNumber").not().isEmpty().withMessage("phoneNumber is required"),
+    check("address").not().isEmpty().withMessage("address is required"),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -44,9 +44,9 @@ router.post(
 
     try {
       const crudData = new crudModel({
-        title: req.body.title,
-        author: req.body.author,
-        body: req.body.body,
+        fullName: req.body.fullName,
+        phoneNumber: req.body.phoneNumber,
+        address: req.body.address,
         file: req.file.filename,
       });
       const savedData = await crudData.save();
@@ -94,10 +94,11 @@ router.delete("/delete/:id", async (req, res) => {
 
 router.post(
   "/update/:id",
+  upload.single("file"),
   [
-    check("title").not().isEmpty().withMessage("Title is required"),
-    check("author").not().isEmpty().withMessage("Author is required"),
-    check("body").not().isEmpty().withMessage("Body is required"),
+    check("fullName").not().isEmpty().withMessage("fullName is required"),
+    check("phoneNumber").not().isEmpty().withMessage("phoneNumber is required"),
+    check("address").not().isEmpty().withMessage("address is required"),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -108,9 +109,10 @@ router.post(
       let updatee = await crudModel.findByIdAndUpdate(
         { _id: req.params.id },
         {
-          title: req.body.title,
-          author: req.body.author,
-          body: req.body.body,
+          fullName: req.body.fullName,
+          phoneNumber: req.body.phoneNumber,
+          address: req.body.address,
+          file: req.file.filename,
         },
         { new: true }
       );

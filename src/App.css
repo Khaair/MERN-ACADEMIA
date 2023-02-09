@@ -8,6 +8,8 @@
   padding: 0px;
 
 }
+
+
 .navv {
   height: 60px;
   padding-top: 14px;
@@ -19,7 +21,8 @@
 }
 
 .accademia-logo img{
-  height: 20px;
+  height: 33px;
+  padding-left: 28px;
 }
 
 .title-deshboard-wrapper{
@@ -41,7 +44,6 @@
   text-decoration: none;
   font-size: 15px;
   margin-bottom: 8px;
-  margin-left: -33px;
   padding: 8px;
   border-radius: 5px;
 }
@@ -83,9 +85,18 @@
 width: 450px;}
 
 .login-card{
- padding: 100px 50px 50px 50px;
+ padding: 73px 50px 50px 50px;
   background-color: #F0F3F6;
   border-radius: 5px;
+}
+
+.card-title-section {
+  min-height: 50px;
+  padding: 20px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 15px;
 }
 
 .nabar-area{
@@ -135,5 +146,131 @@ background-color: #F0F3F6;
 
 .add-student-wrapper{
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
+}
+
+.card-title{
+  font-size: 1.10rem ;
+  color: #148a8f ;
+  font-weight: 600 ;
+}
+
+.deshboar-word{
+  font-size: 1.10rem ;
+  color: #148a8f ;
+  font-weight: 600 ;
+  margin-left: 5px;
+  margin-top: 2px;
+}
+
+.top-nav-right-icon{
+  padding-right: 50px;
+  text-align: center;
+}
+
+.top-nav-right-icon div{
+  height: 32px;
+  width: 32px;
+  background-color: #F0F3F6;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.title-deshboard-wrapper-icon{
+  height: 32px;
+  width: 32px;
+  background-color: #F0F3F6;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  color: #148a8f; 
+}
+
+.searchbar-wrapper search{
+  border: 1px solid red;
+  background-color: aqua;
+}
+
+.ant-form-item {
+  margin-bottom: 12px !important;
+
+}
+
+.login-area h4{
+  font-size: 1.10rem ;
+  color: black ;
+  font-weight: 600 ;
+}
+
+.bootstrap-container .container {
+  max-width: 1320px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.course-details-area{
+  min-height: 300px;
+  background-color: #DBDBDB;
+  padding-top: 21px;
+  padding-bottom: 30px;
+  
+}
+
+.instructor-wrapper{
+  display: flex;
+  padding: 20px;
+}
+
+.instructor-wrapper .image-wrapper img{
+     width: 100px;
+      height: 100px;
+      background: red;
+      border-radius: 50%
+}
+
+.course-learning-curb{
+  padding: 20px;
+}
+
+.course-learning-curb-content{
+  display: flex;
+}
+
+.course-learning-curb-content-for-details{
+  display: flex;
+  justify-content: space-between;
+}
+.enroll-area{
+  position: fixed;
+
+}
+.course-specific-video-wrapper{
+  display: flex;
+}
+
+.course-checkout-area{
+  background-color: #F5F5F5;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  min-height: 450px;
+}
+
+.checkout-item-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.bkash-payment-image img{
+  width: 100px;
+}
+
+.payment-check-box{
+  display: flex;
+}
+
+.checkout-course-details-wrapper{
+  display: flex;
 }

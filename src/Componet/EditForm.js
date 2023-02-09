@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Upload } from "antd";
 import Layout from "../layout";
 
 const EditForm = (props) => {
@@ -18,9 +18,9 @@ const EditForm = (props) => {
       );
 
       form.setFieldsValue({
-        title: data.data.title,
-        author: data.data.author,
-        body: data.data.body,
+        fullName: data.data.fullName,
+        phoneNumber: data.data.phoneNumber,
+        address: data.data.address,
       });
     } catch (err) {
       console.log(err, "error");
@@ -31,62 +31,88 @@ const EditForm = (props) => {
     fetchdata();
   }, [id]);
 
-  const onFinish = async (values) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await axios.post(`http://localhost:8080/api/update/${id}`, {
-        title: values.title,
-        author: values.author,
-        body: values.body,
-      });
-    } catch (er) {
-      console.log(er);
-    }
+      const values = await form.validateFields();
+      const formData = new FormData();
+      formData.append("fullName", values.fullName);
+      formData.append("phoneNumber", values.phoneNumber);
+      formData.append("address", values.address);
+      formData.append("file", values.file[0].originFileObj);
 
-    navigate("/deshboard");
+      const res = await fetch(`http://localhost:8080/api/update/${id}`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (data?.status === "200") {
+        fetchdata();
+      }
+      console.log("data", data);
+    } catch (errorInfo) {
+      console.log("Failed:", errorInfo);
+    }
   };
 
   return (
     <>
-      <Form form={form} onFinish={onFinish}>
+      <Form form={form} layout="vertical">
         <Form.Item
-          name="title"
+          name="fullName"
           label="Full Name"
           rules={[
             {
               required: true,
-              message: "Please enter  fullname!",
+              message: "Please input the fullname!",
             },
           ]}
         >
-          <Input placeholder="Enter fullname" />
+          <Input placeholder="Full Name" />
         </Form.Item>
         <Form.Item
-          name="author"
           label="Phone No"
+          name="phoneNumber"
           rules={[
             {
               required: true,
-              message: "Please enter phone number!",
+              message: "Please input the phone number!",
             },
           ]}
         >
-          <Input placeholder="phone number" />
+          <Input placeholder="Phone Number" />
         </Form.Item>
         <Form.Item
-          name="body"
-          label="Address"
+          label="Addres"
+          name="address"
           rules={[
             {
               required: true,
-              message: "Please enter address!",
+              message: "Please input the Address!",
             },
           ]}
         >
-          <Input placeholder="Enter address" />
+          <Input.TextArea rows={3} placeholder="Address" />
+        </Form.Item>
+        <Form.Item
+          label="Image"
+          name="file"
+          valuePropName="fileList"
+          getValueFromEvent={(e) => e && e.fileList}
+          rules={[
+            {
+              required: true,
+              message: "Please select the file!",
+            },
+          ]}
+        >
+          <Upload name="file" listType="picture">
+            <Button>Upload Image</Button>
+          </Upload>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Update
+          <Button type="primary" ghost onClick={handleSubmit}>
+            Submit
           </Button>
         </Form.Item>
       </Form>
