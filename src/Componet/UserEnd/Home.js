@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
+
 import Layout from "./Layout";
 
 export default function EcomHome() {
+  const fetchData = async () => {
+    const response = await fetch(
+      "http://localhost:8080/api/course/course-show"
+    );
+    return response.json();
+  };
+  const { data, status } = useQuery("data", fetchData, {
+    refetchOnWindowFocus: true,
+  });
+
+  console.log("datadatadata", data);
+
   return (
     <Layout>
       <div className="navbar-and-banner-area">
@@ -21,7 +35,9 @@ export default function EcomHome() {
                     <h3 className="mt-2">25% Off On All Tops</h3>
                   </div>
                   <div className="banner-btn-wrapper">
-                    <button className="first-banner-btn">Enroll Now</button>
+                    <Link to="/course-details">
+                      <button className="first-banner-btn">Enroll Now</button>
+                    </Link>
                     <button>Find More</button>
                   </div>
                 </div>
@@ -109,325 +125,40 @@ export default function EcomHome() {
             <div class="bootstrap-container">
               <div className="container">
                 <div className="row">
-                  <div class="col-lg-3">
-                    <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg">
-                      <img
-                        class="w-full"
-                        src="/uploads/mern-rabbil-hasan.jpg"
-                        alt="Sunset in the mountains"
-                      />
+                  {data?.map((item, index) => {
+                    return (
+                      <div key={index} class="col-lg-3 mt-3">
+                        <Link to={`/course-details/${item?._id}`}>
+                          <div class="max-w-sm course-card bg-white rounded overflow-hidden shadow-lg">
+                            <img
+                              class="w-full"
+                              src={`/uploads/${item?.file}`}
+                              alt="Sunset in the mountains"
+                            />
 
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">
-                          Full Stack Web Development with MERN
-                        </div>
-                        <p class="text-gray-700 text-base">
-                          লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন
-                          এক্সপেরিয়েন্স।
-                        </p>
-                        <div className="course-card-price-wparrer pt-3">
-                          <div>5000 taka</div>
-                          <div>
-                            <Link to="/course-details">
-                              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                                SEE DETAILS
-                              </span>
-                            </Link>
+                            <div class="px-6 py-4 ">
+                              <div class="font-bold text-xl mb-2 course-title">
+                                {item?.courseTitle}
+                              </div>
+                              <div className="course-sub-title">
+                                <p class="text-gray-700 text-base">
+                                  {item?.courseSubTitle}
+                                </p>
+                              </div>
+                              <div className="course-card-price-wparrer pt-3">
+                                <div> {item?.price}</div>
+                                <div>
+                                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                                    SEE DETAILS
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
+                        </Link>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3">
-                    <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg">
-                      <img
-                        class="w-full"
-                        src="/uploads/data-science.jpg"
-                        alt="Sunset in the mountains"
-                      />
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">
-                          Full Stack Web Development with MERN
-                        </div>
-                        <p class="text-gray-700 text-base">
-                          লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন
-                          এক্সপেরিয়েন্স।
-                        </p>
-                        <div className="course-card-price-wparrer pt-3">
-                          <div>5000 taka</div>
-                          <div>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                              SEE DETAILS
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3">
-                    <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg">
-                      <img
-                        class="w-full"
-                        src="/uploads/mern-rabbil-hasan.jpg"
-                        alt="Sunset in the mountains"
-                      />
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">
-                          Full Stack Web Development with MERN
-                        </div>
-                        <p class="text-gray-700 text-base">
-                          লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন
-                          এক্সপেরিয়েন্স।
-                        </p>
-                        <div className="course-card-price-wparrer pt-3">
-                          <div>5000 taka</div>
-                          <div>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                              SEE DETAILS
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3">
-                    <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg">
-                      <img
-                        class="w-full"
-                        src="/uploads/data-science.jpg"
-                        alt="Sunset in the mountains"
-                      />
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">
-                          Full Stack Web Development with MERN
-                        </div>
-                        <p class="text-gray-700 text-base">
-                          লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন
-                          এক্সপেরিয়েন্স।
-                        </p>
-                        <div className="course-card-price-wparrer pt-3">
-                          <div>5000 taka</div>
-                          <div>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                              SEE DETAILS
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row mt-4">
-                  <div class="col-lg-3">
-                    <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg">
-                      <img
-                        class="w-full"
-                        src="/uploads/data-science.jpg"
-                        alt="Sunset in the mountains"
-                      />
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">
-                          Full Stack Web Development with MERN
-                        </div>
-                        <p class="text-gray-700 text-base">
-                          লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন
-                          এক্সপেরিয়েন্স।
-                        </p>
-                        <div className="course-card-price-wparrer pt-3">
-                          <div>5000 taka</div>
-                          <div>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                              SEE DETAILS
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3">
-                    <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg">
-                      <img
-                        class="w-full"
-                        src="/uploads/business-ai.jpg"
-                        alt="Sunset in the mountains"
-                      />
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">
-                          Full Stack Web Development with MERN
-                        </div>
-                        <p class="text-gray-700 text-base">
-                          লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন
-                          এক্সপেরিয়েন্স।
-                        </p>
-                        <div className="course-card-price-wparrer pt-3">
-                          <div>5000 taka</div>
-                          <div>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                              SEE DETAILS
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3">
-                    <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg">
-                      <img
-                        class="w-full"
-                        src="/uploads/data-science.jpg"
-                        alt="Sunset in the mountains"
-                      />
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">
-                          Full Stack Web Development with MERN
-                        </div>
-                        <p class="text-gray-700 text-base">
-                          লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন
-                          এক্সপেরিয়েন্স।
-                        </p>
-                        <div className="course-card-price-wparrer pt-3">
-                          <div>5000 taka</div>
-                          <div>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                              SEE DETAILS
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3">
-                    <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg">
-                      <img
-                        class="w-full"
-                        src="/uploads/women-uddokta.jpg"
-                        alt="Sunset in the mountains"
-                      />
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">
-                          Full Stack Web Development with MERN
-                        </div>
-                        <p class="text-gray-700 text-base">
-                          লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন
-                          এক্সপেরিয়েন্স।
-                        </p>
-                        <div className="course-card-price-wparrer pt-3">
-                          <div>5000 taka</div>
-                          <div>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                              SEE DETAILS
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row mt-4">
-                  <div class="col-lg-3">
-                    <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg">
-                      <img
-                        class="w-full"
-                        src="/uploads/power-bi.jpg"
-                        alt="Sunset in the mountains"
-                      />
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">
-                          Full Stack Web Development with MERN
-                        </div>
-                        <p class="text-gray-700 text-base">
-                          লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন
-                          এক্সপেরিয়েন্স।
-                        </p>
-                        <div className="course-card-price-wparrer pt-3">
-                          <div>5000 taka</div>
-                          <div>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                              SEE DETAILS
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3">
-                    <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg">
-                      <img
-                        class="w-full"
-                        src="/uploads/accounting.jpg"
-                        alt="Sunset in the mountains"
-                      />
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">
-                          Full Stack Web Development with MERN
-                        </div>
-                        <p class="text-gray-700 text-base">
-                          লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন
-                          এক্সপেরিয়েন্স।
-                        </p>
-                        <div className="course-card-price-wparrer pt-3">
-                          <div>5000 taka</div>
-                          <div>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                              SEE DETAILS
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3">
-                    <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg">
-                      <img
-                        class="w-full"
-                        src="/uploads/women-2.jpg"
-                        alt="Sunset in the mountains"
-                      />
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">
-                          Full Stack Web Development with MERN
-                        </div>
-                        <p class="text-gray-700 text-base">
-                          লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন
-                          এক্সপেরিয়েন্স।
-                        </p>
-                        <div className="course-card-price-wparrer pt-3">
-                          <div>5000 taka</div>
-                          <div>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                              SEE DETAILS
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3">
-                    <div class="max-w-sm bg-white rounded overflow-hidden shadow-lg">
-                      <img
-                        class="w-full"
-                        src="/uploads/mern-rabbil-hasan.jpg"
-                        alt="Sunset in the mountains"
-                      />
-                      <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">
-                          Full Stack Web Development with MERN
-                        </div>
-                        <p class="text-gray-700 text-base">
-                          লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন
-                          এক্সপেরিয়েন্স।
-                        </p>
-                        <div className="course-card-price-wparrer pt-3">
-                          <div>5000 taka</div>
-                          <div>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                              SEE DETAILS
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>

@@ -86,10 +86,14 @@ require("./app/routes/user.routes")(app);
 const routes = require("./app/routes/crudRoutes");
 const routesuserget = require("./app/routes/userGetRoutes");
 const routesStudentManage = require("./app/routes/studentRoutes");
+const routesCourseManagement = require("./app/routes/courseManagementRoutes");
+const routesCourseOrder = require("./app/routes/courseOrder");
 
 app.use("/api", routes);
 app.use("/api", routesuserget);
 app.use("/api", routesStudentManage);
+app.use("/api/course", routesCourseManagement);
+app.use("/api/course-order", routesCourseOrder);
 
 //http://localhost:8080/api/auth/signup
 

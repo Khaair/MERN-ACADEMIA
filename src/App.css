@@ -274,3 +274,12 @@ background-color: #F0F3F6;
 .checkout-course-details-wrapper{
   display: flex;
 }
+
+
+
+.course-card .course-title{
+  height: 59px;
+}
+.course-card .course-sub-title{
+  height: 80px;
+}

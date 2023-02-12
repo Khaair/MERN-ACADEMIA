@@ -136,7 +136,7 @@ const Layout = ({ children }) => {
 
                     <li>
                       {" "}
-                      <Link to="/student-manage" className="ll d-flex">
+                      <Link to="/course-manage" className="ll d-flex">
                         <FileTextOutlined />
                         <Space className="mx-2 click-me">
                           Course Management&nbsp;&nbsp;

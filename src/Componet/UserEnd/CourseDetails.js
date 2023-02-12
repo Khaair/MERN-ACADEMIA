@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
+import { useNavigate } from "react-router-dom";
 import {
   CheckOutlined,
   DownOutlined,
@@ -7,7 +8,9 @@ import {
   PlayCircleOutlined,
 } from "@ant-design/icons";
 import { Modal } from "antd";
-import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
+
+import { Link, useLocation, useParams } from "react-router-dom";
 export default function CourseDetails() {
   const [showCourseDetails, setShowCourseDetails] = useState(false);
   const [showCourseContentOne, setShowCourseContentOne] = useState(false);
@@ -16,9 +19,9 @@ export default function CourseDetails() {
 
   const [scrolled, setScrolled] = React.useState(false);
 
+  const { id } = useParams();
   const handleScroll = () => {
     const offset = window.scrollY;
-    console.log("offset", offset);
     if (offset > 1050) {
       setScrolled(true);
     } else {
@@ -67,6 +70,23 @@ export default function CourseDetails() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  const location = useLocation();
+  const history = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location, history]);
+
+  const { data, status } = useQuery("my-query-key", async () => {
+    const response = await fetch(
+      `http://localhost:8080/api/course/course-show-single/${id}`
+    );
+    return response.json();
+  });
+
+  console.log("data single", data);
+  console.log("status", status);
   return (
     <Layout>
       <div class="course-details-area">
@@ -77,14 +97,9 @@ export default function CourseDetails() {
                 <div class="w-100  bg-white rounded overflow-hidden shadow-lg">
                   <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2">
-                      <h2>IELTS Course by Munzereen Shahid</h2>
+                      <h2>{data?.courseTitle}</h2>
                     </div>
-                    <p class="text-gray-700 text-base">
-                      Improve your IELTS reading, writing, listening and
-                      speaking test scores. Our fully-guided IELTS preparation
-                      course will help you get your best IELTS band score. 15
-                      mock tests included.
-                    </p>
+                    <p class="text-gray-700 text-base">{data?.description}</p>
                     <h6 className="mt-5">কোর্স ইন্সট্রাক্টর</h6>
                     <div class="rounded-md border mt-2  border-slate-300">
                       <div className="instructor-wrapper">
@@ -92,11 +107,8 @@ export default function CourseDetails() {
                           <img src="/uploads/munzerin-instructor.webp" alt="" />
                         </div>
                         <div className="mx-3">
-                          <p>Munzereen Shahid</p>
-                          <p>MSc (English), University of Oxford (UK);</p>
-
-                          <p>BA, MA (English), University of Dhaka;</p>
-                          <p>IELTS: 8.5</p>
+                          <p>{data?.instructorName}</p>
+                          <p>{data?.instructorDesignation}</p>
                         </div>
                       </div>
                     </div>
@@ -107,36 +119,7 @@ export default function CourseDetails() {
                           <div>
                             <CheckOutlined />
                           </div>
-                          <p className="mt-2 mx-2">
-                            Detailed rules and regulations of each module of the
-                            IELTS test
-                          </p>
-                        </div>
-                        <div className="course-learning-curb-content">
-                          <div>
-                            <CheckOutlined />
-                          </div>
-                          <p className="mt-2 mx-2">
-                            Proper structure and essay type for scoring well in
-                            IELTS writing task 1 and 2
-                          </p>
-                        </div>
-                        <div className="course-learning-curb-content">
-                          <div>
-                            <CheckOutlined />
-                          </div>
-                          <p className="mt-2 mx-2">
-                            Time management strategy to get a good band score in
-                            the IELTS test
-                          </p>
-                        </div>
-                        <div className="course-learning-curb-content">
-                          <div>
-                            <CheckOutlined />
-                          </div>
-                          <p className="mt-2 mx-2">
-                            Formats and strategies to ace the IELTS test
-                          </p>
+                          <p className="mt-2 mx-2">{data?.learnFromCourse}</p>
                         </div>
                       </div>
                     </div>
@@ -162,32 +145,7 @@ export default function CourseDetails() {
                           </div>
                         </div>
                         {showCourseDetails && (
-                          <p className="mx-2 mt-2">
-                            IELTS certificates are accepted in different higher
-                            education institutions in the USA and other
-                            English-speaking countries across South America and
-                            Europe. This exam tests the ability of the
-                            candidates to speak, read, listen and write in
-                            English. Many of us are intimidated by English
-                            grammar as English is not our first language.
-                            Fortunately, IELTS is essentially a language-based
-                            test and not grammar-based. To achieve the desired
-                            score, you will require four English language
-                            skills: reading, writing, listening & understanding
-                            and speaking. The more proficient a person is in
-                            these four areas, the higher their score will be on
-                            the IELTS test. To help IELTS examinees improve
-                            these four essential English language skills, 10
-                            Minute School has brought a detailed and well-guided
-                            IELTS preparation course. The instructor of this
-                            course is Munzereen Shahid (IELTS Band Score 8.5/
-                            9), who has recently graduated from the English
-                            Department of the world-renowned Oxford University
-                            in England. To make your IELTS test preparation
-                            effortless, efficient, and practical, enroll in
-                            "IELTS Course by Munzereen Shahid" today and take
-                            yourself one step closer to fulfilling your dreams.
-                          </p>
+                          <p className="mx-2 mt-2">{data?.description}</p>
                         )}
                       </div>
                     </div>
@@ -385,21 +343,21 @@ export default function CourseDetails() {
                 >
                   <img
                     class="w-full"
-                    src="/uploads/women-2.jpg"
+                    src={`/uploads/${data?.file}`}
                     alt="Sunset in the mountains"
                   />
                   <div class="px-6 py-4">
                     <div class=" text-xl mb-2">
-                      <h4>IELTS Course by Munzereen Shahid</h4>
+                      <h4>{data?.courseTitle}</h4>
                     </div>
                     <p class="text-gray-700 text-base">
-                      লাইভে রিয়েল লাইফ প্রোজেক্ট করে হ্যান্ডস অন এক্সপেরিয়েন্স।
+                      {data?.courseSubTitle}
                     </p>
                     <div className="course-card-price-wparrer pt-3">
-                      <div>5000 taka</div>
+                      <div> {data?.price}</div>
                     </div>
                     <div className="mt-3">
-                      <Link to="/course-checkout">
+                      <Link to={`/course-checkout/${data?._id}`}>
                         <button class="bg-green-500 w-100 hover:bg-green-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
                           Enroll
                         </button>

@@ -91,7 +91,6 @@ function Deshboard() {
       });
       const data = await res.json();
       if (data?.status === "200") {
-        openNotification();
         fetchdata();
         setIsModalOpen(false);
       }

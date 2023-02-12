@@ -8,57 +8,69 @@ import SignUp from "./Componet/SignUp";
 import StudentAdd from "./Componet/StudentAdd";
 import PrivateRoute from "./Componet/PrivateRoute";
 import TecherManagement from "./Componet/TeacherManagement";
-
+import { QueryClient, QueryClientProvider } from "react-query";
 import "./tailwind.css";
 import CourseDetails from "./Componet/UserEnd/CourseDetails";
 import { Bars } from "react-loader-spinner";
 import CheckOut from "./Componet/UserEnd/CheckOut";
+import CourseManagement from "./Componet/CourseManagement";
 const EcomHome = React.lazy(() => import("./Componet/UserEnd/Home"));
 function App() {
+  const queryClient = new QueryClient();
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Login />} />
+      <QueryClientProvider client={queryClient}>
+        <Routes>
+          <Route path="/" element={<Login />} />
 
-        <Route path="/edit/:id" element={<EditForm />} />
-        <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/edit/:id" element={<EditForm />} />
+          <Route path="/sign-up" element={<SignUp />} />
 
-        <Route
-          path="/home"
-          element={
-            <Suspense
-              fallback={
-                <div className="ecommerce-loader-wrapper">
-                  <Bars
-                    height="100"
-                    width="100"
-                    color="#4fa94d"
-                    ariaLabel="bars-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                  />
-                </div>
-              }
-            >
-              <EcomHome />
-            </Suspense>
-          }
-        />
-        <Route path="/course-details" element={<CourseDetails />} />
-        <Route path="/course-checkout" element={<CheckOut />} />
+          <Route
+            path="/home"
+            element={
+              <Suspense
+                fallback={
+                  <div className="ecommerce-loader-wrapper">
+                    <Bars
+                      height="100"
+                      width="100"
+                      color="#4fa94d"
+                      ariaLabel="bars-loading"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  </div>
+                }
+              >
+                <EcomHome />
+              </Suspense>
+            }
+          />
+          <Route path="/course-details/:id" element={<CourseDetails />} />
+          <Route path="/course-checkout/:id" element={<CheckOut />} />
 
-        <Route
-          path="/deshboard"
-          element={
-            <PrivateRoute>
-              <Deshboard />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/student-manage" element={<StudentAdd />} />
-        <Route path="/teacher-manage" element={<TecherManagement />} />
-      </Routes>
+          <Route
+            path="/deshboard"
+            element={
+              <PrivateRoute>
+                <Deshboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/course-manage"
+            element={
+              <PrivateRoute>
+                <CourseManagement />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/student-manage" element={<StudentAdd />} />
+          <Route path="/teacher-manage" element={<TecherManagement />} />
+        </Routes>
+      </QueryClientProvider>
     </>
   );
 }
