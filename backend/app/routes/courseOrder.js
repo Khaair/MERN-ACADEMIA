@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const courseOrderModel = require("../models/crud");
+const courseOrderModel = require("../models/courseOrder");
 const { check, validationResult } = require("express-validator");
 const app = express();
 
@@ -34,6 +34,8 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
+    console.log(req.body);
+
     try {
       const crudData = new courseOrderModel({
         orderId: req.body.orderId,
@@ -46,7 +48,8 @@ router.post(
       res.status(200).json({
         data: savedData,
         status: "200",
-        message: "Message saved successfully",
+        message:
+          "Your order has been successfully completed. We will send you an email containing your login credentials to the email address you provided. With these details, you will be able to enroll in the course.",
       });
     } catch (err) {
       res.status(500).send({ msg: "Error saving data" });

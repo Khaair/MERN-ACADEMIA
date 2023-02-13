@@ -52,4 +52,4 @@ courseOrderSchema.post("save", function (error, doc, next) {
   }
 });
 
-module.exports = mongoose.model("crud", courseOrderSchema);
+module.exports = mongoose.model("courseOrder", courseOrderSchema);

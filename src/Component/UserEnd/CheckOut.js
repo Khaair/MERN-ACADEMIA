@@ -1,4 +1,5 @@
 import { Button, Checkbox, Form, Input, Modal } from "antd";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
@@ -7,13 +8,11 @@ import Layout from "./Layout";
 export default function CheckOut() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [orderNumber, setOrderNumber] = useState();
-  console.log(orderNumber, "orderNumber");
+  const [loading, setLoading] = useState();
+  const [error, setError] = useState();
+
   const { id } = useParams();
   const [form] = Form.useForm();
-
-  const handleEditOk = () => {
-    setIsModalOpen(false);
-  };
 
   const handleModalShow = () => {
     setIsModalOpen(true);
@@ -21,6 +20,8 @@ export default function CheckOut() {
 
   const handleCancel = () => {
     setIsModalOpen(false);
+    setError("");
+    form.resetFields();
   };
 
   const { data, status } = useQuery("my-query-key", async () => {
@@ -32,61 +33,80 @@ export default function CheckOut() {
     }
   });
 
-  console.log("data checkout", data);
-  console.log("status", status);
-
   useEffect(() => {
     const GenerateOrderNumber =
       Date.now() + Math.floor(Math.random() * 100000) + 1;
     setOrderNumber(GenerateOrderNumber);
   }, []);
 
+  let storedData = data && data;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const values = await form.validateFields();
-      const formData = new FormData();
-      formData.append("fullName", values.fullName);
-      formData.append("phoneNumber", values.phoneNumber);
-      formData.append("address", values.address);
-      formData.append("file", values.file[0].originFileObj);
 
-      const res = await fetch("http://localhost:8080/api/save", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      if (data?.status === "200") {
-        console.log(data);
+    const values = await form.validateFields();
+
+    try {
+      let response = await axios.post(
+        `${process.env.REACT_APP_COURSE}/course-order/course-order-save`,
+        {
+          orderId: orderNumber,
+          courseId: storedData?._id,
+          email: values?.email,
+          phoneNumber: values?.phoneNumber,
+          transactionId: values?.transactionId,
+        }
+      );
+      if (response?.data?.status === "200") {
+        setError(response?.data?.message);
+        form.resetFields();
+
+        setLoading(false);
+      } else if (response?.data?.status === "400") {
+        setError(response?.data?.message);
+
+        setLoading(false);
+      } else if (response?.data?.status === "401") {
+        setError(response?.data?.message);
+
+        setLoading(false);
+      } else if (response?.data?.status === "404") {
+        setError(response?.data?.message);
+
+        setLoading(false);
+      } else if (response?.data?.status === "500") {
+        setError(response?.data?.message);
+
+        setLoading(false);
       }
-      console.log("data", data);
-    } catch (errorInfo) {
-      console.log("Failed:", errorInfo);
+      console.log(response, "success");
+    } catch (er) {
+      console.log("error checkout", er);
     }
   };
   return (
     <>
       <Layout>
-        <div class="course-checkout-area ">
-          <div class="bootstrap-container">
-            <div class="container">
-              <div class="row px-6">
-                <div class="col-lg-8">
+        <div className="course-checkout-area ">
+          <div className="bootstrap-container">
+            <div className="container">
+              <div className="row px-6">
+                <div className="col-lg-8">
                   <div className="w-100 h-100 bg-white rounded overflow-hidden shadow-lg ">
-                    <div class="px-6 py-4">
+                    <div className="px-6 py-4">
                       <div className="checkout-course-details-wrapper">
                         <div>
                           <img
-                            class="w-100"
+                            className="w-100"
                             src={`/uploads/${data?.file}`}
                             alt="Sunset in the mountains"
                           />
                         </div>
                         <div className="mx-3">
-                          <div class="text-xl mb-2">
+                          <div className="text-xl mb-2">
                             <h4>{data?.courseTitle}</h4>
                           </div>
-                          <p class="text-gray-700 text-base">
+                          <p className="text-gray-700 text-base">
                             {data?.courseSubTitle}
                           </p>
                           <div className="course-card-price-wparrer pt-3">
@@ -98,9 +118,9 @@ export default function CheckOut() {
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4">
+                <div className="col-lg-4">
                   <div className=" max-w-sm bg-white rounded overflow-hidden shadow-lg ">
-                    <div class="px-6 py-4">
+                    <div className="px-6 py-4">
                       <div className="checkout-item-wrapper">
                         <p className="mb-2">Total Price </p>
                         <p>৳ {data?.price}</p>
@@ -127,7 +147,7 @@ export default function CheckOut() {
                       <div className="mt-3">
                         <button
                           onClick={handleModalShow}
-                          class="bg-green-500 w-100 hover:bg-green-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+                          className="bg-green-500 w-100 hover:bg-green-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
                         >
                           Payment
                         </button>
@@ -141,12 +161,12 @@ export default function CheckOut() {
           <Modal
             open={isModalOpen}
             onCancel={handleCancel}
-            width={600}
+            width={700}
             footer={false}
           >
             <div className="payment-details-area">
-              <div class="px-6 py-4">
-                <div class="mb-3">অর্ডার আইডি #{orderNumber}</div>
+              <div className="px-6 py-4">
+                <div className="mb-3">অর্ডার আইডি #{orderNumber}</div>
                 <div className="checkout-item-wrapper">
                   <p className="mb-2">IELTS Course by Munzereen Shahid </p>
                   <p>৳2500</p>
@@ -173,10 +193,10 @@ export default function CheckOut() {
 
                 <div>
                   <div className="row">
-                    <div className="col-lg-12 ">
+                    <div className="col-lg-12 mt-3 ">
                       <Form form={form} layout="vertical">
                         <Form.Item
-                          name="fullName"
+                          name="email"
                           label="Enter your email"
                           rules={[
                             {
@@ -185,7 +205,7 @@ export default function CheckOut() {
                             },
                           ]}
                         >
-                          <Input placeholder="Full Name" />
+                          <Input placeholder="Email" />
                         </Form.Item>
                         <Form.Item
                           label="Enter your phone no"
@@ -197,10 +217,10 @@ export default function CheckOut() {
                             },
                           ]}
                         >
-                          <Input placeholder="Phone Number" />
+                          <Input placeholder="Phone number" />
                         </Form.Item>
 
-                        <div class="rounded-md border mt-2 p-10 border-slate-300">
+                        <div className="rounded-md border mt-3 p-10 border-slate-300">
                           <div className="checkout-item-wrapper mt-2">
                             <div className="payment-check-box">
                               <Checkbox checked={true}></Checkbox>
@@ -231,11 +251,13 @@ export default function CheckOut() {
                           </div>
                         </div>
 
+                        <p className="text-success mt-2">{error}</p>
+
                         <Form.Item>
                           <div className="mt-3">
                             <button
-                              onClick={handleModalShow}
-                              class="bg-green-500 w-100 hover:bg-green-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+                              onClick={handleSubmit}
+                              className="bg-green-500 w-100 hover:bg-green-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
                             >
                               Submit
                             </button>

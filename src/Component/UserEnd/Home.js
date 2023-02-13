@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 
 import Layout from "./Layout";
 
-export default function EcomHome() {
+export default function Home() {
   const fetchData = async () => {
     const response = await fetch(
       "http://localhost:8080/api/course/course-show"
@@ -65,8 +65,13 @@ export default function EcomHome() {
           <div className="container">
             <div className="row">
               <div className="col-lg-3">
-                <div className="product-card-area course-background-img-one ">
-                  <h2>20% Off On JavaScript </h2>
+                <div
+                  style={{
+                    backgroundImage: `url("/uploads/course-category-01.webp")`,
+                  }}
+                  className="product-card-area  "
+                >
+                  <h2>20% Off On MERN Stack</h2>
                   <p>Lorem ipsum dolor sit amet consec tetur.</p>
                   <div className="product-card-btn-wrapper">
                     <Link to="/course-details">
@@ -76,8 +81,14 @@ export default function EcomHome() {
                 </div>
               </div>
               <div className="col-lg-3">
-                <div className="product-card-area course-background-img-two">
-                  <h2>20% Off On ReactJS</h2>
+                <div
+                  style={{
+                    backgroundImage: `url("/uploads/course-category-02.webp")`,
+                  }}
+                  className="product-card-area"
+                >
+                  <h2>20% Off On </h2>
+                  <h2>Business </h2>
                   <p>Lorem ipsum dolor sit amet consec tetur.</p>
                   <div className="product-card-btn-wrapper">
                     <button>SEE DETAILS</button>
@@ -85,8 +96,13 @@ export default function EcomHome() {
                 </div>
               </div>
               <div className="col-lg-3">
-                <div className="product-card-area course-background-img-three">
-                  <h2>20% Off On NodeJS</h2>
+                <div
+                  style={{
+                    backgroundImage: `url("/uploads/course-category-03.webp")`,
+                  }}
+                  className="product-card-area"
+                >
+                  <h2>20% Off On Design</h2>
                   <p>Lorem ipsum dolor sit amet consec tetur.</p>
                   <div className="product-card-btn-wrapper">
                     <button>SEE DETAILS</button>
@@ -94,8 +110,13 @@ export default function EcomHome() {
                 </div>
               </div>
               <div className="col-lg-3">
-                <div className="product-card-area course-background-img-four ">
-                  <h2>20% Off On ExpressJS</h2>
+                <div
+                  style={{
+                    backgroundImage: `url("/uploads/course-category-04.webp")`,
+                  }}
+                  className="product-card-area "
+                >
+                  <h2>20% Off On Higher Study </h2>
                   <p>Lorem ipsum dolor sit amet consec tetur.</p>
                   <div className="product-card-btn-wrapper">
                     <button>SEE DETAILS</button>

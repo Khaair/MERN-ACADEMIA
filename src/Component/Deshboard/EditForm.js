@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Form, Input, Button, Upload } from "antd";
-import Layout from "../layout";
+import Layout from "./layout";
 
 const EditForm = (props) => {
   const [form] = Form.useForm();

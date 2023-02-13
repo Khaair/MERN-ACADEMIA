@@ -5,7 +5,6 @@ const app = express();
 // ADD THIS
 var cors = require("cors");
 app.use(cors());
-
 app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded

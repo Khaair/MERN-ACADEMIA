@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import Layout from "../layout";
+import Layout from "./layout";
 
 import { Form, Input, DatePicker, Select, Upload, Radio, Button } from "antd";
 import { InboxOutlined } from "@ant-design/icons";

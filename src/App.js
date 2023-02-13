@@ -1,20 +1,21 @@
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import EditForm from "./Componet/EditForm";
-import Deshboard from "./Componet/Deshboard";
-import Login from "./Componet/Login";
-import SignUp from "./Componet/SignUp";
-import StudentAdd from "./Componet/StudentAdd";
-import PrivateRoute from "./Componet/PrivateRoute";
-import TecherManagement from "./Componet/TeacherManagement";
+import EditForm from "./Component/Deshboard/EditForm";
+import Deshboard from "./Component/Deshboard/Deshboard";
+import Login from "./Component/Authentication/Login";
+import SignUp from "./Component/Authentication/SignUp";
+import StudentAdd from "./Component/Deshboard/StudentAdd";
+import PrivateRoute from "./Component/Authentication/PrivateRoute";
+import TecherManagement from "./Component/Deshboard/TeacherManagement";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "./tailwind.css";
-import CourseDetails from "./Componet/UserEnd/CourseDetails";
+import CourseDetails from "./Component/UserEnd/CourseDetails";
 import { Bars } from "react-loader-spinner";
-import CheckOut from "./Componet/UserEnd/CheckOut";
-import CourseManagement from "./Componet/CourseManagement";
-const EcomHome = React.lazy(() => import("./Componet/UserEnd/Home"));
+import CheckOut from "./Component/UserEnd/CheckOut";
+import CourseManagement from "./Component/Deshboard/CourseManagement";
+import OrderManage from "./Component/Deshboard/OrderManage";
+const Home = React.lazy(() => import("./Component/UserEnd/Home"));
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -44,7 +45,7 @@ function App() {
                   </div>
                 }
               >
-                <EcomHome />
+                <Home />
               </Suspense>
             }
           />
@@ -64,6 +65,15 @@ function App() {
             element={
               <PrivateRoute>
                 <CourseManagement />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/order-manage"
+            element={
+              <PrivateRoute>
+                <OrderManage />
               </PrivateRoute>
             }
           />

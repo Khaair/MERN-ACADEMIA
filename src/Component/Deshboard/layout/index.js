@@ -146,11 +146,10 @@ const Layout = ({ children }) => {
 
                     <li>
                       {" "}
-                      <Link to="/deshboard" className="ll d-flex">
+                      <Link to="/order-manage" className="ll d-flex">
                         <SlackOutlined />
                         <Space className="mx-2 click-me">
-                          Staff
-                          Management&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          Order Management&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </Space>
                       </Link>
                     </li>

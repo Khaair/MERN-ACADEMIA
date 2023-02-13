@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Layout from "../layout";
+import Layout from "./layout";
 import { Form, Input, Upload, Button, notification, Modal } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 import EditForm from "./EditForm";
 
-function Deshboard() {
+function OrderManage() {
   const [data, setData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -18,7 +18,9 @@ function Deshboard() {
 
   const fetchdata = async () => {
     try {
-      const datahere = await axios.get("http://localhost:8080/api/show");
+      const datahere = await axios.get(
+        "http://localhost:8080/api/course-order/course-order-show"
+      );
       setData(datahere.data);
     } catch (err) {
       console.log(err, "error");
@@ -125,7 +127,7 @@ function Deshboard() {
                 <div class="col-lg-12 ">
                   <div class="card-title-section">
                     <div class="add-student-wrapper">
-                      <div className="card-title">Student Management</div>
+                      <div className="card-title">Order Management</div>
                       <div>
                         <Button onClick={showModal} type="primary" ghost>
                           Add Student
@@ -139,15 +141,18 @@ function Deshboard() {
 
             <div class="row">
               <div class="col-lg-12">
-                <div class="card">
+                <div className="card">
                   <table className="table">
                     <thead>
                       <tr>
                         <th scope="col">Sl</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">OrderId</th>
+                        <th scope="col">CourseId</th>
+
+                        <th scope="col">Email</th>
                         <th scope="col">Phone</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Image</th>
+                        <th scope="col">TransactionId</th>
+
                         {logedinData?.roles?.join("").toString() ===
                           "ROLE_ADMIN" && <th scope="col">Action</th>}
                       </tr>
@@ -161,33 +166,31 @@ function Deshboard() {
                         return (
                           <tr key={ind}>
                             <th scope="row">{ind + 1}</th>
-                            <td>{el?.fullName}</td>
+                            <td>{el?.orderId}</td>
+                            <td>{el?.courseId}</td>
+                            <td>{el?.email}</td>
                             <td>{el?.phoneNumber}</td>
-                            <td>{el?.address}</td>
-                            <td className="data-show-img">
-                              <img src={`/uploads/${el?.file}`} alt="" />
-                            </td>
+                            <td>{el?.transactionId}</td>
+
                             {logedinData?.roles?.join("").toString() ===
                               "ROLE_ADMIN" && (
                               <td>
-                                <div className="d-flex">
-                                  <Button
-                                    onClick={() => showEditModal(el?._id)}
-                                    type="primary"
-                                    ghost
-                                  >
-                                    Edit
-                                  </Button>
+                                <Button
+                                  onClick={() => showEditModal(el?._id)}
+                                  type="primary"
+                                  ghost
+                                >
+                                  Edit
+                                </Button>
 
-                                  <Button
-                                    onClick={() => deleteMe(el._id)}
-                                    type="primary"
-                                    ghost
-                                    className="mx-2"
-                                  >
-                                    Delete
-                                  </Button>
-                                </div>
+                                <Button
+                                  onClick={() => deleteMe(el._id)}
+                                  type="primary"
+                                  ghost
+                                  className="mx-2"
+                                >
+                                  Delete
+                                </Button>
                               </td>
                             )}
                           </tr>
@@ -297,4 +300,4 @@ function Deshboard() {
   );
 }
 
-export default Deshboard;
+export default OrderManage;
