@@ -10,3 +10,5 @@ export default function TecherManagement() {
     </div>
   );
 }
+
+// Teacher Manage
