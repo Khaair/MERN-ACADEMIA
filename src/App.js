@@ -15,6 +15,7 @@ import { Bars } from "react-loader-spinner";
 import CheckOut from "./Component/UserEnd/CheckOut";
 import CourseManagement from "./Component/Deshboard/CourseManagement";
 import OrderManage from "./Component/Deshboard/OrderManage";
+import QuizManage from "./Component/Deshboard/QuizManage";
 const Home = React.lazy(() => import("./Component/UserEnd/Home"));
 function App() {
   const queryClient = new QueryClient();
@@ -74,6 +75,15 @@ function App() {
             element={
               <PrivateRoute>
                 <OrderManage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/quiz-manage"
+            element={
+              <PrivateRoute>
+                <QuizManage />
               </PrivateRoute>
             }
           />

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import {
   UserOutlined,
@@ -35,6 +35,12 @@ const items = [
 ];
 
 const Layout = ({ children }) => {
+  const [getColorDeshboard, setColorDeshboard] = useState();
+  const [getColorCourseManage, setColorCourseManage] = useState();
+  const [getColorTeacherManage, setColorTeacherManage] = useState();
+  const [getColorOrderManage, setColorOrderManage] = useState();
+
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleLogOut = () => {
@@ -45,6 +51,22 @@ const Layout = ({ children }) => {
   };
 
   const onSearch = (value) => console.log(value);
+
+  useEffect(() => {
+    if (location?.pathname === "/deshboard") {
+      setColorDeshboard(true);
+    }
+    if (location?.pathname === "/course-manage") {
+      setColorCourseManage(true);
+    }
+    if (location?.pathname === "/teacher-manage") {
+      setColorTeacherManage(true);
+    }
+    if (location?.pathname === "/order-manage") {
+      setColorOrderManage(true);
+    }
+  }, []);
+
   return (
     <React.Fragment>
       <div class="layer-area">
@@ -100,13 +122,15 @@ const Layout = ({ children }) => {
           </div>
           <div className="sub-nabar-area shadow-sm ">
             <nav className="navv">
-              <div className="title-deshboard-wrapper text-center text-bold">
-                <div className="title-deshboard-wrapper-icon">
-                  {" "}
-                  <QrcodeOutlined role="button" />
+              <Link to="/deshboard">
+                <div className="title-deshboard-wrapper text-center text-bold">
+                  <div className="title-deshboard-wrapper-icon">
+                    {" "}
+                    <QrcodeOutlined role="button" />
+                  </div>
+                  <div className="deshboar-word">Deshboard</div>
                 </div>
-                <div className="deshboar-word">Deshboard</div>
-              </div>
+              </Link>
             </nav>
           </div>
 
@@ -116,29 +140,66 @@ const Layout = ({ children }) => {
                 <div className="mt-3">
                   <ul>
                     <li>
-                      <Link to="/deshboard" className="ll d-flex">
+                      <Link
+                        to="/deshboard"
+                        className={
+                          getColorDeshboard
+                            ? "ll  text-primary d-flex"
+                            : "ll  d-flex"
+                        }
+                      >
                         <UsergroupAddOutlined />
-                        <Space className="mx-2 click-me">
+                        <Space
+                          className={
+                            getColorDeshboard
+                              ? "mx-2  text-primary click-me"
+                              : "mx-2   click-me"
+                          }
+                        >
                           Student Management
                         </Space>
                       </Link>
                     </li>
 
                     <li>
-                      {" "}
-                      <Link to="/teacher-manage" className="ll d-flex">
+                      <Link
+                        to="/teacher-manage"
+                        className={
+                          getColorTeacherManage
+                            ? "ll  text-primary d-flex"
+                            : "ll  d-flex"
+                        }
+                      >
                         <UserOutlined />
-                        <Space className="mx-2 click-me">
+                        <Space
+                          className={
+                            getColorTeacherManage
+                              ? "mx-2  text-primary click-me"
+                              : "mx-2   click-me"
+                          }
+                        >
                           Teacher Management
                         </Space>
                       </Link>
                     </li>
 
                     <li>
-                      {" "}
-                      <Link to="/course-manage" className="ll d-flex">
+                      <Link
+                        to="/course-manage"
+                        className={
+                          getColorCourseManage
+                            ? "ll  text-primary d-flex"
+                            : "ll  d-flex"
+                        }
+                      >
                         <FileTextOutlined />
-                        <Space className="mx-2 click-me">
+                        <Space
+                          className={
+                            getColorCourseManage
+                              ? "mx-2  text-primary click-me"
+                              : "mx-2   click-me"
+                          }
+                        >
                           Course Management&nbsp;&nbsp;
                         </Space>
                       </Link>
@@ -146,20 +207,34 @@ const Layout = ({ children }) => {
 
                     <li>
                       {" "}
-                      <Link to="/order-manage" className="ll d-flex">
+                      <Link
+                        to="/order-manage"
+                        className={
+                          getColorOrderManage
+                            ? "ll  text-primary d-flex"
+                            : "ll  d-flex"
+                        }
+                      >
                         <SlackOutlined />
-                        <Space className="mx-2 click-me">
-                          Order Management&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <Space
+                          className={
+                            getColorOrderManage
+                              ? "mx-2  text-primary click-me"
+                              : "mx-2   click-me"
+                          }
+                        >
+                          Order Management&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </Space>
                       </Link>
                     </li>
 
                     <li>
                       {" "}
-                      <Link to="/deshboard" className="ll d-flex">
+                      <Link to="/quiz-manage" className="ll d-flex">
                         <DiffOutlined />
                         <Space className="mx-2 click-me">
-                          Course Management &nbsp;
+                          Quiz Management
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </Space>
                       </Link>
                     </li>

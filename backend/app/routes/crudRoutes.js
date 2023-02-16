@@ -32,9 +32,11 @@ router.post(
 
   upload.single("file"),
   [
-    check("fullName").not().isEmpty().withMessage("fullName is required"),
+    check("name").not().isEmpty().withMessage("name is required"),
+    check("email").not().isEmpty().withMessage("email is required"),
     check("phoneNumber").not().isEmpty().withMessage("phoneNumber is required"),
-    check("address").not().isEmpty().withMessage("address is required"),
+    check("courseId").not().isEmpty().withMessage("courseId is required"),
+    check("studentId").not().isEmpty().withMessage("studentId is required"),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -44,9 +46,11 @@ router.post(
 
     try {
       const crudData = new crudModel({
-        fullName: req.body.fullName,
+        name: req.body.name,
+        email: req.body.email,
         phoneNumber: req.body.phoneNumber,
-        address: req.body.address,
+        courseId: req.body.courseId,
+        studentId: req.body.studentId,
         file: req.file.filename,
       });
       const savedData = await crudData.save();
@@ -96,9 +100,11 @@ router.post(
   "/update/:id",
   upload.single("file"),
   [
-    check("fullName").not().isEmpty().withMessage("fullName is required"),
+    check("name").not().isEmpty().withMessage("name is required"),
+    check("email").not().isEmpty().withMessage("email is required"),
     check("phoneNumber").not().isEmpty().withMessage("phoneNumber is required"),
-    check("address").not().isEmpty().withMessage("address is required"),
+    check("courseId").not().isEmpty().withMessage("courseId is required"),
+    check("studentId").not().isEmpty().withMessage("studentId is required"),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -109,9 +115,11 @@ router.post(
       let updatee = await crudModel.findByIdAndUpdate(
         { _id: req.params.id },
         {
-          fullName: req.body.fullName,
+          name: req.body.name,
+          email: req.body.email,
           phoneNumber: req.body.phoneNumber,
-          address: req.body.address,
+          courseId: req.body.courseId,
+          studentId: req.body.studentId,
           file: req.file.filename,
         },
         { new: true }

@@ -10,6 +10,10 @@ function Deshboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [studentId, setStudentId] = useState();
+  const [errorMsg, setErrorMsg] = useState([]);
+  const [matchedEmailerrorMsg, setMatchedEmailErrorMsg] = useState("");
+  const [matchedUsererrorMsg, setMatchedUserErrorMsg] = useState("");
+  const [matchederrorMsg, setMatchedErrorMsg] = useState("");
   const [form] = Form.useForm();
 
   const [logedinData, setLogedinData] = useState([]);
@@ -77,26 +81,65 @@ function Deshboard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const values = await form.validateFields();
-      const formData = new FormData();
-      formData.append("fullName", values.fullName);
-      formData.append("phoneNumber", values.phoneNumber);
-      formData.append("address", values.address);
-      formData.append("file", values.file[0].originFileObj);
 
-      const res = await fetch("http://localhost:8080/api/save", {
-        method: "POST",
-        body: formData,
+      let res = await axios.post("http://localhost:8080/api/auth/signup", {
+        username: values?.name,
+        email: values?.email,
+        password: values?.studentId,
       });
-      const data = await res.json();
-      if (data?.status === "200") {
-        fetchdata();
-        setIsModalOpen(false);
+
+      if (res.status === 200) {
+        try {
+          const values = await form.validateFields();
+          const formData = new FormData();
+          formData.append("name", values.name);
+          formData.append("email", values.email);
+          formData.append("phoneNumber", values.phoneNumber);
+          formData.append("courseId", values.courseId);
+          formData.append("studentId", values.studentId);
+
+          formData.append("file", values.file[0].originFileObj);
+
+          const res = await fetch("http://localhost:8080/api/save", {
+            method: "POST",
+            body: formData,
+          });
+          const data = await res.json();
+          if (data?.status === "200") {
+            fetchdata();
+          }
+          console.log("data", data);
+        } catch (errorInfo) {
+          console.log("Failed:", errorInfo);
+        }
+        setErrorMsg([]);
+        setMatchedErrorMsg("Registration successful");
+        setMatchedUserErrorMsg("");
+        setMatchedEmailErrorMsg("");
+      } else {
+        console.log("res signup", res);
+        setErrorMsg(res.status);
       }
-      console.log("data", data);
-    } catch (errorInfo) {
-      console.log("Failed:", errorInfo);
+
+      console.log(res, "res signup");
+    } catch (er) {
+      if (er) {
+        setErrorMsg(er?.response?.data?.errors);
+        setErrorMsg(er?.response?.data?.message?.keyValue?.username);
+        if (er?.response?.data?.message?.keyValue?.username) {
+          setMatchedUserErrorMsg("User name already registered");
+          setMatchedEmailErrorMsg("");
+        }
+
+        if (er?.response?.data?.message?.keyValue?.email) {
+          setMatchedEmailErrorMsg("Email already registered");
+          setMatchedUserErrorMsg("");
+        }
+        console.log("error msg", er?.response?.data?.message?.keyValue?.email);
+      }
     }
   };
 
@@ -145,8 +188,12 @@ function Deshboard() {
                       <tr>
                         <th scope="col">Sl</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+
                         <th scope="col">Phone</th>
-                        <th scope="col">Address</th>
+                        <th scope="col">Course Id</th>
+                        <th scope="col">Student Id</th>
+
                         <th scope="col">Image</th>
                         {logedinData?.roles?.join("").toString() ===
                           "ROLE_ADMIN" && <th scope="col">Action</th>}
@@ -161,9 +208,13 @@ function Deshboard() {
                         return (
                           <tr key={ind}>
                             <th scope="row">{ind + 1}</th>
-                            <td>{el?.fullName}</td>
+                            <td>{el?.name}</td>
+                            <td>{el?.email}</td>
+
                             <td>{el?.phoneNumber}</td>
-                            <td>{el?.address}</td>
+                            <td>{el?.courseId}</td>
+                            <td>{el?.studentId}</td>
+
                             <td className="data-show-img">
                               <img src={`/uploads/${el?.file}`} alt="" />
                             </td>
@@ -228,17 +279,33 @@ function Deshboard() {
                     <div className="col-lg-12 ">
                       <Form form={form} layout="vertical">
                         <Form.Item
-                          name="fullName"
-                          label="Full Name"
+                          name="name"
+                          label="Name"
                           rules={[
                             {
                               required: true,
-                              message: "Please input the fullname!",
+                              message: "Please input the name!",
                             },
                           ]}
                         >
-                          <Input placeholder="Full Name" />
+                          <Input placeholder="Name" />
                         </Form.Item>
+                        <p className="text-danger ">{matchedUsererrorMsg}</p>
+
+                        <Form.Item
+                          name="email"
+                          label="Email"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the email!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Email" />
+                        </Form.Item>
+                        <p className="text-danger ">{matchedEmailerrorMsg}</p>
+
                         <Form.Item
                           label="Phone No"
                           name="phoneNumber"
@@ -252,16 +319,28 @@ function Deshboard() {
                           <Input placeholder="Phone Number" />
                         </Form.Item>
                         <Form.Item
-                          label="Addres"
-                          name="address"
+                          label="Course Id"
+                          name="courseId"
                           rules={[
                             {
                               required: true,
-                              message: "Please input the Address!",
+                              message: "Please input the courseId!",
                             },
                           ]}
                         >
-                          <Input.TextArea rows={3} placeholder="Address" />
+                          <Input placeholder="courseId" />
+                        </Form.Item>
+                        <Form.Item
+                          label="Student Id"
+                          name="studentId"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the studentId!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="studentId" />
                         </Form.Item>
                         <Form.Item
                           label="Image"
@@ -279,6 +358,14 @@ function Deshboard() {
                             <Button>Upload Image</Button>
                           </Upload>
                         </Form.Item>
+                        {/* {errorMsg?.length > 0 &&
+                          errorMsg?.map((item, index) => {
+                            return (
+                              <p className="text-danger mt-2">{item?.msg}</p>
+                            );
+                          })} */}
+                        <p className="text-danger mt-3">{matchederrorMsg}</p>
+
                         <Form.Item>
                           <Button type="primary" ghost onClick={handleSubmit}>
                             Submit
