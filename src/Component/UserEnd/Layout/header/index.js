@@ -27,9 +27,14 @@ export default function Header() {
                     <Link to="/profile">
                       <li role="button">Profile</li>
                     </Link>
-                    <li role="button">Admission</li>
+                    <Link to="/skill-test">
+                      <li role="button">Skill test</li>
+                    </Link>
+                    <Link to="/tutorials">
+                      <li role="button">Tutorials</li>
+                    </Link>
+                    <li role="button"></li>
 
-                    <li role="button"> Skills</li>
                     <li role="button">Log in</li>
                     <li role="button">
                       <Link to="/">

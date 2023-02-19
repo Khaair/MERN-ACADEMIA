@@ -16,6 +16,8 @@ import CheckOut from "./Component/UserEnd/CheckOut";
 import CourseManagement from "./Component/Deshboard/CourseManagement";
 import OrderManage from "./Component/Deshboard/OrderManage";
 import QuizManage from "./Component/Deshboard/QuizManage";
+import SkillTest from "./Component/UserEnd/SkillTest";
+import Tutorials from "./Component/UserEnd/Tutorials";
 const Home = React.lazy(() => import("./Component/UserEnd/Home"));
 function App() {
   const queryClient = new QueryClient();
@@ -52,6 +54,8 @@ function App() {
           />
           <Route path="/course-details/:id" element={<CourseDetails />} />
           <Route path="/course-checkout/:id" element={<CheckOut />} />
+          <Route path="/skill-test" element={<SkillTest />} />
+          <Route path="/tutorials" element={<Tutorials />} />
 
           <Route
             path="/deshboard"

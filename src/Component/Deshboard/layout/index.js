@@ -105,14 +105,14 @@ const Layout = ({ children }) => {
                 </div>
 
                 <div className="top-nav-right-icon d-flex">
-                  <div>
+                  <div className="title-deshboard-wrapper-icon">
                     <BellOutlined role="button" />
                   </div>
-                  <div>
+                  <div className="title-deshboard-wrapper-icon">
                     {" "}
                     <QrcodeOutlined role="button" />
                   </div>
-                  <div>
+                  <div className="title-deshboard-wrapper-icon">
                     {" "}
                     <LogoutOutlined onClick={handleLogOut} />
                   </div>
@@ -293,12 +293,35 @@ const Layout = ({ children }) => {
                         </Space>
                       </Link>
                     </li>
+                    <li>
+                      {" "}
+                      <Link to="/deshboard" className="ll d-flex">
+                        <FullscreenExitOutlined />
+                        <Space className="mx-2 click-me">
+                          Reporting and Analytic
+                        </Space>
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link to="/deshboard" className="ll d-flex">
+                        <FullscreenExitOutlined />
+                        <Space className="mx-2 click-me">
+                          Reporting and Analytic
+                        </Space>
+                      </Link>
+                    </li>
 
                     <li className="ll d-flex">
                       <Dropdown menu={{ items }} trigger={["click"]}>
                         <a onClick={(e) => e.preventDefault()}>
-                          <UserOutlined />
-                          <Space className="mx-2 click-me">Click me</Space>
+                          <Space
+                            onClick={handleLogOut}
+                            className="mx-2 click-me deshboar-word"
+                            role="button"
+                          >
+                            Logout
+                          </Space>
                         </a>
                       </Dropdown>
                     </li>
