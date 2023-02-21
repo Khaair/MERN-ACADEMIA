@@ -1,7 +1,6 @@
 import axios from "axios";
-import SignUp from "./SignUp";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Input } from "antd";
+import { Form, Input } from "antd";
 import { useState } from "react";
 function Login() {
   const [errorMsg, setErrorMsg] = useState("");
@@ -9,7 +8,6 @@ function Login() {
   const sendDatatoApp = async () => {
     const values = await form.validateFields();
 
-    console.log("values", values);
     try {
       let res = await axios.post("http://localhost:8080/api/auth/signin", {
         username: values?.username,
@@ -25,8 +23,6 @@ function Login() {
 
         localStorage.setItem("logedinData", JSON.stringify(res?.data));
 
-        console.log("res", res);
-
         navigate("/deshboard");
       }
 
@@ -41,56 +37,49 @@ function Login() {
 
   return (
     <>
-      <div className="login-area mt-5">
-        <div className="container">
-          <div className="login-card">
-            <div className="row">
-              <div className="col-lg-6">
-                <div className="login-area mb-4">
-                  <h4>Login</h4>
-                </div>
-                <Form onSubmit={sendDatatoApp} form={form} layout="vertical">
-                  <Form.Item
-                    name="username"
-                    label="User Name"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input the username!",
-                      },
-                    ]}
-                  >
-                    <Input placeholder="User Name" />
-                  </Form.Item>
-                  <Form.Item
-                    label="Password"
-                    name="password"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input the password!",
-                      },
-                    ]}
-                  >
-                    <Input placeholder="Password" />
-                  </Form.Item>
-
-                  <p className="text-danger">{errorMsg}</p>
-
-                  <Form.Item>
-                    <button
-                      onClick={sendDatatoApp}
-                      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm"
-                    >
-                      Login
-                    </button>
-                  </Form.Item>
-                </Form>
-              </div>
-              <div class="col-lg-6">
-                <SignUp />
-              </div>
+      <div class="admin-deshboard-login-area">
+        <div class="container">
+          <div className="row">
+            <div className="login-area mb-4">
+              <h4>Log in</h4>
             </div>
+            <Form onSubmit={sendDatatoApp} form={form} layout="vertical">
+              <Form.Item
+                name="username"
+                label="User Name"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the username!",
+                  },
+                ]}
+              >
+                <Input placeholder="User Name" />
+              </Form.Item>
+              <Form.Item
+                label="Password"
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the password!",
+                  },
+                ]}
+              >
+                <Input placeholder="Password" />
+              </Form.Item>
+
+              <p className="text-danger">{errorMsg}</p>
+
+              <Form.Item>
+                <button
+                  onClick={sendDatatoApp}
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm"
+                >
+                  Login
+                </button>
+              </Form.Item>
+            </Form>
           </div>
         </div>
       </div>

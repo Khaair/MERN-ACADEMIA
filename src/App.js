@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import EditForm from "./Component/Deshboard/EditForm";
 import Deshboard from "./Component/Deshboard/Deshboard";
-import Login from "./Component/Authentication/Login";
+import Auth from "./Component/Authentication";
 import SignUp from "./Component/Authentication/SignUp";
 import StudentAdd from "./Component/Deshboard/StudentAdd";
 import PrivateRoute from "./Component/Authentication/PrivateRoute";
@@ -18,6 +18,10 @@ import OrderManage from "./Component/Deshboard/OrderManage";
 import QuizManage from "./Component/Deshboard/QuizManage";
 import SkillTest from "./Component/UserEnd/SkillTest";
 import Tutorials from "./Component/UserEnd/Tutorials";
+import CourseLogin from "./Component/CourseEnrollment/Login";
+import CourseDeshboard from "./Component/CourseEnrollment/CourseDeshboard";
+import CourseAccess from "./Component/CourseEnrollment/CourseAccess";
+
 const Home = React.lazy(() => import("./Component/UserEnd/Home"));
 function App() {
   const queryClient = new QueryClient();
@@ -25,7 +29,7 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Auth />} />
 
           <Route path="/edit/:id" element={<EditForm />} />
           <Route path="/sign-up" element={<SignUp />} />
@@ -55,6 +59,26 @@ function App() {
           <Route path="/course-details/:id" element={<CourseDetails />} />
           <Route path="/course-checkout/:id" element={<CheckOut />} />
           <Route path="/skill-test" element={<SkillTest />} />
+          <Route path="/course-login" element={<CourseLogin />} />
+
+          <Route
+            path="/course-deshboard"
+            element={
+              <PrivateRoute>
+                <CourseDeshboard />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/course-access"
+            element={
+              <PrivateRoute>
+                <CourseAccess />
+              </PrivateRoute>
+            }
+          />
+
           <Route path="/tutorials" element={<Tutorials />} />
 
           <Route

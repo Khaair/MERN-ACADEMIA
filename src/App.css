@@ -290,3 +290,32 @@ background-color: #F0F3F6;
 .skill-test-area{
   background-color: #F3FAFF;
 }
+
+.login-main-area{
+  padding-top: 100px;
+  padding-bottom: 150px;
+
+}
+
+.login-area-wrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.course-deshboard-area{
+  background-color: #172132;
+
+}
+
+.course-deshboard-area{
+  padding-top: 100px;
+  padding-bottom: 150px;
+}
+
+.course-access-area{
+  background-color: #F3FAFF; 
+  padding-top: 50px;
+  padding-bottom: 50px;
+  min-height: 100vh;
+
+}
