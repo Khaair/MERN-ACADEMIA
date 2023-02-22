@@ -20,7 +20,8 @@ import SkillTest from "./Component/UserEnd/SkillTest";
 import Tutorials from "./Component/UserEnd/Tutorials";
 import CourseLogin from "./Component/CourseEnrollment/Login";
 import CourseDeshboard from "./Component/CourseEnrollment/CourseDeshboard";
-import CourseAccess from "./Component/CourseEnrollment/CourseAccess";
+import CourseAccess from "./Component/CourseEnrollment/CourseAccess/CourseAccess";
+import StudentProfile from "./Component/CourseEnrollment/StudentProfile";
 
 const Home = React.lazy(() => import("./Component/UserEnd/Home"));
 function App() {
@@ -75,6 +76,15 @@ function App() {
             element={
               <PrivateRoute>
                 <CourseAccess />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/student-profile"
+            element={
+              <PrivateRoute>
+                <StudentProfile />
               </PrivateRoute>
             }
           />

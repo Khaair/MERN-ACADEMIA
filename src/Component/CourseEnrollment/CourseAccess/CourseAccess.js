@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import Layout from "./Layout";
+import Layout from "../Layout";
+import RelatedQuiz from "./RelatededQuiz";
+
 import {
   DownOutlined,
   UpOutlined,
@@ -112,7 +114,7 @@ export default function CourseAccess() {
                         </div>
                       </TabPane>
                       <TabPane tab="Related Quiz" key="2">
-                        <div>Quiz</div>
+                        <RelatedQuiz />
                       </TabPane>
                       <TabPane tab="Review" key="3">
                         Review
@@ -143,7 +145,10 @@ export default function CourseAccess() {
                     </div>
                     {showCourseContentOne && (
                       <div className="mt-2 mx-2">
-                        <div className="course-specific-video-wrapper">
+                        <div
+                          role="button"
+                          className="course-specific-video-wrapper"
+                        >
                           <div>
                             <PlayCircleOutlined style={{ color: "#15803D" }} />
                           </div>
@@ -154,7 +159,10 @@ export default function CourseAccess() {
                             Video-01: IELTS: Introduction
                           </p>
                         </div>
-                        <div className="course-specific-video-wrapper">
+                        <div
+                          role="button"
+                          className="course-specific-video-wrapper"
+                        >
                           <div>
                             <PlayCircleOutlined style={{ color: "#15803D" }} />
                           </div>
@@ -166,7 +174,10 @@ export default function CourseAccess() {
                             Video-02: IELTS: Reading skill 01
                           </p>
                         </div>
-                        <div className="course-specific-video-wrapper">
+                        <div
+                          role="button"
+                          className="course-specific-video-wrapper"
+                        >
                           <div>
                             <PlayCircleOutlined style={{ color: "#15803D" }} />
                           </div>
@@ -231,5 +242,3 @@ export default function CourseAccess() {
     </Layout>
   );
 }
-
-//hii

@@ -35,8 +35,8 @@ export default function Header() {
                     <Link to="/course-deshboard">
                       <li role="button">Deshboard</li>
                     </Link>
-                    <Link to="/lider-board">
-                      <li role="button">Liderboard</li>
+                    <Link to="/student-profile">
+                      <li role="button">Profile</li>
                     </Link>
 
                     <li role="button"></li>

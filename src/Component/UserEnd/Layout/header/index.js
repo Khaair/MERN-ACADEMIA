@@ -24,9 +24,7 @@ export default function Header() {
                       {" "}
                       <li role="button">Home</li>{" "}
                     </Link>
-                    <Link to="/profile">
-                      <li role="button">Profile</li>
-                    </Link>
+
                     <Link to="/skill-test">
                       <li role="button">Skill test</li>
                     </Link>

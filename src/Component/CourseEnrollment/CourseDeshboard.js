@@ -8,10 +8,12 @@ export default function CourseDeshboard() {
         <div class="bootstrap-container">
           <div class="container">
             <div class="row">
-              <h4 className=" text-light">কোর্স অগ্রগতি</h4>
+              <h3 className="text-dark text-center mt-4 mb-4">
+                Student Deshboard
+              </h3>
 
               <div class="col-lg-4 pt-2">
-                <div class="card">
+                <div class="card shadow-sm">
                   <h6>কোর্স মডিউল শেষ করেছেন</h6>
                   <h6 className="text-primary">1 টি</h6>
 
@@ -20,7 +22,7 @@ export default function CourseDeshboard() {
               </div>
 
               <div class="col-lg-4 pt-2">
-                <div class="card">
+                <div class="card shadow-sm">
                   <h6>কোর্স মডিউল শেষ করেছেন</h6>
                   <h6 className="text-primary">1 টি</h6>
 
@@ -28,7 +30,7 @@ export default function CourseDeshboard() {
                 </div>
               </div>
               <div class="col-lg-4 pt-2">
-                <div class="card">
+                <div class="card shadow-sm">
                   <h6>কোর্স মডিউল শেষ করেছেন</h6>
                   <h6 className="text-primary">1 টি</h6>
 
@@ -36,11 +38,11 @@ export default function CourseDeshboard() {
                 </div>
               </div>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-3">
               <div class="col-lg-6 pt-3">
                 <h4 className="text-light pb-2"> Course Report</h4>
 
-                <div class="card">
+                <div class="card shadow-sm">
                   <h6>কোর্স মডিউল শেষ করেছেন</h6>
                   <h6 className="text-primary">1 টি</h6>
 
@@ -51,7 +53,7 @@ export default function CourseDeshboard() {
               <div class="col-lg-6 pt-3">
                 <h4 className="text-light pb-2">Quiz marks</h4>
 
-                <div class="card">
+                <div class="card shadow-sm">
                   <h6>কোর্স মডিউল শেষ করেছেন</h6>
                   <h6 className="text-primary">1 টি</h6>
 
@@ -60,11 +62,11 @@ export default function CourseDeshboard() {
               </div>
             </div>
 
-            <div class="row mt-5">
+            <div class="row mt-3">
               <div class="col-lg-6 pt-3">
                 <h4 className="text-light pb-2">Assignment Marks</h4>
 
-                <div class="card">
+                <div class="card shadow-sm">
                   <h6>কোর্স মডিউল শেষ করেছেন</h6>
                   <h6 className="text-primary">1 টি</h6>
 
@@ -75,7 +77,7 @@ export default function CourseDeshboard() {
               <div class="col-lg-6 pt-3">
                 <h4 className=" text-light pb-2">Assignment Report</h4>
 
-                <div class="card">
+                <div class="card shadow-sm">
                   <h6>কোর্স মডিউল শেষ করেছেন</h6>
                   <h6 className="text-primary">1 টি</h6>
 

@@ -302,20 +302,38 @@ background-color: #F0F3F6;
   justify-content: center;
 }
 
-.course-deshboard-area{
-  background-color: #172132;
 
-}
 
 .course-deshboard-area{
-  padding-top: 100px;
+  background-color: #F3FAFF; 
+
+  padding-top: 20px;
   padding-bottom: 150px;
 }
 
 .course-access-area{
   background-color: #F3FAFF; 
-  padding-top: 50px;
+  padding-top: 20px;
   padding-bottom: 50px;
   min-height: 100vh;
 
+}
+
+.student-profile-area{
+  background-color: #F3FAFF; 
+  padding-top: 20px;
+  padding-bottom: 50px;
+  min-height: 100vh;
+}
+
+.mcq-options-label{
+  background-color: #F3FAFF; 
+  padding: 10px;
+  border-radius: 5px;
+  
+
+}
+
+.mcq-option-text{
+  margin-left: 7px;
 }
