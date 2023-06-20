@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Layout from "./layout";
 
-export default function TecherManagement() {
+export default function TeacherManagement() {
   return (
-    <div class="container-fluid">
+    <div className="container-fluid">
       <Layout>
-        <div className="card mt-3">Teacher Manage</div>
+        <div className="card mt-3">Teacher Management Panel</div>
       </Layout>
     </div>
   );
 }
-
-// Teacher Manage

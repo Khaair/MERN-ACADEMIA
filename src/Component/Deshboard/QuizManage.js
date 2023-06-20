@@ -22,11 +22,13 @@ function Deshboard() {
 
   const [logedinData, setLogedinData] = useState([]);
 
-  console.log("logedinData deshboard", logedinData);
+  console.log("data yyyy deshboard", data);
 
   const fetchdata = async () => {
     try {
-      const datahere = await axios.get("http://localhost:8080/api/show");
+      const datahere = await axios.get(
+        "http://localhost:8080/api/quiz-manage/quiz-show"
+      );
       setData(datahere.data);
     } catch (err) {
       console.log(err, "error");
@@ -178,14 +180,11 @@ function Deshboard() {
                     <thead>
                       <tr>
                         <th scope="col">Sl</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">Question</th>
+                        <th scope="col">Options</th>
 
-                        <th scope="col">Phone</th>
-                        <th scope="col">Course Id</th>
-                        <th scope="col">Student Id</th>
+                        <th scope="col">Answer</th>
 
-                        <th scope="col">Image</th>
                         {logedinData?.roles?.join("").toString() ===
                           "ROLE_ADMIN" && <th scope="col">Action</th>}
                       </tr>
@@ -195,16 +194,11 @@ function Deshboard() {
                         return (
                           <tr key={ind}>
                             <th scope="row">{ind + 1}</th>
-                            <td>{el?.name}</td>
-                            <td>{el?.email}</td>
+                            <td>{el?.question}</td>
+                            <td>{el?.options.join(",").toString()}</td>
 
-                            <td>{el?.phoneNumber}</td>
-                            <td>{el?.courseId}</td>
-                            <td>{el?.studentId}</td>
+                            <td>{el?.answer}</td>
 
-                            <td className="data-show-img">
-                              <img src={`/uploads/${el?.file}`} alt="" />
-                            </td>
                             {logedinData?.roles?.join("").toString() ===
                               "ROLE_ADMIN" && (
                               <td>

@@ -85,8 +85,6 @@ export default function CourseDetails() {
     return response.json();
   });
 
-  console.log("data single", data);
-  console.log("status", status);
   return (
     <Layout>
       <div class="course-details-area">

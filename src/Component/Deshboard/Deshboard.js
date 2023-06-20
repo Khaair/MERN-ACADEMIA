@@ -100,9 +100,7 @@ function Deshboard() {
           formData.append("phoneNumber", values.phoneNumber);
           formData.append("courseId", values.courseId);
           formData.append("studentId", values.studentId);
-
           formData.append("file", values.file[0].originFileObj);
-
           const res = await fetch("http://localhost:8080/api/save", {
             method: "POST",
             body: formData,
@@ -189,32 +187,24 @@ function Deshboard() {
                         <th scope="col">Sl</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
-
                         <th scope="col">Phone</th>
                         <th scope="col">Course Id</th>
                         <th scope="col">Student Id</th>
-
                         <th scope="col">Image</th>
                         {logedinData?.roles?.join("").toString() ===
                           "ROLE_ADMIN" && <th scope="col">Action</th>}
                       </tr>
                     </thead>
                     <tbody>
-                      {/* {JSON.stringify(datas)} */}
-
                       {data.map((el, ind) => {
-                        // const images = require.context(`../uploads/${el?.file}`, true);
-
                         return (
                           <tr key={ind}>
                             <th scope="row">{ind + 1}</th>
                             <td>{el?.name}</td>
                             <td>{el?.email}</td>
-
                             <td>{el?.phoneNumber}</td>
                             <td>{el?.courseId}</td>
                             <td>{el?.studentId}</td>
-
                             <td className="data-show-img">
                               <img src={`/uploads/${el?.file}`} alt="" />
                             </td>

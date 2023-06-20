@@ -39,6 +39,8 @@ const Layout = ({ children }) => {
   const [getColorCourseManage, setColorCourseManage] = useState();
   const [getColorTeacherManage, setColorTeacherManage] = useState();
   const [getColorOrderManage, setColorOrderManage] = useState();
+  const [getColorResultManage, setColorResultManage] = useState();
+  const [getColorQuizManage, setColorQuizManage] = useState();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -64,6 +66,12 @@ const Layout = ({ children }) => {
     }
     if (location?.pathname === "/order-manage") {
       setColorOrderManage(true);
+    }
+    if (location?.pathname === "/result-manage") {
+      setColorResultManage(true);
+    }
+    if (location?.pathname === "/quiz-manage") {
+      setColorQuizManage(true);
     }
   }, []);
 
@@ -163,9 +171,9 @@ const Layout = ({ children }) => {
 
                     <li>
                       <Link
-                        to="/teacher-manage"
+                        to="/result-manage"
                         className={
-                          getColorTeacherManage
+                          getColorResultManage
                             ? "ll  text-primary d-flex"
                             : "ll  d-flex"
                         }
@@ -173,12 +181,12 @@ const Layout = ({ children }) => {
                         <UserOutlined />
                         <Space
                           className={
-                            getColorTeacherManage
+                            getColorResultManage
                               ? "mx-2  text-primary click-me"
                               : "mx-2   click-me"
                           }
                         >
-                          Teacher Management
+                          Result Management&nbsp;&nbsp;&nbsp;
                         </Space>
                       </Link>
                     </li>
@@ -230,9 +238,22 @@ const Layout = ({ children }) => {
 
                     <li>
                       {" "}
-                      <Link to="/quiz-manage" className="ll d-flex">
+                      <Link
+                        to="/quiz-manage"
+                        className={
+                          getColorQuizManage
+                            ? "ll  text-primary d-flex"
+                            : "ll  d-flex"
+                        }
+                      >
                         <DiffOutlined />
-                        <Space className="mx-2 click-me">
+                        <Space
+                          className={
+                            getColorQuizManage
+                              ? "mx-2  text-primary click-me"
+                              : "mx-2   click-me"
+                          }
+                        >
                           Quiz Management
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </Space>

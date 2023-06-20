@@ -88,6 +88,7 @@ const routesCourseManagement = require("./app/routes/courseManagementRoutes");
 const routesCourseOrder = require("./app/routes/courseOrder");
 const transactionIdOrder = require("./app/routes/transactionIdRoutes");
 const quiz = require("./app/routes/quizManagementRoutes");
+const result = require("./app/routes/resultManagementRoutes");
 
 app.use("/api", routes);
 app.use("/api", routesuserget);
@@ -95,6 +96,7 @@ app.use("/api/course", routesCourseManagement);
 app.use("/api/course-order", routesCourseOrder);
 app.use("/api/transaction-id", transactionIdOrder);
 app.use("/api/quiz-manage", quiz);
+app.use("/api/result-manage", result);
 
 //http://localhost:8080/api/auth/signup
 

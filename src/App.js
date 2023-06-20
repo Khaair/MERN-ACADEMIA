@@ -22,6 +22,7 @@ import CourseLogin from "./Component/CourseEnrollment/Login";
 import CourseDeshboard from "./Component/CourseEnrollment/CourseDeshboard";
 import CourseAccess from "./Component/CourseEnrollment/CourseAccess/CourseAccess";
 import StudentProfile from "./Component/CourseEnrollment/StudentProfile";
+import ResultManagement from "./Component/Deshboard/ResultManagement";
 
 const Home = React.lazy(() => import("./Component/UserEnd/Home"));
 function App() {
@@ -122,6 +123,15 @@ function App() {
             element={
               <PrivateRoute>
                 <QuizManage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/result-manage"
+            element={
+              <PrivateRoute>
+                <ResultManagement />
               </PrivateRoute>
             }
           />
