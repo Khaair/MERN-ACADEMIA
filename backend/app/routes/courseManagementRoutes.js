@@ -67,7 +67,6 @@ router.post(
         courseTitle: req.body.courseTitle,
         courseSubTitle: req.body.courseSubTitle,
         price: req.body.price,
-
         description: req.body.description,
         instructorName: req.body.instructorName,
         instructorDesignation: req.body.instructorDesignation,

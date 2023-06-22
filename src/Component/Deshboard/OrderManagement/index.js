@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Layout from "./layout";
+import Layout from "../layout";
 import { Form, Input, Upload, Button, notification, Modal } from "antd";
 import {
   SmileOutlined,
@@ -8,7 +8,7 @@ import {
   DeleteOutlined,
   MailOutlined,
 } from "@ant-design/icons";
-import EditForm from "./EditForm";
+import EditForm from "../EditForm";
 
 function OrderManage() {
   const [data, setData] = useState([]);

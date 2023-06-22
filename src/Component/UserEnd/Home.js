@@ -8,7 +8,7 @@ import Layout from "./Layout";
 export default function Home() {
   const fetchData = async () => {
     const response = await fetch(
-      "http://localhost:8080/api/course/course-show"
+      "http://localhost:8080/api/course-manage/course-show"
     );
     return response.json();
   };

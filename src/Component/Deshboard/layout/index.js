@@ -3,7 +3,6 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import {
   UserOutlined,
-  BorderInnerOutlined,
   FullscreenExitOutlined,
   DiffOutlined,
   PieChartOutlined,
@@ -35,12 +34,13 @@ const items = [
 ];
 
 const Layout = ({ children }) => {
-  const [getColorDeshboard, setColorDeshboard] = useState();
+  const [getColorStudentManage, setColorStudentManage] = useState();
   const [getColorCourseManage, setColorCourseManage] = useState();
-  const [getColorTeacherManage, setColorTeacherManage] = useState();
   const [getColorOrderManage, setColorOrderManage] = useState();
   const [getColorResultManage, setColorResultManage] = useState();
   const [getColorQuizManage, setColorQuizManage] = useState();
+  const [getColorDeshboardManage, setColorDeshboardManage] = useState();
+  const [getColorTeacherManage, setColorTeacherdManage] = useState();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -55,15 +55,13 @@ const Layout = ({ children }) => {
   const onSearch = (value) => console.log(value);
 
   useEffect(() => {
-    if (location?.pathname === "/deshboard") {
-      setColorDeshboard(true);
+    if (location?.pathname === "/student-manage") {
+      setColorStudentManage(true);
     }
     if (location?.pathname === "/course-manage") {
       setColorCourseManage(true);
     }
-    if (location?.pathname === "/teacher-manage") {
-      setColorTeacherManage(true);
-    }
+
     if (location?.pathname === "/order-manage") {
       setColorOrderManage(true);
     }
@@ -73,7 +71,13 @@ const Layout = ({ children }) => {
     if (location?.pathname === "/quiz-manage") {
       setColorQuizManage(true);
     }
-  }, []);
+    if (location?.pathname === "/deshboard") {
+      setColorDeshboardManage(true);
+    }
+    if (location?.pathname === "/teacher-manage") {
+      setColorTeacherdManage(true);
+    }
+  }, [location?.pathname]);
 
   return (
     <React.Fragment>
@@ -151,7 +155,7 @@ const Layout = ({ children }) => {
                       <Link
                         to="/deshboard"
                         className={
-                          getColorDeshboard
+                          getColorDeshboardManage
                             ? "ll  text-primary d-flex"
                             : "ll  d-flex"
                         }
@@ -159,34 +163,55 @@ const Layout = ({ children }) => {
                         <UsergroupAddOutlined />
                         <Space
                           className={
-                            getColorDeshboard
+                            getColorDeshboardManage
+                              ? "mx-2  text-primary click-me"
+                              : "mx-2   click-me"
+                          }
+                        >
+                          Deshboard manage&nbsp;&nbsp;&nbsp;
+                        </Space>
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link
+                        className={
+                          getColorTeacherManage
+                            ? "ll  text-primary d-flex"
+                            : "ll  d-flex"
+                        }
+                        to="/teacher-manage"
+                      >
+                        <UserOutlined />
+                        <Space
+                          className={
+                            getColorTeacherManage
+                              ? "mx-2  text-primary click-me"
+                              : "mx-2   click-me"
+                          }
+                        >
+                          Teacher Management
+                        </Space>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/student-manage"
+                        className={
+                          getColorStudentManage
+                            ? "ll  text-primary d-flex"
+                            : "ll  d-flex"
+                        }
+                      >
+                        <UsergroupAddOutlined />
+                        <Space
+                          className={
+                            getColorStudentManage
                               ? "mx-2  text-primary click-me"
                               : "mx-2   click-me"
                           }
                         >
                           Student Management
-                        </Space>
-                      </Link>
-                    </li>
-
-                    <li>
-                      <Link
-                        to="/result-manage"
-                        className={
-                          getColorResultManage
-                            ? "ll  text-primary d-flex"
-                            : "ll  d-flex"
-                        }
-                      >
-                        <UserOutlined />
-                        <Space
-                          className={
-                            getColorResultManage
-                              ? "mx-2  text-primary click-me"
-                              : "mx-2   click-me"
-                          }
-                        >
-                          Result Management&nbsp;&nbsp;&nbsp;
                         </Space>
                       </Link>
                     </li>
@@ -209,6 +234,28 @@ const Layout = ({ children }) => {
                           }
                         >
                           Course Management&nbsp;&nbsp;
+                        </Space>
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link
+                        to="/result-manage"
+                        className={
+                          getColorResultManage
+                            ? "ll  text-primary d-flex"
+                            : "ll  d-flex"
+                        }
+                      >
+                        <UserOutlined />
+                        <Space
+                          className={
+                            getColorResultManage
+                              ? "mx-2  text-primary click-me"
+                              : "mx-2   click-me"
+                          }
+                        >
+                          Result Management&nbsp;&nbsp;&nbsp;
                         </Space>
                       </Link>
                     </li>
@@ -259,15 +306,6 @@ const Layout = ({ children }) => {
                         </Space>
                       </Link>
                     </li>
-                    <li>
-                      {" "}
-                      <Link to="/teacher-manage" className="ll d-flex">
-                        <UserOutlined />
-                        <Space className="mx-2 click-me">
-                          Teacher Management
-                        </Space>
-                      </Link>
-                    </li>
 
                     <li>
                       {" "}
@@ -314,28 +352,10 @@ const Layout = ({ children }) => {
                         </Space>
                       </Link>
                     </li>
-                    <li>
-                      {" "}
-                      <Link to="/deshboard" className="ll d-flex">
-                        <FullscreenExitOutlined />
-                        <Space className="mx-2 click-me">
-                          Reporting and Analytic
-                        </Space>
-                      </Link>
-                    </li>
-                    <li>
-                      {" "}
-                      <Link to="/deshboard" className="ll d-flex">
-                        <FullscreenExitOutlined />
-                        <Space className="mx-2 click-me">
-                          Reporting and Analytic
-                        </Space>
-                      </Link>
-                    </li>
 
                     <li className="ll d-flex">
                       <Dropdown menu={{ items }} trigger={["click"]}>
-                        <a onClick={(e) => e.preventDefault()}>
+                        <a href="ff" onClick={(e) => e.preventDefault()}>
                           <Space
                             onClick={handleLogOut}
                             className="mx-2 click-me deshboar-word"

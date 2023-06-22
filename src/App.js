@@ -2,10 +2,9 @@ import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import EditForm from "./Component/Deshboard/EditForm";
-import Deshboard from "./Component/Deshboard/Deshboard";
+import StudentManage from "./Component/Deshboard/StudentManagement";
 import Auth from "./Component/Authentication";
 import SignUp from "./Component/Authentication/SignUp";
-import StudentAdd from "./Component/Deshboard/StudentAdd";
 import PrivateRoute from "./Component/Authentication/PrivateRoute";
 import TecherManagement from "./Component/Deshboard/TeacherManagement";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -14,8 +13,8 @@ import CourseDetails from "./Component/UserEnd/CourseDetails";
 import { Bars } from "react-loader-spinner";
 import CheckOut from "./Component/UserEnd/CheckOut";
 import CourseManagement from "./Component/Deshboard/CourseManagement";
-import OrderManage from "./Component/Deshboard/OrderManage";
-import QuizManage from "./Component/Deshboard/QuizManage";
+import OrderManage from "./Component/Deshboard/OrderManagement";
+import QuizManage from "./Component/Deshboard/QuizManagement";
 import SkillTest from "./Component/UserEnd/SkillTest";
 import Tutorials from "./Component/UserEnd/Tutorials";
 import CourseLogin from "./Component/CourseEnrollment/Login";
@@ -23,6 +22,7 @@ import CourseDeshboard from "./Component/CourseEnrollment/CourseDeshboard";
 import CourseAccess from "./Component/CourseEnrollment/CourseAccess/CourseAccess";
 import StudentProfile from "./Component/CourseEnrollment/StudentProfile";
 import ResultManagement from "./Component/Deshboard/ResultManagement";
+import DeshboardManagement from "./Component/Deshboard/DeshboardManagement";
 
 const Home = React.lazy(() => import("./Component/UserEnd/Home"));
 function App() {
@@ -32,10 +32,8 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path="/" element={<Auth />} />
-
           <Route path="/edit/:id" element={<EditForm />} />
           <Route path="/sign-up" element={<SignUp />} />
-
           <Route
             path="/home"
             element={
@@ -62,7 +60,6 @@ function App() {
           <Route path="/course-checkout/:id" element={<CheckOut />} />
           <Route path="/skill-test" element={<SkillTest />} />
           <Route path="/course-login" element={<CourseLogin />} />
-
           <Route
             path="/course-deshboard"
             element={
@@ -80,7 +77,6 @@ function App() {
               </PrivateRoute>
             }
           />
-
           <Route
             path="/student-profile"
             element={
@@ -91,12 +87,19 @@ function App() {
           />
 
           <Route path="/tutorials" element={<Tutorials />} />
-
           <Route
             path="/deshboard"
             element={
               <PrivateRoute>
-                <Deshboard />
+                <DeshboardManagement />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/student-manage"
+            element={
+              <PrivateRoute>
+                <StudentManage />
               </PrivateRoute>
             }
           />
@@ -108,7 +111,6 @@ function App() {
               </PrivateRoute>
             }
           />
-
           <Route
             path="/order-manage"
             element={
@@ -117,7 +119,6 @@ function App() {
               </PrivateRoute>
             }
           />
-
           <Route
             path="/quiz-manage"
             element={
@@ -126,7 +127,6 @@ function App() {
               </PrivateRoute>
             }
           />
-
           <Route
             path="/result-manage"
             element={
@@ -135,7 +135,6 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/student-manage" element={<StudentAdd />} />
           <Route path="/teacher-manage" element={<TecherManagement />} />
         </Routes>
       </QueryClientProvider>

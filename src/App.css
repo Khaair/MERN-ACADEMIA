@@ -1,31 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,300&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,300&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&display=swap");
 
 * {
-  font-family: 'Lato', sans-serif;
-  font-family: 'Poppins', sans-serif;
-  
+  font-family: "Lato", sans-serif;
+  font-family: "Poppins", sans-serif;
+
   box-sizing: border-box;
   padding: 0px;
-
 }
-
 
 .navv {
   height: 60px;
   padding-top: 14px;
 }
 
-.top-navbar-wrapper{
+.top-navbar-wrapper {
   display: flex;
   justify-content: space-between;
 }
 
-.accademia-logo img{
+.accademia-logo img {
   height: 33px;
   padding-left: 28px;
 }
 
-.title-deshboard-wrapper{
+.title-deshboard-wrapper {
   display: flex;
 }
 
@@ -47,33 +45,29 @@
   padding: 8px;
   border-radius: 5px;
 }
-.ll:hover{
+.ll:hover {
   background-color: aliceblue;
   color: blue;
 }
-.ll a{
+.ll a {
   color: black;
- 
+
   text-decoration: none;
   font-size: 15px;
 }
 
-.ll a:hover{
+.ll a:hover {
   color: blue;
-
 }
 
-
-.ll .click-me{
+.ll .click-me {
   color: black;
   text-decoration: none !important;
   font-size: 15px;
-
 }
 
-.ll a{
+.ll a {
   text-decoration: none !important;
-
 }
 .ll .click-me:hover {
   color: blue;
@@ -81,12 +75,13 @@
 .mright {
   margin-right: 10px;
 }
-.ttrrr video{
-width: 450px;}
+.ttrrr video {
+  width: 450px;
+}
 
-.login-card{
- padding: 73px 50px 50px 50px;
-  background-color: #F0F3F6;
+.login-card {
+  padding: 73px 50px 50px 50px;
+  background-color: #f0f3f6;
   border-radius: 5px;
 }
 
@@ -99,21 +94,19 @@ width: 450px;}
   margin-bottom: 15px;
 }
 
-.nabar-area{
-  background-color: #FFFFFF;
-  border-bottom: 2px solid #F1F4F7;
-
-} 
-.sub-nabar-area{
-  background-color: #FFFFFF;
-  border-bottom: 1px solid #F1F4F7;
-  } 
-  
-.deshboard-sidebar{
-  height: 690px;
-   color: white;
+.nabar-area {
+  background-color: #ffffff;
+  border-bottom: 2px solid #f1f4f7;
 }
-.deshboard-top{
+.sub-nabar-area {
+  background-color: #ffffff;
+  border-bottom: 1px solid #f1f4f7;
+}
+
+.deshboard-sidebar {
+  color: white;
+}
+.deshboard-top {
   padding-top: 12px;
   padding-bottom: 0.5px;
   margin-top: 5px;
@@ -121,86 +114,81 @@ width: 450px;}
   border-radius: 5px;
   margin-bottom: 98px;
 }
-.deshboard-sidebar ul li{
+.deshboard-sidebar ul li {
   list-style: none;
 }
 
-
-
-.data-show-img img{
+.data-show-img img {
   height: 50px;
 }
 
 .card {
-  
   min-height: 70px;
   padding: 25px;
   background-color: white;
   border: none;
   border-radius: 5px;
 }
-.children-deshboard{
-
-background-color: #F0F3F6;
+.children-deshboard {
+  background-color: #f0f3f6;
 }
 
-.add-student-wrapper{
+.add-student-wrapper {
   display: flex;
   justify-content: space-between;
 }
 
-.card-title{
-  font-size: 1.10rem ;
-  color: #148a8f ;
-  font-weight: 600 ;
+.card-title {
+  font-size: 1.1rem;
+  color: #148a8f;
+  font-weight: 600;
 }
 
-.deshboar-word{
-  font-size: 1.10rem ;
-  color: #148a8f ;
-  font-weight: 600 ;
+.deshboar-word {
+  font-size: 1.1rem;
+  color: #148a8f;
+  font-weight: 600;
   margin-left: 5px;
   margin-top: 2px;
 }
 
-.top-nav-right-icon{
+.top-nav-right-icon {
   padding-right: 50px;
   text-align: center;
 }
 
-.top-nav-right-icon div{
+.top-nav-right-icon div {
   height: 32px;
   width: 32px;
-  background-color: #F0F3F6;
+  background-color: #f0f3f6;
   border-radius: 50%;
   display: inline-block;
   margin-right: 8px;
 }
 
-.title-deshboard-wrapper-icon{
+.title-deshboard-wrapper-icon {
   height: 32px;
   width: 32px;
-  background-color: #F0F3F6;
+  background-color: #f0f3f6;
   border-radius: 50%;
   display: inline-block;
   margin-right: 8px;
-  color: #148a8f; 
+  color: #148a8f;
 }
 
-.searchbar-wrapper search{
+.searchbar-wrapper search {
   border: 1px solid red;
   background-color: aqua;
 }
 
 .ant-form-item {
   margin-bottom: 12px !important;
-
 }
 
-.login-area h4{
-  font-size: 1.10rem ;
-  color: black ;
-  font-weight: 600 ;
+.login-area h4 {
+  font-size: 1.1rem;
+  color: black;
+  font-weight: 600;
 }
 
 .bootstrap-container .container {
@@ -211,129 +199,120 @@ background-color: #F0F3F6;
   padding-left: 15px;
 }
 
-.course-manage-action{
+.course-manage-action {
   display: flex;
-
 }
 
-.course-details-area{
+.course-details-area {
   min-height: 300px;
-  background-color: #F3FAFF;
+  background-color: #f3faff;
 
   padding-top: 21px;
   padding-bottom: 30px;
-  
 }
 
-.instructor-wrapper{
+.instructor-wrapper {
   display: flex;
   padding: 20px;
 }
 
-.instructor-wrapper .image-wrapper img{
-     width: 100px;
-      height: 100px;
-      background: red;
-      border-radius: 50%
+.instructor-wrapper .image-wrapper img {
+  width: 100px;
+  height: 100px;
+  background: red;
+  border-radius: 50%;
 }
 
-.course-learning-curb{
+.course-learning-curb {
   padding: 20px;
 }
 
-.course-learning-curb-content{
+.course-learning-curb-content {
   display: flex;
 }
 
-.course-learning-curb-content-for-details{
+.course-learning-curb-content-for-details {
   display: flex;
   justify-content: space-between;
 }
-.enroll-area{
+.enroll-area {
   position: fixed;
-
 }
-.course-specific-video-wrapper{
+.course-specific-video-wrapper {
   display: flex;
 }
 
-.course-checkout-area{
-  background-color: #F5F5F5;
+.course-checkout-area {
+  background-color: #f5f5f5;
   padding-top: 20px;
   padding-bottom: 20px;
   min-height: 450px;
 }
 
-.checkout-item-wrapper{
+.checkout-item-wrapper {
   display: flex;
   justify-content: space-between;
 }
 
-.bkash-payment-image img{
+.bkash-payment-image img {
   width: 100px;
 }
 
-.payment-check-box{
+.payment-check-box {
   display: flex;
 }
 
-.checkout-course-details-wrapper{
+.checkout-course-details-wrapper {
   display: flex;
 }
-.course-card .course-title{
+.course-card .course-title {
   height: 59px;
 }
-.course-card .course-sub-title{
+.course-card .course-sub-title {
   height: 80px;
 }
 
-.skill-test-area{
-  background-color: #F3FAFF;
+.skill-test-area {
+  background-color: #f3faff;
 }
 
-.login-main-area{
+.login-main-area {
   padding-top: 100px;
   padding-bottom: 150px;
-
 }
 
-.login-area-wrapper{
+.login-area-wrapper {
   display: flex;
   justify-content: center;
 }
 
-
-
-.course-deshboard-area{
-  background-color: #F3FAFF; 
+.course-deshboard-area {
+  background-color: #f3faff;
 
   padding-top: 20px;
   padding-bottom: 150px;
 }
 
-.course-access-area{
-  background-color: #F3FAFF; 
-  padding-top: 20px;
-  padding-bottom: 50px;
-  min-height: 100vh;
-
-}
-
-.student-profile-area{
-  background-color: #F3FAFF; 
+.course-access-area {
+  background-color: #f3faff;
   padding-top: 20px;
   padding-bottom: 50px;
   min-height: 100vh;
 }
 
-.mcq-options-label{
-  background-color: #F3FAFF; 
+.student-profile-area {
+  background-color: #f3faff;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  min-height: 100vh;
+}
+
+.mcq-options-label {
+  background-color: #f3faff;
   padding: 10px;
   border-radius: 5px;
-  
-
 }
 
-.mcq-option-text{
+.mcq-option-text {
   margin-left: 7px;
 }

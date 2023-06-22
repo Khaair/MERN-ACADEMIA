@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Layout from "./layout";
+import Layout from "../layout";
 import { Form, Input, Upload, Button, notification, Modal } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
-import EditForm from "./EditForm";
+import EditForm from "../EditForm";
 
-function Deshboard() {
+function StudentManagement() {
   const [data, setData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -22,7 +22,9 @@ function Deshboard() {
 
   const fetchdata = async () => {
     try {
-      const datahere = await axios.get("http://localhost:8080/api/show");
+      const datahere = await axios.get(
+        "http://localhost:8080/api/student-show"
+      );
       setData(datahere.data);
     } catch (err) {
       console.log(err, "error");
@@ -81,64 +83,31 @@ function Deshboard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const values = await form.validateFields();
-
-      let res = await axios.post("http://localhost:8080/api/auth/signup", {
-        username: values?.name,
-        email: values?.email,
-        password: values?.studentId,
+      const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("phoneNumber", values.phoneNumber);
+      formData.append("courseId", values.courseId);
+      formData.append("studentId", values.studentId);
+      formData.append("file", values.file[0].originFileObj);
+      const res = await fetch("http://localhost:8080/api/save", {
+        method: "POST",
+        body: formData,
       });
-
-      if (res.status === 200) {
-        try {
-          const values = await form.validateFields();
-          const formData = new FormData();
-          formData.append("name", values.name);
-          formData.append("email", values.email);
-          formData.append("phoneNumber", values.phoneNumber);
-          formData.append("courseId", values.courseId);
-          formData.append("studentId", values.studentId);
-          formData.append("file", values.file[0].originFileObj);
-          const res = await fetch("http://localhost:8080/api/save", {
-            method: "POST",
-            body: formData,
-          });
-          const data = await res.json();
-          if (data?.status === "200") {
-            fetchdata();
-          }
-          console.log("data", data);
-        } catch (errorInfo) {
-          console.log("Failed:", errorInfo);
-        }
-        setErrorMsg([]);
-        setMatchedErrorMsg("Registration successful");
-        setMatchedUserErrorMsg("");
-        setMatchedEmailErrorMsg("");
-      } else {
-        console.log("res signup", res);
-        setErrorMsg(res.status);
+      const data = await res.json();
+      if (data?.status === "200") {
+        fetchdata();
       }
-
-      console.log(res, "res signup");
-    } catch (er) {
-      if (er) {
-        setErrorMsg(er?.response?.data?.errors);
-        setErrorMsg(er?.response?.data?.message?.keyValue?.username);
-        if (er?.response?.data?.message?.keyValue?.username) {
-          setMatchedUserErrorMsg("User name already registered");
-          setMatchedEmailErrorMsg("");
-        }
-
-        if (er?.response?.data?.message?.keyValue?.email) {
-          setMatchedEmailErrorMsg("Email already registered");
-          setMatchedUserErrorMsg("");
-        }
-        console.log("error msg", er?.response?.data?.message?.keyValue?.email);
-      }
+      console.log("data", data);
+    } catch (errorInfo) {
+      console.log("Failed:", errorInfo);
     }
+    setErrorMsg([]);
+    setMatchedErrorMsg("Registration successful");
+    setMatchedUserErrorMsg("");
+    setMatchedEmailErrorMsg("");
   };
 
   const handleEditOk = () => {
@@ -374,4 +343,4 @@ function Deshboard() {
   );
 }
 
-export default Deshboard;
+export default StudentManagement;

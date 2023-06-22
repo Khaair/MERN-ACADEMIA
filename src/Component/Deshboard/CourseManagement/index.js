@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Layout from "./layout";
+import Layout from "../layout";
 import { Form, Input, Upload, Button, notification, Modal } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
-import EditForm from "./EditForm";
+import EditForm from "../EditForm";
 
 function CourseManagement() {
   const [data, setData] = useState([]);
@@ -20,7 +20,7 @@ function CourseManagement() {
   const fetchdata = async () => {
     try {
       const datahere = await axios.get(
-        "http://localhost:8080/api/course/course-show"
+        "http://localhost:8080/api/course-manage/course-show"
       );
       setData(datahere.data);
     } catch (err) {

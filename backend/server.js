@@ -87,16 +87,20 @@ const routesuserget = require("./app/routes/userGetRoutes");
 const routesCourseManagement = require("./app/routes/courseManagementRoutes");
 const routesCourseOrder = require("./app/routes/courseOrder");
 const transactionIdOrder = require("./app/routes/transactionIdRoutes");
-const quiz = require("./app/routes/quizManagementRoutes");
-const result = require("./app/routes/resultManagementRoutes");
+const quizManagementRoutes = require("./app/routes/quizManagementRoutes");
+const resultManagementRoutes = require("./app/routes/resultManagementRoutes");
+const deshboardManagementRoutes = require("./app/routes/deshboardManagementRoutes");
+const teacherManagementRoutes = require("./app/routes/teacherManagementRoutes");
 
 app.use("/api", routes);
 app.use("/api", routesuserget);
-app.use("/api/course", routesCourseManagement);
+app.use("/api/course-manage", routesCourseManagement);
 app.use("/api/course-order", routesCourseOrder);
 app.use("/api/transaction-id", transactionIdOrder);
-app.use("/api/quiz-manage", quiz);
-app.use("/api/result-manage", result);
+app.use("/api/quiz-manage", quizManagementRoutes);
+app.use("/api/result-manage", resultManagementRoutes);
+app.use("/api/deshboard-manage", deshboardManagementRoutes);
+app.use("/api/teacher-manage", teacherManagementRoutes);
 
 //http://localhost:8080/api/auth/signup
 

@@ -1,32 +1,26 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Layout from "./layout";
-import { Form, Input, Upload, Button, notification, Modal } from "antd";
+import Layout from "../layout";
+import { Form, Input, Button, notification, Modal } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
-import EditForm from "./EditForm";
+import EditForm from "../EditForm";
 
 function ResultManagement() {
   const [data, setData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDetailsModalOpen, setDetailsModalOpen] = useState(false);
   const [studentId, setStudentId] = useState();
-  const [errorMsg, setErrorMsg] = useState([]);
-  const [matchedEmailerrorMsg, setMatchedEmailErrorMsg] = useState("");
-  const [matchedUsererrorMsg, setMatchedUserErrorMsg] = useState("");
-  const [matchederrorMsg, setMatchedErrorMsg] = useState("");
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   const [form] = Form.useForm();
   const [logedinData, setLogedinData] = useState([]);
-  const [resultId, setResultId] = useState();
   const [singleResultData, setSingleResultData] = useState([]);
   const [singleSearchData, setSingleSearchData] = useState([]);
 
   const [searchform] = Form.useForm();
-
-  const [getGpa, setGpa] = useState(0);
 
   console.log("singleResultData", singleResultData?.data);
   const fetchdata = async () => {
@@ -94,9 +88,7 @@ function ResultManagement() {
 
   const handleResultSubmit = async (e) => {
     e.preventDefault();
-
     const values = await form.validateFields();
-
     try {
       let response = await axios.post(
         `${process.env.REACT_APP_COURSE}/result-manage/result-save`,
@@ -108,26 +100,22 @@ function ResultManagement() {
           subjectAndMarks: items,
         }
       );
-      if (response?.data?.status === "200") {
-        setError(response?.data?.message);
+      if (response?.status === 200) {
         form.resetFields();
+        setIsModalOpen(false);
         fetchdata();
         setLoading(false);
-      } else if (response?.data?.status === "400") {
+      } else if (response?.status === 400) {
         setError(response?.data?.message);
-
         setLoading(false);
-      } else if (response?.data?.status === "401") {
+      } else if (response?.status === 401) {
         setError(response?.data?.message);
-
         setLoading(false);
-      } else if (response?.data?.status === "404") {
-        setError(response?.data?.message);
-
+      } else if (response?.status === 404) {
+        setError(response?.message);
         setLoading(false);
-      } else if (response?.data?.status === "500") {
+      } else if (response?.status === 500) {
         setError(response?.data?.message);
-
         setLoading(false);
       }
       console.log(response, "success");
@@ -170,8 +158,6 @@ function ResultManagement() {
     fetchSingleResultdata(resultId);
   };
 
-  const sscScores = [];
-
   const fetchSingleResultdata = async (resultId) => {
     try {
       const data = await axios.get(
@@ -182,48 +168,10 @@ function ResultManagement() {
     } catch (err) {
       console.log(err, "error");
     }
-
-    calculateGPA(sscScores);
   };
-
-  useEffect(() => {
-    fetchSingleResultdata();
-  }, [resultId]);
-
-  function calculateGPA(sscScores) {
-    let totalSubjects = sscScores.length;
-    let totalGradePoints = 0;
-
-    for (let i = 0; i < totalSubjects; i++) {
-      let subjectScore = sscScores[i];
-
-      if (subjectScore >= 80) {
-        totalGradePoints += 5;
-      } else if (subjectScore >= 70) {
-        totalGradePoints += 4;
-      } else if (subjectScore >= 60) {
-        totalGradePoints += 3.5;
-      } else if (subjectScore >= 50) {
-        totalGradePoints += 3;
-      } else if (subjectScore >= 40) {
-        totalGradePoints += 2;
-      } else {
-        totalGradePoints += 0;
-      }
-    }
-
-    console.log(totalGradePoints);
-
-    let gpa = totalGradePoints / totalSubjects;
-    setGpa(gpa);
-    return gpa;
-  }
-
-  console.log("singleSearchData", singleSearchData);
 
   const searchResult = async () => {
     const values = await searchform.validateFields();
-
     const singlePosts = data?.find((item) => {
       if (item?.rollNumber === values?.rollNumber) {
         return {
@@ -237,11 +185,15 @@ function ResultManagement() {
 
   const fetchSearchResultdata = async (resultId) => {
     try {
-      const data = await axios.get(
+      const response = await axios.get(
         `${process.env.REACT_APP_COURSE}/result-manage/show-single-result/${resultId}`
       );
-      setSingleSearchData(data);
-      console.log("data result singlw", data);
+      console.log("pppp", response);
+      if (response?.status === 200) {
+        setSingleSearchData(response);
+
+        searchform.resetFields();
+      }
     } catch (err) {
       console.log(err, "error");
     }
@@ -343,26 +295,35 @@ function ResultManagement() {
               <div class="row">
                 <div class="col-lg-12">
                   <div class="card">
-                    <Form form={searchform} layout="vertical">
-                      <Form.Item
-                        name="rollNumber"
-                        label="Roll Number"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input the roll number!",
-                          },
-                        ]}
+                    <div class="result-search-title text-center">
+                      <h2>Search Result</h2>
+                    </div>
+                    <div>
+                      <Form
+                        className="w-50"
+                        form={searchform}
+                        layout="vertical"
                       >
-                        <Input placeholder="Roll number" />
-                      </Form.Item>
+                        <Form.Item
+                          name="rollNumber"
+                          label="Roll Number"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the roll number!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Roll number" />
+                        </Form.Item>
 
-                      <Form.Item>
-                        <Button type="primary" ghost onClick={searchResult}>
-                          Submit
-                        </Button>
-                      </Form.Item>
-                    </Form>
+                        <Form.Item>
+                          <Button type="primary" ghost onClick={searchResult}>
+                            Submit
+                          </Button>
+                        </Form.Item>
+                      </Form>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -611,7 +572,6 @@ function ResultManagement() {
                         >
                           <Input placeholder="Student name" />
                         </Form.Item>
-                        <p className="text-danger ">{matchedUsererrorMsg}</p>
 
                         <Form.Item
                           name="rollNumber"
@@ -625,7 +585,6 @@ function ResultManagement() {
                         >
                           <Input placeholder="Roll number" />
                         </Form.Item>
-                        <p className="text-danger ">{matchedEmailerrorMsg}</p>
 
                         <Form.Item
                           label="Exam Name"
@@ -652,7 +611,8 @@ function ResultManagement() {
                           <Input placeholder="Passing year" />
                         </Form.Item>
                         <p>
-                          Enter Subject and Marks(Bangla-80 same as this format)
+                          Enter Subject and Marks(Subjectname-marks same as this
+                          format)
                         </p>
                         <Form.List name="items">
                           {(fields, { add, remove }) => {
@@ -665,7 +625,7 @@ function ResultManagement() {
                                       onChange={(e) =>
                                         handleItemChange(e.target.value, index)
                                       }
-                                      placeholder="Subjectname-marks"
+                                      placeholder="Bangla-80"
                                     />
                                     <Button
                                       className="mt-2"
@@ -676,7 +636,7 @@ function ResultManagement() {
                                   </Form.Item>
                                 ))}
                                 <Button className=" mb-3" onClick={() => add()}>
-                                  Add Option
+                                  Add Subject and Marks
                                 </Button>
                               </div>
                             );
