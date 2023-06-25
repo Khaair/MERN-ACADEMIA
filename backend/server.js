@@ -82,7 +82,7 @@ function initial() {
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 
-const routes = require("./app/routes/crudRoutes");
+const studentManagementRoutes = require("./app/routes/studentManagementRoutes");
 const routesuserget = require("./app/routes/userGetRoutes");
 const routesCourseManagement = require("./app/routes/courseManagementRoutes");
 const routesCourseOrder = require("./app/routes/courseOrder");
@@ -92,7 +92,7 @@ const resultManagementRoutes = require("./app/routes/resultManagementRoutes");
 const deshboardManagementRoutes = require("./app/routes/deshboardManagementRoutes");
 const teacherManagementRoutes = require("./app/routes/teacherManagementRoutes");
 
-app.use("/api", routes);
+app.use("/api/student-manage", studentManagementRoutes);
 app.use("/api", routesuserget);
 app.use("/api/course-manage", routesCourseManagement);
 app.use("/api/course-order", routesCourseOrder);

@@ -243,7 +243,11 @@ function TeacherManagement() {
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-12 ">
-                      <Form form={form} layout="vertical">
+                      <Form
+                        className="form-input-item"
+                        form={form}
+                        layout="vertical"
+                      >
                         <Form.Item
                           name="name"
                           label="Name"

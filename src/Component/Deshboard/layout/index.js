@@ -353,6 +353,35 @@ const Layout = ({ children }) => {
                       </Link>
                     </li>
 
+                    <li>
+                      {" "}
+                      <Link to="/deshboard" className="ll d-flex">
+                        <FullscreenExitOutlined />
+                        <Space className="mx-2 click-me">
+                          Reporting and Analytic
+                        </Space>
+                      </Link>
+                    </li>
+
+                    <li>
+                      {" "}
+                      <Link to="/deshboard" className="ll d-flex">
+                        <FullscreenExitOutlined />
+                        <Space className="mx-2 click-me">
+                          Reporting and Analytic
+                        </Space>
+                      </Link>
+                    </li>
+                    <li>
+                      {" "}
+                      <Link to="/deshboard" className="ll d-flex">
+                        <FullscreenExitOutlined />
+                        <Space className="mx-2 click-me">
+                          Reporting and Analytic
+                        </Space>
+                      </Link>
+                    </li>
+
                     <li className="ll d-flex">
                       <Dropdown menu={{ items }} trigger={["click"]}>
                         <a href="ff" onClick={(e) => e.preventDefault()}>
