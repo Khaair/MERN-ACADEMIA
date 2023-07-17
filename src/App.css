@@ -316,10 +316,20 @@
 .mcq-option-text {
   margin-left: 7px;
 }
+
 .form-input-item Input {
   background-color: #f0f3f6;
   border: 1px solid #f0f3f6;
   padding: 8px;
+}
+
+.form-input-item .other-type-input {
+  background-color: #f0f3f6;
+  border: 1px solid #f0f3f6;
+  padding: 8px;
+}
+.ant-modal-title {
+  padding-left: 20px !important;
 }
 
 .pp-and-details-wrapper {
@@ -332,4 +342,38 @@
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
+}
+
+.app {
+  transition: background-color 1.5s;
+}
+
+.light {
+  background-color: #a9d0e7;
+  color: #333;
+}
+
+.dark {
+  background-color: black;
+  color: #fff;
+}
+
+.DayNightToggle {
+  display: flex;
+  justify-content: center;
+}
+
+table thead {
+  background-color: #f0f8ff;
+}
+
+table thead tr th {
+  padding: 13px;
+}
+table tbody tr td {
+  padding: 13px 0px 0px 13px;
+  font-weight: 500;
+}
+.filter-wrapper {
+  width: 157px;
 }

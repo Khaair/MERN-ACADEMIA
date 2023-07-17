@@ -1,15 +1,11 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Form, Input, Button, Upload } from "antd";
-import Layout from "./layout";
 
 const EditForm = (props) => {
   const [form] = Form.useForm();
 
   const id = props?.studentId;
-  const navigate = useNavigate();
 
   const fetchdata = async () => {
     try {

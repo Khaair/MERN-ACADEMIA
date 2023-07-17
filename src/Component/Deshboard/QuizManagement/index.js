@@ -176,7 +176,7 @@ function Deshboard() {
             <div class="row">
               <div class="col-lg-12">
                 <div class="card">
-                  <table className="table">
+                  <table>
                     <thead>
                       <tr>
                         <th scope="col">Sl</th>
@@ -258,7 +258,11 @@ function Deshboard() {
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-12 ">
-                      <Form form={form} layout="vertical">
+                      <Form
+                        className="form-input-item"
+                        form={form}
+                        layout="vertical"
+                      >
                         <Form.Item
                           name="question"
                           label="Question"
@@ -272,36 +276,6 @@ function Deshboard() {
                           <Input placeholder="Question" />
                         </Form.Item>
 
-                        <p>Enter four Options</p>
-
-                        <Form.List name="items">
-                          {(fields, { add, remove }) => {
-                            return (
-                              <div>
-                                {fields.map((field, index) => (
-                                  <Form.Item key={field.key}>
-                                    <Input
-                                      value={items[index]}
-                                      onChange={(e) =>
-                                        handleItemChange(e.target.value, index)
-                                      }
-                                    />
-                                    <Button
-                                      className="mt-2"
-                                      onClick={() => remove(field.name)}
-                                    >
-                                      Remove
-                                    </Button>
-                                  </Form.Item>
-                                ))}
-                                <Button onClick={() => add()}>
-                                  Add Option
-                                </Button>
-                              </div>
-                            );
-                          }}
-                        </Form.List>
-
                         <Form.Item
                           name="answer"
                           label="Answer"
@@ -314,6 +288,50 @@ function Deshboard() {
                         >
                           <Input placeholder="Course Answer" />
                         </Form.Item>
+
+                        {/* <p>Enter four Options</p> */}
+                        <Form.Item
+                          name="answer"
+                          label="Enter four Options"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the Course Answer!",
+                            },
+                          ]}
+                        >
+                          <Form.List name="items">
+                            {(fields, { add, remove }) => {
+                              return (
+                                <div>
+                                  {fields.map((field, index) => (
+                                    <Form.Item key={field.key}>
+                                      <Input
+                                        value={items[index]}
+                                        onChange={(e) =>
+                                          handleItemChange(
+                                            e.target.value,
+                                            index
+                                          )
+                                        }
+                                      />
+                                      <Button
+                                        className="mt-2"
+                                        onClick={() => remove(field.name)}
+                                      >
+                                        Remove
+                                      </Button>
+                                    </Form.Item>
+                                  ))}
+                                  <Button onClick={() => add()}>
+                                    Add Option
+                                  </Button>
+                                </div>
+                              );
+                            }}
+                          </Form.List>
+                        </Form.Item>
+
                         <Button type="primary" onClick={handleQuizSubmit} ghost>
                           Submit
                         </Button>

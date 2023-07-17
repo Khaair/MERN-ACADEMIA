@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 
 import Layout from "./Layout";
+import Animation from "./Animation";
 
 export default function Home() {
   const fetchData = async () => {
@@ -20,6 +21,8 @@ export default function Home() {
 
   return (
     <Layout>
+      <Animation />
+
       <div className="navbar-and-banner-area">
         <div class="bootstrap-container">
           <div className="container">

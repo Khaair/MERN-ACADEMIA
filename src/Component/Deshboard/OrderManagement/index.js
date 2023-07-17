@@ -264,7 +264,7 @@ function OrderManage() {
             <div class="row">
               <div class="col-lg-12">
                 <div className="card">
-                  <table className="table table-fixed">
+                  <table>
                     <thead>
                       <tr>
                         <th scope="col">Sl</th>
@@ -345,7 +345,11 @@ function OrderManage() {
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-12 ">
-                      <Form form={form} layout="vertical">
+                      <Form
+                        className="form-input-item"
+                        form={form}
+                        layout="vertical"
+                      >
                         <Form.Item
                           name="transactionId"
                           label="TransactionId"

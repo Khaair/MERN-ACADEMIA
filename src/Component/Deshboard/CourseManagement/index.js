@@ -212,7 +212,7 @@ function CourseManagement() {
             <div class="row">
               <div class="col-lg-12">
                 <div class="card">
-                  <table className="table">
+                  <table>
                     <thead>
                       <tr>
                         <th scope="col">Banner</th>
@@ -220,7 +220,6 @@ function CourseManagement() {
                         <th scope="col">Ins. Name</th>
                         <th scope="col">Ins. Designation</th>
                         <th scope="col">Learn From Course</th>
-                        <th scope="col">Course Content</th>
 
                         {logedinData?.roles?.join("").toString() ===
                           "ROLE_ADMIN" && <th scope="col">Action</th>}
@@ -241,7 +240,6 @@ function CourseManagement() {
                             <td>{el?.instructorName}</td>
                             <td>{el?.instructorDesignation}</td>
                             <td>{el?.learnFromCourse}</td>
-                            <td>{el?.courseContent}</td>
 
                             {logedinData?.roles?.join("").toString() ===
                               "ROLE_ADMIN" && (
@@ -427,7 +425,11 @@ function CourseManagement() {
                 <div className="container">
                   <div className="row">
                     <div className="col-lg-12">
-                      <Form form={form} layout="vertical">
+                      <Form
+                        className="form-input-item"
+                        form={form}
+                        layout="vertical"
+                      >
                         <div class="row">
                           <div class="col-lg-6">
                             <Form.Item
@@ -477,6 +479,7 @@ function CourseManagement() {
                               ]}
                             >
                               <Input.TextArea
+                                className="other-type-input"
                                 rows={3}
                                 placeholder="Description"
                               />
@@ -520,6 +523,7 @@ function CourseManagement() {
                               ]}
                             >
                               <Input.TextArea
+                                className="other-type-input"
                                 rows={3}
                                 placeholder="Learn From Course"
                               />

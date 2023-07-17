@@ -224,7 +224,7 @@ function ResultManagement() {
             <div class="row">
               <div class="col-lg-12">
                 <div class="card">
-                  <table className="table">
+                  <table>
                     <thead>
                       <tr>
                         <th scope="col">Sl</th>
@@ -381,55 +381,59 @@ function ResultManagement() {
                       <div className="text-center">
                         <h4>Grade Sheet</h4>
                       </div>
-                      <table className="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Sl</th>
-                            <th scope="col">Subject Name</th>
-                            <th scope="col">Marks</th>
-                            <th scope="col">Grade</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {singleSearchData?.data?.subjectAndMarks?.map(
-                            (item, index) => {
-                              const subject = Object.keys(item)[0];
-                              const marks = item[subject];
-                              let grade = "";
-                              if (marks >= 80 && marks <= 100) {
-                                grade = "A+";
-                              }
-                              if (marks >= 70 && marks <= 79) {
-                                grade = "A";
-                              }
-                              if (marks >= 60 && marks <= 69) {
-                                grade = "A-";
-                              }
-                              if (marks >= 50 && marks <= 59) {
-                                grade = "B";
-                              }
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <table className="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Sl</th>
+                                <th scope="col">Subject Name</th>
+                                <th scope="col">Marks</th>
+                                <th scope="col">Grade</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {singleSearchData?.data?.subjectAndMarks?.map(
+                                (item, index) => {
+                                  const subject = Object.keys(item)[0];
+                                  const marks = item[subject];
+                                  let grade = "";
+                                  if (marks >= 80 && marks <= 100) {
+                                    grade = "A+";
+                                  }
+                                  if (marks >= 70 && marks <= 79) {
+                                    grade = "A";
+                                  }
+                                  if (marks >= 60 && marks <= 69) {
+                                    grade = "A-";
+                                  }
+                                  if (marks >= 50 && marks <= 59) {
+                                    grade = "B";
+                                  }
 
-                              if (marks >= 40 && marks <= 49) {
-                                grade = "C";
-                              }
-                              if (marks >= 33 && marks <= 39) {
-                                grade = "D";
-                              }
-                              if (marks < 33) {
-                                grade = "F";
-                              }
-                              return (
-                                <tr key={index}>
-                                  <td>{index + 1}</td>
-                                  <td>{subject}</td>
-                                  <td>{marks}</td>
-                                  <td>{grade}</td>
-                                </tr>
-                              );
-                            }
-                          )}
-                        </tbody>
-                      </table>
+                                  if (marks >= 40 && marks <= 49) {
+                                    grade = "C";
+                                  }
+                                  if (marks >= 33 && marks <= 39) {
+                                    grade = "D";
+                                  }
+                                  if (marks < 33) {
+                                    grade = "F";
+                                  }
+                                  return (
+                                    <tr key={index}>
+                                      <td>{index + 1}</td>
+                                      <td>{subject}</td>
+                                      <td>{marks}</td>
+                                      <td>{grade}</td>
+                                    </tr>
+                                  );
+                                }
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -459,7 +463,7 @@ function ResultManagement() {
             <div className="text-center">
               <h4>Student Details</h4>
             </div>
-            <table className="table">
+            <table>
               <tbody>
                 <tr>
                   <td>Student Name</td>
@@ -495,7 +499,7 @@ function ResultManagement() {
             <div className="text-center">
               <h4>Grade Sheet</h4>
             </div>
-            <table className="table">
+            <table>
               <thead>
                 <tr>
                   <th scope="col">Sl</th>
@@ -546,6 +550,7 @@ function ResultManagement() {
 
           <Modal
             title="Add New Result"
+            className="form-input-item"
             open={isModalOpen}
             onOk={handleOk}
             onCancel={handleCancel}

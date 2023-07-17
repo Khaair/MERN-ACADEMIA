@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Menu, Dropdown } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 
 import {
   UserOutlined,
@@ -13,8 +15,19 @@ import {
   QrcodeOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
-import { Button, Dropdown, Space } from "antd";
+import { Button, Space } from "antd";
 import Search from "antd/es/transfer/search";
+
+const dropdownMenu = (
+  <Menu>
+    <Link to="/teacher-manage">
+      <Menu.Item key="1">Dropdown Item 1</Menu.Item>
+    </Link>
+    <Menu.Item key="2">Dropdown Item 2</Menu.Item>
+    <Menu.Item key="3">Dropdown Item 3</Menu.Item>
+  </Menu>
+);
+
 const items = [
   {
     label: <a href="https://www.antgroup.com">1st menu item</a>,
@@ -305,6 +318,18 @@ const Layout = ({ children }) => {
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </Space>
                       </Link>
+                    </li>
+
+                    <li>
+                      <Dropdown overlay={dropdownMenu}>
+                        <Link to="/dropdown-example" className="ll d-flex">
+                          <PieChartOutlined />
+                          <Space className="mx-2 click-me">
+                            Report Management&nbsp;
+                          </Space>
+                          <DownOutlined style={{ fontSize: "12px" }} />
+                        </Link>
+                      </Dropdown>
                     </li>
 
                     <li>
