@@ -377,3 +377,7 @@ table tbody tr td {
 .filter-wrapper {
   width: 157px;
 }
+.filter-and-search-wrapper {
+  display: flex;
+  justify-content: space-between;
+}

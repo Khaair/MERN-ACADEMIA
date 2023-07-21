@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 const { Option } = Select;
 
-const AddStudent = ({ fetchdata }) => {
+const AddStudent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
 
@@ -57,7 +57,6 @@ const AddStudent = ({ fetchdata }) => {
   };
   return (
     <div>
-      {" "}
       <div class="row">
         <div class="col-lg-12 ">
           <div class="card-title-section">
