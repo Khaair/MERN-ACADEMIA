@@ -23,121 +23,125 @@ import CourseAccess from "./Component/CourseEnrollment/CourseAccess/CourseAccess
 import StudentProfile from "./Component/CourseEnrollment/StudentProfile";
 import ResultManagement from "./Component/Deshboard/ResultManagement";
 import DeshboardManagement from "./Component/Deshboard/DeshboardManagement";
+import { Provider } from "react-redux";
+import store from "./statement-management/store";
 
 const Home = React.lazy(() => import("./Component/UserEnd/Home"));
 function App() {
   const queryClient = new QueryClient();
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="/" element={<Auth />} />
-          <Route path="/edit/:id" element={<EditForm />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route
-            path="/home"
-            element={
-              <Suspense
-                fallback={
-                  <div className="ecommerce-loader-wrapper">
-                    <Bars
-                      height="100"
-                      width="100"
-                      color="#4fa94d"
-                      ariaLabel="bars-loading"
-                      wrapperStyle={{}}
-                      wrapperClass=""
-                      visible={true}
-                    />
-                  </div>
-                }
-              >
-                <Home />
-              </Suspense>
-            }
-          />
-          <Route path="/course-details/:id" element={<CourseDetails />} />
-          <Route path="/course-checkout/:id" element={<CheckOut />} />
-          <Route path="/skill-test" element={<SkillTest />} />
-          <Route path="/course-login" element={<CourseLogin />} />
-          <Route
-            path="/course-deshboard"
-            element={
-              <PrivateRoute>
-                <CourseDeshboard />
-              </PrivateRoute>
-            }
-          />
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <Routes>
+            <Route path="/" element={<Auth />} />
+            <Route path="/edit/:id" element={<EditForm />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route
+              path="/home"
+              element={
+                <Suspense
+                  fallback={
+                    <div className="ecommerce-loader-wrapper">
+                      <Bars
+                        height="100"
+                        width="100"
+                        color="#4fa94d"
+                        ariaLabel="bars-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                      />
+                    </div>
+                  }
+                >
+                  <Home />
+                </Suspense>
+              }
+            />
+            <Route path="/course-details/:id" element={<CourseDetails />} />
+            <Route path="/course-checkout/:id" element={<CheckOut />} />
+            <Route path="/skill-test" element={<SkillTest />} />
+            <Route path="/course-login" element={<CourseLogin />} />
+            <Route
+              path="/course-deshboard"
+              element={
+                <PrivateRoute>
+                  <CourseDeshboard />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path="/course-access"
-            element={
-              <PrivateRoute>
-                <CourseAccess />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/student-profile"
-            element={
-              <PrivateRoute>
-                <StudentProfile />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path="/course-access"
+              element={
+                <PrivateRoute>
+                  <CourseAccess />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/student-profile"
+              element={
+                <PrivateRoute>
+                  <StudentProfile />
+                </PrivateRoute>
+              }
+            />
 
-          <Route path="/tutorials" element={<Tutorials />} />
-          <Route
-            path="/deshboard"
-            element={
-              <PrivateRoute>
-                <DeshboardManagement />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/student-manage"
-            element={
-              <PrivateRoute>
-                <StudentManage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/course-manage"
-            element={
-              <PrivateRoute>
-                <CourseManagement />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/order-manage"
-            element={
-              <PrivateRoute>
-                <OrderManage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/quiz-manage"
-            element={
-              <PrivateRoute>
-                <QuizManage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/result-manage"
-            element={
-              <PrivateRoute>
-                <ResultManagement />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/teacher-manage" element={<TecherManagement />} />
-        </Routes>
-      </QueryClientProvider>
+            <Route path="/tutorials" element={<Tutorials />} />
+            <Route
+              path="/deshboard"
+              element={
+                <PrivateRoute>
+                  <DeshboardManagement />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/student-manage"
+              element={
+                <PrivateRoute>
+                  <StudentManage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/course-manage"
+              element={
+                <PrivateRoute>
+                  <CourseManagement />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/order-manage"
+              element={
+                <PrivateRoute>
+                  <OrderManage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/quiz-manage"
+              element={
+                <PrivateRoute>
+                  <QuizManage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/result-manage"
+              element={
+                <PrivateRoute>
+                  <ResultManagement />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/teacher-manage" element={<TecherManagement />} />
+          </Routes>
+        </QueryClientProvider>
+      </Provider>
     </>
   );
 }

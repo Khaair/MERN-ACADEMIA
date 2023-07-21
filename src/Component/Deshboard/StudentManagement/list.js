@@ -1,15 +1,24 @@
 import { Button, DatePicker, Form, Input, Modal, Select, Upload } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllStudents } from "../../../statement-management/slices/studentSlices";
 const { Option } = Select;
 
-const StudentList = ({ logedinData, data, fetch, fetchData }) => {
+const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [singleID, setSingleId] = useState("");
   const [form] = Form.useForm();
   const [formGender] = Form.useForm();
-
   const [filterData, setFilterData] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const { list } = useSelector((state) => state?.student);
+  useEffect(() => {
+    dispatch(fetchAllStudents());
+  }, []);
+
   const handleOk = () => {
     setIsModalOpen(false);
   };
@@ -19,6 +28,7 @@ const StudentList = ({ logedinData, data, fetch, fetchData }) => {
   };
 
   const showModal = (id) => {
+    // fetchData();
     setIsModalOpen(true);
     setSingleId(id);
     fetchSingleData(id);
@@ -34,10 +44,11 @@ const StudentList = ({ logedinData, data, fetch, fetchData }) => {
         name: singleData?.data?.name,
         email: singleData?.data?.email,
         phoneNumber: singleData?.data?.phoneNumber,
-        teacherId: singleData?.data?.teacherId,
+        courseId: singleData?.data?.courseId,
+        studentId: singleData?.data?.studentId,
         address: singleData?.data?.address,
-        subject: singleData?.data?.subject,
-        qualifications: singleData?.data?.qualifications,
+        // dob: singleData?.data?.dob,
+        gender: singleData?.data?.gender,
         designation: singleData?.data?.designation,
       });
     } catch (err) {
@@ -49,16 +60,27 @@ const StudentList = ({ logedinData, data, fetch, fetchData }) => {
       let mydata = await axios.delete(
         `http://localhost:8080/api/student-manage/student-delete/${id}`
       );
-      console.log(mydata);
-
-      const filterd = data.filter((a) => a._id !== id);
-      fetch(filterd);
+      dispatch(fetchAllStudents());
     } catch (er) {
       console.log(er);
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleGenderFilter = async (value) => {
+    try {
+      const filteredData = list?.filter((item) => item?.gender === value);
+
+      if (filteredData) {
+        setFilterData(filteredData);
+      } else {
+        setFilterData([]);
+      }
+    } catch (err) {
+      console.log("err", err);
+    }
+  };
+
+  const handleUpdate = async (e) => {
     e.preventDefault();
     try {
       const values = await form.validateFields();
@@ -66,52 +88,39 @@ const StudentList = ({ logedinData, data, fetch, fetchData }) => {
       formData.append("name", values.name);
       formData.append("email", values.email);
       formData.append("phoneNumber", values.phoneNumber);
+      formData.append("dob", values.dob);
       formData.append("courseId", values.courseId);
       formData.append("studentId", values.studentId);
-      formData.append("dob", values.dob);
       formData.append("address", values.address);
       formData.append("gender", values.gender);
-
       formData.append("file", values.file[0].originFileObj);
-      const res = await fetch(
-        "http://localhost:8080/api/student-manage/student-save",
-        {
-          method: "POST",
-          body: formData,
-        }
+
+      const res = await axios.post(
+        `http://localhost:8080/api/student-manage/update-student/${singleID}`,
+
+        formData
       );
-      const data = await res.json();
-      if (data?.status === "200") {
-        handleCancel();
-        // fetchdata();
+
+      if (!res.data) {
+        // Handle non-OK responses (e.g., 404, 500, etc.)
+        console.log("Request failed with status:", res.status);
+        return;
       }
+
+      const data = res.data;
+      console.log("data up", data);
+
+      if (data?.status === 201) {
+        handleOk();
+        dispatch(fetchAllStudents());
+      }
+
       console.log("data", data);
     } catch (errorInfo) {
       console.log("Failed:", errorInfo);
     }
   };
-  useEffect(() => {
-    setFilterData(data);
-  }, [data]);
-  const handleGenderFilter = async (e) => {
-    try {
-      const values = await formGender.validateFields();
-      const filteredData = data?.filter(
-        (item, index) => item?.gender === values?.gender
-      );
 
-      if (filteredData) {
-        setFilterData(filteredData);
-      } else {
-        setFilterData(data);
-      }
-
-      console.log("filteredData", filteredData);
-      console.log("values", values?.gender);
-    } catch (err) {
-      console.log("err", err);
-    }
-  };
   return (
     <div>
       <div class="row">
@@ -136,9 +145,7 @@ const StudentList = ({ logedinData, data, fetch, fetchData }) => {
                     placeholder="Select Gender"
                     onChange={handleGenderFilter}
                   >
-                    <Option selected value="male">
-                      male
-                    </Option>
+                    <Option value="male">male</Option>
                     <Option value="female">female</Option>
                     <Option value="other">other</Option>
                   </Select>
@@ -162,7 +169,7 @@ const StudentList = ({ logedinData, data, fetch, fetchData }) => {
                 </tr>
               </thead>
               <tbody>
-                {filterData
+                {filterData.length > 0
                   ? filterData?.map((el, ind) => {
                       return (
                         <tr key={ind}>
@@ -209,7 +216,7 @@ const StudentList = ({ logedinData, data, fetch, fetchData }) => {
                         </tr>
                       );
                     })
-                  : data?.map((el, ind) => {
+                  : list?.map((el, ind) => {
                       return (
                         <tr key={ind}>
                           <td>{el?.studentId}</td>
@@ -260,7 +267,7 @@ const StudentList = ({ logedinData, data, fetch, fetchData }) => {
           </div>
         </div>
         <Modal
-          title="Add New Student"
+          title=" Student"
           open={isModalOpen}
           onOk={handleOk}
           onCancel={handleCancel}
@@ -343,6 +350,18 @@ const StudentList = ({ logedinData, data, fetch, fetchData }) => {
 
                         <div class="col-lg-6">
                           <Form.Item
+                            name="dob"
+                            label="Date of birth"
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please input the studentId!",
+                              },
+                            ]}
+                          >
+                            <DatePicker className="other-type-input" />
+                          </Form.Item>
+                          <Form.Item
                             label="Address"
                             name="address"
                             rules={[
@@ -355,18 +374,6 @@ const StudentList = ({ logedinData, data, fetch, fetchData }) => {
                             <Input placeholder="address" />
                           </Form.Item>
 
-                          <Form.Item
-                            name="dob"
-                            label="Date of birth"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the studentId!",
-                              },
-                            ]}
-                          >
-                            <DatePicker className="other-type-input" />
-                          </Form.Item>
                           <Form.Item
                             label="Gender"
                             name="gender"
@@ -403,7 +410,7 @@ const StudentList = ({ logedinData, data, fetch, fetchData }) => {
                       </div>
                       <div className="mt-3">
                         <Form.Item>
-                          <Button type="primary" ghost onClick={handleSubmit}>
+                          <Button type="primary" ghost onClick={handleUpdate}>
                             Submit
                           </Button>
                         </Form.Item>

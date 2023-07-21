@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Layout from "../layout";
 import Details from "./details";
@@ -6,29 +5,10 @@ import AddStudent from "./add";
 import StudentList from "./list";
 import { Modal } from "antd";
 function StudentManagement() {
-  const [data, setData] = useState([]);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [getstudentId, setStudentId] = useState();
   const [logedinData, setLogedinData] = useState([]);
-
-  const fetchdata = async () => {
-    try {
-      const datahere = await axios.get(
-        "http://localhost:8080/api/student-manage/student-show"
-      );
-      setData(datahere.data);
-    } catch (err) {
-      console.log(err, "error");
-    }
-  };
-
-  useEffect(() => {
-    fetchdata();
-  }, []);
-
-  const fetchData = () => {
-    fetchdata();
-  };
+  const [data, setData] = useState([]);
 
   const fetchSetData = (e) => {
     setData(e);
@@ -46,7 +26,7 @@ function StudentManagement() {
   const handleDetailsCancel = () => {
     setIsDetailsModalOpen(false);
 
-    fetchdata();
+    // fetchdata();
   };
 
   const showDetailsModal = (studentId) => {
@@ -64,7 +44,6 @@ function StudentManagement() {
             )}
 
             <StudentList
-              fetchData={fetchData}
               fetch={fetchSetData}
               data={data}
               logedinData={logedinData}

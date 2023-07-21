@@ -1,10 +1,15 @@
 import { Button, DatePicker, Form, Input, Modal, Select, Upload } from "antd";
 import React, { useState } from "react";
+import { fetchAllStudents } from "../../../statement-management/slices/studentSlices";
+import { useDispatch } from "react-redux";
+
 const { Option } = Select;
 
-const AddStudent = () => {
+const AddStudent = ({ fetchdata }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
+
+  const dispatch = useDispatch();
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -43,7 +48,7 @@ const AddStudent = () => {
       const data = await res.json();
       if (data?.status === "200") {
         handleCancel();
-        // fetchdata();
+        dispatch(fetchAllStudents());
       }
       console.log("data", data);
     } catch (errorInfo) {
