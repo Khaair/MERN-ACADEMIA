@@ -1,4 +1,13 @@
-import { Button, DatePicker, Form, Input, Modal, Select, Upload } from "antd";
+import {
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  Modal,
+  Pagination,
+  Select,
+  Upload,
+} from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +20,9 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
   const [form] = Form.useForm();
   const [formGender] = Form.useForm();
   const [filterData, setFilterData] = useState([]);
-
+  const [searchValue, setSearchValue] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5;
   const dispatch = useDispatch();
 
   const { list } = useSelector((state) => state?.student);
@@ -122,37 +133,54 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
     }
   };
 
+  const handleSearchChange = (e) => {
+    const { value } = e.target;
+    setSearchValue(value);
+  };
+  const handlePageChange = (page) => {
+    setCurrentPage(page); // Step 3: Update current page when pagination changes
+  };
   return (
     <div>
       <div class="row">
         <div class="col-lg-12">
           <div class="card">
-            <div className="filter-wrapper">
-              <Form
-                className="form-input-item"
-                form={formGender}
-                layout="vertical"
-              >
-                <Form.Item
-                  label=""
-                  name="gender"
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <Select
-                    placeholder="Select Gender"
-                    onChange={handleGenderFilter}
+            <div class="filter-and-search-wrapper mb-3">
+              <div class="search-wrapper">
+                <Form layout="inline">
+                  <Form.Item>
+                    <Input
+                      placeholder="Search"
+                      value={searchValue}
+                      onChange={handleSearchChange}
+                    />
+                  </Form.Item>
+                </Form>
+              </div>
+              <div className="filter-wrapper">
+                <Form form={formGender} layout="vertical">
+                  <Form.Item
+                    label=""
+                    name="gender"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
                   >
-                    <Option value="male">male</Option>
-                    <Option value="female">female</Option>
-                    <Option value="other">other</Option>
-                  </Select>
-                </Form.Item>
-              </Form>
+                    <Select
+                      placeholder="Select Gender"
+                      onChange={handleGenderFilter}
+                    >
+                      <Option value="male">male</Option>
+                      <Option value="female">female</Option>
+                      <Option value="other">other</Option>
+                    </Select>
+                  </Form.Item>
+                </Form>
+              </div>
             </div>
+
             <table>
               <thead>
                 <tr>
@@ -171,100 +199,132 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
               </thead>
               <tbody>
                 {filterData.length > 0
-                  ? filterData?.map((el, ind) => {
-                      return (
-                        <tr key={ind}>
-                          <td>{el?.studentId}</td>
-                          <td>{el?.name}</td>
-                          <td>{el?.email}</td>
-                          <td>{el?.phoneNumber}</td>
-                          <td>{el?.gender}</td>
-                          <td>{el?.address}</td>
-                          <td className="data-show-img">
-                            <img src={`/uploads/${el?.file}`} alt="" />
-                          </td>
-                          {logedinData?.roles?.join("").toString() ===
-                            "ROLE_ADMIN" && (
-                            <td>
-                              <div className="d-flex">
-                                <Button
-                                  //   onClick={() => showDetailsModal(el?._id)}
-                                  type="primary"
-                                  ghost
-                                >
-                                  Details
-                                </Button>
-
-                                <Button
-                                  onClick={() => showModal(el?._id)}
-                                  type="primary"
-                                  ghost
-                                  className="mx-2"
-                                >
-                                  Edit
-                                </Button>
-
-                                <Button
-                                  onClick={() => deleteStudent(el?._id)}
-                                  type="primary"
-                                  ghost
-                                >
-                                  Delete
-                                </Button>
-                              </div>
+                  ? filterData
+                      ?.slice(
+                        (currentPage - 1) * pageSize,
+                        currentPage * pageSize
+                      )
+                      .map((el, ind) => {
+                        return (
+                          <tr key={ind}>
+                            <td>{el?.studentId}</td>
+                            <td>{el?.name}</td>
+                            <td>{el?.email}</td>
+                            <td>{el?.phoneNumber}</td>
+                            <td>{el?.gender}</td>
+                            <td>{el?.address}</td>
+                            <td className="data-show-img">
+                              <img src={`/uploads/${el?.file}`} alt="" />
                             </td>
-                          )}
-                        </tr>
-                      );
-                    })
-                  : list?.map((el, ind) => {
-                      return (
-                        <tr key={ind}>
-                          <td>{el?.studentId}</td>
-                          <td>{el?.name}</td>
-                          <td>{el?.email}</td>
-                          <td>{el?.phoneNumber}</td>
-                          <td>{el?.gender}</td>
-                          <td>{el?.address}</td>
-                          <td className="data-show-img">
-                            <img src={`/uploads/${el?.file}`} alt="" />
-                          </td>
-                          {logedinData?.roles?.join("").toString() ===
-                            "ROLE_ADMIN" && (
-                            <td>
-                              <div className="d-flex">
-                                <Button
-                                  //   onClick={() => showDetailsModal(el?._id)}
-                                  type="primary"
-                                  ghost
-                                >
-                                  Details
-                                </Button>
+                            {logedinData?.roles?.join("").toString() ===
+                              "ROLE_ADMIN" && (
+                              <td>
+                                <div className="d-flex">
+                                  <Button
+                                    //   onClick={() => showDetailsModal(el?._id)}
+                                    type="primary"
+                                    ghost
+                                  >
+                                    Details
+                                  </Button>
 
-                                <Button
-                                  onClick={() => showModal(el?._id)}
-                                  type="primary"
-                                  ghost
-                                  className="mx-2"
-                                >
-                                  Edit
-                                </Button>
+                                  <Button
+                                    onClick={() => showModal(el?._id)}
+                                    type="primary"
+                                    ghost
+                                    className="mx-2"
+                                  >
+                                    Edit
+                                  </Button>
 
-                                <Button
-                                  onClick={() => deleteStudent(el?._id)}
-                                  type="primary"
-                                  ghost
-                                >
-                                  Delete
-                                </Button>
-                              </div>
+                                  <Button
+                                    onClick={() => deleteStudent(el?._id)}
+                                    type="primary"
+                                    ghost
+                                  >
+                                    Delete
+                                  </Button>
+                                </div>
+                              </td>
+                            )}
+                          </tr>
+                        );
+                      })
+                  : list
+                      ?.filter((el) =>
+                        el.name
+                          .toLowerCase()
+                          .includes(searchValue.toLowerCase())
+                      )
+                      .slice(
+                        (currentPage - 1) * pageSize,
+                        currentPage * pageSize
+                      )
+                      .map((el, ind) => {
+                        if (
+                          searchValue &&
+                          el?.name &&
+                          !el?.name
+                            .toLowerCase()
+                            .includes(searchValue.toLowerCase())
+                        ) {
+                          return null; // If searchValue is provided and name doesn't match, skip rendering
+                        }
+                        return (
+                          <tr key={ind}>
+                            <td>{el?.studentId}</td>
+                            <td>{el?.name}</td>
+                            <td>{el?.email}</td>
+                            <td>{el?.phoneNumber}</td>
+                            <td>{el?.gender}</td>
+                            <td>{el?.address}</td>
+                            <td className="data-show-img">
+                              <img src={`/uploads/${el?.file}`} alt="" />
                             </td>
-                          )}
-                        </tr>
-                      );
-                    })}
+                            {logedinData?.roles?.join("").toString() ===
+                              "ROLE_ADMIN" && (
+                              <td>
+                                <div className="d-flex">
+                                  <Button
+                                    //   onClick={() => showDetailsModal(el?._id)}
+                                    type="primary"
+                                    ghost
+                                  >
+                                    Details
+                                  </Button>
+
+                                  <Button
+                                    onClick={() => showModal(el?._id)}
+                                    type="primary"
+                                    ghost
+                                    className="mx-2"
+                                  >
+                                    Edit
+                                  </Button>
+
+                                  <Button
+                                    onClick={() => deleteStudent(el?._id)}
+                                    type="primary"
+                                    ghost
+                                  >
+                                    Delete
+                                  </Button>
+                                </div>
+                              </td>
+                            )}
+                          </tr>
+                        );
+                      })}
               </tbody>
             </table>
+            <div class="text-center mt-5 mb-5">
+              <Pagination
+                current={currentPage}
+                total={filterData.length > 0 ? filterData.length : list?.length}
+                pageSize={pageSize}
+                onChange={handlePageChange}
+              />
+            </div>
           </div>
         </div>
         <Modal
