@@ -94,6 +94,7 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
       formData.append("address", values.address);
       formData.append("gender", values.gender);
       formData.append("file", values.file[0].originFileObj);
+      //
 
       const res = await axios.post(
         `http://localhost:8080/api/student-manage/update-student/${singleID}`,
