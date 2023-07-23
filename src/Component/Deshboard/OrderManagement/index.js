@@ -267,26 +267,23 @@ function OrderManage() {
                   <table>
                     <thead>
                       <tr>
-                        <th scope="col">Sl</th>
-                        <th scope="col">OrderId</th>
-                        <th scope="col">CourseId</th>
-
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">TransactionId</th>
-                        <th scope="col">Payment</th>
+                        <th>Sl</th>
+                        <th>OrderId</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>TransactionId</th>
+                        <th>Payment</th>
 
                         {logedinData?.roles?.join("").toString() ===
-                          "ROLE_ADMIN" && <th scope="col">Action</th>}
+                          "ROLE_ADMIN" && <th>Action</th>}
                       </tr>
                     </thead>
                     <tbody>
                       {filteredData.map((el, ind) => {
                         return (
                           <tr key={ind}>
-                            <th scope="row">{ind + 1}</th>
+                            <td>{ind + 1}</td>
                             <td>{el?.orderId}</td>
-                            <td>{el?.courseId}</td>
                             <td>{el?.email}</td>
                             <td>{el?.phoneNumber}</td>
                             <td>{el?.transactionId}</td>
