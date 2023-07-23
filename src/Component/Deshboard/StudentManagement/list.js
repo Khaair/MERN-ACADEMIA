@@ -141,349 +141,329 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
     setCurrentPage(page); // Step 3: Update current page when pagination changes
   };
   return (
-    <div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="filter-and-search-wrapper mb-3">
-              <div class="search-wrapper">
-                <Form layout="inline">
-                  <Form.Item>
-                    <Input
-                      placeholder="Search"
-                      value={searchValue}
-                      onChange={handleSearchChange}
-                    />
-                  </Form.Item>
-                </Form>
-              </div>
-              <div className="filter-wrapper">
-                <Form form={formGender} layout="vertical">
-                  <Form.Item
-                    label=""
-                    name="gender"
-                    rules={[
-                      {
-                        required: true,
-                      },
-                    ]}
-                  >
-                    <Select
-                      placeholder="Select Gender"
-                      onChange={handleGenderFilter}
-                    >
-                      <Option value="male">male</Option>
-                      <Option value="female">female</Option>
-                      <Option value="other">other</Option>
-                    </Select>
-                  </Form.Item>
-                </Form>
-              </div>
-            </div>
-
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">StudentId</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Phone</th>
-                  <th scope="col">Gender</th>
-
-                  <th scope="col">Student Id</th>
-                  <th scope="col">Image</th>
-                  {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-                    <th scope="col">Action</th>
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {filterData.length > 0
-                  ? filterData
-                      ?.slice(
-                        (currentPage - 1) * pageSize,
-                        currentPage * pageSize
-                      )
-                      .map((el, ind) => {
-                        return (
-                          <tr key={ind}>
-                            <td>{el?.studentId}</td>
-                            <td>{el?.name}</td>
-                            <td>{el?.email}</td>
-                            <td>{el?.phoneNumber}</td>
-                            <td>{el?.gender}</td>
-                            <td>{el?.address}</td>
-                            <td className="data-show-img">
-                              <img src={`/uploads/${el?.file}`} alt="" />
-                            </td>
-                            {logedinData?.roles?.join("").toString() ===
-                              "ROLE_ADMIN" && (
-                              <td>
-                                <div className="d-flex">
-                                  <Button
-                                    //   onClick={() => showDetailsModal(el?._id)}
-                                    type="primary"
-                                    ghost
-                                  >
-                                    Details
-                                  </Button>
-
-                                  <Button
-                                    onClick={() => showModal(el?._id)}
-                                    type="primary"
-                                    ghost
-                                    className="mx-2"
-                                  >
-                                    Edit
-                                  </Button>
-
-                                  <Button
-                                    onClick={() => deleteStudent(el?._id)}
-                                    type="primary"
-                                    ghost
-                                  >
-                                    Delete
-                                  </Button>
-                                </div>
-                              </td>
-                            )}
-                          </tr>
-                        );
-                      })
-                  : list
-                      ?.filter((el) =>
-                        el.name
-                          .toLowerCase()
-                          .includes(searchValue.toLowerCase())
-                      )
-                      .slice(
-                        (currentPage - 1) * pageSize,
-                        currentPage * pageSize
-                      )
-                      .map((el, ind) => {
-                        if (
-                          searchValue &&
-                          el?.name &&
-                          !el?.name
-                            .toLowerCase()
-                            .includes(searchValue.toLowerCase())
-                        ) {
-                          return null; // If searchValue is provided and name doesn't match, skip rendering
-                        }
-                        return (
-                          <tr key={ind}>
-                            <td>{el?.studentId}</td>
-                            <td>{el?.name}</td>
-                            <td>{el?.email}</td>
-                            <td>{el?.phoneNumber}</td>
-                            <td>{el?.gender}</td>
-                            <td>{el?.address}</td>
-                            <td className="data-show-img">
-                              <img src={`/uploads/${el?.file}`} alt="" />
-                            </td>
-                            {logedinData?.roles?.join("").toString() ===
-                              "ROLE_ADMIN" && (
-                              <td>
-                                <div className="d-flex">
-                                  <Button
-                                    //   onClick={() => showDetailsModal(el?._id)}
-                                    type="primary"
-                                    ghost
-                                  >
-                                    Details
-                                  </Button>
-
-                                  <Button
-                                    onClick={() => showModal(el?._id)}
-                                    type="primary"
-                                    ghost
-                                    className="mx-2"
-                                  >
-                                    Edit
-                                  </Button>
-
-                                  <Button
-                                    onClick={() => deleteStudent(el?._id)}
-                                    type="primary"
-                                    ghost
-                                  >
-                                    Delete
-                                  </Button>
-                                </div>
-                              </td>
-                            )}
-                          </tr>
-                        );
-                      })}
-              </tbody>
-            </table>
-            <div class="text-center mt-5 mb-5">
-              <Pagination
-                current={currentPage}
-                total={filterData.length > 0 ? filterData.length : list?.length}
-                pageSize={pageSize}
-                onChange={handlePageChange}
+    <div class="list-area mt-4">
+      <div class="filter-and-search-wrapper mb-3">
+        <div class="search-wrapper">
+          <Form layout="inline">
+            <Form.Item>
+              <Input
+                placeholder="Search"
+                value={searchValue}
+                onChange={handleSearchChange}
               />
-            </div>
-          </div>
+            </Form.Item>
+          </Form>
         </div>
-        <Modal
-          title=" Student"
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          width={900}
-          footer={false}
-        >
-          <>
-            <div className="form-area mt-3">
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-12 ">
-                    <Form
-                      className="form-input-item"
-                      form={form}
-                      layout="vertical"
-                    >
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <Form.Item
-                            name="name"
-                            label="Name"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the name!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="Name" />
-                          </Form.Item>
-                          <Form.Item
-                            name="email"
-                            label="Email"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the email!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="Email" />
-                          </Form.Item>
-                          <Form.Item
-                            label="Phone No"
-                            name="phoneNumber"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the phone number!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="Phone Number" />
-                          </Form.Item>
-                          <Form.Item
-                            label="Course Id"
-                            name="courseId"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the courseId!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="courseId" />
-                          </Form.Item>
-                          <Form.Item
-                            label="Student Id"
-                            name="studentId"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the studentId!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="studentId" />
-                          </Form.Item>
-                        </div>
+        <div className="filter-wrapper">
+          <Form form={formGender} layout="vertical">
+            <Form.Item
+              label=""
+              name="gender"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Select placeholder="Select Gender" onChange={handleGenderFilter}>
+                <Option value="male">male</Option>
+                <Option value="female">female</Option>
+                <Option value="other">other</Option>
+              </Select>
+            </Form.Item>
+          </Form>
+        </div>
+      </div>
 
-                        <div class="col-lg-6">
-                          <Form.Item
-                            name="dob"
-                            label="Date of birth"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the studentId!",
-                              },
-                            ]}
-                          >
-                            <DatePicker className="other-type-input" />
-                          </Form.Item>
-                          <Form.Item
-                            label="Address"
-                            name="address"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the address!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="address" />
-                          </Form.Item>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">StudentId</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Student Id</th>
+            <th scope="col">Image</th>
+            {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
+              <th scope="col">Action</th>
+            )}
+          </tr>
+        </thead>
+        <tbody>
+          {filterData.length > 0
+            ? filterData
+                ?.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+                .map((el, ind) => {
+                  return (
+                    <tr key={ind}>
+                      <td>{el?.studentId}</td>
+                      <td>{el?.name}</td>
+                      <td>{el?.email}</td>
+                      <td>{el?.phoneNumber}</td>
+                      <td>{el?.gender}</td>
+                      <td>{el?.address}</td>
+                      <td className="data-show-img">
+                        <img src={`/uploads/${el?.file}`} alt="" />
+                      </td>
+                      {logedinData?.roles?.join("").toString() ===
+                        "ROLE_ADMIN" && (
+                        <td>
+                          <div className="d-flex">
+                            <Button
+                              //   onClick={() => showDetailsModal(el?._id)}
+                              type="primary"
+                              ghost
+                            >
+                              Details
+                            </Button>
 
-                          <Form.Item
-                            label="Gender"
-                            name="gender"
-                            rules={[
-                              {
-                                required: true,
-                              },
-                            ]}
-                          >
-                            <Select>
-                              <Option value="male">male</Option>
-                              <Option value="female">female</Option>
-                              <Option value="other">other</Option>
-                            </Select>
-                          </Form.Item>
+                            <Button
+                              onClick={() => showModal(el?._id)}
+                              type="primary"
+                              ghost
+                              className="mx-2"
+                            >
+                              Edit
+                            </Button>
 
-                          <Form.Item
-                            label="Image"
-                            name="file"
-                            valuePropName="fileList"
-                            getValueFromEvent={(e) => e && e.fileList}
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please select the file!",
-                              },
-                            ]}
-                          >
-                            <Upload name="file" listType="picture">
-                              <Button>Upload Image</Button>
-                            </Upload>
-                          </Form.Item>
-                        </div>
-                      </div>
-                      <div className="mt-3">
-                        <Form.Item>
-                          <Button type="primary" ghost onClick={handleUpdate}>
-                            Submit
-                          </Button>
+                            <Button
+                              onClick={() => deleteStudent(el?._id)}
+                              type="primary"
+                              ghost
+                            >
+                              Delete
+                            </Button>
+                          </div>
+                        </td>
+                      )}
+                    </tr>
+                  );
+                })
+            : list
+                ?.filter((el) =>
+                  el.name.toLowerCase().includes(searchValue.toLowerCase())
+                )
+                .slice((currentPage - 1) * pageSize, currentPage * pageSize)
+                .map((el, ind) => {
+                  if (
+                    searchValue &&
+                    el?.name &&
+                    !el?.name.toLowerCase().includes(searchValue.toLowerCase())
+                  ) {
+                    return null; // If searchValue is provided and name doesn't match, skip rendering
+                  }
+                  return (
+                    <tr key={ind}>
+                      <td>{el?.studentId}</td>
+                      <td>{el?.name}</td>
+                      <td>{el?.email}</td>
+                      <td>{el?.phoneNumber}</td>
+                      <td>{el?.gender}</td>
+                      <td>{el?.address}</td>
+                      <td className="data-show-img">
+                        <img src={`/uploads/${el?.file}`} alt="" />
+                      </td>
+                      {logedinData?.roles?.join("").toString() ===
+                        "ROLE_ADMIN" && (
+                        <td>
+                          <div className="d-flex">
+                            <Button
+                              //   onClick={() => showDetailsModal(el?._id)}
+                              type="primary"
+                              ghost
+                            >
+                              Details
+                            </Button>
+
+                            <Button
+                              onClick={() => showModal(el?._id)}
+                              type="primary"
+                              ghost
+                              className="mx-2"
+                            >
+                              Edit
+                            </Button>
+
+                            <Button
+                              onClick={() => deleteStudent(el?._id)}
+                              type="primary"
+                              ghost
+                            >
+                              Delete
+                            </Button>
+                          </div>
+                        </td>
+                      )}
+                    </tr>
+                  );
+                })}
+        </tbody>
+      </table>
+      <div class="text-center mt-5 mb-5">
+        <Pagination
+          current={currentPage}
+          total={filterData.length > 0 ? filterData.length : list?.length}
+          pageSize={pageSize}
+          onChange={handlePageChange}
+        />
+      </div>
+      <Modal
+        title=" Student"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        width={900}
+        footer={false}
+      >
+        <>
+          <div className="form-area mt-3">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-12 ">
+                  <Form
+                    className="form-input-item"
+                    form={form}
+                    layout="vertical"
+                  >
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <Form.Item
+                          name="name"
+                          label="Name"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the name!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Name" />
+                        </Form.Item>
+                        <Form.Item
+                          name="email"
+                          label="Email"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the email!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Email" />
+                        </Form.Item>
+                        <Form.Item
+                          label="Phone No"
+                          name="phoneNumber"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the phone number!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Phone Number" />
+                        </Form.Item>
+                        <Form.Item
+                          label="Course Id"
+                          name="courseId"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the courseId!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="courseId" />
+                        </Form.Item>
+                        <Form.Item
+                          label="Student Id"
+                          name="studentId"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the studentId!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="studentId" />
                         </Form.Item>
                       </div>
-                    </Form>
-                  </div>
+
+                      <div class="col-lg-6">
+                        <Form.Item
+                          name="dob"
+                          label="Date of birth"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the studentId!",
+                            },
+                          ]}
+                        >
+                          <DatePicker className="other-type-input" />
+                        </Form.Item>
+                        <Form.Item
+                          label="Address"
+                          name="address"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the address!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="address" />
+                        </Form.Item>
+
+                        <Form.Item
+                          label="Gender"
+                          name="gender"
+                          rules={[
+                            {
+                              required: true,
+                            },
+                          ]}
+                        >
+                          <Select>
+                            <Option value="male">male</Option>
+                            <Option value="female">female</Option>
+                            <Option value="other">other</Option>
+                          </Select>
+                        </Form.Item>
+
+                        <Form.Item
+                          label="Image"
+                          name="file"
+                          valuePropName="fileList"
+                          getValueFromEvent={(e) => e && e.fileList}
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please select the file!",
+                            },
+                          ]}
+                        >
+                          <Upload name="file" listType="picture">
+                            <Button>Upload Image</Button>
+                          </Upload>
+                        </Form.Item>
+                      </div>
+                    </div>
+                    <div className="mt-3">
+                      <Form.Item>
+                        <Button type="primary" ghost onClick={handleUpdate}>
+                          Submit
+                        </Button>
+                      </Form.Item>
+                    </div>
+                  </Form>
                 </div>
               </div>
             </div>
-          </>
-        </Modal>
-      </div>
+          </div>
+        </>
+      </Modal>
     </div>
   );
 };

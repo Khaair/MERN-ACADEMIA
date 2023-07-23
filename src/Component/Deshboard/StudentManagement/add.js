@@ -2,7 +2,7 @@ import { Button, DatePicker, Form, Input, Modal, Select, Upload } from "antd";
 import React, { useState } from "react";
 import { fetchAllStudents } from "../../../statement-management/slices/studentSlices";
 import { useDispatch } from "react-redux";
-
+import { AppstoreOutlined, PlusCircleOutlined } from "@ant-design/icons";
 const { Option } = Select;
 
 const AddStudent = () => {
@@ -59,11 +59,20 @@ const AddStudent = () => {
     <div>
       <div class="row">
         <div class="col-lg-12 ">
-          <div class="card-title-section">
+          <div>
             <div class="add-student-wrapper">
-              <div className="card-title">Student Management</div>
+              <div className="card-title custom-button">
+                <AppstoreOutlined style={{ fontSize: "20px" }} />
+                Student Management
+              </div>
               <div>
-                <Button onClick={showModal} type="primary" ghost>
+                <Button
+                  onClick={showModal}
+                  type="primary"
+                  ghost
+                  className="custom-button"
+                >
+                  <PlusCircleOutlined />
                   Add Student
                 </Button>
               </div>

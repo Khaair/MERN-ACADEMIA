@@ -16,23 +16,28 @@ function StudentManagement() {
   }, []);
 
   return (
-    <div class="container-fluid">
-      <Layout>
-        <div class="student-management-area">
-          <div className="container mt-4">
-            {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-              <AddStudent />
-            )}
+    <Layout>
+      <div class="student-management-area">
+        <div className="container mt-4">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
+                  <AddStudent />
+                )}
+                <hr className="mt-3" />
 
-            <StudentList
-              fetch={fetchSetData}
-              data={data}
-              logedinData={logedinData}
-            />
+                <StudentList
+                  fetch={fetchSetData}
+                  data={data}
+                  logedinData={logedinData}
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 }
 

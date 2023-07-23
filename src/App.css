@@ -139,7 +139,7 @@
 }
 
 .card-title {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: #148a8f;
   font-weight: 600;
 }
@@ -363,6 +363,10 @@
   justify-content: center;
 }
 
+table {
+  width: 100%;
+}
+
 table thead {
   background-color: #f0f8ff;
 }
@@ -380,4 +384,12 @@ table tbody tr td {
 .filter-and-search-wrapper {
   display: flex;
   justify-content: space-between;
+}
+
+.custom-button {
+  display: flex;
+  align-items: center;
+}
+.custom-button .anticon {
+  margin-right: 3px; /* You can adjust the value as needed */
 }

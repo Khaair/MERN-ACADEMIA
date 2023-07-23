@@ -38,23 +38,29 @@ function TeacherManagement() {
   };
 
   return (
-    <div class="container-fluid">
-      <Layout>
-        <div class="student-management-area">
-          <div className="container mt-4">
-            {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-              <AddTeacher fetch={fetchData} />
-            )}
-            <TeacherList
-              fetchSetData={fetchSetData}
-              fetchdata={fetchdata}
-              data={data}
-              logedinData={logedinData}
-            />
+    <Layout>
+      <div class="student-management-area">
+        <div className="container mt-4">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
+                  <AddTeacher fetch={fetchData} />
+                )}
+                <hr className="mt-3" />
+
+                <TeacherList
+                  fetchSetData={fetchSetData}
+                  fetchdata={fetchdata}
+                  data={data}
+                  logedinData={logedinData}
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 }
 

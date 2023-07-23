@@ -21,8 +21,6 @@ export default function Home() {
 
   return (
     <Layout>
-      <Animation />
-
       <div className="navbar-and-banner-area">
         <div class="bootstrap-container">
           <div className="container">
