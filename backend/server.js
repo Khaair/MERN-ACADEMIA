@@ -93,7 +93,7 @@ const deshboardManagementRoutes = require("./app/routes/deshboardManagementRoute
 const teacherManagementRoutes = require("./app/routes/teacherManagementRoutes");
 
 app.use("/api/student-manage", studentManagementRoutes);
-app.use("/api", routesuserget);
+app.use("/api/get-user", routesuserget);
 app.use("/api/course-manage", routesCourseManagement);
 app.use("/api/course-order", routesCourseOrder);
 app.use("/api/transaction-id", transactionIdOrder);

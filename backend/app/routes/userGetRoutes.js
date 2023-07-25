@@ -24,16 +24,14 @@ router.delete("/delete/:id", async (req, res) => {
   res.send({ msg: "deleted", data: data });
 });
 
-router.post("/update/:id", async (req, res) => {
+router.post("/update-user/:id", async (req, res) => {
   console.log(req.params.id, req.body);
 
   try {
     let updatee = await userGetModel.findByIdAndUpdate(
       { _id: req.params.id },
       {
-        title: req.body.title,
-        author: req.body.author,
-        body: req.body.body,
+        address: req.body.address,
       }
     );
 

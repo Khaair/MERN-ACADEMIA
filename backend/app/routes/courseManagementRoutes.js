@@ -61,6 +61,8 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+    console.log(req?.body);
+    console.log(req?.file?.filename);
 
     try {
       const crudData = new courseManagementModel({
@@ -87,7 +89,7 @@ router.post(
 );
 
 // Get Single information
-router.route("/course-show-single/:id").get(async (req, res, next) => {
+router.route("/show-single-course/:id").get(async (req, res, next) => {
   try {
     let data = await courseManagementModel.findById(req.params.id);
     if (!data) {
@@ -102,7 +104,7 @@ router.route("/course-show-single/:id").get(async (req, res, next) => {
   }
 });
 
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete-course/:id", async (req, res) => {
   console.log(" req.params.id ", req.params.id);
 
   try {

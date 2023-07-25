@@ -200,473 +200,461 @@ function ResultManagement() {
   };
 
   return (
-    <div class="container-fluid">
-      <Layout>
-        <div class="student-management-area">
-          <div className="container mt-4">
-            {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-              <div class="row">
-                <div class="col-lg-12 ">
-                  <div class="card-title-section">
-                    <div class="add-student-wrapper">
-                      <div className="card-title">Result Management</div>
-                      <div>
-                        <Button onClick={showModal} type="primary" ghost>
-                          Add Result
-                        </Button>
-                      </div>
-                    </div>
+    <Layout>
+      <div class="academia-management-area">
+        {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
+          <div class="row">
+            <div class="col-lg-12 ">
+              <div class="card-title-section">
+                <div class="add-student-wrapper">
+                  <div className="card-title">Result Management</div>
+                  <div>
+                    <Button onClick={showModal} type="primary" ghost>
+                      Add Result
+                    </Button>
                   </div>
-                </div>
-              </div>
-            )}
-
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="card">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th scope="col">Sl</th>
-                        <th scope="col">Student name</th>
-                        <th scope="col">Roll number</th>
-
-                        <th scope="col">Exam name</th>
-                        <th scope="col">Passing Year</th>
-
-                        {logedinData?.roles?.join("").toString() ===
-                          "ROLE_ADMIN" && <th scope="col">Action</th>}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {data.map((el, ind) => {
-                        return (
-                          <tr key={ind}>
-                            <th scope="row">{ind + 1}</th>
-                            <td>{el?.studentName}</td>
-                            <td>{el?.rollNumber}</td>
-
-                            <td>{el?.examName}</td>
-                            <td>{el?.passingYear}</td>
-
-                            {logedinData?.roles?.join("").toString() ===
-                              "ROLE_ADMIN" && (
-                              <td>
-                                <div>
-                                  <Button
-                                    onClick={() => showDetailsModal(el?._id)}
-                                    type="primary"
-                                    ghost
-                                  >
-                                    Details
-                                  </Button>
-                                  <Button
-                                    className="mx-2"
-                                    onClick={() => showEditModal(el?._id)}
-                                    type="primary"
-                                    ghost
-                                  >
-                                    Edit
-                                  </Button>
-
-                                  <Button
-                                    onClick={() => deleteMe(el._id)}
-                                    type="primary"
-                                    ghost
-                                    className="mx-2"
-                                  >
-                                    Delete
-                                  </Button>
-                                </div>
-                              </td>
-                            )}
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
                 </div>
               </div>
             </div>
           </div>
+        )}
 
-          <div class="result-search-area mt-3">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Sl</th>
+                    <th scope="col">Student name</th>
+                    <th scope="col">Roll number</th>
+
+                    <th scope="col">Exam name</th>
+                    <th scope="col">Passing Year</th>
+
+                    {logedinData?.roles?.join("").toString() ===
+                      "ROLE_ADMIN" && <th scope="col">Action</th>}
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((el, ind) => {
+                    return (
+                      <tr key={ind}>
+                        <th scope="row">{ind + 1}</th>
+                        <td>{el?.studentName}</td>
+                        <td>{el?.rollNumber}</td>
+
+                        <td>{el?.examName}</td>
+                        <td>{el?.passingYear}</td>
+
+                        {logedinData?.roles?.join("").toString() ===
+                          "ROLE_ADMIN" && (
+                          <td>
+                            <div>
+                              <Button
+                                onClick={() => showDetailsModal(el?._id)}
+                                type="primary"
+                                ghost
+                              >
+                                Details
+                              </Button>
+                              <Button
+                                className="mx-2"
+                                onClick={() => showEditModal(el?._id)}
+                                type="primary"
+                                ghost
+                              >
+                                Edit
+                              </Button>
+
+                              <Button
+                                onClick={() => deleteMe(el._id)}
+                                type="primary"
+                                ghost
+                                className="mx-2"
+                              >
+                                Delete
+                              </Button>
+                            </div>
+                          </td>
+                        )}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-search-area mt-3">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="result-search-title text-center">
+                  <h2>Search Result</h2>
+                </div>
+                <div>
+                  <Form className="w-50" form={searchform} layout="vertical">
+                    <Form.Item
+                      name="rollNumber"
+                      label="Roll Number"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input the roll number!",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="Roll number" />
+                    </Form.Item>
+
+                    <Form.Item>
+                      <Button type="primary" ghost onClick={searchResult}>
+                        Submit
+                      </Button>
+                    </Form.Item>
+                  </Form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {singleSearchData?.data && (
+          <div class="result-display-area mt-3">
             <div class="container">
               <div class="row">
                 <div class="col-lg-12">
                   <div class="card">
-                    <div class="result-search-title text-center">
-                      <h2>Search Result</h2>
+                    <div className="text-center">
+                      <h4>Student Details</h4>
                     </div>
-                    <div>
-                      <Form
-                        className="w-50"
-                        form={searchform}
-                        layout="vertical"
-                      >
-                        <Form.Item
-                          name="rollNumber"
-                          label="Roll Number"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the roll number!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="Roll number" />
-                        </Form.Item>
+                    <table className="table">
+                      <tbody>
+                        <tr>
+                          <td>Student Name</td>
+                          <td>
+                            {singleSearchData?.data?.details?.studentName}
+                          </td>
+                        </tr>
 
-                        <Form.Item>
-                          <Button type="primary" ghost onClick={searchResult}>
-                            Submit
-                          </Button>
-                        </Form.Item>
-                      </Form>
+                        <tr>
+                          <td>Roll Number</td>
+                          <td>{singleSearchData?.data?.details?.rollNumber}</td>
+                        </tr>
+
+                        <tr>
+                          <td>Exam Name</td>
+                          <td>{singleSearchData?.data?.details?.examName}</td>
+                        </tr>
+
+                        <tr>
+                          <td>Passing Year</td>
+                          <td>
+                            {singleSearchData?.data?.details?.passingYear}
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>Result </td>
+                          <td>Passed</td>
+                        </tr>
+                        <tr>
+                          <td>GPA </td>
+                          <td>{singleSearchData?.data?.gpa}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <div className="text-center">
+                      <h4>Grade Sheet</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <table className="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Sl</th>
+                              <th scope="col">Subject Name</th>
+                              <th scope="col">Marks</th>
+                              <th scope="col">Grade</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {singleSearchData?.data?.subjectAndMarks?.map(
+                              (item, index) => {
+                                const subject = Object.keys(item)[0];
+                                const marks = item[subject];
+                                let grade = "";
+                                if (marks >= 80 && marks <= 100) {
+                                  grade = "A+";
+                                }
+                                if (marks >= 70 && marks <= 79) {
+                                  grade = "A";
+                                }
+                                if (marks >= 60 && marks <= 69) {
+                                  grade = "A-";
+                                }
+                                if (marks >= 50 && marks <= 59) {
+                                  grade = "B";
+                                }
+
+                                if (marks >= 40 && marks <= 49) {
+                                  grade = "C";
+                                }
+                                if (marks >= 33 && marks <= 39) {
+                                  grade = "D";
+                                }
+                                if (marks < 33) {
+                                  grade = "F";
+                                }
+                                return (
+                                  <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>{subject}</td>
+                                    <td>{marks}</td>
+                                    <td>{grade}</td>
+                                  </tr>
+                                );
+                              }
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        )}
 
-          {singleSearchData?.data && (
-            <div class="result-display-area mt-3">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="card">
-                      <div className="text-center">
-                        <h4>Student Details</h4>
-                      </div>
-                      <table className="table">
-                        <tbody>
-                          <tr>
-                            <td>Student Name</td>
-                            <td>
-                              {singleSearchData?.data?.details?.studentName}
-                            </td>
-                          </tr>
+        <Modal
+          title="Update Student Info"
+          open={isEditModalOpen}
+          onOk={handleEditOk}
+          onCancel={handleEditCancel}
+          width={600}
+          footer={false}
+        >
+          <EditForm studentId={studentId} />
+        </Modal>
 
-                          <tr>
-                            <td>Roll Number</td>
-                            <td>
-                              {singleSearchData?.data?.details?.rollNumber}
-                            </td>
-                          </tr>
+        <Modal
+          title=""
+          open={isDetailsModalOpen}
+          onOk={handleDetailsOk}
+          onCancel={handleDetailsCancel}
+          width={1000}
+          footer={false}
+        >
+          <div className="text-center">
+            <h4>Student Details</h4>
+          </div>
+          <table>
+            <tbody>
+              <tr>
+                <td>Student Name</td>
+                <td>{singleResultData?.data?.details?.studentName}</td>
+              </tr>
 
-                          <tr>
-                            <td>Exam Name</td>
-                            <td>{singleSearchData?.data?.details?.examName}</td>
-                          </tr>
+              <tr>
+                <td>Roll Number</td>
+                <td>{singleResultData?.data?.details?.rollNumber}</td>
+              </tr>
 
-                          <tr>
-                            <td>Passing Year</td>
-                            <td>
-                              {singleSearchData?.data?.details?.passingYear}
-                            </td>
-                          </tr>
+              <tr>
+                <td>Exam Name</td>
+                <td>{singleResultData?.data?.details?.examName}</td>
+              </tr>
 
-                          <tr>
-                            <td>Result </td>
-                            <td>Passed</td>
-                          </tr>
-                          <tr>
-                            <td>GPA </td>
-                            <td>{singleSearchData?.data?.gpa}</td>
-                          </tr>
-                        </tbody>
-                      </table>
+              <tr>
+                <td>Passing Year</td>
+                <td>{singleResultData?.data?.details?.passingYear}</td>
+              </tr>
 
-                      <div className="text-center">
-                        <h4>Grade Sheet</h4>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-12">
-                          <table className="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">Sl</th>
-                                <th scope="col">Subject Name</th>
-                                <th scope="col">Marks</th>
-                                <th scope="col">Grade</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {singleSearchData?.data?.subjectAndMarks?.map(
-                                (item, index) => {
-                                  const subject = Object.keys(item)[0];
-                                  const marks = item[subject];
-                                  let grade = "";
-                                  if (marks >= 80 && marks <= 100) {
-                                    grade = "A+";
-                                  }
-                                  if (marks >= 70 && marks <= 79) {
-                                    grade = "A";
-                                  }
-                                  if (marks >= 60 && marks <= 69) {
-                                    grade = "A-";
-                                  }
-                                  if (marks >= 50 && marks <= 59) {
-                                    grade = "B";
-                                  }
+              <tr>
+                <td>Result </td>
+                <td>Passed</td>
+              </tr>
+              <tr>
+                <td>GPA </td>
+                <td>{singleResultData?.data?.gpa}</td>
+              </tr>
+            </tbody>
+          </table>
 
-                                  if (marks >= 40 && marks <= 49) {
-                                    grade = "C";
-                                  }
-                                  if (marks >= 33 && marks <= 39) {
-                                    grade = "D";
-                                  }
-                                  if (marks < 33) {
-                                    grade = "F";
-                                  }
-                                  return (
-                                    <tr key={index}>
-                                      <td>{index + 1}</td>
-                                      <td>{subject}</td>
-                                      <td>{marks}</td>
-                                      <td>{grade}</td>
-                                    </tr>
-                                  );
-                                }
-                              )}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
+          <div className="text-center">
+            <h4>Grade Sheet</h4>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Sl</th>
+                <th scope="col">Subject Name</th>
+                <th scope="col">Marks</th>
+                <th scope="col">Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              {singleResultData?.data?.subjectAndMarks?.map((item, index) => {
+                const subject = Object.keys(item)[0];
+                const marks = item[subject];
+                let grade = "";
+                if (marks >= 80 && marks <= 100) {
+                  grade = "A+";
+                }
+                if (marks >= 70 && marks <= 79) {
+                  grade = "A";
+                }
+                if (marks >= 60 && marks <= 69) {
+                  grade = "A-";
+                }
+                if (marks >= 50 && marks <= 59) {
+                  grade = "B";
+                }
+
+                if (marks >= 40 && marks <= 49) {
+                  grade = "C";
+                }
+                if (marks >= 33 && marks <= 39) {
+                  grade = "D";
+                }
+                if (marks < 33) {
+                  grade = "F";
+                }
+                return (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{subject}</td>
+                    <td>{marks}</td>
+                    <td>{grade}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </Modal>
+
+        <Modal
+          title="Add New Result"
+          className="form-input-item"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          width={600}
+          footer={false}
+        >
+          <>
+            {contextHolder}
+
+            <div className="form-area mt-3">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12 ">
+                    <Form form={form} layout="vertical">
+                      <Form.Item
+                        name="studentName"
+                        label="Student Name"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the student name!",
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Student name" />
+                      </Form.Item>
+
+                      <Form.Item
+                        name="rollNumber"
+                        label="Roll Number"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the roll number!",
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Roll number" />
+                      </Form.Item>
+
+                      <Form.Item
+                        label="Exam Name"
+                        name="examName"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the exam name!",
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Exam name" />
+                      </Form.Item>
+                      <Form.Item
+                        label="Passing Year"
+                        name="passingYear"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the passing year!",
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Passing year" />
+                      </Form.Item>
+                      <p>
+                        Enter Subject and Marks(Subjectname-marks same as this
+                        format)
+                      </p>
+                      <Form.List name="items">
+                        {(fields, { add, remove }) => {
+                          return (
+                            <div>
+                              {fields.map((field, index) => (
+                                <Form.Item key={field.key}>
+                                  <Input
+                                    value={items[index]}
+                                    onChange={(e) =>
+                                      handleItemChange(e.target.value, index)
+                                    }
+                                    placeholder="Bangla-80"
+                                  />
+                                  <Button
+                                    className="mt-2"
+                                    onClick={() => remove(field.name)}
+                                  >
+                                    Remove
+                                  </Button>
+                                </Form.Item>
+                              ))}
+                              <Button className=" mb-3" onClick={() => add()}>
+                                Add Subject and Marks
+                              </Button>
+                            </div>
+                          );
+                        }}
+                      </Form.List>
+
+                      <Form.Item>
+                        <Button
+                          type="primary"
+                          ghost
+                          onClick={handleResultSubmit}
+                        >
+                          Submit
+                        </Button>
+                      </Form.Item>
+                    </Form>
                   </div>
                 </div>
               </div>
             </div>
-          )}
-
-          <Modal
-            title="Update Student Info"
-            open={isEditModalOpen}
-            onOk={handleEditOk}
-            onCancel={handleEditCancel}
-            width={600}
-            footer={false}
-          >
-            <EditForm studentId={studentId} />
-          </Modal>
-
-          <Modal
-            title=""
-            open={isDetailsModalOpen}
-            onOk={handleDetailsOk}
-            onCancel={handleDetailsCancel}
-            width={1000}
-            footer={false}
-          >
-            <div className="text-center">
-              <h4>Student Details</h4>
-            </div>
-            <table>
-              <tbody>
-                <tr>
-                  <td>Student Name</td>
-                  <td>{singleResultData?.data?.details?.studentName}</td>
-                </tr>
-
-                <tr>
-                  <td>Roll Number</td>
-                  <td>{singleResultData?.data?.details?.rollNumber}</td>
-                </tr>
-
-                <tr>
-                  <td>Exam Name</td>
-                  <td>{singleResultData?.data?.details?.examName}</td>
-                </tr>
-
-                <tr>
-                  <td>Passing Year</td>
-                  <td>{singleResultData?.data?.details?.passingYear}</td>
-                </tr>
-
-                <tr>
-                  <td>Result </td>
-                  <td>Passed</td>
-                </tr>
-                <tr>
-                  <td>GPA </td>
-                  <td>{singleResultData?.data?.gpa}</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div className="text-center">
-              <h4>Grade Sheet</h4>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">Sl</th>
-                  <th scope="col">Subject Name</th>
-                  <th scope="col">Marks</th>
-                  <th scope="col">Grade</th>
-                </tr>
-              </thead>
-              <tbody>
-                {singleResultData?.data?.subjectAndMarks?.map((item, index) => {
-                  const subject = Object.keys(item)[0];
-                  const marks = item[subject];
-                  let grade = "";
-                  if (marks >= 80 && marks <= 100) {
-                    grade = "A+";
-                  }
-                  if (marks >= 70 && marks <= 79) {
-                    grade = "A";
-                  }
-                  if (marks >= 60 && marks <= 69) {
-                    grade = "A-";
-                  }
-                  if (marks >= 50 && marks <= 59) {
-                    grade = "B";
-                  }
-
-                  if (marks >= 40 && marks <= 49) {
-                    grade = "C";
-                  }
-                  if (marks >= 33 && marks <= 39) {
-                    grade = "D";
-                  }
-                  if (marks < 33) {
-                    grade = "F";
-                  }
-                  return (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{subject}</td>
-                      <td>{marks}</td>
-                      <td>{grade}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </Modal>
-
-          <Modal
-            title="Add New Result"
-            className="form-input-item"
-            open={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            width={600}
-            footer={false}
-          >
-            <>
-              {contextHolder}
-
-              <div className="form-area mt-3">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-lg-12 ">
-                      <Form form={form} layout="vertical">
-                        <Form.Item
-                          name="studentName"
-                          label="Student Name"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the student name!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="Student name" />
-                        </Form.Item>
-
-                        <Form.Item
-                          name="rollNumber"
-                          label="Roll Number"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the roll number!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="Roll number" />
-                        </Form.Item>
-
-                        <Form.Item
-                          label="Exam Name"
-                          name="examName"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the exam name!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="Exam name" />
-                        </Form.Item>
-                        <Form.Item
-                          label="Passing Year"
-                          name="passingYear"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the passing year!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="Passing year" />
-                        </Form.Item>
-                        <p>
-                          Enter Subject and Marks(Subjectname-marks same as this
-                          format)
-                        </p>
-                        <Form.List name="items">
-                          {(fields, { add, remove }) => {
-                            return (
-                              <div>
-                                {fields.map((field, index) => (
-                                  <Form.Item key={field.key}>
-                                    <Input
-                                      value={items[index]}
-                                      onChange={(e) =>
-                                        handleItemChange(e.target.value, index)
-                                      }
-                                      placeholder="Bangla-80"
-                                    />
-                                    <Button
-                                      className="mt-2"
-                                      onClick={() => remove(field.name)}
-                                    >
-                                      Remove
-                                    </Button>
-                                  </Form.Item>
-                                ))}
-                                <Button className=" mb-3" onClick={() => add()}>
-                                  Add Subject and Marks
-                                </Button>
-                              </div>
-                            );
-                          }}
-                        </Form.List>
-
-                        <Form.Item>
-                          <Button
-                            type="primary"
-                            ghost
-                            onClick={handleResultSubmit}
-                          >
-                            Submit
-                          </Button>
-                        </Form.Item>
-                      </Form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </>
-          </Modal>
-        </div>
-      </Layout>
-    </div>
+          </>
+        </Modal>
+      </div>
+    </Layout>
   );
 }
 

@@ -45,68 +45,62 @@ function DeshboardManagement() {
     fetchdata();
   }, []);
   return (
-    <div class="container-fluid">
-      <Layout>
-        <div class="student-management-area">
-          <div className="container mt-4">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="card">
-                  <div class="row">
-                    <div class="col-lg-3">
-                      <div class="card bg-danger text-light">
-                        <h4>Total Student</h4>
-                        <br />
-                        <h5>{data?.totalStudent}</h5>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-3">
-                      <div class="card bg-primary text-light">
-                        {" "}
-                        <h4>Total Teacher</h4>
-                        <br />
-                        <h5>
-                          {data?.totalTeacher > 0 ? data?.totalTeacher : 0}
-                        </h5>
-                      </div>
-                    </div>
-                    <div class="col-lg-3">
-                      {" "}
-                      <div class="card bg-success text-light">
-                        {" "}
-                        <h4>Total Course</h4>
-                        <br />
-                        <h5>{data?.totalCourse}</h5>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-3">
-                      <div class="card bg-warning text-light">
-                        {" "}
-                        <h4>Total Online Student</h4>
-                        <br />
-                        <h5>{data?.totalOnlineStudent}</h5>
-                      </div>
-                    </div>
+    <Layout>
+      <div class="academia-management-area">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="row">
+                <div class="col-lg-3">
+                  <div class="card bg-danger text-light">
+                    <h4>Total Student</h4>
+                    <br />
+                    <h5>{data?.totalStudent}</h5>
                   </div>
-                  <div class="chart-area mt-5">
-                    <div class="row">
-                      <div class="col-lg-3">
-                        <DoughnutChart data={chartData} />
-                      </div>
-                      <div class="col-lg-9">
-                        <BarChart data={barchartData} />
-                      </div>
-                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                  <div class="card bg-primary text-light">
+                    {" "}
+                    <h4>Total Teacher</h4>
+                    <br />
+                    <h5>{data?.totalTeacher > 0 ? data?.totalTeacher : 0}</h5>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  {" "}
+                  <div class="card bg-success text-light">
+                    {" "}
+                    <h4>Total Course</h4>
+                    <br />
+                    <h5>{data?.totalCourse}</h5>
+                  </div>
+                </div>
+
+                <div class="col-lg-3">
+                  <div class="card bg-warning text-light">
+                    {" "}
+                    <h4>Total Online Student</h4>
+                    <br />
+                    <h5>{data?.totalOnlineStudent}</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-area mt-5">
+                <div class="row">
+                  <div class="col-lg-3">
+                    <DoughnutChart data={chartData} />
+                  </div>
+                  <div class="col-lg-9">
+                    <BarChart data={barchartData} />
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 }
 

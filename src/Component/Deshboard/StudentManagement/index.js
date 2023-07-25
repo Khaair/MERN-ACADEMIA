@@ -17,22 +17,19 @@ function StudentManagement() {
 
   return (
     <Layout>
-      <div class="student-management-area">
-        <div className="container mt-4">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="card">
-                {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-                  <AddStudent />
-                )}
-                <hr className="mt-3" />
+      <div class="academia-management-area">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
+                <AddStudent />
+              )}
 
-                <StudentList
-                  fetch={fetchSetData}
-                  data={data}
-                  logedinData={logedinData}
-                />
-              </div>
+              <StudentList
+                fetch={fetchSetData}
+                data={data}
+                logedinData={logedinData}
+              />
             </div>
           </div>
         </div>

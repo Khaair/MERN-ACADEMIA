@@ -152,199 +152,192 @@ function Deshboard() {
   };
 
   return (
-    <div class="container-fluid">
-      <Layout>
-        <div class="student-management-area">
-          <div className="container mt-4">
-            {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-              <div class="row">
-                <div class="col-lg-12 ">
-                  <div class="card-title-section">
-                    <div class="add-student-wrapper">
-                      <div className="card-title">Quiz Management</div>
-                      <div>
-                        <Button onClick={showModal} type="primary" ghost>
-                          Add Quiz
-                        </Button>
-                      </div>
-                    </div>
+    <Layout>
+      <div class="academia-management-area">
+        {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
+          <div class="row">
+            <div class="col-lg-12 ">
+              <div class="card-title-section">
+                <div class="add-student-wrapper">
+                  <div className="card-title">Quiz Management</div>
+                  <div>
+                    <Button onClick={showModal} type="primary" ghost>
+                      Add Quiz
+                    </Button>
                   </div>
-                </div>
-              </div>
-            )}
-
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="card">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th scope="col">Sl</th>
-                        <th scope="col">Question</th>
-                        <th scope="col">Options</th>
-
-                        <th scope="col">Answer</th>
-
-                        {logedinData?.roles?.join("").toString() ===
-                          "ROLE_ADMIN" && <th scope="col">Action</th>}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {data.map((el, ind) => {
-                        return (
-                          <tr key={ind}>
-                            <th scope="row">{ind + 1}</th>
-                            <td>{el?.question}</td>
-                            <td>{el?.options.join(",").toString()}</td>
-
-                            <td>{el?.answer}</td>
-
-                            {logedinData?.roles?.join("").toString() ===
-                              "ROLE_ADMIN" && (
-                              <td>
-                                <div className="d-flex">
-                                  <Button
-                                    onClick={() => showEditModal(el?._id)}
-                                    type="primary"
-                                    ghost
-                                  >
-                                    Edit
-                                  </Button>
-
-                                  <Button
-                                    onClick={() => deleteMe(el._id)}
-                                    type="primary"
-                                    ghost
-                                    className="mx-2"
-                                  >
-                                    Delete
-                                  </Button>
-                                </div>
-                              </td>
-                            )}
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
                 </div>
               </div>
             </div>
           </div>
+        )}
 
-          <Modal
-            title="Update Student Info"
-            open={isEditModalOpen}
-            onOk={handleEditOk}
-            onCancel={handleEditCancel}
-            width={600}
-            footer={false}
-          >
-            <EditForm studentId={studentId} />
-          </Modal>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Sl</th>
+                    <th scope="col">Question</th>
+                    <th scope="col">Options</th>
 
-          <Modal
-            title="Add New Quiz"
-            open={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            width={600}
-            footer={false}
-          >
-            <>
-              {contextHolder}
+                    <th scope="col">Answer</th>
 
-              <div className="form-area mt-3">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-lg-12 ">
-                      <Form
-                        className="form-input-item"
-                        form={form}
-                        layout="vertical"
+                    {logedinData?.roles?.join("").toString() ===
+                      "ROLE_ADMIN" && <th scope="col">Action</th>}
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((el, ind) => {
+                    return (
+                      <tr key={ind}>
+                        <th scope="row">{ind + 1}</th>
+                        <td>{el?.question}</td>
+                        <td>{el?.options.join(",").toString()}</td>
+
+                        <td>{el?.answer}</td>
+
+                        {logedinData?.roles?.join("").toString() ===
+                          "ROLE_ADMIN" && (
+                          <td>
+                            <div className="d-flex">
+                              <Button
+                                onClick={() => showEditModal(el?._id)}
+                                type="primary"
+                                ghost
+                              >
+                                Edit
+                              </Button>
+
+                              <Button
+                                onClick={() => deleteMe(el._id)}
+                                type="primary"
+                                ghost
+                                className="mx-2"
+                              >
+                                Delete
+                              </Button>
+                            </div>
+                          </td>
+                        )}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <Modal
+          title="Update Student Info"
+          open={isEditModalOpen}
+          onOk={handleEditOk}
+          onCancel={handleEditCancel}
+          width={600}
+          footer={false}
+        >
+          <EditForm studentId={studentId} />
+        </Modal>
+
+        <Modal
+          title="Add New Quiz"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          width={600}
+          footer={false}
+        >
+          <>
+            {contextHolder}
+
+            <div className="form-area mt-3">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12 ">
+                    <Form
+                      className="form-input-item"
+                      form={form}
+                      layout="vertical"
+                    >
+                      <Form.Item
+                        name="question"
+                        label="Question"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the Course Question!",
+                          },
+                        ]}
                       >
-                        <Form.Item
-                          name="question"
-                          label="Question"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the Course Question!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="Question" />
-                        </Form.Item>
+                        <Input placeholder="Question" />
+                      </Form.Item>
 
-                        <Form.Item
-                          name="answer"
-                          label="Answer"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the Course Answer!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="Course Answer" />
-                        </Form.Item>
+                      <Form.Item
+                        name="answer"
+                        label="Answer"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the Course Answer!",
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Course Answer" />
+                      </Form.Item>
 
-                        {/* <p>Enter four Options</p> */}
-                        <Form.Item
-                          name="answer"
-                          label="Enter four Options"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the Course Answer!",
-                            },
-                          ]}
-                        >
-                          <Form.List name="items">
-                            {(fields, { add, remove }) => {
-                              return (
-                                <div>
-                                  {fields.map((field, index) => (
-                                    <Form.Item key={field.key}>
-                                      <Input
-                                        value={items[index]}
-                                        onChange={(e) =>
-                                          handleItemChange(
-                                            e.target.value,
-                                            index
-                                          )
-                                        }
-                                      />
-                                      <Button
-                                        className="mt-2"
-                                        onClick={() => remove(field.name)}
-                                      >
-                                        Remove
-                                      </Button>
-                                    </Form.Item>
-                                  ))}
-                                  <Button onClick={() => add()}>
-                                    Add Option
-                                  </Button>
-                                </div>
-                              );
-                            }}
-                          </Form.List>
-                        </Form.Item>
+                      {/* <p>Enter four Options</p> */}
+                      <Form.Item
+                        name="answer"
+                        label="Enter four Options"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the Course Answer!",
+                          },
+                        ]}
+                      >
+                        <Form.List name="items">
+                          {(fields, { add, remove }) => {
+                            return (
+                              <div>
+                                {fields.map((field, index) => (
+                                  <Form.Item key={field.key}>
+                                    <Input
+                                      value={items[index]}
+                                      onChange={(e) =>
+                                        handleItemChange(e.target.value, index)
+                                      }
+                                    />
+                                    <Button
+                                      className="mt-2"
+                                      onClick={() => remove(field.name)}
+                                    >
+                                      Remove
+                                    </Button>
+                                  </Form.Item>
+                                ))}
+                                <Button onClick={() => add()}>
+                                  Add Option
+                                </Button>
+                              </div>
+                            );
+                          }}
+                        </Form.List>
+                      </Form.Item>
 
-                        <Button type="primary" onClick={handleQuizSubmit} ghost>
-                          Submit
-                        </Button>
-                      </Form>
-                    </div>
+                      <Button type="primary" onClick={handleQuizSubmit} ghost>
+                        Submit
+                      </Button>
+                    </Form>
                   </div>
                 </div>
               </div>
-            </>
-          </Modal>
-        </div>
-      </Layout>
-    </div>
+            </div>
+          </>
+        </Modal>
+      </div>
+    </Layout>
   );
 }
 

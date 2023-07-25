@@ -1,32 +1,11 @@
 import Layout from "./Layout";
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-import {
-  UserOutlined,
-  BorderInnerOutlined,
-  FullscreenExitOutlined,
-  DiffOutlined,
-  PieChartOutlined,
-  SlackOutlined,
-  FileTextOutlined,
-  UsergroupAddOutlined,
-  BellOutlined,
-  QrcodeOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
-import { Button, Dropdown, Space } from "antd";
-import Search from "antd/es/transfer/search";
+import { BellOutlined, QrcodeOutlined } from "@ant-design/icons";
+import { Button, Space } from "antd";
 export default function Tutorials({ children }) {
   const [getColorDeshboard, setColorDeshboard] = useState();
-  const [getColorCourseManage, setColorCourseManage] = useState();
-  const [getColorTeacherManage, setColorTeacherManage] = useState();
-  const [getColorOrderManage, setColorOrderManage] = useState();
-
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const onSearch = (value) => console.log(value);
 
   return (
     <React.Fragment>

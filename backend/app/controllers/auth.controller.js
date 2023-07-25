@@ -11,6 +11,8 @@ exports.signup = [
   // Validate fields
   check("username").not().isEmpty().withMessage("Username is required"),
   check("email").isEmail().withMessage("Invalid email address"),
+  // check("address").not().isEmpty().withMessage("address is required"),
+
   check("password")
     .isLength({ min: 8 })
     .withMessage("Password must be at least 8 characters"),
@@ -25,6 +27,7 @@ exports.signup = [
     const user = new User({
       username: req.body.username,
       email: req.body.email,
+      address: req.body.address,
       password: bcrypt.hashSync(req.body.password, 8),
     });
 

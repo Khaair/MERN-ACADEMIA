@@ -56,187 +56,182 @@ const AddStudent = () => {
     }
   };
   return (
-    <div>
-      <div class="row">
-        <div class="col-lg-12 ">
-          <div>
-            <div class="add-student-wrapper">
-              <div className="card-title custom-button">
-                <AppstoreOutlined style={{ fontSize: "20px" }} />
-                Student Management
-              </div>
-              <div>
-                <Button
-                  onClick={showModal}
-                  type="primary"
-                  ghost
-                  className="custom-button"
-                >
-                  <PlusCircleOutlined />
-                  Add Student
-                </Button>
-              </div>
-            </div>
-          </div>
+    <div class="add-student-area">
+      <div class="add-student-wrapper pt-3">
+        <div className="card-title custom-button">
+          <AppstoreOutlined style={{ fontSize: "20px" }} />
+          Student Management
         </div>
+        <div>
+          <Button
+            onClick={showModal}
+            type="primary"
+            ghost
+            className="custom-button"
+          >
+            <PlusCircleOutlined />
+            Add Student
+          </Button>
+        </div>
+      </div>
+      <hr className="mt-3" />
 
-        <Modal
-          title="Add New Student"
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          width={900}
-          footer={false}
-        >
-          <>
-            <div className="form-area mt-3">
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-12 ">
-                    <Form
-                      className="form-input-item"
-                      form={form}
-                      layout="vertical"
-                    >
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <Form.Item
-                            name="name"
-                            label="Name"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the name!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="Name" />
-                          </Form.Item>
-                          <Form.Item
-                            name="email"
-                            label="Email"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the email!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="Email" />
-                          </Form.Item>
-                          <Form.Item
-                            label="Phone No"
-                            name="phoneNumber"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the phone number!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="Phone Number" />
-                          </Form.Item>
-                          <Form.Item
-                            label="Course Id"
-                            name="courseId"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the courseId!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="courseId" />
-                          </Form.Item>
-                          <Form.Item
-                            label="Student Id"
-                            name="studentId"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the studentId!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="studentId" />
-                          </Form.Item>
-                        </div>
-
-                        <div class="col-lg-6">
-                          <Form.Item
-                            label="Address"
-                            name="address"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the address!",
-                              },
-                            ]}
-                          >
-                            <Input placeholder="address" />
-                          </Form.Item>
-
-                          <Form.Item
-                            name="dob"
-                            label="Date of birth"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please input the studentId!",
-                              },
-                            ]}
-                          >
-                            <DatePicker className="other-type-input" />
-                          </Form.Item>
-                          <Form.Item
-                            label="Gender"
-                            name="gender"
-                            rules={[
-                              {
-                                required: true,
-                              },
-                            ]}
-                          >
-                            <Select>
-                              <Option value="male">male</Option>
-                              <Option value="female">female</Option>
-                              <Option value="other">other</Option>
-                            </Select>
-                          </Form.Item>
-
-                          <Form.Item
-                            label="Image"
-                            name="file"
-                            valuePropName="fileList"
-                            getValueFromEvent={(e) => e && e.fileList}
-                            rules={[
-                              {
-                                required: true,
-                                message: "Please select the file!",
-                              },
-                            ]}
-                          >
-                            <Upload name="file" listType="picture">
-                              <Button>Upload Image</Button>
-                            </Upload>
-                          </Form.Item>
-                        </div>
-                      </div>
-                      <div className="mt-3">
-                        <Form.Item>
-                          <Button type="primary" ghost onClick={handleSubmit}>
-                            Submit
-                          </Button>
+      <Modal
+        title="Add New Student"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        width={900}
+        footer={false}
+      >
+        <>
+          <div className="form-area mt-3">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-12 ">
+                  <Form
+                    className="form-input-item"
+                    form={form}
+                    layout="vertical"
+                  >
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <Form.Item
+                          name="name"
+                          label="Name"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the name!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Name" />
+                        </Form.Item>
+                        <Form.Item
+                          name="email"
+                          label="Email"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the email!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Email" />
+                        </Form.Item>
+                        <Form.Item
+                          label="Phone No"
+                          name="phoneNumber"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the phone number!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Phone Number" />
+                        </Form.Item>
+                        <Form.Item
+                          label="Course Id"
+                          name="courseId"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the courseId!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="courseId" />
+                        </Form.Item>
+                        <Form.Item
+                          label="Student Id"
+                          name="studentId"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the studentId!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="studentId" />
                         </Form.Item>
                       </div>
-                    </Form>
-                  </div>
+
+                      <div class="col-lg-6">
+                        <Form.Item
+                          label="Address"
+                          name="address"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the address!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="address" />
+                        </Form.Item>
+
+                        <Form.Item
+                          name="dob"
+                          label="Date of birth"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the studentId!",
+                            },
+                          ]}
+                        >
+                          <DatePicker className="other-type-input" />
+                        </Form.Item>
+                        <Form.Item
+                          label="Gender"
+                          name="gender"
+                          rules={[
+                            {
+                              required: true,
+                            },
+                          ]}
+                        >
+                          <Select>
+                            <Option value="male">male</Option>
+                            <Option value="female">female</Option>
+                            <Option value="other">other</Option>
+                          </Select>
+                        </Form.Item>
+
+                        <Form.Item
+                          label="Image"
+                          name="file"
+                          valuePropName="fileList"
+                          getValueFromEvent={(e) => e && e.fileList}
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please select the file!",
+                            },
+                          ]}
+                        >
+                          <Upload name="file" listType="picture">
+                            <Button>Upload Image</Button>
+                          </Upload>
+                        </Form.Item>
+                      </div>
+                    </div>
+                    <div className="mt-3">
+                      <Form.Item>
+                        <Button type="primary" ghost onClick={handleSubmit}>
+                          Submit
+                        </Button>
+                      </Form.Item>
+                    </div>
+                  </Form>
                 </div>
               </div>
             </div>
-          </>
-        </Modal>
-      </div>
+          </div>
+        </>
+      </Modal>
     </div>
   );
 };

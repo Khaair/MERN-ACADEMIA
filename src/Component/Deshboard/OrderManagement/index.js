@@ -209,235 +209,212 @@ function OrderManage() {
   }, [data, transactionIdData]);
 
   return (
-    <div class="container-fluid">
-      <Layout>
-        <div class="student-management-area">
-          <div className="container mt-4">
-            {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-              <div class="row">
-                <div class="col-lg-12 ">
-                  <div class="card-title-section">
-                    <div class="add-student-wrapper">
-                      <div className="card-title">Order Management</div>
-                      <div>
-                        <Button
-                          onClick={showTransactionIdModal}
-                          type="primary"
-                          ghost
-                        >
-                          Inserted TransactionId List
-                        </Button>
-                        <Button
-                          className="mx-2"
-                          onClick={showModal}
-                          type="primary"
-                          ghost
-                        >
-                          Add TransactionId
-                        </Button>
-                      </div>
-                    </div>
+    <Layout>
+      <div class="academia-management-area">
+        {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
+          <div class="row">
+            <div class="col-lg-12 ">
+              <div class="card-title-section">
+                <div class="add-student-wrapper">
+                  <div className="card-title">Order Management</div>
+                  <div>
+                    <Button
+                      onClick={showTransactionIdModal}
+                      type="primary"
+                      ghost
+                    >
+                      Inserted TransactionId List
+                    </Button>
+                    <Button
+                      className="mx-2"
+                      onClick={showModal}
+                      type="primary"
+                      ghost
+                    >
+                      Add TransactionId
+                    </Button>
                   </div>
-                </div>
-              </div>
-            )}
-
-            {/* <div class="row">
-              <div class="col-lg-4">
-                <pre>
-                  <code>{JSON.stringify(data, null, 4)}</code>
-                </pre>
-              </div>
-
-              <div class="col-lg-4">
-                <pre>
-                  <code>{JSON.stringify(transactionIdData, null, 4)}</code>
-                </pre>
-              </div>
-
-              <div class="col-lg-4">
-                <pre>
-                  <code>{JSON.stringify(filteredData, null, 4)}</code>
-                </pre>
-              </div>
-            </div> */}
-            <div class="row">
-              <div class="col-lg-12">
-                <div className="card">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Sl</th>
-                        <th>OrderId</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>TransactionId</th>
-                        <th>Payment</th>
-
-                        {logedinData?.roles?.join("").toString() ===
-                          "ROLE_ADMIN" && <th>Action</th>}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredData.map((el, ind) => {
-                        return (
-                          <tr key={ind}>
-                            <td>{ind + 1}</td>
-                            <td>{el?.orderId}</td>
-                            <td>{el?.email}</td>
-                            <td>{el?.phoneNumber}</td>
-                            <td>{el?.transactionId}</td>
-                            <td
-                              className={
-                                el?.transactionIds.length > 0
-                                  ? "text-primary"
-                                  : "text-danger"
-                              }
-                            >
-                              {el?.transactionIds.length > 0 ? "true" : "false"}
-                            </td>
-
-                            {logedinData?.roles?.join("").toString() ===
-                              "ROLE_ADMIN" && (
-                              <td>
-                                <MailOutlined
-                                  style={{ color: "blue" }}
-                                  onClick={handleClick}
-                                />
-                              </td>
-                            )}
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
                 </div>
               </div>
             </div>
           </div>
+        )}
 
-          <Modal
-            title="Update Student Info"
-            open={isEditModalOpen}
-            onOk={handleEditOk}
-            onCancel={handleEditCancel}
-            width={600}
-            footer={false}
-          >
-            <EditForm studentId={studentId} />
-          </Modal>
+        <div class="row">
+          <div class="col-lg-12">
+            <div className="card">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sl</th>
+                    <th>OrderId</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>TransactionId</th>
+                    <th>Payment</th>
 
-          <Modal
-            title="Add TransactionId"
-            open={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            width={600}
-            footer={false}
-          >
-            <>
-              {contextHolder}
-
-              <div className="form-area mt-3">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-lg-12 ">
-                      <Form
-                        className="form-input-item"
-                        form={form}
-                        layout="vertical"
-                      >
-                        <Form.Item
-                          name="transactionId"
-                          label="TransactionId"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the transactionId!",
-                            },
-                          ]}
+                    {logedinData?.roles?.join("").toString() ===
+                      "ROLE_ADMIN" && <th>Action</th>}
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredData.map((el, ind) => {
+                    return (
+                      <tr key={ind}>
+                        <td>{ind + 1}</td>
+                        <td>{el?.orderId}</td>
+                        <td>{el?.email}</td>
+                        <td>{el?.phoneNumber}</td>
+                        <td>{el?.transactionId}</td>
+                        <td
+                          className={
+                            el?.transactionIds.length > 0
+                              ? "text-primary"
+                              : "text-danger"
+                          }
                         >
-                          <Input placeholder="TransactionId" />
-                        </Form.Item>
-                        <p className="text-success mt-2">{error}</p>
+                          {el?.transactionIds.length > 0 ? "true" : "false"}
+                        </td>
 
-                        <Form.Item>
-                          <Button
-                            type="primary"
-                            ghost
-                            onClick={handleTransactinIdSubmit}
-                          >
-                            Submit
-                          </Button>
-                        </Form.Item>
-                      </Form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </>
-          </Modal>
-
-          <Modal
-            title="TransactionId List"
-            open={isTransactionIdModalOpen}
-            onOk={handleTransactionIdOk}
-            onCancel={handleTransactionIdCancel}
-            width={800}
-            footer={false}
-          >
-            <>
-              {contextHolder}
-
-              <div className="form-area mt-3">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-lg-12 ">
-                      <table className="table table-fixed">
-                        <thead>
-                          <tr>
-                            <th scope="col">Sl</th>
-
-                            <th scope="col">TransactionId</th>
-
-                            {logedinData?.roles?.join("").toString() ===
-                              "ROLE_ADMIN" && <th scope="col">Action</th>}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {transactionIdData?.map((el, ind) => {
-                            return (
-                              <tr key={ind}>
-                                <th scope="row">{ind + 1}</th>
-
-                                <td>{el?.transactionId}</td>
-
-                                {logedinData?.roles?.join("").toString() ===
-                                  "ROLE_ADMIN" && (
-                                  <td>
-                                    <DeleteOutlined
-                                      onClick={() =>
-                                        deleteHandelerTransactionId(el._id)
-                                      }
-                                      className="mx-2"
-                                      style={{ color: "red" }}
-                                    />
-                                  </td>
-                                )}
-                              </tr>
-                            );
-                          })}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </>
-          </Modal>
+                        {logedinData?.roles?.join("").toString() ===
+                          "ROLE_ADMIN" && (
+                          <td>
+                            <MailOutlined
+                              style={{ color: "blue" }}
+                              onClick={handleClick}
+                            />
+                          </td>
+                        )}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-      </Layout>
-    </div>
+
+        <Modal
+          title="Update Student Info"
+          open={isEditModalOpen}
+          onOk={handleEditOk}
+          onCancel={handleEditCancel}
+          width={600}
+          footer={false}
+        >
+          <EditForm studentId={studentId} />
+        </Modal>
+
+        <Modal
+          title="Add TransactionId"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          width={600}
+          footer={false}
+        >
+          <>
+            {contextHolder}
+
+            <div className="form-area mt-3">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12 ">
+                    <Form
+                      className="form-input-item"
+                      form={form}
+                      layout="vertical"
+                    >
+                      <Form.Item
+                        name="transactionId"
+                        label="TransactionId"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the transactionId!",
+                          },
+                        ]}
+                      >
+                        <Input placeholder="TransactionId" />
+                      </Form.Item>
+                      <p className="text-success mt-2">{error}</p>
+
+                      <Form.Item>
+                        <Button
+                          type="primary"
+                          ghost
+                          onClick={handleTransactinIdSubmit}
+                        >
+                          Submit
+                        </Button>
+                      </Form.Item>
+                    </Form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        </Modal>
+
+        <Modal
+          title="TransactionId List"
+          open={isTransactionIdModalOpen}
+          onOk={handleTransactionIdOk}
+          onCancel={handleTransactionIdCancel}
+          width={800}
+          footer={false}
+        >
+          <>
+            {contextHolder}
+
+            <div className="form-area mt-3">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12 ">
+                    <table className="table table-fixed">
+                      <thead>
+                        <tr>
+                          <th scope="col">Sl</th>
+
+                          <th scope="col">TransactionId</th>
+
+                          {logedinData?.roles?.join("").toString() ===
+                            "ROLE_ADMIN" && <th scope="col">Action</th>}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {transactionIdData?.map((el, ind) => {
+                          return (
+                            <tr key={ind}>
+                              <th scope="row">{ind + 1}</th>
+
+                              <td>{el?.transactionId}</td>
+
+                              {logedinData?.roles?.join("").toString() ===
+                                "ROLE_ADMIN" && (
+                                <td>
+                                  <DeleteOutlined
+                                    onClick={() =>
+                                      deleteHandelerTransactionId(el._id)
+                                    }
+                                    className="mx-2"
+                                    style={{ color: "red" }}
+                                  />
+                                </td>
+                              )}
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        </Modal>
+      </div>
+    </Layout>
   );
 }
 

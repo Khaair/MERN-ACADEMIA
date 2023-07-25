@@ -1,6 +1,7 @@
-import { Button, Form, Input, Modal, Upload } from "antd";
+import { Button, Form, Input, Modal, Upload, Select } from "antd";
 import React, { useState } from "react";
 import { AppstoreOutlined, PlusCircleOutlined } from "@ant-design/icons";
+const { Option } = Select;
 
 const AddTeacher = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,16 +20,17 @@ const AddTeacher = (props) => {
     try {
       const values = await form.validateFields();
       const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("email", values.email);
-      formData.append("phoneNumber", values.phoneNumber);
-      formData.append("teacherId", values.teacherId);
-      formData.append("address", values.address);
-      formData.append("subject", values.subject);
-      formData.append("qualifications", values.qualifications);
-      formData.append("designation", values.designation);
+      formData.append("name", values?.name);
+      formData.append("email", values?.email);
+      formData.append("phoneNumber", values?.phoneNumber);
+      formData.append("gender", values?.gender);
+      formData.append("teacherId", values?.teacherId);
+      formData.append("address", values?.address);
+      formData.append("subject", values?.subject);
+      formData.append("qualifications", values?.qualifications);
+      formData.append("designation", values?.designation);
 
-      formData.append("file", values.file[0].originFileObj);
+      formData.append("file", values?.file[0].originFileObj);
       const res = await fetch(
         "http://localhost:8080/api/teacher-manage/teacher-save",
         {
@@ -49,7 +51,7 @@ const AddTeacher = (props) => {
   };
   return (
     <>
-      <div class="add-student-wrapper">
+      <div class="add-student-wrapper pt-3">
         <div className="card-title custom-button">
           <AppstoreOutlined style={{ fontSize: "20px" }} />
           Teacher Management
@@ -66,6 +68,8 @@ const AddTeacher = (props) => {
           </Button>
         </div>
       </div>
+      <hr className="mt-3" />
+
       <Modal
         title="Add New Teacher"
         open={isModalOpen}
@@ -118,6 +122,21 @@ const AddTeacher = (props) => {
                         ]}
                       >
                         <Input placeholder="Phone Number" />
+                      </Form.Item>
+                      <Form.Item
+                        label="Gender"
+                        name="gender"
+                        rules={[
+                          {
+                            required: true,
+                          },
+                        ]}
+                      >
+                        <Select>
+                          <Option value="male">male</Option>
+                          <Option value="female">female</Option>
+                          <Option value="other">other</Option>
+                        </Select>
                       </Form.Item>
                       <Form.Item
                         label="Teacher Id"

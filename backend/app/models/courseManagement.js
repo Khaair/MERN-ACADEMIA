@@ -1,6 +1,17 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
+const courseContentSchema = new Schema({
+  title: {
+    type: String,
+    required: [true, "course content title is required"],
+  },
+  description: {
+    type: String,
+    required: [true, "course content description is required"],
+  },
+});
+
 const courseManagementSchema = new Schema({
   courseTitle: {
     type: String,
@@ -30,9 +41,10 @@ const courseManagementSchema = new Schema({
     type: String,
     required: [true, "learnFromCourse is required"],
   },
+
   courseContent: {
-    type: String,
-    required: [true, "courseContent is required"],
+    type: [courseContentSchema],
+    required: false, // Set to true if about is required, otherwise false
   },
   file: {
     type: String,

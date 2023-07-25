@@ -14,6 +14,10 @@ const teacherSchema = new Schema({
     type: String,
     required: [true, "phoneNumber is required"],
   },
+  gender: {
+    type: String,
+    required: [true, "gender is required"],
+  },
   teacherId: {
     type: String,
     required: [true, "teacherId is required"],

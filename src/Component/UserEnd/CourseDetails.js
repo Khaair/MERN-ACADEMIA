@@ -80,7 +80,7 @@ export default function CourseDetails() {
 
   const { data, status } = useQuery("my-query-key", async () => {
     const response = await fetch(
-      `http://localhost:8080/api/course-manage/course-show-single/${id}`
+      `http://localhost:8080/api/course-manage/show-single-course/${id}`
     );
     return response.json();
   });
