@@ -12,6 +12,20 @@
   padding-left: 7px;
 }
 
+.user-deshboard-navv {
+  height: 75px;
+  padding-top: 14px;
+}
+
+.user-deshboard-navv ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  color: white;
+}
+.user-deshboard-navv ul li {
+  margin: 10px;
+}
 .navv {
   height: 60px;
   padding-top: 14px;
@@ -133,8 +147,9 @@
   border: none;
   border-radius: 5px;
 }
-.children-deshboard {
-  background-color: #f0f3f6;
+.user-children-deshboard {
+  background-color: #f3faff;
+  min-height: 580px;
 }
 
 .add-student-wrapper {
@@ -178,6 +193,7 @@
   display: inline-block;
   margin-right: 8px;
   color: #148a8f;
+  margin-left: 5px;
 }
 
 .searchbar-wrapper search {

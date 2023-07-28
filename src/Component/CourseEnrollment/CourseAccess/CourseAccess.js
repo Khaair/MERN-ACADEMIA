@@ -62,7 +62,7 @@ export default function CourseAccess() {
                   {videoOne && (
                     <div>
                       <iframe
-                        width="810"
+                        width="750"
                         height="450"
                         src="https://www.youtube.com/embed/30y-wlDtIIQ"
                         title="YouTube video player"

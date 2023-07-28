@@ -63,7 +63,9 @@ function Deshboard() {
 
   const deleteMe = async (id) => {
     try {
-      let mydata = await axios.delete(`http://localhost:8080/api/delete/${id}`);
+      let mydata = await axios.delete(
+        `http://localhost:8080/api/quiz-delete/${id}`
+      );
       console.log(mydata);
 
       const filterd = data.filter((a) => a._id !== id);

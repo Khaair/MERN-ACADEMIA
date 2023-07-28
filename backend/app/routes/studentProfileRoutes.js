@@ -1,8 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const router = express.Router();
-const studentModel = require("../models/studentManagement");
-const { check, validationResult } = require("express-validator");
+const studentProfileModel = require("../models/studentProfile");
 const app = express();
 
 const storage = multer.diskStorage({
@@ -13,14 +12,13 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + file.originalname);
   },
 });
-
 const upload = multer({ storage: storage });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-router.get("/student-show", async (req, res) => {
+router.get("/student-profile-show", async (req, res) => {
   try {
-    let data = await studentModel.find();
+    let data = await studentProfileModel.find();
     res.send(data);
   } catch (err) {
     res.status(500).send({ msg: "Error retrieving data" });
@@ -28,27 +26,13 @@ router.get("/student-show", async (req, res) => {
 });
 
 router.post(
-  "/student-save",
+  "/student-profile-save",
 
   upload.single("file"),
-  [
-    check("name").not().isEmpty().withMessage("name is required"),
-    check("email").not().isEmpty().withMessage("email is required"),
-    check("phoneNumber").not().isEmpty().withMessage("phoneNumber is required"),
-    check("dob").not().isEmpty().withMessage("dob is required"),
-    check("courseId").not().isEmpty().withMessage("courseId is required"),
-    check("studentId").not().isEmpty().withMessage("studentId is required"),
-    check("address").not().isEmpty().withMessage("address is required"),
-    check("gender").not().isEmpty().withMessage("gender is required"),
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
 
+  async (req, res) => {
     try {
-      const crudData = new studentModel({
+      const crudData = new studentProfileModel({
         name: req.body.name,
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
@@ -57,7 +41,6 @@ router.post(
         studentId: req.body.studentId,
         address: req.body.address,
         gender: req.body.gender,
-
         file: req.file.filename,
       });
       const savedData = await crudData.save();
@@ -78,7 +61,7 @@ router.post(
 router.route("/show-single-student-profile/:studentId").get((req, res) => {
   const studentId = req.params.studentId;
 
-  studentModel.findOne({ studentId }, (error, data) => {
+  studentProfileModel.findOne({ studentId }, (error, data) => {
     if (error) {
       return res.status(500).json({ error: "Error finding student profile." });
     } else {
@@ -92,9 +75,9 @@ router.route("/show-single-student-profile/:studentId").get((req, res) => {
 });
 
 // Get Single information
-router.route("/show-single-student/:id").get(async (req, res, next) => {
+router.route("/student-profile-single-show/:id").get(async (req, res, next) => {
   try {
-    let data = await studentModel.findById(req.params.id);
+    let data = await studentProfileModel.findById(req.params.id);
     if (!data) {
       return res.status(404).send({ msg: "Data not found" });
     }
@@ -107,9 +90,9 @@ router.route("/show-single-student/:id").get(async (req, res, next) => {
   }
 });
 
-router.delete("/student-delete/:id", async (req, res) => {
+router.delete("/student-profile-delete/:id", async (req, res) => {
   try {
-    let data = await studentModel.deleteOne({ _id: req.params.id });
+    let data = await studentProfileModel.deleteOne({ _id: req.params.id });
     if (!data) {
       return res.status(404).send({ msg: "Data not found" });
     }
@@ -123,26 +106,13 @@ router.delete("/student-delete/:id", async (req, res) => {
 });
 
 router.post(
-  "/update-student/:id",
+  "/student-profile-update/:id",
   upload.single("file"),
-  [
-    check("name").not().isEmpty().withMessage("name is required"),
-    check("email").not().isEmpty().withMessage("email is required"),
-    check("phoneNumber").not().isEmpty().withMessage("phoneNumber is required"),
-    check("dob").not().isEmpty().withMessage("dob is required"),
-    check("courseId").not().isEmpty().withMessage("courseId is required"),
-    check("studentId").not().isEmpty().withMessage("studentId is required"),
-    check("address").not().isEmpty().withMessage("address is required"),
-    check("gender").not().isEmpty().withMessage("gender is required"),
-  ],
+
   async (req, res) => {
     console.log(req?.body);
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
     try {
-      let updatee = await studentModel.findByIdAndUpdate(
+      let updatee = await studentProfileModel.findByIdAndUpdate(
         { _id: req.params.id },
         {
           name: req.body.name,
@@ -153,7 +123,6 @@ router.post(
           studentId: req.body.studentId,
           address: req.body.address,
           gender: req.body.gender,
-
           file: req.file.filename,
         },
         { new: true }

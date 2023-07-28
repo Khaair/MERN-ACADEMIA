@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Layout from "./Layout";
 import { Tabs } from "antd";
+import StudentDeshboardLayout from "../CourseEnrollment/Layout";
 
 export default function SkillTest() {
   const [score, setScore] = useState(0);
@@ -125,7 +126,7 @@ export default function SkillTest() {
   }
   return (
     <>
-      <Layout>
+      <StudentDeshboardLayout>
         <div class="skill-test-area">
           <div class="container">
             <div class="row">
@@ -881,7 +882,7 @@ export default function SkillTest() {
             </div>
           </div>
         </div>
-      </Layout>
+      </StudentDeshboardLayout>
     </>
   );
 }

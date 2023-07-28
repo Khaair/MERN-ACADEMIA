@@ -8,8 +8,6 @@ router.get("/quiz-show", async (req, res) => {
 });
 
 router.post("/quiz-save", async (req, res) => {
-  console.log(req.body);
-
   const tt = new quizModel({
     question: req.body.question,
     options: req.body.options,
@@ -25,7 +23,7 @@ router.post("/quiz-save", async (req, res) => {
 });
 
 // Get Single information
-router.route("/showSIngle/:id").get((req, res) => {
+router.route("/show-single-quiz/:id").get((req, res) => {
   quizModel.findById(req.params.id, (error, data) => {
     if (error) {
       return error;
@@ -35,13 +33,13 @@ router.route("/showSIngle/:id").get((req, res) => {
   });
 });
 
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/quiz-delete/:id", async (req, res) => {
   console.log(req.params.id);
   let data = await quizModel.deleteOne({ _id: req.params.id });
   res.send({ msg: "deleted", data: data });
 });
 
-router.post("/update/:id", async (req, res) => {
+router.post("/quiz-update/:id", async (req, res) => {
   console.log(req.params.id, req.body);
 
   try {

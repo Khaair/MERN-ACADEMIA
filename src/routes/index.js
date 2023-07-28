@@ -21,16 +21,19 @@ import CourseLogin from "../Component/CourseEnrollment/Login";
 import StudentManage from "../Component/Deshboard/StudentManagement";
 import QuizManage from "../Component/Deshboard/QuizManagement";
 import TecherManagement from "../Component/Deshboard/TeacherManagement";
+import UserAuth from "../Component/UserEnd/auth";
+import UserPrivateRoute from "../Component/UserEnd/auth/private-route";
 
 const RoutesMain = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Auth />} />
+        <Route path="/admin" element={<Auth />} />
+
         <Route path="/edit/:id" element={<EditForm />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route
-          path="/home"
+          path="/"
           element={
             <Suspense
               fallback={
@@ -54,15 +57,7 @@ const RoutesMain = () => {
         <Route path="/course-details/:id" element={<CourseDetails />} />
         <Route path="/course-checkout/:id" element={<CheckOut />} />
         <Route path="/skill-test" element={<SkillTest />} />
-        <Route path="/course-login" element={<CourseLogin />} />
-        <Route
-          path="/course-deshboard"
-          element={
-            <PrivateRoute>
-              <CourseDeshboard />
-            </PrivateRoute>
-          }
-        />
+        {/* <Route path="/course-login" element={<CourseLogin />} /> */}
 
         <Route
           path="/course-access"
@@ -130,6 +125,17 @@ const RoutesMain = () => {
             </PrivateRoute>
           }
         />
+
+        <Route
+          path="/course-deshboard"
+          element={
+            <UserPrivateRoute>
+              <CourseDeshboard />
+            </UserPrivateRoute>
+          }
+        />
+
+        <Route path="/user-auth" element={<UserAuth />} />
         <Route path="/teacher-manage" element={<TecherManagement />} />
       </Routes>
     </div>
