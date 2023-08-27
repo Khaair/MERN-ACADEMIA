@@ -23,4 +23,4 @@ function App() {
 
 export default App;
 
-//online course application
+//school website
