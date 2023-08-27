@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from "react";
 import StudentDeshboardLayout from "../Layout";
-import { Button, DatePicker, Form, Input, Select, Upload } from "antd";
-import { fetchAllStudents } from "../../../statement-management/slices/studentSlices";
-import { useDispatch } from "react-redux";
+import { Button, DatePicker, Form, Input, Select } from "antd";
+
 import { AppstoreOutlined } from "@ant-design/icons";
 import axios from "axios";
+import AddProfilePic from "./add-profile-picture";
 const { Option } = Select;
 
 export default function StudentProfile() {
   const [userData, setUserData] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [update, setUpdate] = useState(false);
   const [singleDataId, setSingleDataId] = useState("");
   const [singleData, setSingleData] = useState([]);
-
   const [message, setMessage] = useState("");
   const [form] = Form.useForm();
-
-  const dispatch = useDispatch();
-  const studentId = userData?.id;
 
   useEffect(() => {
     const userLogedinData = localStorage.getItem("userLogedinData");
@@ -26,6 +20,9 @@ export default function StudentProfile() {
     setUserData(fetchLogedinData);
     console.log("userLogedinData", userLogedinData);
   }, []);
+
+  const studentId = userData?.id;
+
   const fetchSingleData = async () => {
     try {
       let singleData = await axios.get(
@@ -36,8 +33,6 @@ export default function StudentProfile() {
         console.log("sid", singleData?.data);
         setSingleDataId(singleData?.data?._id);
         setSingleData(singleData?.data);
-
-        setUpdate(true);
       }
       console.log("singleData", singleData);
       form.setFieldsValue({
@@ -49,7 +44,6 @@ export default function StudentProfile() {
         address: singleData?.data?.address,
         // dob: singleData?.data?.dob,
         gender: singleData?.data?.gender,
-        designation: singleData?.data?.designation,
       });
     } catch (err) {
       console.log(err);
@@ -59,75 +53,39 @@ export default function StudentProfile() {
   useEffect(() => {
     fetchSingleData();
   }, [studentId]);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const values = await form.validateFields();
-      console.log("file test", values.file[0].originFileObj);
-      const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("email", values.email);
-      formData.append("phoneNumber", values.phoneNumber);
-      formData.append("courseId", values.courseId);
-      formData.append("studentId", studentId);
-      formData.append("dob", values.dob);
-      formData.append("address", values.address);
-      formData.append("gender", values.gender);
-      formData.append("file", values.file[0].originFileObj);
 
-      const res = await fetch(
-        "http://localhost:8080/api/student-profile/student-profile-save",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-      const data = await res.json();
-      if (data?.status === "200") {
-        setMessage(data?.message);
-        setUpdate(true);
-        console.log("save data successfully", data);
-      }
-      console.log("data", data);
-    } catch (errorInfo) {
-      console.log("Failed:", errorInfo);
-    }
-  };
   const handleUpdate = async (e) => {
     e.preventDefault();
+    const values = await form.validateFields();
     try {
-      const values = await form.validateFields();
-      console.log("file test", values.file[0].originFileObj);
-      const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("email", values.email);
-      formData.append("phoneNumber", values.phoneNumber);
-      formData.append("courseId", values.courseId);
-      formData.append("studentId", studentId);
-      formData.append("dob", values.dob);
-      formData.append("address", values.address);
-      formData.append("gender", values.gender);
-      formData.append("file", values.file[0].originFileObj);
-
-      const res = await fetch(
+      let response = await axios.post(
         `http://localhost:8080/api/student-profile/student-profile-update/${singleDataId}`,
         {
-          method: "POST",
-          body: formData,
+          name: values?.name,
+          email: values?.email,
+          phoneNumber: values?.phoneNumber,
+          courseId: values?.courseId,
+          answer: values?.answer,
+          studentId: studentId,
+          dob: values?.dob,
+          address: values?.address,
+          gender: values?.gender,
         }
       );
-      const data = await res.json();
-      if (data?.status === "200") {
-        setMessage(data?.message);
+      if (response?.data?.status === "200") {
+        setMessage(response?.message);
         fetchSingleData();
-        console.log("save data successfully", data);
+        console.log("save data successfully", response);
+      } else if (response?.data?.status === "400") {
+      } else if (response?.data?.status === "401") {
+      } else if (response?.data?.status === "404") {
+      } else if (response?.data?.status === "500") {
       }
-      console.log("data", data);
-    } catch (errorInfo) {
-      console.log("Failed:", errorInfo);
+      console.log(response, "success");
+    } catch (er) {
+      console.log("error checkout", er);
     }
   };
-  console.log("userData", userData);
 
   return (
     <StudentDeshboardLayout>
@@ -135,12 +93,11 @@ export default function StudentProfile() {
         <div class="row">
           <div class="col-lg-4">
             <div class="card shadow-sm">
-              <img src={`/uploads/${singleData?.file}`} alt="" />
+              <AddProfilePic singleDataId={singleDataId} />
               <h5>User Name: {userData?.username}</h5>
               <h6>Email: {userData?.id}</h6>
             </div>
           </div>
-
           <div class="col-lg-8">
             <div class="card shadow-sm">
               <div class="add-student-area">
@@ -255,47 +212,18 @@ export default function StudentProfile() {
                                   <Option value="other">other</Option>
                                 </Select>
                               </Form.Item>
-
-                              <Form.Item
-                                label="Image"
-                                name="file"
-                                valuePropName="fileList"
-                                getValueFromEvent={(e) => e && e.fileList}
-                                rules={[
-                                  {
-                                    required: true,
-                                    message: "Please select the file!",
-                                  },
-                                ]}
-                              >
-                                <Upload name="file" listType="picture">
-                                  <Button>Upload Image</Button>
-                                </Upload>
-                              </Form.Item>
                             </div>
                           </div>
                           <div className="mt-3">
-                            {update ? (
-                              <Form.Item>
-                                <Button
-                                  type="primary"
-                                  ghost
-                                  onClick={handleUpdate}
-                                >
-                                  Update
-                                </Button>
-                              </Form.Item>
-                            ) : (
-                              <Form.Item>
-                                <Button
-                                  type="primary"
-                                  ghost
-                                  onClick={handleSubmit}
-                                >
-                                  Submit
-                                </Button>
-                              </Form.Item>
-                            )}
+                            <Form.Item>
+                              <Button
+                                type="primary"
+                                ghost
+                                onClick={handleUpdate}
+                              >
+                                Update
+                              </Button>
+                            </Form.Item>
                           </div>
                         </Form>
                       </div>

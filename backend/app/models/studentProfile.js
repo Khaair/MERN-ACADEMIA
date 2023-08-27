@@ -35,11 +35,6 @@ const studentProfileSchema = new Schema({
     type: String,
     required: false,
   },
-
-  file: {
-    type: String,
-    required: false,
-  },
 });
 
 module.exports = mongoose.model("studentProfile", studentProfileSchema);
