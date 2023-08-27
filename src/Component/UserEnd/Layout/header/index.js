@@ -40,19 +40,6 @@ export default function Header() {
                     <Link to="/">
                       <li role="button">Contact</li>
                     </Link>
-                    <li role="button"></li>
-
-                    {userData ? (
-                      <Link to="/student-profile">
-                        <li role="button">
-                          <Avatar size={30} icon={<UserOutlined />} />
-                        </li>
-                      </Link>
-                    ) : (
-                      <Link to="/user-auth">
-                        <li role="button">Log in</li>
-                      </Link>
-                    )}
                   </ul>
                 </div>
               </div>
