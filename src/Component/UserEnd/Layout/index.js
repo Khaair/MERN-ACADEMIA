@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "./header/index";
 import Footer from "./footer/index";
+import Menu from "./menu";
 
 const Layout = ({ children }) => {
   return (
     <React.Fragment>
-      <Header />
+      <Menu />
       {children}
       <Footer />
     </React.Fragment>
