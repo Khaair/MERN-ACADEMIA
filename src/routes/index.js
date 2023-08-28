@@ -17,12 +17,23 @@ import DeshboardManagement from "../Component/Deshboard/DeshboardManagement";
 import CourseManagement from "../Component/Deshboard/CourseManagement";
 import OrderManage from "../Component/Deshboard/OrderManagement";
 import ResultManagement from "../Component/Deshboard/ResultManagement";
-import CourseLogin from "../Component/CourseEnrollment/Login";
 import StudentManage from "../Component/Deshboard/StudentManagement";
 import QuizManage from "../Component/Deshboard/QuizManagement";
 import TecherManagement from "../Component/Deshboard/TeacherManagement";
 import UserAuth from "../Component/UserEnd/auth";
 import UserPrivateRoute from "../Component/UserEnd/auth/private-route";
+import AboutUsManagement from "../Component/Deshboard/AboutUsManagement";
+import AboutUs from "../Component/UserEnd/about-us";
+import Mission from "../Component/UserEnd/about-us/mission";
+import Vission from "../Component/UserEnd/about-us/vission";
+import ImageGallery from "../Component/UserEnd/gallery/image-gallery";
+import VideoGallery from "../Component/UserEnd/gallery/video-gallery";
+import HeadMaster from "../Component/UserEnd/administration/head-master";
+import AssHeadMaster from "../Component/UserEnd/administration/ass-head-master";
+import TeacherList from "../Component/Deshboard/TeacherManagement/list";
+import TeacherListWebView from "../Component/UserEnd/administration/teacher-list-web-view";
+import Contact from "../Component/UserEnd/contact";
+import Notices from "../Component/UserEnd/notices";
 
 const RoutesMain = () => {
   return (
@@ -127,6 +138,15 @@ const RoutesMain = () => {
         />
 
         <Route
+          path="/about-us-manage"
+          element={
+            <PrivateRoute>
+              <AboutUsManagement />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
           path="/course-deshboard"
           element={
             <UserPrivateRoute>
@@ -136,6 +156,18 @@ const RoutesMain = () => {
         />
 
         <Route path="/user-auth" element={<UserAuth />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/mission" element={<Mission />} />
+        <Route path="/vission" element={<Vission />} />
+        <Route path="/image-gallery" element={<ImageGallery />} />
+        <Route path="/video-gallery" element={<VideoGallery />} />
+
+        <Route path="/head-master-speech" element={<HeadMaster />} />
+        <Route path="/ass-head-master-speech" element={<AssHeadMaster />} />
+        <Route path="/teacher-list-show" element={<TeacherListWebView />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/notices" element={<Notices />} />
+
         <Route path="/teacher-manage" element={<TecherManagement />} />
       </Routes>
     </div>

@@ -93,6 +93,7 @@ const deshboardManagementRoutes = require("./app/routes/deshboardManagementRoute
 const teacherManagementRoutes = require("./app/routes/teacherManagementRoutes");
 const studentProfileRoutes = require("./app/routes/studentProfileRoutes");
 const studentProfilePictureRoutes = require("./app/routes/studentProfilePictureRoutes");
+const schoolAboutUsRoutes = require("./app/routes/school-about-us");
 
 app.use("/api/student-manage", studentManagementRoutes);
 app.use("/api/get-user", routesuserget);
@@ -105,6 +106,7 @@ app.use("/api/deshboard-manage", deshboardManagementRoutes);
 app.use("/api/teacher-manage", teacherManagementRoutes);
 app.use("/api/student-profile", studentProfileRoutes);
 app.use("/api/student-profile-picture", studentProfilePictureRoutes);
+app.use("/api/school-about-us", schoolAboutUsRoutes);
 
 //http://localhost:8080/api/auth/signup
 

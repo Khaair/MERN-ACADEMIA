@@ -54,6 +54,7 @@ const Layout = ({ children }) => {
   const [getColorQuizManage, setColorQuizManage] = useState();
   const [getColorDeshboardManage, setColorDeshboardManage] = useState();
   const [getColorTeacherManage, setColorTeacherdManage] = useState();
+  const [getColorAboutUsManage, setColorAboutUsdManage] = useState();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -89,6 +90,9 @@ const Layout = ({ children }) => {
     }
     if (location?.pathname === "/teacher-manage") {
       setColorTeacherdManage(true);
+    }
+    if (location?.pathname === "/about-us-manage") {
+      setColorAboutUsdManage(true);
     }
   }, [location?.pathname]);
 
@@ -302,7 +306,6 @@ const Layout = ({ children }) => {
                         </li>
 
                         <li>
-                          {" "}
                           <Link
                             to="/quiz-manage"
                             className={
@@ -324,106 +327,26 @@ const Layout = ({ children }) => {
                             </Space>
                           </Link>
                         </li>
-
                         <li>
-                          <Dropdown overlay={dropdownMenu}>
-                            <Link to="/dropdown-example" className="ll d-flex">
-                              <PieChartOutlined />
-                              <Space className="mx-2 click-me">
-                                Report Management&nbsp;
-                              </Space>
-                              <DownOutlined style={{ fontSize: "12px" }} />
-                            </Link>
-                          </Dropdown>
-                        </li>
-
-                        <li>
-                          {" "}
-                          <Link to="/deshboard" className="ll d-flex">
-                            <PieChartOutlined />
-                            <Space className="mx-2 click-me">
-                              Reporting and Analytic
+                          <Link
+                            to="/about-us-manage"
+                            className={
+                              getColorAboutUsManage
+                                ? "ll  text-primary d-flex"
+                                : "ll  d-flex"
+                            }
+                          >
+                            <DiffOutlined />
+                            <Space
+                              className={
+                                getColorAboutUsManage
+                                  ? "mx-2  text-primary click-me"
+                                  : "mx-2   click-me"
+                              }
+                            >
+                              About us management
                             </Space>
                           </Link>
-                        </li>
-                        <li>
-                          {" "}
-                          <Link to="/deshboard" className="ll d-flex">
-                            <UserOutlined />
-                            <Space className="mx-2 click-me">
-                              Reporting and Analytic
-                            </Space>
-                          </Link>
-                        </li>
-                        <li>
-                          {" "}
-                          <Link to="/deshboard" className="ll d-flex">
-                            <UserOutlined />
-                            <Space className="mx-2 click-me">
-                              Reporting and Analytic
-                            </Space>
-                          </Link>
-                        </li>
-                        <li>
-                          {" "}
-                          <Link to="/deshboard" className="ll d-flex">
-                            <UserOutlined />
-                            <Space className="mx-2 click-me">
-                              Reporting and Analytic
-                            </Space>
-                          </Link>
-                        </li>
-                        <li>
-                          {" "}
-                          <Link to="/deshboard" className="ll d-flex">
-                            <FullscreenExitOutlined />
-                            <Space className="mx-2 click-me">
-                              Reporting and Analytic
-                            </Space>
-                          </Link>
-                        </li>
-
-                        <li>
-                          {" "}
-                          <Link to="/deshboard" className="ll d-flex">
-                            <FullscreenExitOutlined />
-                            <Space className="mx-2 click-me">
-                              Reporting and Analytic
-                            </Space>
-                          </Link>
-                        </li>
-
-                        <li>
-                          {" "}
-                          <Link to="/deshboard" className="ll d-flex">
-                            <FullscreenExitOutlined />
-                            <Space className="mx-2 click-me">
-                              Reporting and Analytic
-                            </Space>
-                          </Link>
-                        </li>
-                        <li>
-                          {" "}
-                          <Link to="/deshboard" className="ll d-flex">
-                            <FullscreenExitOutlined />
-                            <Space className="mx-2 click-me">
-                              Reporting and Analytic
-                            </Space>
-                          </Link>
-                        </li>
-
-                        <li className="ll d-flex">
-                          <Dropdown menu={{ items }} trigger={["click"]}>
-                            <a href="ff" onClick={(e) => e.preventDefault()}>
-                              <Space
-                                onClick={handleLogOut}
-                                className="mx-2 click-me deshboar-word"
-                                role="button"
-                              >
-                                Logout
-                              </Space>
-                            </a>
-                          </Dropdown>
                         </li>
                       </ul>
                     </div>
