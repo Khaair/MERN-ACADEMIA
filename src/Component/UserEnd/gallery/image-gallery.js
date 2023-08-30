@@ -32,7 +32,7 @@ const ImageGallery = () => {
           </div>
         </div>
       </div>
-      <div class="career-goal-title-area mt-5">
+      <div class="career-goal-title-area pt-[100px]  pb-[100px]">
         <div class="bootstrap-container">
           <div class="container">
             <div class="row">

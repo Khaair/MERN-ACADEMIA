@@ -1359,9 +1359,7 @@ input:-webkit-autofill {
   padding-top: 117px;
   color: aliceblue;
 }
-.banner-btn-wrapper .first-banner-btn {
-  margin-right: 20px;
-}
+
 .banner-btn-wrapper button {
   margin-top: 10px;
   padding-top: 16px;
@@ -1369,9 +1367,8 @@ input:-webkit-autofill {
   padding-bottom: 16px;
   padding-left: 45px;
   background-color: none;
-  background-color: #667bb2;
   border-radius: 5px;
-  border: 1px solid beige;
+  border: 1px solid #06bbcc;
   color: aliceblue;
   background-color: Transparent;
   background-repeat: no-repeat;

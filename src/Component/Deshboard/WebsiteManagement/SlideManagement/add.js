@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { AppstoreOutlined, PlusCircleOutlined } from "@ant-design/icons";
 const { Option } = Select;
 
-const AddTeacher = (props) => {
+const AddSlide = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
   const handleOk = () => {
@@ -54,7 +54,7 @@ const AddTeacher = (props) => {
       <div class="add-student-wrapper">
         <div className="card-title custom-button">
           <AppstoreOutlined style={{ fontSize: "20px" }} />
-          Teacher Management
+          Slide Management
         </div>
         <div>
           <Button
@@ -64,7 +64,7 @@ const AddTeacher = (props) => {
             className="custom-button"
           >
             <PlusCircleOutlined />
-            Add Teacher
+            Add Slide
           </Button>
         </div>
       </div>
@@ -236,4 +236,4 @@ const AddTeacher = (props) => {
   );
 };
 
-export default AddTeacher;
+export default AddSlide;
