@@ -19,18 +19,6 @@ const Mission = () => {
         <div class="bootstrap-container">
           <div class="container">
             <div class="row">
-              <div class="col-lg-12 text-center">
-                <h2>Welcome to Sherpur govt college</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="e-com-product-show-area">
-        <div class="bootstrap-container">
-          <div className="container">
-            <div className="row">
               <div class="col-lg-12">
                 <p>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
