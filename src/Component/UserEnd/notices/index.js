@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../Layout";
-
+import { CloudDownloadOutlined } from "@ant-design/icons";
 const Notices = () => {
   return (
     <Layout>
@@ -15,38 +15,62 @@ const Notices = () => {
           </div>
         </div>
       </div>
-      <div class="career-goal-title-area mt-5">
+      <div class="notices-area pt-[100px]">
         <div class="bootstrap-container">
           <div class="container">
             <div class="row">
-              <div class="col-lg-12 text-center">
-                <h2>Welcome to Sherpur govt college</h2>
+              <div class="col-lg-6 mb-3">
+                <div className="flex bg-[#06BBCC] text-white  p-3">
+                  <div className="bg-[white] p-2  w-[70px]">
+                    <p> 28 Mar</p>
+                  </div>
+                  <div className="ml-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                  <div class="ml-3 text-white">
+                    <CloudDownloadOutlined />
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              <div class="col-lg-6 mb-3">
+                <div className="flex bg-[#06BBCC] text-white  p-3">
+                  <div className="bg-[white] p-2  w-[70px]">
+                    <p> 28 Mar</p>
+                  </div>
+                  <div className="ml-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                  <div class="ml-3 text-white">
+                    <CloudDownloadOutlined />
+                  </div>
+                </div>
+              </div>
 
-      <div className="e-com-product-show-area">
-        <div class="bootstrap-container">
-          <div className="container">
-            <div className="row">
-              <div class="col-lg-12">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Suscipit maxime doloremque nemo eum ipsum labore iusto, amet
-                  voluptate beatae laudantium asperiores corporis consequuntur
-                  accusantium voluptates maiores animi sunt! Nesciunt, ex eius
-                  quidem quaerat quam quia fuga numquam quae amet repudiandae at
-                  sit blanditiis facere optio itaque sapiente dolores alias et
-                  inventore. Repellat, quis similique laborum ratione, eos
-                  beatae voluptates aspernatur quos esse iusto praesentium
-                  mollitia laudantium, distinctio accusantium reiciendis odit!
-                  Perferendis nemo a ab iste, vitae odio, aliquid magnam aliquam
-                  ad corporis magni possimus minima praesentium voluptates ullam
-                  officiis. Sint esse nihil veritatis, voluptatibus culpa
-                  repellendus odit dicta facilis neque?
-                </p>
+              <div class="col-lg-6 mb-3">
+                <div className="flex bg-[#06BBCC] text-white  p-3">
+                  <div className="bg-[white] p-2  w-[70px]">
+                    <p> 28 Mar</p>
+                  </div>
+                  <div className="ml-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                  <div class="ml-3 text-white">
+                    <CloudDownloadOutlined />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 mb-3">
+                <div className="flex bg-[#06BBCC] text-white  p-3">
+                  <div className="bg-[white] p-2  w-[70px]">
+                    <p> 28 Mar</p>
+                  </div>
+                  <div className="ml-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                  <div class="ml-3 text-white">
+                    <CloudDownloadOutlined />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

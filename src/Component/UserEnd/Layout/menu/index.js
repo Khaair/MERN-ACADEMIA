@@ -4,6 +4,7 @@ import {
   AlignRightOutlined,
   ArrowRightOutlined,
   CaretDownOutlined,
+  AppstoreOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Tooltip } from "antd";
@@ -105,16 +106,12 @@ export default function Menu() {
   return (
     <header className="bg-white">
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between p-3 lg:px-8"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
-            <img
-              className="h-12 w-auto"
-              src="/uploads/govt-log.png"
-              alt="logo"
-            />
+            <AppstoreOutlined style={{ fontSize: "55px", color: "#06BBCC" }} />
           </Link>
         </div>
         <div className="flex lg:hidden">

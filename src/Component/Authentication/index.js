@@ -1,7 +1,7 @@
 import axios from "axios";
 import SignUp from "./SignUp";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Input } from "antd";
+import { Form } from "antd";
 import { useState } from "react";
 import Login from "./Login";
 function Auth() {
