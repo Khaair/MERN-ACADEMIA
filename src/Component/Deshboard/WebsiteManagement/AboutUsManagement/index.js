@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Layout from "../layout";
+import Layout from "../../layout";
 import axios from "axios";
 import { Button, Form, Input } from "antd";
 import { AppstoreOutlined } from "@ant-design/icons";

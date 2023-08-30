@@ -72,7 +72,7 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-      <div class="about-us-area pt-[100px]">
+      <div class="about-us-area pt-[100px]  pb-[100px]">
         <div class="bootstrap-container">
           <div class="container">
             <div class="row">

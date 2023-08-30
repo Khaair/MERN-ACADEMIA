@@ -57,7 +57,7 @@ const AddStudent = () => {
   };
   return (
     <div class="add-student-area">
-      <div class="add-student-wrapper pt-3">
+      <div class="add-student-wrapper">
         <div className="card-title custom-button">
           <AppstoreOutlined style={{ fontSize: "20px" }} />
           Student Management
@@ -74,7 +74,7 @@ const AddStudent = () => {
           </Button>
         </div>
       </div>
-      <hr className="mt-3" />
+      <hr style={{ height: "0.5px" }} className="mt-2" />
 
       <Modal
         title="Add New Student"

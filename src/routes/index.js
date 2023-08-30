@@ -22,7 +22,9 @@ import QuizManage from "../Component/Deshboard/QuizManagement";
 import TecherManagement from "../Component/Deshboard/TeacherManagement";
 import UserAuth from "../Component/UserEnd/auth";
 import UserPrivateRoute from "../Component/UserEnd/auth/private-route";
-import AboutUsManagement from "../Component/Deshboard/AboutUsManagement";
+import AboutUsManagement from "../Component/Deshboard/WebsiteManagement/AboutUsManagement";
+import SlideManagement from "../Component/Deshboard/WebsiteManagement/SlideManagement";
+
 import AboutUs from "../Component/UserEnd/about-us";
 import Mission from "../Component/UserEnd/about-us/mission";
 import Vission from "../Component/UserEnd/about-us/vission";
@@ -142,6 +144,15 @@ const RoutesMain = () => {
           element={
             <PrivateRoute>
               <AboutUsManagement />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/slide-manage"
+          element={
+            <PrivateRoute>
+              <SlideManagement />
             </PrivateRoute>
           }
         />

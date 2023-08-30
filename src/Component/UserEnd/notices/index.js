@@ -1,83 +1,76 @@
-import React from "react";
-import Layout from "../Layout";
-import { CloudDownloadOutlined } from "@ant-design/icons";
-const Notices = () => {
-  return (
-    <Layout>
-      <div class="career-goal-title-area bg-[url('/uploads/header-image.jpg')] flex text-center items-center justify-center h-[170px] bg-center bg-no-repeat bg-cover">
-        <div class="bootstrap-container">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-12 text-center">
-                <h2 className="text-white">Notices</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="notices-area pt-[100px]">
-        <div class="bootstrap-container">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6 mb-3">
-                <div className="flex bg-[#06BBCC] text-white  p-3">
-                  <div className="bg-[white] p-2  w-[70px]">
-                    <p> 28 Mar</p>
-                  </div>
-                  <div className="ml-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </div>
-                  <div class="ml-3 text-white">
-                    <CloudDownloadOutlined />
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 mb-3">
-                <div className="flex bg-[#06BBCC] text-white  p-3">
-                  <div className="bg-[white] p-2  w-[70px]">
-                    <p> 28 Mar</p>
-                  </div>
-                  <div className="ml-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </div>
-                  <div class="ml-3 text-white">
-                    <CloudDownloadOutlined />
-                  </div>
-                </div>
-              </div>
+import React, { useState } from "react";
+import {
+  DesktopOutlined,
+  FileOutlined,
+  PieChartOutlined,
+  TeamOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Layout, Menu, theme } from "antd";
+import { Link } from "react-router-dom";
+import SubMenu from "antd/es/menu/SubMenu";
+const { Sider } = Layout;
+function getItem(label, key, icon, children) {
+  return {
+    key,
+    icon,
+    children,
+    label,
+  };
+}
 
-              <div class="col-lg-6 mb-3">
-                <div className="flex bg-[#06BBCC] text-white  p-3">
-                  <div className="bg-[white] p-2  w-[70px]">
-                    <p> 28 Mar</p>
-                  </div>
-                  <div className="ml-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </div>
-                  <div class="ml-3 text-white">
-                    <CloudDownloadOutlined />
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 mb-3">
-                <div className="flex bg-[#06BBCC] text-white  p-3">
-                  <div className="bg-[white] p-2  w-[70px]">
-                    <p> 28 Mar</p>
-                  </div>
-                  <div className="ml-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </div>
-                  <div class="ml-3 text-white">
-                    <CloudDownloadOutlined />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+const Notices = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+
+  const items = [
+    getItem("Option 1", "about", <PieChartOutlined />),
+    getItem("Option 2", "2", <DesktopOutlined />),
+    getItem("User", "sub1", <UserOutlined />, [
+      getItem("Tom", "3"),
+      getItem("Bill", "4"),
+      getItem("Alex", "5"),
+    ]),
+    getItem("Team", "sub2", <TeamOutlined />, [
+      getItem("Team 1", "6"),
+      getItem("Team 2", "8"),
+    ]),
+    getItem("Files", "9", <FileOutlined />),
+  ];
+  return (
+    <Layout
+      style={{
+        minHeight: "100vh",
+      }}
+    >
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}
+      >
+        {/* ... your Sider content */}
+        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+          {items.map((item) =>
+            item.children ? (
+              <SubMenu key={item.key} icon={item.icon} title={item.label}>
+                {item.children.map((childItem) => (
+                  <Menu.Item key={childItem.key}>
+                    <Link to={`/${childItem.key}`}>{childItem.label}</Link>
+                  </Menu.Item>
+                ))}
+              </SubMenu>
+            ) : (
+              <Menu.Item key={item.key} icon={item.icon}>
+                <Link to={`/${item.key}`}>{item.label}</Link>
+              </Menu.Item>
+            )
+          )}
+        </Menu>
+      </Sider>
+      <Layout>hii</Layout>
     </Layout>
   );
 };
-
 export default Notices;

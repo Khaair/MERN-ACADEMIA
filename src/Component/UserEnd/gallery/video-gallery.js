@@ -15,32 +15,30 @@ const VideoGallery = () => {
           </div>
         </div>
       </div>
-      <div class="career-goal-title-area mt-5">
+      <div class="career-goal-title-area pt-[100px]  pb-[100px]">
         <div class="bootstrap-container">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6">
-                <iframe
-                  className="w-full"
-                  height="315"
-                  src="https://www.youtube.com/embed/zWlXJPTb_Vk?si=VFKOeNYF3Mio09Sj"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <div class="col-lg-6">
-                <iframe
-                  className="w-full"
-                  height="315"
-                  src="https://www.youtube.com/embed/zWlXJPTb_Vk?si=VFKOeNYF3Mio09Sj"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <iframe
+                className="w-full"
+                height="315"
+                src="https://www.youtube.com/embed/zWlXJPTb_Vk?si=VFKOeNYF3Mio09Sj"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="col-lg-6">
+              <iframe
+                className="w-full"
+                height="315"
+                src="https://www.youtube.com/embed/zWlXJPTb_Vk?si=VFKOeNYF3Mio09Sj"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
             </div>
           </div>
         </div>
