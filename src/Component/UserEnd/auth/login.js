@@ -103,7 +103,7 @@ function Login() {
               <Form.Item>
                 <button
                   onClick={sendDatatoApp}
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm"
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm mt-2"
                 >
                   Login
                 </button>

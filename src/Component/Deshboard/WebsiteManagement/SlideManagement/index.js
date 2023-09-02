@@ -13,7 +13,7 @@ function SlideManagement() {
   const fetchdata = async () => {
     try {
       const datahere = await axios.get(
-        "http://localhost:8080/api/teacher-manage/teacher-show"
+        `${process.env.REACT_APP_COURSE}/slide/slide-show`
       );
       setData(datahere.data);
     } catch (err) {
@@ -38,6 +38,8 @@ function SlideManagement() {
   const fetchSetData = (e) => {
     setData(e);
   };
+
+  console.log("Fetching", data);
 
   return (
     <Layout>

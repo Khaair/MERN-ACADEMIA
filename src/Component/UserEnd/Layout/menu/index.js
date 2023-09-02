@@ -1,10 +1,11 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Dialog, Disclosure, Popover } from "@headlessui/react";
 import {
   AlignRightOutlined,
   ArrowRightOutlined,
   CaretDownOutlined,
   AppstoreOutlined,
+  Avatar,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Tooltip } from "antd";
@@ -89,8 +90,16 @@ function classNames(...classes) {
 
 export default function Menu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const options = ["Show", "Hide", "Center"];
   const [arrow, setArrow] = useState("Show");
+  const [userData, setUserData] = useState("");
+  const options = ["Show", "Hide", "Center"];
+
+  useEffect(() => {
+    const userLogedinData = localStorage.getItem("userLogedinData");
+    const fetchLogedinData = JSON.parse(userLogedinData);
+    setUserData(fetchLogedinData);
+    console.log("userLogedinData", userLogedinData);
+  }, []);
   const mergedArrow = useMemo(() => {
     if (arrow === "Hide") {
       return false;
@@ -200,6 +209,21 @@ export default function Menu() {
                   >
                     Notices
                   </Link>
+                  {userData ? (
+                    <Link
+                      className="text-sm font-semibold leading-6  hover:text-[#06BBCC]"
+                      to="/student-profile"
+                    >
+                      profile
+                    </Link>
+                  ) : (
+                    <Link
+                      className="text-sm font-semibold leading-6  hover:text-[#06BBCC]"
+                      to="/user-auth"
+                    >
+                      Log in
+                    </Link>
+                  )}
                 </Popover.Group>
               </nav>
               <Dialog

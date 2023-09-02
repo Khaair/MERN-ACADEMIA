@@ -93,7 +93,11 @@ const deshboardManagementRoutes = require("./app/routes/deshboardManagementRoute
 const teacherManagementRoutes = require("./app/routes/teacherManagementRoutes");
 const studentProfileRoutes = require("./app/routes/studentProfileRoutes");
 const studentProfilePictureRoutes = require("./app/routes/studentProfilePictureRoutes");
-const schoolAboutUsRoutes = require("./app/routes/school-about-us");
+const schoolAboutUsRoutes = require("./app/routes/website/school-about-us");
+const slideRoutes = require("./app/routes/website/slideManagementRoutes");
+const speechRoutes = require("./app/routes/website/speechManagementRoutes");
+const noticesRoutes = require("./app/routes/website/noticesManagementRoutes");
+const missionVissionRoutes = require("./app/routes/website/missionVissionManagement");
 
 app.use("/api/student-manage", studentManagementRoutes);
 app.use("/api/get-user", routesuserget);
@@ -107,6 +111,10 @@ app.use("/api/teacher-manage", teacherManagementRoutes);
 app.use("/api/student-profile", studentProfileRoutes);
 app.use("/api/student-profile-picture", studentProfilePictureRoutes);
 app.use("/api/school-about-us", schoolAboutUsRoutes);
+app.use("/api/slide", slideRoutes);
+app.use("/api/speech", speechRoutes);
+app.use("/api/notices", noticesRoutes);
+app.use("/api/mission-vission", missionVissionRoutes);
 
 //http://localhost:8080/api/auth/signup
 

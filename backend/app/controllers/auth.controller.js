@@ -27,7 +27,6 @@ exports.signup = [
     const user = new User({
       username: req.body.username,
       email: req.body.email,
-      address: req.body.address,
       password: bcrypt.hashSync(req.body.password, 8),
     });
 
@@ -55,7 +54,10 @@ exports.signup = [
                 return;
               }
 
-              res.send({ message: "User was registered successfully!" });
+              res.send({
+                _id: user?._id,
+                message: "User was registered successfully!",
+              });
             });
           }
         );
@@ -73,7 +75,10 @@ exports.signup = [
               return;
             }
 
-            res.send({ message: "User was registered successfully!" });
+            res.send({
+              _id: user?._id,
+              message: "User was registered successfully!",
+            });
           });
         });
       }

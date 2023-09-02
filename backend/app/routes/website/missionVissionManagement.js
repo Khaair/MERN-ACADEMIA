@@ -1,27 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const aboutUsModel = require("../models/school-about-us-model");
+const missionVissionModel = require("../../models/website/missionVissionManagement");
 const { check, validationResult } = require("express-validator");
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
-router.get("/school-about-us-show", async (req, res) => {
+router.get("/mission-vission-show", async (req, res) => {
   try {
-    let data = await aboutUsModel.find();
+    let data = await missionVissionModel.find();
     res.send(data);
   } catch (err) {
     res.status(500).send({ msg: "Error retrieving data" });
   }
 });
 
-// Create or update student
 router.post(
-  "/school-about-us-save",
+  "/mission-vission-save",
   [
-    check("title").not().isEmpty().withMessage("title is required"),
-    check("description").not().isEmpty().withMessage("description is required"),
-    // Add more validation checks as needed
+    check("mission").not().isEmpty().withMessage("mission is required"),
+    check("vission").not().isEmpty().withMessage("vission is required"),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -30,27 +28,27 @@ router.post(
     }
 
     try {
-      const aboutUsData = {
-        title: req.body.title,
-        description: req.body.description,
+      const missionVissionData = {
+        mission: req.body.mission,
+        vission: req.body.vission,
       };
 
       let savedData;
       if (req.body.id) {
-        savedData = await aboutUsModel.findByIdAndUpdate(
+        savedData = await missionVissionModel.findByIdAndUpdate(
           req.body.id,
-          aboutUsData,
+          missionVissionData,
           { new: true }
         );
       } else {
-        const newStudent = new aboutUsModel(aboutUsData);
+        const newStudent = new missionVissionModel(missionVissionData);
         savedData = await newStudent.save();
       }
 
       res.status(200).json({
         data: savedData,
         status: "200",
-        message: "About data saved successfully",
+        message: "mission and vission saved successfully",
       });
     } catch (err) {
       res.status(500).send({ msg: "Error saving/updating student data" });

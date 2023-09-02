@@ -18,6 +18,8 @@ import CourseManagement from "../Component/Deshboard/CourseManagement";
 import OrderManage from "../Component/Deshboard/OrderManagement";
 import ResultManagement from "../Component/Deshboard/ResultManagement";
 import StudentManage from "../Component/Deshboard/StudentManagement";
+import StudentRegistration from "../Component/Deshboard/StudentManagement/studentRegistration";
+
 import QuizManage from "../Component/Deshboard/QuizManagement";
 import TecherManagement from "../Component/Deshboard/TeacherManagement";
 import UserAuth from "../Component/UserEnd/auth";
@@ -36,6 +38,10 @@ import TeacherList from "../Component/Deshboard/TeacherManagement/list";
 import TeacherListWebView from "../Component/UserEnd/administration/teacher-list-web-view";
 import Contact from "../Component/UserEnd/contact";
 import Notices from "../Component/UserEnd/notices";
+import SpeechManagement from "../Component/Deshboard/WebsiteManagement/SpeechManagement";
+import FacilitesManagement from "../Component/Deshboard/WebsiteManagement/FacilitiesManagement";
+import NoticesManagement from "../Component/Deshboard/WebsiteManagement/NoticesManagement";
+import MissionVissionManagement from "../Component/Deshboard/WebsiteManagement/MissionVissionManagement";
 
 const RoutesMain = () => {
   return (
@@ -107,6 +113,14 @@ const RoutesMain = () => {
           }
         />
         <Route
+          path="/student-registration"
+          element={
+            <PrivateRoute>
+              <StudentRegistration />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/course-manage"
           element={
             <PrivateRoute>
@@ -140,6 +154,15 @@ const RoutesMain = () => {
         />
 
         <Route
+          path="/slide-manage"
+          element={
+            <PrivateRoute>
+              <SlideManagement />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
           path="/about-us-manage"
           element={
             <PrivateRoute>
@@ -149,10 +172,36 @@ const RoutesMain = () => {
         />
 
         <Route
-          path="/slide-manage"
+          path="/speech-manage"
           element={
             <PrivateRoute>
-              <SlideManagement />
+              <SpeechManagement />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/facilites-manage"
+          element={
+            <PrivateRoute>
+              <FacilitesManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/notices-manage"
+          element={
+            <PrivateRoute>
+              <NoticesManagement />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/mission-vission-manage"
+          element={
+            <PrivateRoute>
+              <MissionVissionManagement />
             </PrivateRoute>
           }
         />

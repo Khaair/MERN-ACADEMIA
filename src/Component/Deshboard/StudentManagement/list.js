@@ -178,12 +178,14 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
       <table>
         <thead>
           <tr>
-            <th scope="col">StudentId</th>
-            <th scope="col">Name</th>
+            <th scope="col">Student reg id</th>
+            <th scope="col">User name</th>
             <th scope="col">Email</th>
+            <th scope="col">Password</th>
             <th scope="col">Phone</th>
             <th scope="col">Gender</th>
-            <th scope="col">Student Id</th>
+            <th scope="col">Address</th>
+
             <th scope="col">Image</th>
             {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
               <th scope="col">Action</th>
@@ -194,12 +196,13 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
           {filterData.length > 0
             ? filterData
                 ?.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-                .map((el, ind) => {
+                ?.map((el, ind) => {
                   return (
                     <tr key={ind}>
-                      <td>{el?.studentId}</td>
-                      <td>{el?.name}</td>
+                      <td>{el?.studentRegId}</td>
+                      <td>{el?.fullName}</td>
                       <td>{el?.email}</td>
+                      <td>{el?.password}</td>
                       <td>{el?.phoneNumber}</td>
                       <td>{el?.gender}</td>
                       <td>{el?.address}</td>
@@ -242,22 +245,27 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
                 })
             : list
                 ?.filter((el) =>
-                  el.name.toLowerCase().includes(searchValue.toLowerCase())
+                  el.fullName
+                    ?.toLowerCase()
+                    ?.includes(searchValue?.toLowerCase())
                 )
                 .slice((currentPage - 1) * pageSize, currentPage * pageSize)
                 .map((el, ind) => {
                   if (
                     searchValue &&
-                    el?.name &&
-                    !el?.name.toLowerCase().includes(searchValue.toLowerCase())
+                    el?.fullName &&
+                    !el?.fullName
+                      ?.toLowerCase()
+                      ?.includes(searchValue.toLowerCase())
                   ) {
                     return null; // If searchValue is provided and name doesn't match, skip rendering
                   }
                   return (
                     <tr key={ind}>
-                      <td>{el?.studentId}</td>
-                      <td>{el?.name}</td>
+                      <td>{el?.studentRegId}</td>
+                      <td>{el?.fullName}</td>
                       <td>{el?.email}</td>
+                      <td>{el?.password}</td>
                       <td>{el?.phoneNumber}</td>
                       <td>{el?.gender}</td>
                       <td>{el?.address}</td>

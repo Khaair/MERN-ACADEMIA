@@ -44,15 +44,12 @@ function UserAuth() {
   return (
     <>
       <Layout>
-        <div className="login-area">
-          <div className="container">
-            <div className="login-card">
+        <div className="login-area pt-[100px]  pb-[100px]">
+          <div className="bootstrap-container flex justify-center">
+            <div className="shadow-lg p-4 w-1/2  bg-[#F0FBFC] rounded">
               <div className="row">
-                <div className="col-lg-6">
+                <div className="col-lg-12">
                   <Login />
-                </div>
-                <div class="col-lg-6">
-                  <SignUp />
                 </div>
               </div>
             </div>

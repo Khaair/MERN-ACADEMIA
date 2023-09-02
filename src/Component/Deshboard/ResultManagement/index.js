@@ -202,26 +202,19 @@ function ResultManagement() {
   return (
     <Layout>
       <div class="academia-management-area">
-        {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-          <div class="row">
-            <div class="col-lg-12 ">
-              <div class="card-title-section">
-                <div class="add-student-wrapper">
-                  <div className="card-title">Result Management</div>
-                  <div>
-                    <Button onClick={showModal} type="primary" ghost>
-                      Add Result
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
+              <div class="add-student-wrapper">
+                <div className="card-title">Result Management</div>
+                <div>
+                  {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
+                    <Button onClick={showModal} type="primary" ghost>
+                      Add Result
+                    </Button>
+                  )}
+                </div>
+              </div>
               <table>
                 <thead>
                   <tr>

@@ -1,5 +1,5 @@
 import { Button, DatePicker, Form, Input, Modal, Select, Upload } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchAllStudents } from "../../../statement-management/slices/studentSlices";
 import { useDispatch } from "react-redux";
 import { AppstoreOutlined, PlusCircleOutlined } from "@ant-design/icons";
@@ -7,6 +7,8 @@ const { Option } = Select;
 
 const AddStudent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [studentRegId, setStudentRegId] = useState("");
+
   const [form] = Form.useForm();
 
   const dispatch = useDispatch();
@@ -24,19 +26,20 @@ const AddStudent = () => {
   };
 
   const handleSubmit = async (e) => {
+    const studentRegId = localStorage.getItem("studentRegId");
+    const fetchstudentRegId = JSON.parse(studentRegId);
     e.preventDefault();
     try {
       const values = await form.validateFields();
       const formData = new FormData();
-      formData.append("name", values.name);
+      formData.append("fullName", values.fullName);
       formData.append("email", values.email);
+      formData.append("password", values.password);
       formData.append("phoneNumber", values.phoneNumber);
-      formData.append("courseId", values.courseId);
-      formData.append("studentId", values.studentId);
+      formData.append("studentRegId", fetchstudentRegId);
       formData.append("dob", values.dob);
       formData.append("address", values.address);
       formData.append("gender", values.gender);
-
       formData.append("file", values.file[0].originFileObj);
       const res = await fetch(
         "http://localhost:8080/api/student-manage/student-save",
@@ -55,6 +58,7 @@ const AddStudent = () => {
       console.log("Failed:", errorInfo);
     }
   };
+
   return (
     <div class="add-student-area">
       <div class="add-student-wrapper">
@@ -97,12 +101,12 @@ const AddStudent = () => {
                     <div class="row">
                       <div class="col-lg-6">
                         <Form.Item
-                          name="name"
-                          label="Name"
+                          name="fullName"
+                          label="User Name"
                           rules={[
                             {
                               required: true,
-                              message: "Please input the name!",
+                              message: "Please input the user name!",
                             },
                           ]}
                         >
@@ -121,6 +125,18 @@ const AddStudent = () => {
                           <Input placeholder="Email" />
                         </Form.Item>
                         <Form.Item
+                          label="Password"
+                          name="password"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input the password!",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="Password" />
+                        </Form.Item>
+                        <Form.Item
                           label="Phone No"
                           name="phoneNumber"
                           rules={[
@@ -131,30 +147,6 @@ const AddStudent = () => {
                           ]}
                         >
                           <Input placeholder="Phone Number" />
-                        </Form.Item>
-                        <Form.Item
-                          label="Course Id"
-                          name="courseId"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the courseId!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="courseId" />
-                        </Form.Item>
-                        <Form.Item
-                          label="Student Id"
-                          name="studentId"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the studentId!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="studentId" />
                         </Form.Item>
                       </div>
 
