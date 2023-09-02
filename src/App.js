@@ -23,4 +23,4 @@ function App() {
 
 export default App;
 
-//school website
+//school management system
