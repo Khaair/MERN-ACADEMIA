@@ -1,14 +1,7 @@
 import React from "react";
 import { Carousel } from "antd";
 
-const contentStyle: React.CSSProperties = {
-  height: "600px",
-  color: "#fff",
-  lineHeight: "40px",
-  textAlign: "left",
-};
-
-const CarouselEx: React.FC = () => (
+const CarouselEx = () => (
   <Carousel autoplay>
     <div className="bg-[url('/uploads/edu-banner-01.png')] h-[700px] text-white bg-center bg-no-repeat bg-cover">
       <div class="banner-content-area pt-[100px]">

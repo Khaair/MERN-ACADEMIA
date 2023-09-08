@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import Layout from "../../layout";
-import AddTeacher from "./add";
-import TeacherList from "./list";
 import axios from "axios";
 import AddSlide from "./add";
 import SlideList from "./list";

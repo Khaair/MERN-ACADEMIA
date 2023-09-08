@@ -1,6 +1,5 @@
 import React from "react";
 import CountUp from "react-countup";
-import { useQuery } from "react-query";
 import {
   CloudDownloadOutlined,
   HomeOutlined,
@@ -9,22 +8,9 @@ import {
   BookOutlined,
 } from "@ant-design/icons";
 
-import Layout from "./Layout";
-import Carousel from "./carousel";
-
+import Layout from "../Layout";
+import Carousel from "../carousel";
 export default function Home() {
-  const fetchData = async () => {
-    const response = await fetch(
-      "http://localhost:8080/api/course-manage/course-show"
-    );
-    return response.json();
-  };
-  const { data, status } = useQuery("data", fetchData, {
-    refetchOnWindowFocus: true,
-  });
-
-  console.log("datadatadata", data);
-
   return (
     <Layout>
       <Carousel />
@@ -82,7 +68,6 @@ export default function Home() {
             <div class="col-lg-6 mb-3">
               <div className="p-4 w-full course-card bg-[#f0fbfc] rounded overflow-hidden shadow-lg">
                 <h3 className="text-[#06BBCC]">Message from head master</h3>
-
                 <div className="flex mt-3">
                   <div className="w-[150px]">
                     <div className="h-[150px] w-[150px]">

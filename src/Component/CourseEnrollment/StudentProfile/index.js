@@ -1,31 +1,17 @@
 import React, { useEffect, useState } from "react";
 import StudentDeshboardLayout from "../Layout";
-import { Form, Select, Tabs } from "antd";
-
-import { AppstoreOutlined } from "@ant-design/icons";
+import { Tabs } from "antd";
 import axios from "axios";
-import AddProfilePic from "./add-profile-picture";
 import TabPane from "antd/es/tabs/TabPane";
-const { Option } = Select;
-
 export default function StudentProfile() {
   const [userData, setUserData] = useState("");
-  const [singleDataId, setSingleDataId] = useState("");
   const [singleData, setSingleData] = useState([]);
-  const [message, setMessage] = useState("");
-  const [form] = Form.useForm();
-
   useEffect(() => {
     const userLogedinData = localStorage.getItem("userLogedinData");
     const fetchLogedinData = JSON.parse(userLogedinData);
     setUserData(fetchLogedinData);
-    console.log("userLogedinData", userLogedinData);
   }, []);
-
   const studentRegId = userData?.id;
-
-  console.log("studentRegId", studentRegId);
-
   const fetchSingleData = async () => {
     try {
       let singleData = await axios.get(
@@ -33,11 +19,8 @@ export default function StudentProfile() {
       );
 
       if (singleData) {
-        console.log("sid", singleData?.data);
-        setSingleDataId(singleData?.data?._id);
         setSingleData(singleData?.data);
       }
-      console.log("singleData", singleData);
     } catch (err) {
       console.log(err);
     }
@@ -46,10 +29,6 @@ export default function StudentProfile() {
   useEffect(() => {
     fetchSingleData();
   }, [studentRegId]);
-
-  function callback(key) {
-    console.log(key);
-  }
 
   return (
     <StudentDeshboardLayout>
@@ -71,7 +50,7 @@ export default function StudentProfile() {
                 </div>
               </div>
               <div>
-                <Tabs defaultActiveKey="1" onChange={callback}>
+                <Tabs defaultActiveKey="1">
                   <TabPane tab="Overview" key="1">
                     <div class="row">
                       <div class="col-lg-12">

@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Auth from "../component/Authentication";
-import Home from "../component/UserEnd/Home";
 import CourseDetails from "../component/UserEnd/CourseDetails";
 import CheckOut from "../component/UserEnd/CheckOut";
 import SkillTest from "../component/UserEnd/SkillTest";
@@ -38,6 +37,7 @@ import NoticesManagement from "../component/Deshboard/WebsiteManagement/NoticesM
 import MissionVissionManagement from "../component/Deshboard/WebsiteManagement/MissionVissionManagement";
 import ImageGalleryManagement from "../component/Deshboard/WebsiteManagement/ImageGalleryManagement";
 import VideoGalleryManagement from "../component/Deshboard/WebsiteManagement/VideoGalleryManagement";
+import Home from "../component/UserEnd/home";
 
 const RoutesMain = () => {
   return (
@@ -64,7 +64,6 @@ const RoutesMain = () => {
         <Route path="/teacher-list-show" element={<TeacherListWebView />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/notices" element={<Notices />} />
-        <Route path="/teacher-manage" element={<TecherManagement />} />
         {/*Userend Public Route End */}
 
         {/* Userend Private Route start */}
@@ -101,6 +100,14 @@ const RoutesMain = () => {
           element={
             <PrivateRoute>
               <DeshboardManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/teacher-manage"
+          element={
+            <PrivateRoute>
+              <TecherManagement />
             </PrivateRoute>
           }
         />

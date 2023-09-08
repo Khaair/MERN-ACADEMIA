@@ -1,24 +1,7 @@
 import React from "react";
 import Layout from "../Layout";
-import { useState } from "react";
 import { Image } from "antd";
-
 const ImageGallery = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const [image, setImage] = useState(false);
-  const [toggled, setToggled] = useState(false);
-
-  const handleCollapsedChange = () => {
-    setCollapsed(!collapsed);
-  };
-
-  const handleImageChange = (checked) => {
-    setImage(checked);
-  };
-
-  const handleToggleSidebar = (value) => {
-    setToggled(value);
-  };
   return (
     <Layout>
       <div class="career-goal-title-area bg-[url('/uploads/header-image.jpg')] flex text-center items-center justify-center h-[170px] bg-center bg-no-repeat bg-cover">

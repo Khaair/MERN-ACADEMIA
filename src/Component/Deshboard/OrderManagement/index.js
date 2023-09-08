@@ -1,20 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Layout from "../layout";
-import { Form, Input, Upload, Button, notification, Modal } from "antd";
-import {
-  SmileOutlined,
-  EditOutlined,
-  DeleteOutlined,
-  MailOutlined,
-} from "@ant-design/icons";
+import { Form, Input, Button, notification, Modal } from "antd";
+import { SmileOutlined, DeleteOutlined, MailOutlined } from "@ant-design/icons";
 
 function OrderManage() {
   const [data, setData] = useState([]);
 
   const [transactionIdData, setTransactionIdData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  console.log("transactionIdData", transactionIdData);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isTransactionIdModalOpen, setIsTransactionIdModalOpen] =
     useState(false);
