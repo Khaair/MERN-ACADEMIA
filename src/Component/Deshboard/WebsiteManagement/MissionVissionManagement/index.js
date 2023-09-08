@@ -85,7 +85,7 @@ function MissionVissionManagement() {
                   <div class="add-student-wrapper pt-3">
                     <div className="card-title custom-button">
                       <AppstoreOutlined style={{ fontSize: "20px" }} />
-                      Mission and Vission management
+                      <div class="ml-5">Mission and Vission management</div>
                     </div>
                   </div>
                   <hr className="mt-3" />

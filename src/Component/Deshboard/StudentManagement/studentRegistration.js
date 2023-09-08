@@ -57,7 +57,7 @@ export default function StuudentReg() {
       <div class="add-student-wrapper">
         <div className="card-title custom-button">
           <AppstoreOutlined style={{ fontSize: "20px" }} />
-          Student Registration
+          <div class="ml-5">Student Registration</div>
         </div>
       </div>
       <hr style={{ height: "0.5px" }} className="mt-2" />

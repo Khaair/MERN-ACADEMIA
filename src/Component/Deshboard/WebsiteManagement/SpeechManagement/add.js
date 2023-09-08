@@ -20,19 +20,16 @@ const AddSpeech = (props) => {
     try {
       const values = await form.validateFields();
       const formData = new FormData();
+      formData.append("title", values?.title);
+      formData.append("message", values?.message);
       formData.append("name", values?.name);
-      formData.append("email", values?.email);
-      formData.append("phoneNumber", values?.phoneNumber);
       formData.append("gender", values?.gender);
-      formData.append("teacherId", values?.teacherId);
-      formData.append("address", values?.address);
-      formData.append("subject", values?.subject);
-      formData.append("qualifications", values?.qualifications);
       formData.append("designation", values?.designation);
+      formData.append("position", values?.position);
 
       formData.append("file", values?.file[0].originFileObj);
       const res = await fetch(
-        "http://localhost:8080/api/teacher-manage/teacher-save",
+        `${process.env.REACT_APP_COURSE}/speech-manage/speech-save`,
         {
           method: "POST",
           body: formData,
@@ -54,7 +51,7 @@ const AddSpeech = (props) => {
       <div class="add-student-wrapper">
         <div className="card-title custom-button">
           <AppstoreOutlined style={{ fontSize: "20px" }} />
-          Speech Management
+          <div class="ml-5">Speech Management</div>
         </div>
         <div>
           <Button
@@ -71,7 +68,7 @@ const AddSpeech = (props) => {
       <hr style={{ height: "0.5px" }} className="mt-2" />
 
       <Modal
-        title="Add New Slide"
+        title="Add New Speech"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -84,8 +81,8 @@ const AddSpeech = (props) => {
               <div className="col-lg-12 ">
                 <Form className="form-input-item" form={form} layout="vertical">
                   <Form.Item
-                    name="topTitle"
-                    label="Top Title"
+                    name="title"
+                    label="Title"
                     rules={[
                       {
                         required: true,
@@ -93,23 +90,36 @@ const AddSpeech = (props) => {
                       },
                     ]}
                   >
-                    <Input placeholder="Top title" />
-                  </Form.Item>
-                  <Form.Item
-                    name="title"
-                    label="Title"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input the title!",
-                      },
-                    ]}
-                  >
                     <Input placeholder="Title" />
                   </Form.Item>
                   <Form.Item
-                    name="subTitle"
-                    label="Sub Title"
+                    name="name"
+                    label="Name"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the name!",
+                      },
+                    ]}
+                  >
+                    <Input placeholder="Name" />
+                  </Form.Item>
+                  <Form.Item
+                    name="designation"
+                    label="Designation"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the designation!",
+                      },
+                    ]}
+                  >
+                    <Input placeholder="Designation" />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="position"
+                    label="Position"
                     rules={[
                       {
                         required: true,
@@ -119,6 +129,19 @@ const AddSpeech = (props) => {
                   >
                     <Input placeholder="Sub Title" />
                   </Form.Item>
+                  <Form.Item
+                    name="message"
+                    label="Message"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the top title!",
+                      },
+                    ]}
+                  >
+                    <Input placeholder="Top title" />
+                  </Form.Item>
+
                   <Form.Item
                     label="Image"
                     name="file"

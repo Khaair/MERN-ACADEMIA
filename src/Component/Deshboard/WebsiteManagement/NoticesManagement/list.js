@@ -1,6 +1,6 @@
 import { Button, Form, Input, Modal, Upload, Select, Pagination } from "antd";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 const { Option } = Select;
 
 const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
@@ -152,13 +152,9 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
           <thead>
             <tr>
               <th>Sl</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Gender</th>
-              <th>TeacherId</th>
-              <th>Address</th>
-              <th>Image</th>
+              <th>Notice Title</th>
+              <th>Date</th>
+              <th>File</th>
 
               {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
                 <th>Action</th>
@@ -173,28 +169,14 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                     return (
                       <tr key={ind}>
                         <td>{ind + 1}</td>
-                        <td>{el?.name}</td>
-                        <td>{el?.email}</td>
-                        <td>{el?.phoneNumber}</td>
-                        <td>{el?.gender}</td>
-                        <td>{el?.teacherId}</td>
+                        <td>{el?.noticesTitle}</td>
+                        <td>{el?.date}</td>
+                        <td>{el?.file}</td>
 
-                        <td>{el?.address}</td>
-                        <td className="data-show-img">
-                          <img src={`/uploads/${el?.file}`} alt="" />
-                        </td>
                         {logedinData?.roles?.join("").toString() ===
                           "ROLE_ADMIN" && (
                           <td>
                             <div className="d-flex">
-                              <Button
-                                //   onClick={() => showDetailsModal(el?._id)}
-                                type="primary"
-                                ghost
-                              >
-                                Details
-                              </Button>
-
                               <Button
                                 onClick={() => showModal(el?._id)}
                                 type="primary"
@@ -219,43 +201,32 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                   })
               : data
                   ?.filter((el) =>
-                    el.name.toLowerCase().includes(searchValue.toLowerCase())
+                    el.noticesTitle
+                      ?.toLowerCase()
+                      ?.includes(searchValue?.toLowerCase())
                   )
-                  .slice((currentPage - 1) * pageSize, currentPage * pageSize)
-                  .map((el, ind) => {
+                  ?.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+                  ?.map((el, ind) => {
                     if (
                       searchValue &&
-                      el?.name &&
-                      !el?.name
-                        .toLowerCase()
-                        .includes(searchValue.toLowerCase())
+                      el?.noticesTitle &&
+                      !el?.noticesTitle
+                        ?.toLowerCase()
+                        ?.includes(searchValue?.toLowerCase())
                     ) {
-                      return null; // If searchValue is provided and name doesn't match, skip rendering
+                      return null;
                     }
                     return (
                       <tr key={ind}>
                         <td>{ind + 1}</td>
-                        <td>{el?.name}</td>
-                        <td>{el?.email}</td>
-                        <td>{el?.phoneNumber}</td>
-                        <td>{el?.gender}</td>
-                        <td>{el?.teacherId}</td>
-                        <td>{el?.address}</td>
-                        <td className="data-show-img">
-                          <img src={`/uploads/${el?.file}`} alt="" />
-                        </td>
+                        <td>{el?.noticesTitle}</td>
+                        <td>{el?.date}</td>
+                        <td>{el?.file}</td>
+
                         {logedinData?.roles?.join("").toString() ===
                           "ROLE_ADMIN" && (
                           <td>
                             <div className="d-flex">
-                              <Button
-                                //   onClick={() => showDetailsModal(el?._id)}
-                                type="primary"
-                                ghost
-                              >
-                                Details
-                              </Button>
-
                               <Button
                                 onClick={() => showModal(el?._id)}
                                 type="primary"

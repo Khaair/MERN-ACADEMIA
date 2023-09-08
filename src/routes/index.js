@@ -34,7 +34,6 @@ import ImageGallery from "../Component/UserEnd/gallery/image-gallery";
 import VideoGallery from "../Component/UserEnd/gallery/video-gallery";
 import HeadMaster from "../Component/UserEnd/administration/head-master";
 import AssHeadMaster from "../Component/UserEnd/administration/ass-head-master";
-import TeacherList from "../Component/Deshboard/TeacherManagement/list";
 import TeacherListWebView from "../Component/UserEnd/administration/teacher-list-web-view";
 import Contact from "../Component/UserEnd/contact";
 import Notices from "../Component/UserEnd/notices";
@@ -42,6 +41,8 @@ import SpeechManagement from "../Component/Deshboard/WebsiteManagement/SpeechMan
 import FacilitesManagement from "../Component/Deshboard/WebsiteManagement/FacilitiesManagement";
 import NoticesManagement from "../Component/Deshboard/WebsiteManagement/NoticesManagement";
 import MissionVissionManagement from "../Component/Deshboard/WebsiteManagement/MissionVissionManagement";
+import ImageGalleryManagement from "../Component/Deshboard/WebsiteManagement/ImageGalleryManagement";
+import VideoGalleryManagement from "../Component/Deshboard/WebsiteManagement/VideoGalleryManagement";
 
 const RoutesMain = () => {
   return (
@@ -81,17 +82,17 @@ const RoutesMain = () => {
         <Route
           path="/course-access"
           element={
-            <PrivateRoute>
+            <UserPrivateRoute>
               <CourseAccess />
-            </PrivateRoute>
+            </UserPrivateRoute>
           }
         />
         <Route
           path="/student-profile"
           element={
-            <PrivateRoute>
+            <UserPrivateRoute>
               <StudentProfile />
-            </PrivateRoute>
+            </UserPrivateRoute>
           }
         />
 
@@ -202,6 +203,22 @@ const RoutesMain = () => {
           element={
             <PrivateRoute>
               <MissionVissionManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/image-gallery-manage"
+          element={
+            <PrivateRoute>
+              <ImageGalleryManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/video-gallery-manage"
+          element={
+            <PrivateRoute>
+              <VideoGalleryManagement />
             </PrivateRoute>
           }
         />

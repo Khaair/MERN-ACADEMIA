@@ -54,7 +54,7 @@ const AddTeacher = (props) => {
       <div class="add-student-wrapper">
         <div className="card-title custom-button">
           <AppstoreOutlined style={{ fontSize: "20px" }} />
-          Teacher Management
+          <div class="ml-5">Teacher Management</div>
         </div>
         <div>
           <Button

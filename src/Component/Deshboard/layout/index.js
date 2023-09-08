@@ -46,13 +46,6 @@ const DeshboardLayout = ({ children }) => {
 
   const items = [
     getItem("Deshboard", "deshboard", <PieChartOutlined />),
-    getItem("Teacher Manage", "teacher-manage", <UserOutlined />),
-    getItem("Student Manage", "student-manage", <TeamOutlined />),
-    getItem("Course Manage", "course-manage", <CopyOutlined />),
-    getItem("Result Manage", "result-manage", <LineChartOutlined />),
-    getItem("Order Manage", "order-manage", <BlockOutlined />),
-    getItem("Quiz Manage", "quiz-manage", <QuestionCircleOutlined />),
-
     getItem("Website Manage", "sub1", <DesktopOutlined />, [
       getItem("Slide Manage", "slide-manage"),
       getItem("About Us Manage", "about-us-manage"),
@@ -64,13 +57,20 @@ const DeshboardLayout = ({ children }) => {
       getItem("Video Gallery", "video-gallery-manage"),
       getItem("Contact Manage", "contact-manage"),
     ]),
+    getItem("Teacher Manage", "teacher-manage", <UserOutlined />),
+    getItem("Student Manage", "student-manage", <TeamOutlined />),
+    getItem("Course Manage", "course-manage", <CopyOutlined />),
+    getItem("Result Manage", "result-manage", <LineChartOutlined />),
+    getItem("Order Manage", "order-manage", <BlockOutlined />),
+    getItem("Quiz Manage", "quiz-manage", <QuestionCircleOutlined />),
+
     getItem("Attendence Manage", "sub2", <TeamOutlined />, [
       getItem("Team 1", "6"),
       getItem("Team 2", "8"),
     ]),
     getItem("Fee Manage", "fee-manage", <DesktopOutlined />),
     getItem("Admission Manage", "admission-manage", <DesktopOutlined />),
-    getItem("Report Manage", "admission-manage", <DesktopOutlined />),
+    getItem("Admit card Manage", "admit-card-manage", <DesktopOutlined />),
   ];
 
   const location = useLocation();

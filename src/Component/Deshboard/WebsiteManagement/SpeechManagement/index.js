@@ -11,7 +11,7 @@ function SpeechManagement() {
   const fetchdata = async () => {
     try {
       const datahere = await axios.get(
-        "http://localhost:8080/api/teacher-manage/teacher-show"
+        `${process.env.REACT_APP_COURSE}/speech-manage/speech-show`
       );
       setData(datahere.data);
     } catch (err) {

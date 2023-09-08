@@ -13,11 +13,11 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + file.originalname);
   },
 });
-
 const upload = multer({ storage: storage });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 router.get("/speech-show", async (req, res) => {
   try {
     let data = await speechModel.find();

@@ -22,37 +22,6 @@ function Login() {
         );
         localStorage.setItem("userLogedinData", JSON.stringify(res?.data));
         navigate("/student-profile");
-
-        // try {
-        //   const values = await form.validateFields();
-        //   const formData = new FormData();
-        //   formData.append("name", res?.data?.name);
-        //   formData.append("email", res?.data?.email);
-        //   formData.append("phoneNumber", values.phoneNumber);
-        //   formData.append("courseId", values.courseId);
-        //   formData.append("dob", values.dob);
-        //   formData.append("address", values.address);
-        //   formData.append("gender", values.gender);
-        //   formData.append("file", {
-        //     uid: "rc-upload-1690571840918-3",
-        //     name: "profile-pic.png",
-        //     lastModified: 1689584335087,
-        //   });
-        //   const res = await fetch(
-        //     "http://localhost:8080/api/student-manage/student-save",
-        //     {
-        //       method: "POST",
-        //       body: formData,
-        //     }
-        //   );
-        //   const data = await res.json();
-        //   if (data?.status === "200") {
-        //     console.log("save data successfully", data);
-        //   }
-        //   console.log("data", data);
-        // } catch (errorInfo) {
-        //   console.log("Failed:", errorInfo);
-        // }
       }
 
       console.log(res, "success result");

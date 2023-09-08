@@ -54,7 +54,7 @@ const AddSlide = (props) => {
       <div class="add-student-wrapper">
         <div className="card-title custom-button">
           <AppstoreOutlined style={{ fontSize: "20px" }} />
-          Notices Management
+          <div class="ml-5">Notices Management</div>
         </div>
         <div>
           <Button

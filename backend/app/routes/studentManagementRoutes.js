@@ -13,11 +13,12 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + file.originalname);
   },
 });
-
 const upload = multer({ storage: storage });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//students get route
 router.get("/student-show", async (req, res) => {
   try {
     let data = await studentModel.find();
@@ -27,9 +28,9 @@ router.get("/student-show", async (req, res) => {
   }
 });
 
+//students post route
 router.post(
   "/student-save",
-
   upload.single("file"),
   [
     check("fullName").not().isEmpty().withMessage("fullName is required"),
@@ -113,6 +114,7 @@ router.route("/show-single-student/:id").get(async (req, res, next) => {
   }
 });
 
+//single student delete route
 router.delete("/student-delete/:id", async (req, res) => {
   try {
     let data = await studentModel.deleteOne({ _id: req.params.id });
@@ -128,6 +130,7 @@ router.delete("/student-delete/:id", async (req, res) => {
   }
 });
 
+//single student update route
 router.post(
   "/update-student/:id",
   upload.single("file"),

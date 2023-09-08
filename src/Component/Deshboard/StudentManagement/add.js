@@ -64,7 +64,7 @@ const AddStudent = () => {
       <div class="add-student-wrapper">
         <div className="card-title custom-button">
           <AppstoreOutlined style={{ fontSize: "20px" }} />
-          Student Management
+          <div class="ml-5">Student Management</div>
         </div>
         <div>
           <Button

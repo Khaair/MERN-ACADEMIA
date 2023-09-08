@@ -67,7 +67,7 @@ export default function StudentProfile() {
                 </div>
                 <div className="ml-2">
                   <h2>{singleData?.fullName}</h2>
-                  <h4>{singleData?.address}</h4>
+                  <h5>{singleData?.address}</h5>
                 </div>
               </div>
               <div>
