@@ -8,7 +8,6 @@ import {
   DeleteOutlined,
   MailOutlined,
 } from "@ant-design/icons";
-import EditForm from "../EditForm";
 
 function OrderManage() {
   const [data, setData] = useState([]);
@@ -293,17 +292,6 @@ function OrderManage() {
             </div>
           </div>
         </div>
-
-        <Modal
-          title="Update Student Info"
-          open={isEditModalOpen}
-          onOk={handleEditOk}
-          onCancel={handleEditCancel}
-          width={600}
-          footer={false}
-        >
-          <EditForm studentId={studentId} />
-        </Modal>
 
         <Modal
           title="Add TransactionId"

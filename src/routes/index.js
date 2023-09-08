@@ -1,9 +1,6 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Auth from "../Component/Authentication";
-import EditForm from "../Component/Deshboard/EditForm";
-import SignUp from "../Component/Authentication/SignUp";
-import { Bars } from "react-loader-spinner";
 import Home from "../Component/UserEnd/Home";
 import CourseDetails from "../Component/UserEnd/CourseDetails";
 import CheckOut from "../Component/UserEnd/CheckOut";
@@ -19,14 +16,12 @@ import OrderManage from "../Component/Deshboard/OrderManagement";
 import ResultManagement from "../Component/Deshboard/ResultManagement";
 import StudentManage from "../Component/Deshboard/StudentManagement";
 import StudentRegistration from "../Component/Deshboard/StudentManagement/studentRegistration";
-
 import QuizManage from "../Component/Deshboard/QuizManagement";
 import TecherManagement from "../Component/Deshboard/TeacherManagement";
 import UserAuth from "../Component/UserEnd/auth";
 import UserPrivateRoute from "../Component/UserEnd/auth/private-route";
 import AboutUsManagement from "../Component/Deshboard/WebsiteManagement/AboutUsManagement";
 import SlideManagement from "../Component/Deshboard/WebsiteManagement/SlideManagement";
-
 import AboutUs from "../Component/UserEnd/about-us";
 import Mission from "../Component/UserEnd/about-us/mission";
 import Vission from "../Component/UserEnd/about-us/vission";
@@ -48,37 +43,31 @@ const RoutesMain = () => {
   return (
     <div>
       <Routes>
-        <Route path="/admin" element={<Auth />} />
-
-        <Route path="/edit/:id" element={<EditForm />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route
-          path="/"
-          element={
-            <Suspense
-              fallback={
-                <div className="ecommerce-loader-wrapper">
-                  <Bars
-                    height="100"
-                    width="100"
-                    color="#4fa94d"
-                    ariaLabel="bars-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                  />
-                </div>
-              }
-            >
-              <Home />
-            </Suspense>
-          }
-        />
+        {/* Course Public Route Start */}
         <Route path="/course-details/:id" element={<CourseDetails />} />
         <Route path="/course-checkout/:id" element={<CheckOut />} />
         <Route path="/skill-test" element={<SkillTest />} />
-        {/* <Route path="/course-login" element={<CourseLogin />} /> */}
+        <Route path="/tutorials" element={<Tutorials />} />
+        {/*Course Public Route End */}
 
+        {/* Userend Public Route Start */}
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Auth />} />
+        <Route path="/user-auth" element={<UserAuth />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/mission" element={<Mission />} />
+        <Route path="/vission" element={<Vission />} />
+        <Route path="/image-gallery" element={<ImageGallery />} />
+        <Route path="/video-gallery" element={<VideoGallery />} />
+        <Route path="/head-master-speech" element={<HeadMaster />} />
+        <Route path="/ass-head-master-speech" element={<AssHeadMaster />} />
+        <Route path="/teacher-list-show" element={<TeacherListWebView />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/notices" element={<Notices />} />
+        <Route path="/teacher-manage" element={<TecherManagement />} />
+        {/*Userend Public Route End */}
+
+        {/* Userend Private Route start */}
         <Route
           path="/course-access"
           element={
@@ -96,7 +85,17 @@ const RoutesMain = () => {
           }
         />
 
-        <Route path="/tutorials" element={<Tutorials />} />
+        <Route
+          path="/course-deshboard"
+          element={
+            <UserPrivateRoute>
+              <CourseDeshboard />
+            </UserPrivateRoute>
+          }
+        />
+        {/* Userend Private Route end */}
+
+        {/* Deshboard Private Route Start */}
         <Route
           path="/deshboard"
           element={
@@ -162,7 +161,6 @@ const RoutesMain = () => {
             </PrivateRoute>
           }
         />
-
         <Route
           path="/about-us-manage"
           element={
@@ -171,7 +169,6 @@ const RoutesMain = () => {
             </PrivateRoute>
           }
         />
-
         <Route
           path="/speech-manage"
           element={
@@ -180,7 +177,6 @@ const RoutesMain = () => {
             </PrivateRoute>
           }
         />
-
         <Route
           path="/facilites-manage"
           element={
@@ -197,7 +193,6 @@ const RoutesMain = () => {
             </PrivateRoute>
           }
         />
-
         <Route
           path="/mission-vission-manage"
           element={
@@ -222,30 +217,7 @@ const RoutesMain = () => {
             </PrivateRoute>
           }
         />
-
-        <Route
-          path="/course-deshboard"
-          element={
-            <UserPrivateRoute>
-              <CourseDeshboard />
-            </UserPrivateRoute>
-          }
-        />
-
-        <Route path="/user-auth" element={<UserAuth />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/mission" element={<Mission />} />
-        <Route path="/vission" element={<Vission />} />
-        <Route path="/image-gallery" element={<ImageGallery />} />
-        <Route path="/video-gallery" element={<VideoGallery />} />
-
-        <Route path="/head-master-speech" element={<HeadMaster />} />
-        <Route path="/ass-head-master-speech" element={<AssHeadMaster />} />
-        <Route path="/teacher-list-show" element={<TeacherListWebView />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/notices" element={<Notices />} />
-
-        <Route path="/teacher-manage" element={<TecherManagement />} />
+        {/* Deshboard Private Route End */}
       </Routes>
     </div>
   );

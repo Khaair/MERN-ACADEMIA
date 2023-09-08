@@ -28,7 +28,6 @@ export default function Home() {
   return (
     <Layout>
       <Carousel />
-
       <div class="about-us-area pt-[100px]">
         <div class="bootstrap-container">
           <div class="row">
