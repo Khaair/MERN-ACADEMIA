@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Layout from "../layout";
 import AddStudent from "./add";
 import StudentList from "./list";
+import StudentReg from "./student-registration";
+
 function StudentManagement() {
   const [logedinData, setLogedinData] = useState([]);
   const [data, setData] = useState([]);
@@ -22,7 +24,10 @@ function StudentManagement() {
           <div class="col-lg-12">
             <div class="card">
               {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-                <AddStudent />
+                <>
+                  <StudentReg />
+                  <AddStudent />
+                </>
               )}
 
               <StudentList

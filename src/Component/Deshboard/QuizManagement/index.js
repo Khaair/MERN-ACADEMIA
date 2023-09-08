@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Layout from "../layout";
 import { Form, Input, Upload, Button, notification, Modal } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
-import EditForm from "../EditForm";
 
 function Deshboard() {
   const [data, setData] = useState([]);
@@ -230,17 +229,6 @@ function Deshboard() {
             </div>
           </div>
         </div>
-
-        <Modal
-          title="Update Student Info"
-          open={isEditModalOpen}
-          onOk={handleEditOk}
-          onCancel={handleEditCancel}
-          width={600}
-          footer={false}
-        >
-          <EditForm studentId={studentId} />
-        </Modal>
 
         <Modal
           title="Add New Quiz"

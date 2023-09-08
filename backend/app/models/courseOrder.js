@@ -24,32 +24,4 @@ const courseOrderSchema = new Schema({
   },
 });
 
-courseOrderSchema.path("orderId").validate(function (value) {
-  return value.length <= 1000;
-}, "orderId length should be less than or equal to 100 characters");
-
-courseOrderSchema.path("courseId").validate(function (value) {
-  return value.length <= 1000;
-}, "courseId length should be less than or equal to 50 characters");
-
-courseOrderSchema.path("email").validate(function (value) {
-  return value.length <= 1000;
-}, "email length should be less than or equal to 1000 characters");
-
-courseOrderSchema.path("phoneNumber").validate(function (value) {
-  return value.length <= 1000;
-}, "phoneNumber length should be less than or equal to 1000 characters");
-
-courseOrderSchema.path("transactionId").validate(function (value) {
-  return value.length <= 1000;
-}, "transactionId length should be less than or equal to 1000 characters");
-
-courseOrderSchema.post("save", function (error, doc, next) {
-  if (error.name === "ValidationError") {
-    next(new Error(error.message));
-  } else {
-    next();
-  }
-});
-
 module.exports = mongoose.model("courseOrder", courseOrderSchema);

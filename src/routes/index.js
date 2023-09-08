@@ -1,95 +1,100 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Auth from "../Component/Authentication";
-import EditForm from "../Component/Deshboard/EditForm";
-import SignUp from "../Component/Authentication/SignUp";
-import { Bars } from "react-loader-spinner";
-import Home from "../Component/UserEnd/Home";
-import CourseDetails from "../Component/UserEnd/CourseDetails";
-import CheckOut from "../Component/UserEnd/CheckOut";
-import SkillTest from "../Component/UserEnd/SkillTest";
-import PrivateRoute from "../Component/Authentication/PrivateRoute";
-import CourseDeshboard from "../Component/CourseEnrollment/CourseDeshboard";
-import CourseAccess from "../Component/CourseEnrollment/CourseAccess/CourseAccess";
-import StudentProfile from "../Component/CourseEnrollment/StudentProfile";
-import Tutorials from "../Component/UserEnd/Tutorials";
-import DeshboardManagement from "../Component/Deshboard/DeshboardManagement";
-import CourseManagement from "../Component/Deshboard/CourseManagement";
-import OrderManage from "../Component/Deshboard/OrderManagement";
-import ResultManagement from "../Component/Deshboard/ResultManagement";
-import StudentManage from "../Component/Deshboard/StudentManagement";
-import QuizManage from "../Component/Deshboard/QuizManagement";
-import TecherManagement from "../Component/Deshboard/TeacherManagement";
-import UserAuth from "../Component/UserEnd/auth";
-import UserPrivateRoute from "../Component/UserEnd/auth/private-route";
-import AboutUsManagement from "../Component/Deshboard/WebsiteManagement/AboutUsManagement";
-import SlideManagement from "../Component/Deshboard/WebsiteManagement/SlideManagement";
-
-import AboutUs from "../Component/UserEnd/about-us";
-import Mission from "../Component/UserEnd/about-us/mission";
-import Vission from "../Component/UserEnd/about-us/vission";
-import ImageGallery from "../Component/UserEnd/gallery/image-gallery";
-import VideoGallery from "../Component/UserEnd/gallery/video-gallery";
-import HeadMaster from "../Component/UserEnd/administration/head-master";
-import AssHeadMaster from "../Component/UserEnd/administration/ass-head-master";
-import TeacherList from "../Component/Deshboard/TeacherManagement/list";
-import TeacherListWebView from "../Component/UserEnd/administration/teacher-list-web-view";
-import Contact from "../Component/UserEnd/contact";
-import Notices from "../Component/UserEnd/notices";
+import Auth from "../component/Authentication";
+import CourseDetails from "../component/UserEnd/CourseDetails";
+import CheckOut from "../component/UserEnd/CheckOut";
+import SkillTest from "../component/UserEnd/SkillTest";
+import PrivateRoute from "../component/Authentication/PrivateRoute";
+import CourseDeshboard from "../component/CourseEnrollment/CourseDeshboard";
+import CourseAccess from "../component/CourseEnrollment/CourseAccess/CourseAccess";
+import StudentProfile from "../component/CourseEnrollment/StudentProfile";
+import Tutorials from "../component/UserEnd/Tutorials";
+import DeshboardManagement from "../component/Deshboard/DeshboardManagement";
+import CourseManagement from "../component/Deshboard/CourseManagement";
+import OrderManage from "../component/Deshboard/OrderManagement";
+import ResultManagement from "../component/Deshboard/ResultManagement";
+import StudentManage from "../component/Deshboard/StudentManagement";
+import StuudentReg from "../component/Deshboard/StudentManagement/student-registration";
+import QuizManage from "../component/Deshboard/QuizManagement";
+import TecherManagement from "../component/Deshboard/TeacherManagement";
+import UserAuth from "../component/UserEnd/auth";
+import UserPrivateRoute from "../component/UserEnd/auth/private-route";
+import AboutUsManagement from "../component/Deshboard/WebsiteManagement/AboutUsManagement";
+import SlideManagement from "../component/Deshboard/WebsiteManagement/SlideManagement";
+import AboutUs from "../component/UserEnd/about-us";
+import Mission from "../component/UserEnd/about-us/mission";
+import Vission from "../component/UserEnd/about-us/vission";
+import ImageGallery from "../component/UserEnd/gallery/image-gallery";
+import VideoGallery from "../component/UserEnd/gallery/video-gallery";
+import HeadMaster from "../component/UserEnd/administration/head-master";
+import AssHeadMaster from "../component/UserEnd/administration/ass-head-master";
+import TeacherListWebView from "../component/UserEnd/administration/teacher-list-web-view";
+import Contact from "../component/UserEnd/contact";
+import Notices from "../component/UserEnd/notices";
+import SpeechManagement from "../component/Deshboard/WebsiteManagement/SpeechManagement";
+import FacilitesManagement from "../component/Deshboard/WebsiteManagement/FacilitiesManagement";
+import NoticesManagement from "../component/Deshboard/WebsiteManagement/NoticesManagement";
+import MissionVissionManagement from "../component/Deshboard/WebsiteManagement/MissionVissionManagement";
+import ImageGalleryManagement from "../component/Deshboard/WebsiteManagement/ImageGalleryManagement";
+import VideoGalleryManagement from "../component/Deshboard/WebsiteManagement/VideoGalleryManagement";
+import Home from "../component/UserEnd/home";
 
 const RoutesMain = () => {
   return (
     <div>
       <Routes>
-        <Route path="/admin" element={<Auth />} />
-
-        <Route path="/edit/:id" element={<EditForm />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route
-          path="/"
-          element={
-            <Suspense
-              fallback={
-                <div className="ecommerce-loader-wrapper">
-                  <Bars
-                    height="100"
-                    width="100"
-                    color="#4fa94d"
-                    ariaLabel="bars-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                  />
-                </div>
-              }
-            >
-              <Home />
-            </Suspense>
-          }
-        />
+        {/* Course Public Route Start */}
         <Route path="/course-details/:id" element={<CourseDetails />} />
         <Route path="/course-checkout/:id" element={<CheckOut />} />
         <Route path="/skill-test" element={<SkillTest />} />
-        {/* <Route path="/course-login" element={<CourseLogin />} /> */}
+        <Route path="/tutorials" element={<Tutorials />} />
+        {/*Course Public Route End */}
 
+        {/* Userend Public Route Start */}
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Auth />} />
+        <Route path="/user-auth" element={<UserAuth />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/mission" element={<Mission />} />
+        <Route path="/vission" element={<Vission />} />
+        <Route path="/image-gallery" element={<ImageGallery />} />
+        <Route path="/video-gallery" element={<VideoGallery />} />
+        <Route path="/head-master-speech" element={<HeadMaster />} />
+        <Route path="/ass-head-master-speech" element={<AssHeadMaster />} />
+        <Route path="/teacher-list-show" element={<TeacherListWebView />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/notices" element={<Notices />} />
+        {/*Userend Public Route End */}
+
+        {/* Userend Private Route start */}
         <Route
           path="/course-access"
           element={
-            <PrivateRoute>
+            <UserPrivateRoute>
               <CourseAccess />
-            </PrivateRoute>
+            </UserPrivateRoute>
           }
         />
         <Route
           path="/student-profile"
           element={
-            <PrivateRoute>
+            <UserPrivateRoute>
               <StudentProfile />
-            </PrivateRoute>
+            </UserPrivateRoute>
           }
         />
 
-        <Route path="/tutorials" element={<Tutorials />} />
+        <Route
+          path="/course-deshboard"
+          element={
+            <UserPrivateRoute>
+              <CourseDeshboard />
+            </UserPrivateRoute>
+          }
+        />
+        {/* Userend Private Route end */}
+
+        {/* Deshboard Private Route Start */}
         <Route
           path="/deshboard"
           element={
@@ -99,10 +104,26 @@ const RoutesMain = () => {
           }
         />
         <Route
+          path="/teacher-manage"
+          element={
+            <PrivateRoute>
+              <TecherManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/student-manage"
           element={
             <PrivateRoute>
               <StudentManage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/student-registration"
+          element={
+            <PrivateRoute>
+              <StuudentReg />
             </PrivateRoute>
           }
         />
@@ -140,15 +161,6 @@ const RoutesMain = () => {
         />
 
         <Route
-          path="/about-us-manage"
-          element={
-            <PrivateRoute>
-              <AboutUsManagement />
-            </PrivateRoute>
-          }
-        />
-
-        <Route
           path="/slide-manage"
           element={
             <PrivateRoute>
@@ -156,30 +168,63 @@ const RoutesMain = () => {
             </PrivateRoute>
           }
         />
-
         <Route
-          path="/course-deshboard"
+          path="/about-us-manage"
           element={
-            <UserPrivateRoute>
-              <CourseDeshboard />
-            </UserPrivateRoute>
+            <PrivateRoute>
+              <AboutUsManagement />
+            </PrivateRoute>
           }
         />
-
-        <Route path="/user-auth" element={<UserAuth />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/mission" element={<Mission />} />
-        <Route path="/vission" element={<Vission />} />
-        <Route path="/image-gallery" element={<ImageGallery />} />
-        <Route path="/video-gallery" element={<VideoGallery />} />
-
-        <Route path="/head-master-speech" element={<HeadMaster />} />
-        <Route path="/ass-head-master-speech" element={<AssHeadMaster />} />
-        <Route path="/teacher-list-show" element={<TeacherListWebView />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/notices" element={<Notices />} />
-
-        <Route path="/teacher-manage" element={<TecherManagement />} />
+        <Route
+          path="/speech-manage"
+          element={
+            <PrivateRoute>
+              <SpeechManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/facilites-manage"
+          element={
+            <PrivateRoute>
+              <FacilitesManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/notices-manage"
+          element={
+            <PrivateRoute>
+              <NoticesManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/mission-vission-manage"
+          element={
+            <PrivateRoute>
+              <MissionVissionManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/image-gallery-manage"
+          element={
+            <PrivateRoute>
+              <ImageGalleryManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/video-gallery-manage"
+          element={
+            <PrivateRoute>
+              <VideoGalleryManagement />
+            </PrivateRoute>
+          }
+        />
+        {/* Deshboard Private Route End */}
       </Routes>
     </div>
   );

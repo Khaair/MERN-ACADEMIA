@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { AppstoreOutlined } from "@ant-design/icons";
 export default function Header() {
   const navigate = useNavigate();
   const handleLogOut = () => {
@@ -18,7 +18,9 @@ export default function Header() {
               <div className="col-lg-3">
                 <div className="menubar-logo">
                   <Link to="/">
-                    <img src="/uploads/logo.png" alt="logo" />
+                    <AppstoreOutlined
+                      style={{ fontSize: "35px", color: "#06BBCC" }}
+                    />
                   </Link>
                 </div>
               </div>

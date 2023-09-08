@@ -1,50 +1,26 @@
 import React, { useEffect, useState } from "react";
 import StudentDeshboardLayout from "../Layout";
-import { Button, DatePicker, Form, Input, Select } from "antd";
-
-import { AppstoreOutlined } from "@ant-design/icons";
+import { Tabs } from "antd";
 import axios from "axios";
-import AddProfilePic from "./add-profile-picture";
-const { Option } = Select;
-
+import TabPane from "antd/es/tabs/TabPane";
 export default function StudentProfile() {
   const [userData, setUserData] = useState("");
-  const [singleDataId, setSingleDataId] = useState("");
   const [singleData, setSingleData] = useState([]);
-  const [message, setMessage] = useState("");
-  const [form] = Form.useForm();
-
   useEffect(() => {
     const userLogedinData = localStorage.getItem("userLogedinData");
     const fetchLogedinData = JSON.parse(userLogedinData);
     setUserData(fetchLogedinData);
-    console.log("userLogedinData", userLogedinData);
   }, []);
-
-  const studentId = userData?.id;
-
+  const studentRegId = userData?.id;
   const fetchSingleData = async () => {
     try {
       let singleData = await axios.get(
-        `http://localhost:8080/api/student-profile/show-single-student-profile/${studentId}`
+        `http://localhost:8080/api/student-manage/show-single-student-profile/${studentRegId}`
       );
 
       if (singleData) {
-        console.log("sid", singleData?.data);
-        setSingleDataId(singleData?.data?._id);
         setSingleData(singleData?.data);
       }
-      console.log("singleData", singleData);
-      form.setFieldsValue({
-        name: singleData?.data?.name,
-        email: singleData?.data?.email,
-        phoneNumber: singleData?.data?.phoneNumber,
-        courseId: singleData?.data?.courseId,
-        studentId: singleData?.data?.studentId,
-        address: singleData?.data?.address,
-        // dob: singleData?.data?.dob,
-        gender: singleData?.data?.gender,
-      });
     } catch (err) {
       console.log(err);
     }
@@ -52,184 +28,89 @@ export default function StudentProfile() {
 
   useEffect(() => {
     fetchSingleData();
-  }, [studentId]);
-
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    const values = await form.validateFields();
-    try {
-      let response = await axios.post(
-        `http://localhost:8080/api/student-profile/student-profile-update/${singleDataId}`,
-        {
-          name: values?.name,
-          email: values?.email,
-          phoneNumber: values?.phoneNumber,
-          courseId: values?.courseId,
-          answer: values?.answer,
-          studentId: studentId,
-          dob: values?.dob,
-          address: values?.address,
-          gender: values?.gender,
-        }
-      );
-      if (response?.data?.status === "200") {
-        setMessage(response?.message);
-        fetchSingleData();
-        console.log("save data successfully", response);
-      } else if (response?.data?.status === "400") {
-      } else if (response?.data?.status === "401") {
-      } else if (response?.data?.status === "404") {
-      } else if (response?.data?.status === "500") {
-      }
-      console.log(response, "success");
-    } catch (er) {
-      console.log("error checkout", er);
-    }
-  };
+  }, [studentRegId]);
 
   return (
     <StudentDeshboardLayout>
       <div class="mr-5 mt-2">
         <div class="row">
-          <div class="col-lg-4">
-            <div class="card shadow-sm">
-              <AddProfilePic singleDataId={singleDataId} />
-              <h5>User Name: {userData?.username}</h5>
-              <h6>Email: {userData?.id}</h6>
-            </div>
-          </div>
-          <div class="col-lg-8">
-            <div class="card shadow-sm">
-              <div class="add-student-area">
-                <div class="add-student-wrapper pt-3">
-                  <div className="card-title custom-button">
-                    <AppstoreOutlined style={{ fontSize: "20px" }} />
-                    Update student information
-                  </div>
-                  <p className="text-danger">{message}</p>
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="flex">
+                <div className="h-[100px] w-[100px] border p-2">
+                  <img
+                    className="w-full h-full"
+                    src="/uploads/about-us.jpg"
+                    alt="user"
+                  />
                 </div>
-                <hr className="mt-3" />
-
-                <div className="form-area mt-3">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col-lg-12 ">
-                        <Form
-                          className="form-input-item"
-                          form={form}
-                          layout="vertical"
-                        >
-                          <div class="row">
-                            <div class="col-lg-6">
-                              <Form.Item
-                                name="name"
-                                label="Name"
-                                rules={[
-                                  {
-                                    required: true,
-                                    message: "Please input the name!",
-                                  },
-                                ]}
-                              >
-                                <Input placeholder="Name" />
-                              </Form.Item>
-                              <Form.Item
-                                name="email"
-                                label="Email"
-                                rules={[
-                                  {
-                                    required: true,
-                                    message: "Please input the email!",
-                                  },
-                                ]}
-                              >
-                                <Input placeholder="Email" />
-                              </Form.Item>
-                              <Form.Item
-                                label="Phone No"
-                                name="phoneNumber"
-                                rules={[
-                                  {
-                                    required: true,
-                                    message: "Please input the phone number!",
-                                  },
-                                ]}
-                              >
-                                <Input placeholder="Phone Number" />
-                              </Form.Item>
-                              <Form.Item
-                                label="Course Id"
-                                name="courseId"
-                                rules={[
-                                  {
-                                    required: true,
-                                    message: "Please input the courseId!",
-                                  },
-                                ]}
-                              >
-                                <Input placeholder="courseId" />
-                              </Form.Item>
-                            </div>
-
-                            <div class="col-lg-6">
-                              <Form.Item
-                                label="Address"
-                                name="address"
-                                rules={[
-                                  {
-                                    required: true,
-                                    message: "Please input the address!",
-                                  },
-                                ]}
-                              >
-                                <Input placeholder="address" />
-                              </Form.Item>
-
-                              <Form.Item
-                                name="dob"
-                                label="Date of birth"
-                                rules={[
-                                  {
-                                    required: true,
-                                    message: "Please input the studentId!",
-                                  },
-                                ]}
-                              >
-                                <DatePicker className="other-type-input" />
-                              </Form.Item>
-                              <Form.Item
-                                label="Gender"
-                                name="gender"
-                                rules={[
-                                  {
-                                    required: true,
-                                  },
-                                ]}
-                              >
-                                <Select>
-                                  <Option value="male">male</Option>
-                                  <Option value="female">female</Option>
-                                  <Option value="other">other</Option>
-                                </Select>
-                              </Form.Item>
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <Form.Item>
-                              <Button
-                                type="primary"
-                                ghost
-                                onClick={handleUpdate}
-                              >
-                                Update
-                              </Button>
-                            </Form.Item>
-                          </div>
-                        </Form>
+                <div className="ml-2">
+                  <h2>{singleData?.fullName}</h2>
+                  <h5>{singleData?.address}</h5>
+                </div>
+              </div>
+              <div>
+                <Tabs defaultActiveKey="1">
+                  <TabPane tab="Overview" key="1">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div className="text-right">
+                          <button className="bg-[#06BBCC] text-white px-3 py-2">
+                            Edit
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
+                    <div className="row mt-2">
+                      <div class="col-lg-6 mb-2">
+                        <div class="flex bg-[#F0FBFC] rounded p-2">
+                          <div>Name</div>
+                          <div className="ml-[75px]">
+                            {singleData?.fullName}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 mb-2">
+                        <div class="flex bg-[#F0FBFC] rounded p-2">
+                          <div>Email</div>
+                          <div className="ml-[75px]">{singleData?.email}</div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 mb-2">
+                        <div class="flex bg-[#F0FBFC] rounded p-2">
+                          <div>Phone no</div>
+                          <div className="ml-[75px]">
+                            {singleData?.phoneNumber}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 mb-2">
+                        <div class="flex bg-[#F0FBFC] rounded p-2">
+                          <div>Address</div>
+                          <div className="ml-[75px]">{singleData?.address}</div>
+                        </div>
+                      </div>{" "}
+                      <div class="col-lg-6 mb-2">
+                        <div class="flex bg-[#F0FBFC] rounded p-2">
+                          <div>Date of birth</div>
+                          <div className="ml-[75px]">{singleData?.dob}</div>
+                        </div>
+                      </div>{" "}
+                      <div class="col-lg-6 mb-2">
+                        <div class="flex bg-[#F0FBFC] rounded p-2">
+                          <div>Gender</div>
+                          <div className="ml-[75px]">{singleData?.gender}</div>
+                        </div>
+                      </div>{" "}
+                    </div>
+                  </TabPane>
+                  <TabPane tab="Attendence" key="2">
+                    Content of Tab Pane 2
+                  </TabPane>
+                  <TabPane tab="Result" key="3">
+                    Content of Tab Pane 3
+                  </TabPane>
+                </Tabs>
               </div>
             </div>
           </div>

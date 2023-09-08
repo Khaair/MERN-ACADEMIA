@@ -76,10 +76,10 @@ const AddCourse = ({ logedinData }) => {
     <>
       {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
         <div className="add-course-area">
-          <div class="add-student-wrapper pt-3">
+          <div class="add-student-wrapper">
             <div className="card-title custom-button">
               <AppstoreOutlined style={{ fontSize: "20px" }} />
-              Course Management
+              <div class="ml-5">Course Management</div>
             </div>
             <div>
               <Button
@@ -93,7 +93,7 @@ const AddCourse = ({ logedinData }) => {
               </Button>
             </div>
           </div>
-          <hr className="mt-3" />
+          <hr style={{ height: "0.5px" }} className="mt-2" />
           <Modal
             title="Add New Course"
             open={isModalOpen}

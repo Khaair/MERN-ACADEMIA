@@ -1,6 +1,4 @@
-import React from "react";
 import axios from "axios";
-
 export default function useAuth() {
   const jwtToken = localStorage.getItem("accessToken");
   if (jwtToken) {

@@ -16,6 +16,7 @@ import {
   CopyOutlined,
   BlockOutlined,
   QuestionCircleOutlined,
+  AppstoreOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import SubMenu from "antd/es/menu/SubMenu";
@@ -45,6 +46,17 @@ const DeshboardLayout = ({ children }) => {
 
   const items = [
     getItem("Deshboard", "deshboard", <PieChartOutlined />),
+    getItem("Website Manage", "sub1", <DesktopOutlined />, [
+      getItem("Slide Manage", "slide-manage"),
+      getItem("About Us Manage", "about-us-manage"),
+      getItem("Speech Manage", "speech-manage"),
+      getItem("Facilities Manage", "facilites-manage"),
+      getItem("Notices Manage", "notices-manage"),
+      getItem("Mission and Vission", "mission-vission-manage"),
+      getItem("Image Gallery", "image-gallery-manage"),
+      getItem("Video Gallery", "video-gallery-manage"),
+      getItem("Contact Manage", "contact-manage"),
+    ]),
     getItem("Teacher Manage", "teacher-manage", <UserOutlined />),
     getItem("Student Manage", "student-manage", <TeamOutlined />),
     getItem("Course Manage", "course-manage", <CopyOutlined />),
@@ -52,18 +64,13 @@ const DeshboardLayout = ({ children }) => {
     getItem("Order Manage", "order-manage", <BlockOutlined />),
     getItem("Quiz Manage", "quiz-manage", <QuestionCircleOutlined />),
 
-    getItem("Website Manage", "sub1", <DesktopOutlined />, [
-      getItem("Slide Manage", "slide-manage"),
-      getItem("About Us Manage", "about-us-manage"),
-      getItem("Speech Manage", "speech-manage"),
-    ]),
     getItem("Attendence Manage", "sub2", <TeamOutlined />, [
       getItem("Team 1", "6"),
       getItem("Team 2", "8"),
     ]),
     getItem("Fee Manage", "fee-manage", <DesktopOutlined />),
     getItem("Admission Manage", "admission-manage", <DesktopOutlined />),
-    getItem("Report Manage", "admission-manage", <DesktopOutlined />),
+    getItem("Admit card Manage", "admit-card-manage", <DesktopOutlined />),
   ];
 
   const location = useLocation();
@@ -73,7 +80,7 @@ const DeshboardLayout = ({ children }) => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("logedinData");
 
-    navigate("/");
+    navigate("/admin");
   };
 
   const onSearch = (value) => console.log(value);
@@ -115,11 +122,9 @@ const DeshboardLayout = ({ children }) => {
               <nav className="navv">
                 <div className="top-navbar-wrapper">
                   <div className="accademia-logo">
-                    <Link to="/home">
-                      {" "}
-                      <img
-                        src="/uploads/academia-logo-transparent.png"
-                        alt=""
+                    <Link to="/">
+                      <AppstoreOutlined
+                        style={{ fontSize: "35px", color: "#06BBCC" }}
                       />
                     </Link>
                   </div>

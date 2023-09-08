@@ -1,27 +1,20 @@
 import { Select } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
-import { notification } from "antd";
-import { Button, Form, Input } from "antd";
-
+import { Form, Input } from "antd";
 export default function SignUp() {
   const [selectvalue, setSelectValue] = useState("user");
-
   const [errorMsg, setErrorMsg] = useState([]);
   const [matchedEmailerrorMsg, setMatchedEmailErrorMsg] = useState("");
   const [matchedUsererrorMsg, setMatchedUserErrorMsg] = useState("");
   const [matchederrorMsg, setMatchedErrorMsg] = useState("");
-
-  const [api, contextHolder] = notification.useNotification();
-
   const handleChange = (newValue) => {
     setSelectValue(newValue);
   };
+  const [form] = Form.useForm();
 
-  console.log("selectvalue", selectvalue);
   const sendDatatoApp = async () => {
     const values = await form.validateFields();
-
     try {
       let res = await axios.post("http://localhost:8080/api/auth/signup", {
         username: values?.username,
@@ -29,7 +22,6 @@ export default function SignUp() {
         password: values?.password,
         roles: [selectvalue],
       });
-
       if (res.status === 200) {
         console.log("res signup", res);
         setErrorMsg([]);
@@ -37,15 +29,11 @@ export default function SignUp() {
         setMatchedUserErrorMsg("");
         setMatchedEmailErrorMsg("");
       } else {
-        console.log("res signup", res);
         setErrorMsg(res.status);
       }
-
-      console.log(res, "res signup");
     } catch (er) {
       if (er) {
         setErrorMsg(er?.response?.data?.errors);
-        // setErrorMsg(er?.response?.data?.message?.keyValue?.username);
         if (er?.response?.data?.message?.keyValue?.username) {
           setMatchedUserErrorMsg("User name already registered");
           setMatchedEmailErrorMsg("");
@@ -59,12 +47,9 @@ export default function SignUp() {
       }
     }
   };
-
-  const [form] = Form.useForm();
   return (
     <>
       <div className="sign-up-area">
-        {contextHolder}
         <div className="container">
           <div className="row">
             <div className="col-lg-12">

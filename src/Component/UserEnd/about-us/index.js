@@ -25,7 +25,7 @@ const AboutUs = () => {
           <div class="container">
             <div class="row">
               <div class="col-lg-3 mb-3">
-                <div className="relative text-[#06BBCC]  hover:top-[-10px] p-3 bg-[#f0fbfc] hover:bg-[#06BBCC] hover:transition-all hover:duration-500 hover:linear hover:text-white  rounded text-center ">
+                <div className="text-[#06BBCC] p-3 bg-[#f0fbfc] hover:bg-[#06BBCC] transition-all duration-500 linear hover:text-white  rounded text-center">
                   <UserOutlined style={{ fontSize: "70px" }} />
                   <h3 className="mt-3">Skilled Instructor</h3>
                   <h6 className="mt-2">
@@ -36,7 +36,7 @@ const AboutUs = () => {
                 </div>
               </div>
               <div class="col-lg-3 mb-3">
-                <div className="relative text-[#06BBCC]  hover:top-[-20px] p-3 bg-[#f0fbfc] hover:bg-[#06BBCC] hover:transition-all hover:duration-500 hover:linear hover:text-white  rounded text-center ">
+                <div className="text-[#06BBCC] p-3 bg-[#f0fbfc] hover:bg-[#06BBCC] transition-all duration-500 linear hover:text-white  rounded text-center">
                   <GlobalOutlined style={{ fontSize: "70px" }} />
                   <h3 className="mt-3">Online Classes</h3>
                   <h6 className="mt-2">
@@ -47,7 +47,7 @@ const AboutUs = () => {
                 </div>
               </div>
               <div class="col-lg-3 mb-3">
-                <div className="relative text-[#06BBCC]  hover:top-[-20px] p-3 bg-[#f0fbfc] hover:bg-[#06BBCC] hover:transition-all hover:duration-500 hover:linear hover:text-white  rounded text-center ">
+                <div className="text-[#06BBCC] p-3 bg-[#f0fbfc] hover:bg-[#06BBCC] transition-all duration-500 linear hover:text-white  rounded text-center">
                   <HomeOutlined style={{ fontSize: "70px" }} />
                   <h3 className="mt-3">Home Project</h3>
                   <h6>
@@ -58,7 +58,7 @@ const AboutUs = () => {
                 </div>
               </div>
               <div class="col-lg-3 mb-3">
-                <div className="relative text-[#06BBCC]  hover:top-[-20px] p-3 bg-[#f0fbfc] hover:bg-[#06BBCC] hover:transition-all hover:duration-500 hover:linear hover:text-white  rounded text-center ">
+                <div className="text-[#06BBCC] p-3 bg-[#f0fbfc] hover:bg-[#06BBCC] transition-all duration-500 linear hover:text-white  rounded text-center">
                   <BookOutlined style={{ fontSize: "70px" }} />
                   <h3 className="mt-3">Book Library</h3>
                   <h6>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Dialog, Disclosure, Popover } from "@headlessui/react";
 import {
   AlignRightOutlined,
@@ -89,8 +89,16 @@ function classNames(...classes) {
 
 export default function Menu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const options = ["Show", "Hide", "Center"];
   const [arrow, setArrow] = useState("Show");
+  const [userData, setUserData] = useState("");
+  const options = ["Show", "Hide", "Center"];
+
+  useEffect(() => {
+    const userLogedinData = localStorage.getItem("userLogedinData");
+    const fetchLogedinData = JSON.parse(userLogedinData);
+    setUserData(fetchLogedinData);
+    console.log("userLogedinData", userLogedinData);
+  }, []);
   const mergedArrow = useMemo(() => {
     if (arrow === "Hide") {
       return false;
@@ -102,6 +110,8 @@ export default function Menu() {
       pointAtCenter: true,
     };
   }, [arrow]);
+
+  console.log("userData", userData);
 
   return (
     <div className="navbar-area bg-white shadow sticky top-0">
@@ -200,6 +210,21 @@ export default function Menu() {
                   >
                     Notices
                   </Link>
+                  {userData ? (
+                    <Link
+                      className="text-sm font-semibold leading-6  hover:text-[#06BBCC]"
+                      to="/student-profile"
+                    >
+                      profile
+                    </Link>
+                  ) : (
+                    <Link
+                      className="text-sm font-semibold leading-6  hover:text-[#06BBCC]"
+                      to="/user-auth"
+                    >
+                      Log in
+                    </Link>
+                  )}
                 </Popover.Group>
               </nav>
               <Dialog
@@ -211,14 +236,11 @@ export default function Menu() {
                 <div className="fixed inset-0 z-10" />
                 <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                   <div className="flex items-center justify-between">
-                    <a href="#" className="-m-1.5 p-1.5">
-                      <span className="sr-only">Your Company</span>
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt=""
+                    <Link to="/">
+                      <AppstoreOutlined
+                        style={{ fontSize: "55px", color: "#06BBCC" }}
                       />
-                    </a>
+                    </Link>
                     <button
                       type="button"
                       className="-m-2.5 rounded-md p-2.5 text-gray-700"

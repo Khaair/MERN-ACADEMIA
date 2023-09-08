@@ -13,11 +13,12 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + file.originalname);
   },
 });
-
 const upload = multer({ storage: storage });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//students get route
 router.get("/student-show", async (req, res) => {
   try {
     let data = await studentModel.find();
@@ -27,17 +28,21 @@ router.get("/student-show", async (req, res) => {
   }
 });
 
+//students post route
 router.post(
   "/student-save",
-
   upload.single("file"),
   [
-    check("name").not().isEmpty().withMessage("name is required"),
+    check("fullName").not().isEmpty().withMessage("fullName is required"),
     check("email").not().isEmpty().withMessage("email is required"),
     check("phoneNumber").not().isEmpty().withMessage("phoneNumber is required"),
+    check("password").not().isEmpty().withMessage("password is required"),
+    check("studentRegId")
+      .not()
+      .isEmpty()
+      .withMessage("studentRegId is required"),
+
     check("dob").not().isEmpty().withMessage("dob is required"),
-    check("courseId").not().isEmpty().withMessage("courseId is required"),
-    check("studentId").not().isEmpty().withMessage("studentId is required"),
     check("address").not().isEmpty().withMessage("address is required"),
     check("gender").not().isEmpty().withMessage("gender is required"),
   ],
@@ -49,9 +54,11 @@ router.post(
 
     try {
       const crudData = new studentModel({
-        name: req.body.name,
+        fullName: req.body.fullName,
         email: req.body.email,
+        password: req.body.password,
         phoneNumber: req.body.phoneNumber,
+        studentRegId: req.body.studentRegId,
         dob: req.body.dob,
         courseId: req.body.courseId,
         studentId: req.body.studentId,
@@ -75,10 +82,10 @@ router.post(
 
 //get student information by studentId
 
-router.route("/show-single-student-profile/:studentId").get((req, res) => {
-  const studentId = req.params.studentId;
+router.route("/show-single-student-profile/:studentRegId").get((req, res) => {
+  const studentRegId = req.params.studentRegId;
 
-  studentModel.findOne({ studentId }, (error, data) => {
+  studentModel.findOne({ studentRegId }, (error, data) => {
     if (error) {
       return res.status(500).json({ error: "Error finding student profile." });
     } else {
@@ -107,6 +114,7 @@ router.route("/show-single-student/:id").get(async (req, res, next) => {
   }
 });
 
+//single student delete route
 router.delete("/student-delete/:id", async (req, res) => {
   try {
     let data = await studentModel.deleteOne({ _id: req.params.id });
@@ -122,16 +130,22 @@ router.delete("/student-delete/:id", async (req, res) => {
   }
 });
 
+//single student update route
 router.post(
   "/update-student/:id",
   upload.single("file"),
   [
-    check("name").not().isEmpty().withMessage("name is required"),
+    check("fullName").not().isEmpty().withMessage("fullName is required"),
     check("email").not().isEmpty().withMessage("email is required"),
     check("phoneNumber").not().isEmpty().withMessage("phoneNumber is required"),
+    check("password").not().isEmpty().withMessage("password is required"),
+    check("studentRegId")
+      .not()
+      .isEmpty()
+      .withMessage("studentRegId is required"),
+
     check("dob").not().isEmpty().withMessage("dob is required"),
-    check("courseId").not().isEmpty().withMessage("courseId is required"),
-    check("studentId").not().isEmpty().withMessage("studentId is required"),
+
     check("address").not().isEmpty().withMessage("address is required"),
     check("gender").not().isEmpty().withMessage("gender is required"),
   ],
@@ -145,9 +159,11 @@ router.post(
       let updatee = await studentModel.findByIdAndUpdate(
         { _id: req.params.id },
         {
-          name: req.body.name,
+          fullName: req.body.fullName,
           email: req.body.email,
+          password: req.body.password,
           phoneNumber: req.body.phoneNumber,
+          studentRegId: req.body.studentRegId,
           dob: req.body.dob,
           courseId: req.body.courseId,
           studentId: req.body.studentId,

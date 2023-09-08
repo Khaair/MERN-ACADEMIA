@@ -2,7 +2,7 @@ import { Button, Checkbox, Form, Input, Modal } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Layout from "./Layout";
 
 export default function CheckOut() {

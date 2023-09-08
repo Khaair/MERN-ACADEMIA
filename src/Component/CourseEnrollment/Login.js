@@ -22,8 +22,9 @@ function Login() {
           "accessToken",
           JSON.stringify(res?.data?.accessToken)
         );
+        localStorage.removeItem("userLogedinData");
 
-        localStorage.setItem("logedinData", JSON.stringify(res?.data));
+        localStorage.setItem("userLogedinData", JSON.stringify(res?.data));
 
         navigate("/course-deshboard");
       }

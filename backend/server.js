@@ -1,16 +1,13 @@
 const express = require("express");
 const dbConfig = require("./app/config/db.config");
-
 const app = express();
-// ADD THIS
 var cors = require("cors");
+const db = require("./app/models");
+
 app.use(cors());
 app.use(express.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-const db = require("./app/models");
 const Role = db.role;
 
 db.mongoose
@@ -29,7 +26,7 @@ db.mongoose
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to mern-academia application." });
 });
 
 // routes
@@ -51,17 +48,14 @@ function initial() {
         if (err) {
           console.log("error", err);
         }
-
         console.log("added 'user' to roles collection");
       });
-
       new Role({
         name: "moderator",
       }).save((err) => {
         if (err) {
           console.log("error", err);
         }
-
         console.log("added 'moderator' to roles collection");
       });
 
@@ -71,7 +65,6 @@ function initial() {
         if (err) {
           console.log("error", err);
         }
-
         console.log("added 'admin' to roles collection");
       });
     }
@@ -93,7 +86,11 @@ const deshboardManagementRoutes = require("./app/routes/deshboardManagementRoute
 const teacherManagementRoutes = require("./app/routes/teacherManagementRoutes");
 const studentProfileRoutes = require("./app/routes/studentProfileRoutes");
 const studentProfilePictureRoutes = require("./app/routes/studentProfilePictureRoutes");
-const schoolAboutUsRoutes = require("./app/routes/school-about-us");
+const schoolAboutUsRoutes = require("./app/routes/website/school-about-us");
+const slideRoutes = require("./app/routes/website/slideManagementRoutes");
+const speechRoutes = require("./app/routes/website/speechManagementRoutes");
+const noticesRoutes = require("./app/routes/website/noticesManagementRoutes");
+const missionVissionRoutes = require("./app/routes/website/missionVissionManagement");
 
 app.use("/api/student-manage", studentManagementRoutes);
 app.use("/api/get-user", routesuserget);
@@ -107,7 +104,13 @@ app.use("/api/teacher-manage", teacherManagementRoutes);
 app.use("/api/student-profile", studentProfileRoutes);
 app.use("/api/student-profile-picture", studentProfilePictureRoutes);
 app.use("/api/school-about-us", schoolAboutUsRoutes);
+app.use("/api/slide", slideRoutes);
+app.use("/api/speech-manage", speechRoutes);
+app.use("/api/notices-manage", noticesRoutes);
+app.use("/api/mission-vission", missionVissionRoutes);
 
 //http://localhost:8080/api/auth/signup
 
 //http://localhost:8080/api/auth/signin
+
+//login

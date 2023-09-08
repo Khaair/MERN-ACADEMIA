@@ -29,17 +29,12 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
   const fetchSingleData = async (id) => {
     try {
       let singleData = await axios.get(
-        `http://localhost:8080/api/teacher-manage/show-single-teacher/${id}`
+        `${process.env.REACT_APP_COURSE}/slide/show-single-slide/${id}`
       );
       form.setFieldsValue({
-        name: singleData?.data?.name,
-        email: singleData?.data?.email,
-        phoneNumber: singleData?.data?.phoneNumber,
-        teacherId: singleData?.data?.teacherId,
-        address: singleData?.data?.address,
-        subject: singleData?.data?.subject,
-        qualifications: singleData?.data?.qualifications,
-        designation: singleData?.data?.designation,
+        topTitle: singleData?.data?.topTitle,
+        title: singleData?.data?.title,
+        subTitle: singleData?.data?.subTitle,
       });
     } catch (err) {
       console.log(err);
@@ -51,17 +46,12 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
     try {
       const values = await form.validateFields();
       const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("email", values.email);
-      formData.append("phoneNumber", values.phoneNumber);
-      formData.append("teacherId", values.teacherId);
-      formData.append("address", values.address);
-      formData.append("subject", values.subject);
-      formData.append("qualifications", values.qualifications);
-      formData.append("designation", values.designation);
-      formData.append("file", values.file[0].originFileObj);
+      formData.append("topTitle", values?.topTitle);
+      formData.append("title", values?.title);
+      formData.append("subTitle", values?.subTitle);
+      formData.append("file", values?.file[0].originFileObj);
       const res = await fetch(
-        `http://localhost:8080/api/teacher-manage/update-teacher/${singleID}`,
+        `${process.env.REACT_APP_COURSE}/slide/slide-update/${singleID}`,
         {
           method: "POST",
           body: formData,
@@ -79,10 +69,10 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
       console.log("Failed:", errorInfo);
     }
   };
-  const deleteTeacher = async (id) => {
+  const deleteSlide = async (id) => {
     try {
       let mydata = await axios.delete(
-        `http://localhost:8080/api/teacher-manage/delete-teacher/${id}`
+        `${process.env.REACT_APP_COURSE}/slide/slide-delete/${id}`
       );
       console.log(mydata);
 
@@ -93,26 +83,14 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
     }
   };
 
-  const handleGenderFilter = async (value) => {
-    try {
-      const filteredData = data?.filter((item) => item?.gender === value);
-
-      if (filteredData) {
-        setFilterData(filteredData);
-      } else {
-        setFilterData([]);
-      }
-    } catch (err) {
-      console.log("err", err);
-    }
-  };
   const handleSearchChange = (e) => {
     const { value } = e.target;
     setSearchValue(value);
   };
   const handlePageChange = (page) => {
-    setCurrentPage(page); // Step 3: Update current page when pagination changes
+    setCurrentPage(page);
   };
+
   return (
     <div class="list-area">
       <div class="filter-and-search-wrapper mt-4 mb-2">
@@ -127,39 +105,16 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
             </Form.Item>
           </Form>
         </div>
-        <div className="filter-wrapper">
-          <Form form={formGender} layout="vertical">
-            <Form.Item
-              label=""
-              name="gender"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Select placeholder="Select Gender" onChange={handleGenderFilter}>
-                <Option value="male">male</Option>
-                <Option value="female">female</Option>
-                <Option value="other">other</Option>
-              </Select>
-            </Form.Item>
-          </Form>
-        </div>
       </div>
       <div class="table-area">
         <table>
           <thead>
             <tr>
               <th>Sl</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Gender</th>
-              <th>TeacherId</th>
-              <th>Address</th>
+              <th>Top title</th>
+              <th>Title</th>
+              <th>Sub title</th>
               <th>Image</th>
-
               {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
                 <th>Action</th>
               )}
@@ -173,28 +128,16 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                     return (
                       <tr key={ind}>
                         <td>{ind + 1}</td>
-                        <td>{el?.name}</td>
-                        <td>{el?.email}</td>
-                        <td>{el?.phoneNumber}</td>
-                        <td>{el?.gender}</td>
-                        <td>{el?.teacherId}</td>
-
-                        <td>{el?.address}</td>
+                        <td>{el?.topTitle}</td>
+                        <td>{el?.title}</td>
+                        <td>{el?.subTitle}</td>
                         <td className="data-show-img">
                           <img src={`/uploads/${el?.file}`} alt="" />
                         </td>
                         {logedinData?.roles?.join("").toString() ===
                           "ROLE_ADMIN" && (
                           <td>
-                            <div className="d-flex">
-                              <Button
-                                //   onClick={() => showDetailsModal(el?._id)}
-                                type="primary"
-                                ghost
-                              >
-                                Details
-                              </Button>
-
+                            <div>
                               <Button
                                 onClick={() => showModal(el?._id)}
                                 type="primary"
@@ -205,7 +148,7 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                               </Button>
 
                               <Button
-                                onClick={() => deleteTeacher(el?._id)}
+                                onClick={() => deleteSlide(el?._id)}
                                 type="primary"
                                 ghost
                               >
@@ -218,44 +161,30 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                     );
                   })
               : data
-                  ?.filter((el) =>
-                    el.name.toLowerCase().includes(searchValue.toLowerCase())
-                  )
-                  .slice((currentPage - 1) * pageSize, currentPage * pageSize)
-                  .map((el, ind) => {
+                  ?.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+                  ?.map((el, ind) => {
                     if (
                       searchValue &&
-                      el?.name &&
-                      !el?.name
-                        .toLowerCase()
-                        .includes(searchValue.toLowerCase())
+                      el?.title &&
+                      !el?.title
+                        ?.toLowerCase()
+                        ?.includes(searchValue?.toLowerCase())
                     ) {
                       return null; // If searchValue is provided and name doesn't match, skip rendering
                     }
                     return (
                       <tr key={ind}>
                         <td>{ind + 1}</td>
-                        <td>{el?.name}</td>
-                        <td>{el?.email}</td>
-                        <td>{el?.phoneNumber}</td>
-                        <td>{el?.gender}</td>
-                        <td>{el?.teacherId}</td>
-                        <td>{el?.address}</td>
+                        <td>{el?.topTitle}</td>
+                        <td>{el?.title}</td>
+                        <td>{el?.subTitle}</td>
                         <td className="data-show-img">
                           <img src={`/uploads/${el?.file}`} alt="" />
                         </td>
                         {logedinData?.roles?.join("").toString() ===
                           "ROLE_ADMIN" && (
                           <td>
-                            <div className="d-flex">
-                              <Button
-                                //   onClick={() => showDetailsModal(el?._id)}
-                                type="primary"
-                                ghost
-                              >
-                                Details
-                              </Button>
-
+                            <div>
                               <Button
                                 onClick={() => showModal(el?._id)}
                                 type="primary"
@@ -266,7 +195,7 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                               </Button>
 
                               <Button
-                                onClick={() => deleteTeacher(el?._id)}
+                                onClick={() => deleteSlide(el?._id)}
                                 type="primary"
                                 ghost
                               >
@@ -280,85 +209,6 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                   })}
           </tbody>
         </table>
-        {/* <table>
-          <thead>
-            <tr>
-              <th>Sl</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Gender</th>
-              <th>Teacher Id</th>
-              <th>Address</th>
-              <th>Image</th>
-
-              {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-                <th>Action</th>
-              )}
-            </tr>
-          </thead>
-          <tbody>
-            {data
-              ?.filter((el) =>
-                el.name.toLowerCase().includes(searchValue.toLowerCase())
-              )
-              .slice((currentPage - 1) * pageSize, currentPage * pageSize)
-              .map((el, ind) => {
-                if (
-                  searchValue &&
-                  el?.name &&
-                  !el?.name.toLowerCase().includes(searchValue.toLowerCase())
-                ) {
-                  return null; // If searchValue is provided and name doesn't match, skip rendering
-                }
-                return (
-                  <tr key={ind}>
-                    <td>{ind + 1}</td>
-                    <td>{el?.name}</td>
-                    <td>{el?.email}</td>
-                    <td>{el?.phoneNumber}</td>
-                    <td>{el?.gender}</td>
-                    <td>{el?.teacherId}</td>
-                    <td>{el?.address}</td>
-                    <td className="data-show-img">
-                      <img src={`/uploads/${el?.file}`} alt="" />
-                    </td>
-                    {logedinData?.roles?.join("").toString() ===
-                      "ROLE_ADMIN" && (
-                      <td>
-                        <div className="d-flex">
-                          <Button
-                            //   onClick={() => showDetailsModal(el?._id)}
-                            type="primary"
-                            ghost
-                          >
-                            Details
-                          </Button>
-                          <Button
-                            onClick={() => showModal(el?._id)}
-                            type="primary"
-                            ghost
-                            className="mx-2"
-                          >
-                            Edit
-                          </Button>
-
-                          <Button
-                            onClick={() => deleteMe(el?._id)}
-                            type="primary"
-                            ghost
-                            className="mx-2"
-                          >
-                            Delete
-                          </Button>
-                        </div>
-                      </td>
-                    )}
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table> */}
       </div>
       <div class="text-center mt-5 mb-5">
         <Pagination
@@ -386,134 +236,63 @@ const SlideList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                     form={form}
                     layout="vertical"
                   >
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <Form.Item
-                          name="name"
-                          label="Name"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the name!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="Name" />
-                        </Form.Item>
-
-                        <Form.Item
-                          name="email"
-                          label="Email"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the email!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="Email" />
-                        </Form.Item>
-
-                        <Form.Item
-                          label="Phone No"
-                          name="phoneNumber"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the phone number!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="Phone Number" />
-                        </Form.Item>
-                        <Form.Item
-                          label="Teacher Id"
-                          name="teacherId"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the teacherId!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="teacherId" />
-                        </Form.Item>
-                        <Form.Item
-                          label="Image"
-                          name="file"
-                          valuePropName="fileList"
-                          getValueFromEvent={(e) => e && e.fileList}
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please select the file!",
-                            },
-                          ]}
-                        >
-                          <Upload name="file" listType="picture">
-                            <Button>Upload Image</Button>
-                          </Upload>
-                        </Form.Item>
-                      </div>
-                      <div class="col-lg-6">
-                        <Form.Item
-                          label="Address"
-                          name="address"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the address!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="address" />
-                        </Form.Item>
-
-                        <Form.Item
-                          label="Subject"
-                          name="subject"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the subject!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="subject" />
-                        </Form.Item>
-                        <Form.Item
-                          label="Qualifications"
-                          name="qualifications"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the qualifications!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="qualifications" />
-                        </Form.Item>
-
-                        <Form.Item
-                          label="Designation"
-                          name="designation"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input the designation!",
-                            },
-                          ]}
-                        >
-                          <Input placeholder="designation" />
-                        </Form.Item>
-
-                        <Form.Item>
-                          <Button type="primary" ghost onClick={handleUpdate}>
-                            Submit
-                          </Button>
-                        </Form.Item>
-                      </div>
-                    </div>
+                    <Form.Item
+                      name="topTitle"
+                      label="Top Title"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input the top title!",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="Top title" />
+                    </Form.Item>
+                    <Form.Item
+                      name="title"
+                      label="Title"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input the title!",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="Title" />
+                    </Form.Item>
+                    <Form.Item
+                      name="subTitle"
+                      label="Sub Title"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input the sub title!",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="Sub Title" />
+                    </Form.Item>
+                    <Form.Item
+                      label="Image"
+                      name="file"
+                      valuePropName="fileList"
+                      getValueFromEvent={(e) => e && e.fileList}
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please select the file!",
+                        },
+                      ]}
+                    >
+                      <Upload name="file" listType="picture">
+                        <Button>Upload Image</Button>
+                      </Upload>
+                    </Form.Item>
+                    <Form.Item>
+                      <Button type="primary" ghost onClick={handleUpdate}>
+                        Submit
+                      </Button>
+                    </Form.Item>
                   </Form>
                 </div>
               </div>
