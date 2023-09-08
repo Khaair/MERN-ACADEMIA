@@ -79,7 +79,7 @@ const AddCourse = ({ logedinData }) => {
           <div class="add-student-wrapper">
             <div className="card-title custom-button">
               <AppstoreOutlined style={{ fontSize: "20px" }} />
-              Course Management
+              <div class="ml-5">Course Management</div>
             </div>
             <div>
               <Button

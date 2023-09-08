@@ -54,7 +54,7 @@ const AddSlide = (props) => {
       <div class="add-student-wrapper">
         <div className="card-title custom-button">
           <AppstoreOutlined style={{ fontSize: "20px" }} />
-          Facilities Management
+          <div class="ml-5">Facilities Management</div>
         </div>
         <div>
           <Button
@@ -64,7 +64,7 @@ const AddSlide = (props) => {
             className="custom-button"
           >
             <PlusCircleOutlined />
-            Add Slide
+            Add Facilities
           </Button>
         </div>
       </div>

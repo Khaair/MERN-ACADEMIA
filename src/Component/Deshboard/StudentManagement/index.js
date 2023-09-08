@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Layout from "../layout";
 import AddStudent from "./add";
 import StudentList from "./list";
-import StudentReg from "./studentRegistration";
+import StudentReg from "./student-registration";
 
 function StudentManagement() {
   const [logedinData, setLogedinData] = useState([]);

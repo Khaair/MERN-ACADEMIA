@@ -16,7 +16,7 @@ const SlideSchema = new Schema({
   },
   file: {
     type: String,
-    required: [true, "Image is required"],
+    required: [true, "image is required"],
   },
 });
 

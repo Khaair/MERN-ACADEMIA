@@ -51,7 +51,7 @@ router.post(
         message: "mission and vission saved successfully",
       });
     } catch (err) {
-      res.status(500).send({ msg: "Error saving/updating student data" });
+      res.status(500).send({ msg: "error saving/updating student data" });
     }
   }
 );

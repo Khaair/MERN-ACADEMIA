@@ -1,13 +1,11 @@
 import { Button, Form, Input, Modal, Upload, Select, Pagination } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
-const { Option } = Select;
 
 const SpeechList = ({ logedinData, data, fetchdata, fetchSetData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [singleID, setSingleId] = useState("");
   const [form] = Form.useForm();
-  const [formGender] = Form.useForm();
   const [filterData, setFilterData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -82,7 +80,7 @@ const SpeechList = ({ logedinData, data, fetchdata, fetchSetData }) => {
   const deleteTeacher = async (id) => {
     try {
       let mydata = await axios.delete(
-        `http://localhost:8080/api/teacher-manage/delete-teacher/${id}`
+        `http://localhost:8080/api/speech-manage/speech-delete/${id}`
       );
       console.log(mydata);
 
@@ -93,19 +91,6 @@ const SpeechList = ({ logedinData, data, fetchdata, fetchSetData }) => {
     }
   };
 
-  const handleGenderFilter = async (value) => {
-    try {
-      const filteredData = data?.filter((item) => item?.gender === value);
-
-      if (filteredData) {
-        setFilterData(filteredData);
-      } else {
-        setFilterData([]);
-      }
-    } catch (err) {
-      console.log("err", err);
-    }
-  };
   const handleSearchChange = (e) => {
     const { value } = e.target;
     setSearchValue(value);
@@ -127,37 +112,17 @@ const SpeechList = ({ logedinData, data, fetchdata, fetchSetData }) => {
             </Form.Item>
           </Form>
         </div>
-        <div className="filter-wrapper">
-          <Form form={formGender} layout="vertical">
-            <Form.Item
-              label=""
-              name="gender"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Select placeholder="Select Gender" onChange={handleGenderFilter}>
-                <Option value="male">male</Option>
-                <Option value="female">female</Option>
-                <Option value="other">other</Option>
-              </Select>
-            </Form.Item>
-          </Form>
-        </div>
       </div>
       <div class="table-area">
         <table>
           <thead>
             <tr>
               <th>Sl</th>
+              <th>Date</th>
               <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Gender</th>
-              <th>TeacherId</th>
-              <th>Address</th>
+              <th>Designation</th>
+              <th>position</th>
+              <th>Message</th>
               <th>Image</th>
 
               {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
@@ -173,13 +138,12 @@ const SpeechList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                     return (
                       <tr key={ind}>
                         <td>{ind + 1}</td>
+                        <td>{el?.date}</td>
                         <td>{el?.name}</td>
-                        <td>{el?.email}</td>
-                        <td>{el?.phoneNumber}</td>
-                        <td>{el?.gender}</td>
-                        <td>{el?.teacherId}</td>
+                        <td>{el?.designation}</td>
+                        <td>{el?.position}</td>
+                        <td>{el?.message}</td>
 
-                        <td>{el?.address}</td>
                         <td className="data-show-img">
                           <img src={`/uploads/${el?.file}`} alt="" />
                         </td>
@@ -187,14 +151,6 @@ const SpeechList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                           "ROLE_ADMIN" && (
                           <td>
                             <div className="d-flex">
-                              <Button
-                                //   onClick={() => showDetailsModal(el?._id)}
-                                type="primary"
-                                ghost
-                              >
-                                Details
-                              </Button>
-
                               <Button
                                 onClick={() => showModal(el?._id)}
                                 type="primary"
@@ -235,12 +191,11 @@ const SpeechList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                     return (
                       <tr key={ind}>
                         <td>{ind + 1}</td>
+                        <td>{el?.date}</td>
                         <td>{el?.name}</td>
-                        <td>{el?.email}</td>
-                        <td>{el?.phoneNumber}</td>
-                        <td>{el?.gender}</td>
-                        <td>{el?.teacherId}</td>
-                        <td>{el?.address}</td>
+                        <td>{el?.designation}</td>
+                        <td>{el?.position}</td>
+                        <td>{el?.message}</td>
                         <td className="data-show-img">
                           <img src={`/uploads/${el?.file}`} alt="" />
                         </td>
@@ -248,14 +203,6 @@ const SpeechList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                           "ROLE_ADMIN" && (
                           <td>
                             <div className="d-flex">
-                              <Button
-                                //   onClick={() => showDetailsModal(el?._id)}
-                                type="primary"
-                                ghost
-                              >
-                                Details
-                              </Button>
-
                               <Button
                                 onClick={() => showModal(el?._id)}
                                 type="primary"

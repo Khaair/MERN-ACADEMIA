@@ -13,17 +13,17 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + file.originalname);
   },
 });
-
 const upload = multer({ storage: storage });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 router.get("/slide-show", async (req, res) => {
   try {
     let data = await slideModel.find();
     res.send(data);
   } catch (err) {
-    res.status(500).send({ msg: "Error retrieving data" });
+    res.status(500).send({ msg: "error retrieving data" });
   }
 });
 
@@ -32,9 +32,9 @@ router.post(
 
   upload.single("file"),
   [
-    check("topTitle").not().isEmpty().withMessage("top title is required"),
-    check("title").not().isEmpty().withMessage("title is required"),
-    check("subTitle").not().isEmpty().withMessage("sub title is required"),
+    check("topTitle").not().isEmpty().withMessage("Top title is required"),
+    check("title").not().isEmpty().withMessage("Title is required"),
+    check("subTitle").not().isEmpty().withMessage("Sub title is required"),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -61,24 +61,6 @@ router.post(
     }
   }
 );
-
-//get student information by studentId
-
-router.route("/show-single-slide/:studentId").get((req, res) => {
-  const studentId = req.params.studentId;
-
-  slideModel.findOne({ studentId }, (error, data) => {
-    if (error) {
-      return res.status(500).json({ error: "Error finding student profile." });
-    } else {
-      if (!data) {
-        return res.status(404).json({ message: "Student profile not found." });
-      }
-
-      res.json(data);
-    }
-  });
-});
 
 // Get Single information
 router.route("/show-single-slide/:id").get(async (req, res, next) => {

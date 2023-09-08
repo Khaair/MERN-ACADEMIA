@@ -52,41 +52,4 @@ const courseManagementSchema = new Schema({
   },
 });
 
-courseManagementSchema.path("courseTitle").validate(function (value) {
-  return value.length <= 1000;
-}, "courseTitle length should be less than or equal to 100 characters");
-courseManagementSchema.path("courseSubTitle").validate(function (value) {
-  return value.length <= 1000;
-}, "courseSubTitle length should be less than or equal to 100 characters");
-courseManagementSchema.path("price").validate(function (value) {
-  return value.length <= 1000;
-}, "price length should be less than or equal to 100 characters");
-
-courseManagementSchema.path("description").validate(function (value) {
-  return value.length <= 1000;
-}, "description length should be less than or equal to 50 characters");
-
-courseManagementSchema.path("instructorName").validate(function (value) {
-  return value.length <= 1000;
-}, "instructorName length should be less than or equal to 1000 characters");
-courseManagementSchema.path("instructorDesignation").validate(function (value) {
-  return value.length <= 1000;
-}, "instructorDesignation length should be less than or equal to 1000 characters");
-
-courseManagementSchema.path("learnFromCourse").validate(function (value) {
-  return value.length <= 1000;
-}, "learnFromCourse length should be less than or equal to 1000 characters");
-
-courseManagementSchema.path("courseContent").validate(function (value) {
-  return value.length <= 1000;
-}, "courseContent length should be less than or equal to 1000 characters");
-
-courseManagementSchema.post("save", function (error, doc, next) {
-  if (error.name === "ValidationError") {
-    next(new Error(error.message));
-  } else {
-    next();
-  }
-});
-
 module.exports = mongoose.model("courseManagement", courseManagementSchema);
