@@ -1,5 +1,5 @@
 import { Button, DatePicker, Form, Input, Modal, Select, Upload } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { fetchAllStudents } from "../../../statement-management/slices/studentSlices";
 import { useDispatch } from "react-redux";
 import { AppstoreOutlined, PlusCircleOutlined } from "@ant-design/icons";
@@ -7,7 +7,6 @@ const { Option } = Select;
 
 const AddStudent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [studentRegId, setStudentRegId] = useState("");
 
   const [form] = Form.useForm();
 
@@ -40,6 +39,9 @@ const AddStudent = () => {
       formData.append("dob", values.dob);
       formData.append("address", values.address);
       formData.append("gender", values.gender);
+      formData.append("class", values.class);
+      formData.append("section", values.section);
+
       formData.append("file", values.file[0].originFileObj);
       const res = await fetch(
         "http://localhost:8080/api/student-manage/student-save",
@@ -85,7 +87,7 @@ const AddStudent = () => {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        width={900}
+        width={1200}
         footer={false}
       >
         <>
@@ -148,9 +150,7 @@ const AddStudent = () => {
                         >
                           <Input placeholder="Phone Number" />
                         </Form.Item>
-                      </div>
 
-                      <div class="col-lg-6">
                         <Form.Item
                           label="Address"
                           name="address"
@@ -163,7 +163,9 @@ const AddStudent = () => {
                         >
                           <Input placeholder="address" />
                         </Form.Item>
+                      </div>
 
+                      <div class="col-lg-6">
                         <Form.Item
                           name="dob"
                           label="Date of birth"
@@ -185,10 +187,44 @@ const AddStudent = () => {
                             },
                           ]}
                         >
-                          <Select>
+                          <Select placeholder="Select your gender">
                             <Option value="male">male</Option>
                             <Option value="female">female</Option>
                             <Option value="other">other</Option>
+                          </Select>
+                        </Form.Item>
+
+                        <Form.Item
+                          label="Admission Class"
+                          name="class"
+                          rules={[
+                            {
+                              required: true,
+                            },
+                          ]}
+                        >
+                          <Select placeholder="Select your class">
+                            <Option value="10">Ten</Option>
+                            <Option value="09">Nine</Option>
+                            <Option value="08">Eight</Option>
+                            <Option value="07">Seven</Option>
+                            <Option value="06">Six</Option>
+                          </Select>
+                        </Form.Item>
+
+                        <Form.Item
+                          label="Section"
+                          name="section"
+                          rules={[
+                            {
+                              required: true,
+                            },
+                          ]}
+                        >
+                          <Select placeholder="Select your section">
+                            <Option value="1">A</Option>
+                            <Option value="2">B</Option>
+                            <Option value="3">C</Option>
                           </Select>
                         </Form.Item>
 

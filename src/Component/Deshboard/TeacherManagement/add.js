@@ -16,12 +16,15 @@ const AddTeacher = (props) => {
     setIsModalOpen(true);
   };
   const handleSubmit = async (e) => {
+    const teacherRegId = localStorage.getItem("teacherRegId");
+    const fetchteacherRegId = JSON.parse(teacherRegId);
     e.preventDefault();
     try {
       const values = await form.validateFields();
       const formData = new FormData();
       formData.append("name", values?.name);
       formData.append("email", values?.email);
+      formData.append("password", values?.password);
       formData.append("phoneNumber", values?.phoneNumber);
       formData.append("gender", values?.gender);
       formData.append("teacherId", values?.teacherId);
@@ -29,6 +32,8 @@ const AddTeacher = (props) => {
       formData.append("subject", values?.subject);
       formData.append("qualifications", values?.qualifications);
       formData.append("designation", values?.designation);
+      formData.append("teacherRegId", fetchteacherRegId);
+      formData.append("salary", values?.salary);
 
       formData.append("file", values?.file[0].originFileObj);
       const res = await fetch(
@@ -75,7 +80,7 @@ const AddTeacher = (props) => {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        width={900}
+        width={1200}
         footer={false}
       >
         <div className="form-area mt-3">
@@ -97,7 +102,6 @@ const AddTeacher = (props) => {
                       >
                         <Input placeholder="Name" />
                       </Form.Item>
-
                       <Form.Item
                         name="email"
                         label="Email"
@@ -110,7 +114,18 @@ const AddTeacher = (props) => {
                       >
                         <Input placeholder="Email" />
                       </Form.Item>
-
+                      <Form.Item
+                        label="Password"
+                        name="password"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the password!",
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Password" />
+                      </Form.Item>
                       <Form.Item
                         label="Phone No"
                         name="phoneNumber"
@@ -132,23 +147,23 @@ const AddTeacher = (props) => {
                           },
                         ]}
                       >
-                        <Select>
+                        <Select placeholder="Select your gender">
                           <Option value="male">male</Option>
                           <Option value="female">female</Option>
                           <Option value="other">other</Option>
                         </Select>
                       </Form.Item>
                       <Form.Item
-                        label="Teacher Id"
-                        name="teacherId"
+                        label="Salary"
+                        name="salary"
                         rules={[
                           {
                             required: true,
-                            message: "Please input the teacherId!",
+                            message: "Please input the salary!",
                           },
                         ]}
                       >
-                        <Input placeholder="teacherId" />
+                        <Input placeholder="salary" />
                       </Form.Item>
                       <Form.Item
                         label="Image"

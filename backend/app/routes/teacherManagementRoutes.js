@@ -36,6 +36,7 @@ router.post(
     check("name").not().isEmpty().withMessage("name is required"),
     check("email").not().isEmpty().withMessage("email is required"),
     check("phoneNumber").not().isEmpty().withMessage("phoneNumber is required"),
+    check("password").not().isEmpty().withMessage("password is required"),
     check("gender").not().isEmpty().withMessage("gender is required"),
     check("teacherId").not().isEmpty().withMessage("teacherId is required"),
     check("address").not().isEmpty().withMessage("address is required"),
@@ -45,6 +46,11 @@ router.post(
       .isEmpty()
       .withMessage("qualifications is required"),
     check("designation").not().isEmpty().withMessage("designation is required"),
+    check("teacherRegId")
+      .not()
+      .isEmpty()
+      .withMessage("teacherRegId is required"),
+    check("salary").not().isEmpty().withMessage("salary is required"),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -57,12 +63,16 @@ router.post(
         name: req.body.name,
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
+        password: req.body.password,
         gender: req.body.gender,
         teacherId: req.body.teacherId,
         address: req.body.address,
         subject: req.body.subject,
         qualifications: req.body.qualifications,
         designation: req.body.designation,
+        teacherRegId: req.body.teacherRegId,
+        salary: req.body.salary,
+
         file: req.file.filename,
       });
       const savedData = await crudData.save();
@@ -115,6 +125,7 @@ router.post(
     check("name").not().isEmpty().withMessage("name is required"),
     check("email").not().isEmpty().withMessage("email is required"),
     check("phoneNumber").not().isEmpty().withMessage("phoneNumber is required"),
+    check("password").not().isEmpty().withMessage("password is required"),
     check("gender").not().isEmpty().withMessage("gender is required"),
     check("teacherId").not().isEmpty().withMessage("teacherId is required"),
     check("address").not().isEmpty().withMessage("address is required"),
@@ -124,6 +135,11 @@ router.post(
       .isEmpty()
       .withMessage("qualifications is required"),
     check("designation").not().isEmpty().withMessage("designation is required"),
+    check("teacherRegId")
+      .not()
+      .isEmpty()
+      .withMessage("teacherRegId is required"),
+    check("salary").not().isEmpty().withMessage("salary is required"),
   ],
   async (req, res) => {
     console.log(req?.body);
@@ -138,12 +154,15 @@ router.post(
           name: req.body.name,
           email: req.body.email,
           phoneNumber: req.body.phoneNumber,
+          password: req.body.password,
           gender: req.body.gender,
           teacherId: req.body.teacherId,
           address: req.body.address,
           subject: req.body.subject,
           qualifications: req.body.qualifications,
           designation: req.body.designation,
+          teacherRegId: req.body.teacherRegId,
+          salary: req.body.salary,
           file: req.file.filename,
         },
         { new: true }

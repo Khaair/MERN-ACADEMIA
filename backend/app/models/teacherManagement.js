@@ -13,14 +13,15 @@ const teacherSchema = new Schema({
     type: String,
     required: [true, "phoneNumber is required"],
   },
+  password: {
+    type: String,
+    required: [true, "password is required"],
+  },
   gender: {
     type: String,
     required: [true, "gender is required"],
   },
-  teacherId: {
-    type: String,
-    required: [true, "teacherId is required"],
-  },
+
   address: {
     type: String,
     required: [true, "address is required"],
@@ -36,6 +37,15 @@ const teacherSchema = new Schema({
   designation: {
     type: String,
     required: [true, "designation is required"],
+  },
+
+  teacherRegId: {
+    type: String,
+    required: [true, "teacherId is required"],
+  },
+  salary: {
+    type: String,
+    required: [true, "teacherId is required"],
   },
   file: {
     type: String,

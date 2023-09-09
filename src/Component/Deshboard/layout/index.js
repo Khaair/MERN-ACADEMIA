@@ -59,15 +59,16 @@ const DeshboardLayout = ({ children }) => {
     ]),
     getItem("Teacher Manage", "teacher-manage", <UserOutlined />),
     getItem("Student Manage", "student-manage", <TeamOutlined />),
+    getItem("Class Manage", "class-manage", <QuestionCircleOutlined />),
+
+    getItem("Result Manage", "sub2", <LineChartOutlined />, [
+      getItem("Add result", "result-manage"),
+      getItem("Result list", "result-list"),
+    ]),
     getItem("Course Manage", "course-manage", <CopyOutlined />),
-    getItem("Result Manage", "result-manage", <LineChartOutlined />),
     getItem("Order Manage", "order-manage", <BlockOutlined />),
     getItem("Quiz Manage", "quiz-manage", <QuestionCircleOutlined />),
 
-    getItem("Attendence Manage", "sub2", <TeamOutlined />, [
-      getItem("Team 1", "6"),
-      getItem("Team 2", "8"),
-    ]),
     getItem("Fee Manage", "fee-manage", <DesktopOutlined />),
     getItem("Admission Manage", "admission-manage", <DesktopOutlined />),
     getItem("Admit card Manage", "admit-card-manage", <DesktopOutlined />),

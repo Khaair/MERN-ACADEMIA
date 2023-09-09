@@ -151,15 +151,13 @@ const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
         <table>
           <thead>
             <tr>
-              <th>Sl</th>
-              <th>Name</th>
+              <th>Teacher Id</th>
+              <th>User Name</th>
               <th>Email</th>
+              <th>Password</th>
               <th>Phone</th>
               <th>Gender</th>
-              <th>TeacherId</th>
-              <th>Address</th>
               <th>Image</th>
-
               {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
                 <th>Action</th>
               )}
@@ -172,14 +170,12 @@ const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                   .map((el, ind) => {
                     return (
                       <tr key={ind}>
-                        <td>{ind + 1}</td>
+                        <td>{el?.teacherRegId}</td>
                         <td>{el?.name}</td>
                         <td>{el?.email}</td>
+                        <td>{el?.password}</td>
                         <td>{el?.phoneNumber}</td>
                         <td>{el?.gender}</td>
-                        <td>{el?.teacherId}</td>
-
-                        <td>{el?.address}</td>
                         <td className="data-show-img">
                           <img src={`/uploads/${el?.file}`} alt="" />
                         </td>
@@ -234,13 +230,12 @@ const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                     }
                     return (
                       <tr key={ind}>
-                        <td>{ind + 1}</td>
+                        <td>{el?.teacherRegId}</td>
                         <td>{el?.name}</td>
                         <td>{el?.email}</td>
+                        <td>{el?.password}</td>
                         <td>{el?.phoneNumber}</td>
                         <td>{el?.gender}</td>
-                        <td>{el?.teacherId}</td>
-                        <td>{el?.address}</td>
                         <td className="data-show-img">
                           <img src={`/uploads/${el?.file}`} alt="" />
                         </td>

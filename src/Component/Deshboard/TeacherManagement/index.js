@@ -3,6 +3,7 @@ import Layout from "../layout";
 import AddTeacher from "./add";
 import TeacherList from "./list";
 import axios from "axios";
+import TeacherReg from "./teacher-registration";
 
 function TeacherManagement() {
   const [logedinData, setLogedinData] = useState([]);
@@ -44,7 +45,10 @@ function TeacherManagement() {
           <div class="col-lg-12">
             <div class="card">
               {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-                <AddTeacher fetch={fetchData} />
+                <>
+                  <TeacherReg />
+                  <AddTeacher fetch={fetchData} />
+                </>
               )}
 
               <TeacherList
