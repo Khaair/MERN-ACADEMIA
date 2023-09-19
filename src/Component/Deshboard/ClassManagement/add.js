@@ -1,14 +1,13 @@
-import { Button, Form, Modal, Select, Tag } from "antd";
+import { Button, Form, Modal, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { AppstoreOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllStudents } from "../../../statement-management/slices/studentSlices";
-const { Option } = Select;
 
-const AddClass = (props) => {
+const { Option } = Select;
+const AddClass = ({ teacherData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
-
   const [form] = Form.useForm();
   const dispatch = useDispatch();
 
@@ -21,7 +20,6 @@ const AddClass = (props) => {
   const showModal = () => {
     setIsModalOpen(true);
   };
-
   const { list } = useSelector((state) => state?.student);
   useEffect(() => {
     dispatch(fetchAllStudents());
@@ -33,12 +31,9 @@ const AddClass = (props) => {
       id: item.studentRegId,
     };
   });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const values = await form.validateFields();
-
     const studentObjectData = list?.map((item) => {
       return {
         ...item,
@@ -47,7 +42,6 @@ const AddClass = (props) => {
         ),
       };
     });
-
     const studentFinalData = studentObjectData?.map((item) => {
       if (item?.studentName?.length > 0) {
         return {
@@ -56,11 +50,9 @@ const AddClass = (props) => {
         };
       }
     });
-
     const studentFinalDataRemoveNull = studentFinalData.filter(
       (x) => x != null
     );
-
     if (studentFinalDataRemoveNull) {
       try {
         const response = await fetch(
@@ -90,6 +82,15 @@ const AddClass = (props) => {
       }
     }
   };
+
+  const newTeacherData = teacherData.map((item) => {
+    return {
+      teacherName: item?.name,
+      id: item?.teacherRegId,
+    };
+  });
+
+  console.log("teacherData", newTeacherData);
 
   return (
     <>
@@ -152,6 +153,28 @@ const AddClass = (props) => {
                         />
                       </Form.Item>
                       <Form.Item
+                        label="Teacher Name"
+                        name="teacherName"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the student list!",
+                          },
+                        ]}
+                      >
+                        <Select
+                          mode="single"
+                          placeholder="Inserted are removed"
+                          value={selectedItems}
+                          onChange={setSelectedItems}
+                          style={{ width: "100%" }}
+                          options={newTeacherData?.map((item) => ({
+                            label: item?.teacherName,
+                            value: item?.id,
+                          }))}
+                        />
+                      </Form.Item>
+                      <Form.Item
                         name="className"
                         label="Class Name"
                         rules={[
@@ -188,59 +211,6 @@ const AddClass = (props) => {
                       </Form.Item>
 
                       <Form.Item
-                        label="Teacher Name"
-                        name="teacherName"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input the teacher Name!",
-                          },
-                        ]}
-                      >
-                        <Select
-                          showSearch
-                          placeholder="Search to Select"
-                          optionFilterProp="children"
-                          filterOption={(input, option) =>
-                            (option?.label ?? "")?.includes(input)
-                          }
-                          filterSort={(optionA, optionB) =>
-                            (optionA?.label ?? "")
-                              ?.toLowerCase()
-                              ?.localeCompare(
-                                (optionB?.label ?? "")?.toLowerCase()
-                              )
-                          }
-                          options={[
-                            {
-                              value: "1",
-                              label: "Not Identified",
-                            },
-                            {
-                              value: "2",
-                              label: "Closed",
-                            },
-                            {
-                              value: "3",
-                              label: "Communicated",
-                            },
-                            {
-                              value: "4",
-                              label: "Identified",
-                            },
-                            {
-                              value: "5",
-                              label: "Resolved",
-                            },
-                            {
-                              value: "6",
-                              label: "Cancelled",
-                            },
-                          ]}
-                        />
-                      </Form.Item>
-
-                      <Form.Item
                         label="Subject Name"
                         name="subjectName"
                         rules={[
@@ -250,10 +220,10 @@ const AddClass = (props) => {
                         ]}
                       >
                         <Select>
-                          <Option value="male">Bangla</Option>
-                          <Option value="female">English</Option>
-                          <Option value="other">Math</Option>
-                          <Option value="other">ICT</Option>
+                          <Option value="Bangla">Bangla</Option>
+                          <Option value="English">English</Option>
+                          <Option value="Math">Math</Option>
+                          <Option value="ICT">ICT</Option>
                         </Select>
                       </Form.Item>
 

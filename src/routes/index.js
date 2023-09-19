@@ -39,6 +39,8 @@ import ImageGalleryManagement from "../component/Deshboard/WebsiteManagement/Ima
 import VideoGalleryManagement from "../component/Deshboard/WebsiteManagement/VideoGalleryManagement";
 import Home from "../component/UserEnd/home";
 import ClassManagement from "../component/Deshboard/ClassManagement";
+import AttendanceManagement from "../component/Deshboard/AttendanceManagement";
+import AttendanceList from "../component/Deshboard/AttendanceManagement/list";
 
 const RoutesMain = () => {
   return (
@@ -230,6 +232,22 @@ const RoutesMain = () => {
           element={
             <PrivateRoute>
               <ClassManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/attendance-manage"
+          element={
+            <PrivateRoute>
+              <AttendanceManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/attendance-list"
+          element={
+            <PrivateRoute>
+              <AttendanceList />
             </PrivateRoute>
           }
         />

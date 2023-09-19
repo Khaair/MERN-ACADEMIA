@@ -61,7 +61,12 @@ const DeshboardLayout = ({ children }) => {
     getItem("Student Manage", "student-manage", <TeamOutlined />),
     getItem("Class Manage", "class-manage", <QuestionCircleOutlined />),
 
-    getItem("Result Manage", "sub2", <LineChartOutlined />, [
+    getItem("Attendance Manage", "sub2", <LineChartOutlined />, [
+      getItem("Take Attendance", "attendance-manage"),
+      getItem("Attendance list", "attendance-list"),
+    ]),
+
+    getItem("Result Manage", "sub3", <LineChartOutlined />, [
       getItem("Add result", "result-manage"),
       getItem("Result list", "result-list"),
     ]),

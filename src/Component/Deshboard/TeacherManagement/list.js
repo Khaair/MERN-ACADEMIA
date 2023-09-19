@@ -1,9 +1,10 @@
 import { Button, Form, Input, Modal, Upload, Select, Pagination } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllteachers } from "../../../statement-management/slices/teacherSlices";
 const { Option } = Select;
-
-const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
+const TeacherList = ({ logedinData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [singleID, setSingleId] = useState("");
   const [form] = Form.useForm();
@@ -12,20 +13,24 @@ const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
+  const dispatch = useDispatch();
+  const { list } = useSelector((state) => state?.teacher);
+  useEffect(() => {
+    dispatch(fetchAllteachers());
+  }, []);
+
+  console.log("here", list);
   const handleOk = () => {
     setIsModalOpen(false);
   };
-
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
   const showModal = (id) => {
     setIsModalOpen(true);
     setSingleId(id);
     fetchSingleData(id);
   };
-
   const fetchSingleData = async (id) => {
     try {
       let singleData = await axios.get(
@@ -45,7 +50,6 @@ const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
       console.log(err);
     }
   };
-
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -70,11 +74,8 @@ const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
       const data = await res.json();
       console.log("data up", data);
       if (data?.info === "updated") {
-        handleOk();
-        fetchdata();
+        dispatch(fetchAllteachers());
       }
-
-      console.log("data", data);
     } catch (errorInfo) {
       console.log("Failed:", errorInfo);
     }
@@ -86,16 +87,14 @@ const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
       );
       console.log(mydata);
 
-      const filterd = data.filter((a) => a._id !== id);
-      fetchSetData(filterd);
+      dispatch(fetchAllteachers());
     } catch (er) {
       console.log(er);
     }
   };
-
   const handleGenderFilter = async (value) => {
     try {
-      const filteredData = data?.filter((item) => item?.gender === value);
+      const filteredData = list?.filter((item) => item?.gender === value);
 
       if (filteredData) {
         setFilterData(filteredData);
@@ -111,7 +110,7 @@ const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
     setSearchValue(value);
   };
   const handlePageChange = (page) => {
-    setCurrentPage(page); // Step 3: Update current page when pagination changes
+    setCurrentPage(page);
   };
   return (
     <div class="list-area">
@@ -213,7 +212,7 @@ const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                       </tr>
                     );
                   })
-              : data
+              : list
                   ?.filter((el) =>
                     el.name.toLowerCase().includes(searchValue.toLowerCase())
                   )
@@ -226,7 +225,7 @@ const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                         .toLowerCase()
                         .includes(searchValue.toLowerCase())
                     ) {
-                      return null; // If searchValue is provided and name doesn't match, skip rendering
+                      return null;
                     }
                     return (
                       <tr key={ind}>
@@ -243,11 +242,7 @@ const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                           "ROLE_ADMIN" && (
                           <td>
                             <div className="d-flex">
-                              <Button
-                                //   onClick={() => showDetailsModal(el?._id)}
-                                type="primary"
-                                ghost
-                              >
+                              <Button type="primary" ghost>
                                 Details
                               </Button>
 
@@ -275,90 +270,11 @@ const TeacherList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                   })}
           </tbody>
         </table>
-        {/* <table>
-          <thead>
-            <tr>
-              <th>Sl</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Gender</th>
-              <th>Teacher Id</th>
-              <th>Address</th>
-              <th>Image</th>
-
-              {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-                <th>Action</th>
-              )}
-            </tr>
-          </thead>
-          <tbody>
-            {data
-              ?.filter((el) =>
-                el.name.toLowerCase().includes(searchValue.toLowerCase())
-              )
-              .slice((currentPage - 1) * pageSize, currentPage * pageSize)
-              .map((el, ind) => {
-                if (
-                  searchValue &&
-                  el?.name &&
-                  !el?.name.toLowerCase().includes(searchValue.toLowerCase())
-                ) {
-                  return null; // If searchValue is provided and name doesn't match, skip rendering
-                }
-                return (
-                  <tr key={ind}>
-                    <td>{ind + 1}</td>
-                    <td>{el?.name}</td>
-                    <td>{el?.email}</td>
-                    <td>{el?.phoneNumber}</td>
-                    <td>{el?.gender}</td>
-                    <td>{el?.teacherId}</td>
-                    <td>{el?.address}</td>
-                    <td className="data-show-img">
-                      <img src={`/uploads/${el?.file}`} alt="" />
-                    </td>
-                    {logedinData?.roles?.join("").toString() ===
-                      "ROLE_ADMIN" && (
-                      <td>
-                        <div className="d-flex">
-                          <Button
-                            //   onClick={() => showDetailsModal(el?._id)}
-                            type="primary"
-                            ghost
-                          >
-                            Details
-                          </Button>
-                          <Button
-                            onClick={() => showModal(el?._id)}
-                            type="primary"
-                            ghost
-                            className="mx-2"
-                          >
-                            Edit
-                          </Button>
-
-                          <Button
-                            onClick={() => deleteMe(el?._id)}
-                            type="primary"
-                            ghost
-                            className="mx-2"
-                          >
-                            Delete
-                          </Button>
-                        </div>
-                      </td>
-                    )}
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table> */}
       </div>
       <div class="text-center mt-5 mb-5">
         <Pagination
           current={currentPage}
-          total={filterData.length > 0 ? filterData.length : data?.length}
+          total={filterData.length > 0 ? filterData.length : list?.length}
           pageSize={pageSize}
           onChange={handlePageChange}
         />

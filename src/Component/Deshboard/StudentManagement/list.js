@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllStudents } from "../../../statement-management/slices/studentSlices";
 const { Option } = Select;
 
-const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
+const StudentList = ({ logedinData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [singleID, setSingleId] = useState("");
   const [form] = Form.useForm();

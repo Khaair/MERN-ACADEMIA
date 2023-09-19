@@ -60,4 +60,20 @@ router.post(
   }
 );
 
+// Get Single information
+router.route("/show-single-class/:id").get(async (req, res, next) => {
+  try {
+    let data = await classModel.findById(req.params.id);
+    if (!data) {
+      return res.status(404).send({ msg: "Data not found" });
+    }
+    res.json(data);
+  } catch (err) {
+    if (err.kind === "ObjectId") {
+      return res.status(404).send({ msg: "Data not found" });
+    }
+    return res.status(500).send({ msg: "Error retrieving data" });
+  }
+});
+
 module.exports = router;

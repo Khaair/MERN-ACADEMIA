@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import Layout from "../layout";
-import AddClass from "./add";
-import ClassList from "./list";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-
 import { fetchAllteachers } from "../../../statement-management/slices/teacherSlices";
+import TakeAttendance from "./take-attendance";
 
-function ClassManagement() {
+function AttendanceManagement() {
   const [logedinData, setLogedinData] = useState([]);
   const [data, setData] = useState([]);
 
@@ -28,11 +26,6 @@ function ClassManagement() {
     dispatch(fetchAllteachers());
   }, []);
 
-  const fetchData = () => {
-    fetchdata();
-  };
-  console.log("Teacher here", list);
-
   useEffect(() => {
     const storedLogedinData = localStorage.getItem("logedinData");
     const fetchLogedinData = JSON.parse(storedLogedinData);
@@ -49,11 +42,9 @@ function ClassManagement() {
         <div class="row">
           <div class="col-lg-12">
             <div class="card">
-              {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-                <AddClass teacherData={list} fetch={fetchData} />
-              )}
+              {/* <CheckboxList studentData={} /> */}
 
-              <ClassList
+              <TakeAttendance
                 fetchSetData={fetchSetData}
                 fetchdata={fetchdata}
                 data={data}
@@ -67,4 +58,4 @@ function ClassManagement() {
   );
 }
 
-export default ClassManagement;
+export default AttendanceManagement;

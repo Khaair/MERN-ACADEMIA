@@ -170,7 +170,7 @@ const ClassList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                     return (
                       <tr key={ind}>
                         <td>{ind + 1}</td>
-                        <td>{el?.className}</td>
+                        <td>{el?.className === "10" ? "Ten" : 0}</td>
                         <td>{el?.section}</td>
                         <td>{el?.teacherName}</td>
                         <td>{el?.subjectName}</td>
@@ -215,13 +215,23 @@ const ClassList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                         ?.toLowerCase()
                         ?.includes(searchValue.toLowerCase())
                     ) {
-                      return null; // If searchValue is provided and name doesn't match, skip rendering
+                      return null;
                     }
                     return (
                       <tr key={ind}>
                         <td>{ind + 1}</td>
-                        <td>{el?.className}</td>
-                        <td>{el?.section}</td>
+                        <td>
+                          {(el?.className === "10" && "Ten") ||
+                            (el?.className === "09" && "Nine") ||
+                            (el?.className === "08" && "Eight") ||
+                            (el?.className === "07" && "Seven") ||
+                            (el?.className === "06" && "Six")}
+                        </td>
+                        <td>
+                          {(el?.section === "1" && "A") ||
+                            (el?.section === "2" && "B") ||
+                            (el?.section === "3" && "C")}
+                        </td>
                         <td>{el?.teacherName}</td>
                         <td>{el?.subjectName}</td>
 

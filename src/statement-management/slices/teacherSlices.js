@@ -6,7 +6,6 @@ export const teacherSlice = createSlice({
     list: [],
   },
   reducers: {
-    // action
     setteacherList: (state, action) => {
       state.list = action?.payload;
     },
