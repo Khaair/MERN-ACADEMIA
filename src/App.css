@@ -191,9 +191,7 @@
   background-color: #f0f3f6;
   border-radius: 50%;
   display: inline-block;
-  margin-right: 8px;
   color: #148a8f;
-  margin-left: 5px;
 }
 
 .searchbar-wrapper search {
@@ -418,4 +416,10 @@ table tbody tr td {
   min-width: 0;
   background: white !important;
   transition: all 0.2s;
+}
+
+.ant-layout .ant-layout-sider-trigger {
+  color: #fff;
+
+  background: #148a8f;
 }

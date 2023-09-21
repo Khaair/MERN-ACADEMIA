@@ -283,10 +283,6 @@ const TakeAttendance = ({ logedinData, data }) => {
             <div className="container">
               <div className="row">
                 <div className="col-lg-12 ">
-                  {/* <pre>
-                    <code>{JSON.stringify(singleData, null, 4)}</code>
-                  </pre> */}
-
                   <Form
                     className="form-input-item"
                     form={form}

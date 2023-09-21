@@ -40,7 +40,7 @@ import VideoGalleryManagement from "../component/Deshboard/WebsiteManagement/Vid
 import Home from "../component/UserEnd/home";
 import ClassManagement from "../component/Deshboard/ClassManagement";
 import AttendanceManagement from "../component/Deshboard/AttendanceManagement";
-import AttendanceList from "../component/Deshboard/AttendanceManagement/list";
+import AttendanceList from "../component/Deshboard/AttendanceManagement/AttendanceList/index";
 
 const RoutesMain = () => {
   return (

@@ -190,7 +190,7 @@ const DeshboardLayout = ({ children }) => {
             <div class="sidebar-area">
               <Layout className="bg-white">
                 <div class="flex justify-between">
-                  <div>
+                  <div className="shadow">
                     <Sider
                       width="240px"
                       collapsible
@@ -226,7 +226,7 @@ const DeshboardLayout = ({ children }) => {
                       </Menu>
                     </Sider>
                   </div>
-                  <div class="children-deshboard w-[1254px]">
+                  <div class="children-deshboard w-auto">
                     <Layout className="bg-white">{children}</Layout>
                   </div>
                 </div>
