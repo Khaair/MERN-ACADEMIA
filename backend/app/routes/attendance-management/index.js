@@ -20,6 +20,8 @@ router.post(
   [
     check("date").not().isEmpty().withMessage("date is required"),
     check("classId").not().isEmpty().withMessage("classId is required"),
+    check("className").not().isEmpty().withMessage("className is required"),
+    check("section").not().isEmpty().withMessage("section is required"),
     check("attendedStudentList")
       .not()
       .isEmpty()
@@ -35,6 +37,8 @@ router.post(
       const attendanceData = {
         date: req.body.date,
         classId: req.body.classId,
+        className: req.body.className,
+        section: req.body.section,
         attendedStudentList: req.body.attendedStudentList,
       };
 
@@ -62,6 +66,24 @@ router.post(
     }
   }
 );
+
+//get student information by studentId
+
+router.route("/show-single-attendance-class/:classId").get((req, res) => {
+  const studentId = req.params.classId;
+
+  attendanceModel.findOne({ studentId }, (error, data) => {
+    if (error) {
+      return res.status(500).json({ error: "Error finding student profile." });
+    } else {
+      if (!data) {
+        return res.status(404).json({ message: "Student profile not found." });
+      }
+
+      res.json(data);
+    }
+  });
+});
 
 // Get Single information
 router.route("/show-single-attendance/:id").get(async (req, res, next) => {

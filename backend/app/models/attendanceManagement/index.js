@@ -22,6 +22,15 @@ const classManagementSchema = new Schema({
     required: [true, "classId is required"],
   },
 
+  className: {
+    type: String,
+    required: [true, "classId is required"],
+  },
+  section: {
+    type: String,
+    required: [true, "classId is required"],
+  },
+
   attendedStudentList: {
     type: [attendanceSchema],
     required: false,

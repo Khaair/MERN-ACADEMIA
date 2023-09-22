@@ -4,13 +4,14 @@ import { Tabs } from "antd";
 import axios from "axios";
 import { Button, DatePicker, Form, Input, Select, Upload } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
+import moment from "moment";
 
 const { Option } = Select;
 
 export default function StudentProfile() {
   const [userData, setUserData] = useState("");
   const [showEDitState, setShowEditState] = useState(false);
-
+  const [data, setData] = useState([]);
   const [singleData, setSingleData] = useState([]);
   const [form] = Form.useForm();
 
@@ -78,12 +79,36 @@ export default function StudentProfile() {
     setShowEditState(true);
   };
 
+  const fetchdata = async () => {
+    try {
+      const datahere = await axios.get(
+        "http://localhost:8080/api/attendance-manage/attendance-show"
+      );
+      setData(datahere?.data);
+    } catch (err) {
+      console.log(err, "error");
+    }
+  };
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const sortedData = data.sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+
+    // Compare the dates in reverse order for descending sorting
+    if (dateA > dateB) return -1;
+    if (dateA < dateB) return 1;
+    return 0;
+  });
+
   return (
     <StudentDeshboardLayout>
       <div class="mr-5 mt-2">
         <div class="row">
           <div class="col-lg-12">
-            <div class="card">
+            <div class="card mb-5">
               <div class="flex">
                 <div className="h-[100px] w-[100px] border p-2">
                   <img
@@ -293,53 +318,98 @@ export default function StudentProfile() {
                       <div className="row mt-2">
                         <div class="col-lg-6 mb-2">
                           <div class="flex bg-[#F0FBFC] rounded p-2">
-                            <div>Name</div>
-                            <div className="ml-[75px]">
-                              {singleData?.fullName}
-                            </div>
+                            <div className="w-1/2">Name</div>
+                            <div className="w-1/2">{singleData?.fullName}</div>
                           </div>
                         </div>
                         <div class="col-lg-6 mb-2">
                           <div class="flex bg-[#F0FBFC] rounded p-2">
-                            <div>Email</div>
-                            <div className="ml-[75px]">{singleData?.email}</div>
+                            <div className="w-1/2">CLass</div>
+                            <div className="w-1/2">{singleData?.class}</div>
                           </div>
                         </div>
                         <div class="col-lg-6 mb-2">
                           <div class="flex bg-[#F0FBFC] rounded p-2">
-                            <div>Phone no</div>
-                            <div className="ml-[75px]">
+                            <div className="w-1/2">Section</div>
+                            <div className="w-1/2">{singleData?.section}</div>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <div class="flex bg-[#F0FBFC] rounded p-2">
+                            <div className="w-1/2">Email</div>
+                            <div className="w-1/2">{singleData?.email}</div>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 mb-2">
+                          <div class="flex bg-[#F0FBFC] rounded p-2">
+                            <div className="w-1/2">Phone no</div>
+                            <div className="w-1/2">
                               {singleData?.phoneNumber}
                             </div>
                           </div>
                         </div>
                         <div class="col-lg-6 mb-2">
                           <div class="flex bg-[#F0FBFC] rounded p-2">
-                            <div>Address</div>
-                            <div className="ml-[75px]">
-                              {singleData?.address}
+                            <div className="w-1/2">Address</div>
+                            <div className="w-1/2">{singleData?.address}</div>
+                          </div>
+                        </div>{" "}
+                        <div class="col-lg-6 mb-2">
+                          <div class="flex bg-[#F0FBFC] rounded p-2">
+                            <div className="w-1/2">Date of birth</div>
+                            <div className="w-1/2">
+                              {moment(singleData?.dob).format("LL")}
                             </div>
                           </div>
                         </div>{" "}
                         <div class="col-lg-6 mb-2">
                           <div class="flex bg-[#F0FBFC] rounded p-2">
-                            <div>Date of birth</div>
-                            <div className="ml-[75px]">{singleData?.dob}</div>
-                          </div>
-                        </div>{" "}
-                        <div class="col-lg-6 mb-2">
-                          <div class="flex bg-[#F0FBFC] rounded p-2">
-                            <div>Gender</div>
-                            <div className="ml-[75px]">
-                              {singleData?.gender}
-                            </div>
+                            <div className="w-1/2">Gender</div>
+                            <div className="w-1/2">{singleData?.gender}</div>
                           </div>
                         </div>
                       </div>
                     )}
                   </TabPane>
                   <TabPane tab="Attendence" key="2">
-                    Content of Tab Pane 2
+                    <div class="table-area">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Date</th>
+                            <th>Class Name</th>
+                            <th>Section</th>
+                            <th>Attendance</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {sortedData?.map((item, index) => {
+                            return (
+                              item?.attendedStudentList?.find(
+                                (item) =>
+                                  item?.studentRegId ===
+                                  singleData?.studentRegId
+                              )?.studentRegId?.length && (
+                                <tr key={index}>
+                                  <td> {moment(item?.date).format("LL")}</td>
+                                  <td>{item?.className}</td>
+                                  <td>{item?.section}</td>
+                                  <td>
+                                    {item?.attendedStudentList?.find(
+                                      (item) =>
+                                        item?.studentRegId ===
+                                        singleData?.studentRegId
+                                    )?.studentRegId
+                                      ? "true"
+                                      : "false"}
+                                  </td>
+                                </tr>
+                              )
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
                   </TabPane>
                   <TabPane tab="Result" key="3">
                     Content of Tab Pane 3

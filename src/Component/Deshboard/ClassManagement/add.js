@@ -90,7 +90,7 @@ const AddClass = ({ teacherData }) => {
     };
   });
 
-  console.log("teacherData", newTeacherData);
+  console.log("selectedItems", selectedItems);
 
   return (
     <>
@@ -129,6 +129,41 @@ const AddClass = ({ teacherData }) => {
                 <Form className="form-input-item" form={form} layout="vertical">
                   <div class="row">
                     <div class="col-lg-12">
+                      <Form.Item
+                        name="className"
+                        label="Class Name"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the class name!",
+                          },
+                        ]}
+                      >
+                        <Select placeholder="Select">
+                          <Option value="10">Ten</Option>
+                          <Option value="09">Nine</Option>
+                          <Option value="08">Eight</Option>
+                          <Option value="07">Seven</Option>
+                          <Option value="06">Six</Option>
+                        </Select>
+                      </Form.Item>
+
+                      <Form.Item
+                        name="section"
+                        label="Section"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the section!",
+                          },
+                        ]}
+                      >
+                        <Select placeholder="Select">
+                          <Option value="1">A</Option>
+                          <Option value="2">B</Option>
+                          <Option value="3">C</Option>
+                        </Select>
+                      </Form.Item>
                       <Form.Item
                         label="Student List"
                         name="studentList"
@@ -174,42 +209,6 @@ const AddClass = ({ teacherData }) => {
                           }))}
                         />
                       </Form.Item>
-                      <Form.Item
-                        name="className"
-                        label="Class Name"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input the class name!",
-                          },
-                        ]}
-                      >
-                        <Select placeholder="Select">
-                          <Option value="10">Ten</Option>
-                          <Option value="09">Nine</Option>
-                          <Option value="08">Eight</Option>
-                          <Option value="07">Seven</Option>
-                          <Option value="06">Six</Option>
-                        </Select>
-                      </Form.Item>
-
-                      <Form.Item
-                        name="section"
-                        label="Section"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input the section!",
-                          },
-                        ]}
-                      >
-                        <Select placeholder="Select">
-                          <Option value="1">A</Option>
-                          <Option value="2">B</Option>
-                          <Option value="3">C</Option>
-                        </Select>
-                      </Form.Item>
-
                       <Form.Item
                         label="Subject Name"
                         name="subjectName"

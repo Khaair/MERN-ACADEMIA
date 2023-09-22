@@ -22,7 +22,7 @@ const StudentList = ({ logedinData }) => {
   const [filterData, setFilterData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5;
+  const pageSize = 20;
   const dispatch = useDispatch();
 
   const { list } = useSelector((state) => state?.student);

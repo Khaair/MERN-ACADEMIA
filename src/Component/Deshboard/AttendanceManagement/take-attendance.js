@@ -100,6 +100,9 @@ const TakeAttendance = ({ logedinData, data }) => {
           body: JSON.stringify({
             date: values?.attendanceDate,
             classId: singleData?.data?._id,
+            className: singleData?.data?.className,
+            section: singleData?.data?.section,
+
             attendedStudentList: selectedStudents,
           }),
         }

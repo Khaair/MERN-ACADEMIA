@@ -226,7 +226,7 @@ const DeshboardLayout = ({ children }) => {
                       </Menu>
                     </Sider>
                   </div>
-                  <div class="children-deshboard w-auto">
+                  <div class="children-deshboard w-[1254px]">
                     <Layout className="bg-white">{children}</Layout>
                   </div>
                 </div>

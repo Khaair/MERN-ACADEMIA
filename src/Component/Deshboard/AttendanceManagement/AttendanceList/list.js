@@ -116,8 +116,45 @@ const ClassList = ({ logedinData, data, fetchdata, fetchSetData }) => {
   const handlePageChange = (page) => {
     setCurrentPage(page); // Step 3: Update current page when pagination changes
   };
+
+  const attendedStudentList = [
+    {
+      studentRegId: "64fb3864a3feb6ddec811de8",
+      studentName: "khairuser",
+      _id: "650d38e4d84a940746a177c5",
+    },
+    {
+      studentRegId: "64fb389ea3feb6ddec811def",
+      studentName: "khairuser01",
+      _id: "650d38e4d84a940746a177c6",
+    },
+  ];
+
+  const attendentStudent = data?.map((item) => {
+    const filterDataa = item?.attendedStudentList?.filter(
+      (student) => student?.studentRegId === "64fb38b3a3feb6ddec811df6"
+    );
+
+    return {
+      finalFilterData: filterDataa,
+    };
+  });
+
   return (
     <div class="list-area">
+      {/* <div class="row">
+        <div class="col-lg-6">
+          <pre>
+            <code>{JSON.stringify(data, null, 4)}</code>
+          </pre>
+        </div>
+
+        <div class="col-lg-6">
+          <pre>
+            <code>{JSON.stringify(attendentStudent, null, 4)}</code>
+          </pre>
+        </div>
+      </div> */}
       <div class="filter-and-search-wrapper mt-4 mb-2">
         <div class="search-wrapper">
           <Form layout="inline">
@@ -156,7 +193,8 @@ const ClassList = ({ logedinData, data, fetchdata, fetchSetData }) => {
           <thead>
             <tr>
               <th>Sl</th>
-              <th>Class Id</th>
+              <th>Class Name</th>
+              <th>Section</th>
               <th>Date</th>
               <th>Student</th>
 
@@ -173,7 +211,9 @@ const ClassList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                     return (
                       <tr key={ind}>
                         <td>{ind + 1}</td>
-                        <td>{el?.classId}</td>
+                        <td>{el?.className}</td>
+                        <td>{el?.section}</td>
+
                         <td>{el?.date}</td>
                         {logedinData?.roles?.join("")?.toString() ===
                           "ROLE_ADMIN" && (
@@ -203,7 +243,7 @@ const ClassList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                   })
               : data
                   ?.filter((el) =>
-                    el.classId
+                    el.className
                       ?.toLowerCase()
                       ?.includes(searchValue.toLowerCase())
                   )
@@ -211,8 +251,8 @@ const ClassList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                   ?.map((el, ind) => {
                     if (
                       searchValue &&
-                      el?.classId &&
-                      !el?.classId
+                      el?.className &&
+                      !el?.className
                         ?.toLowerCase()
                         ?.includes(searchValue?.toLowerCase())
                     ) {
@@ -221,7 +261,9 @@ const ClassList = ({ logedinData, data, fetchdata, fetchSetData }) => {
                     return (
                       <tr key={ind}>
                         <td>{ind + 1}</td>
-                        <td>{el?.classId}</td>
+                        <td>{el?.className}</td>
+                        <td>{el?.section}</td>
+
                         <td>{moment(el?.date).format("LL")} </td>
                         <td>
                           {el?.attendedStudentList?.map((item) => (
@@ -265,6 +307,7 @@ const ClassList = ({ logedinData, data, fetchdata, fetchSetData }) => {
           onChange={handlePageChange}
         />
       </div>
+
       <Modal
         title="Add New Teacher"
         open={isModalOpen}
