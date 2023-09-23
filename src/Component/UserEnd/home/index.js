@@ -7,9 +7,10 @@ import {
   GlobalOutlined,
   BookOutlined,
 } from "@ant-design/icons";
-
+import { Image } from "antd";
 import Layout from "../Layout";
 import Carousel from "../carousel";
+import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <Layout>
@@ -18,13 +19,13 @@ export default function Home() {
         <div class="bootstrap-container">
           <div class="row">
             <div class="col-lg-6">
-              <div className="h-[500px]">
-                <img
-                  className="h-full w-full object-cover"
+              <Image.PreviewGroup className="h-[150px]">
+                <Image
+                  className="w-full h-full object-cover"
                   src="/uploads/about-us.jpg"
-                  alt=""
+                  alt="avatar"
                 />
-              </div>
+              </Image.PreviewGroup>
             </div>
             <div class="col-lg-6">
               <div class="p-4">
@@ -33,7 +34,7 @@ export default function Home() {
                   <h2 className="leading-10 mt-3">
                     Welcome to Sherpur govt college
                   </h2>
-                  <p className="mt-3">
+                  <p className="mt-3 text-justify">
                     Sherpur Government College is an educational institution
                     located in Sherpur, Bangladesh. The college offers a variety
                     of academic programs and courses to students. It serves as a
@@ -67,29 +68,33 @@ export default function Home() {
           <div class="row">
             <div class="col-lg-6 mb-3">
               <div className="p-4 w-full course-card bg-[#f0fbfc] rounded overflow-hidden shadow-lg">
-                <h3 className="text-[#06BBCC]">Message from head master</h3>
-                <div className="flex mt-3">
+                <h3>Message from head master</h3>
+                <div className="flex mt-2">
                   <div className="w-[150px]">
-                    <div className="h-[150px] w-[150px]">
-                      <img
-                        className="w-full h-full object-contain"
-                        src="/uploads/1676365597171default-avatar.png"
+                    <div className="h-[150px] w-[150px] border border-[black] p-1">
+                      <Image
+                        className="w-full h-full object-cover"
+                        src="/uploads/principal.jpg"
                         alt="avatar"
                       />
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-3 h-[43px]">
                       <h6 className="text-sm">MD. ABDUR RASHID</h6>
                       <h6 className="text-sm">Head Master</h6>
                     </div>
                   </div>
                   <div className="ml-3">
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Voluptatum reiciendis culpa nisi, assumenda exercitationem
-                      aliquid sapiente provident tempore deserunt tempora! Lorem
-                      ipsum dolor sit amet consectetur adipisicing elit.
-                      Voluptatum reiciendis culpa nisi, assumenda exercitationem
-                      aliquid sapiente provident tempore deserunt tempora!
+                    <p className="text-justify text-[black]">
+                      I hope this message finds you all in good health and high
+                      spirits. As we commence another academic year, I wanted to
+                      take a moment to extend my warmest greetings to each and
+                      every member of our school community. At this school, we
+                      are committed to providing the highest quality education
+                      and fostering an environment of growth, learning, thinking
+                      positive and character development.{" "}
+                      <Link to="/head-master-speech" className="text-primary">
+                        (Read more)
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -97,30 +102,38 @@ export default function Home() {
             </div>
             <div class="col-lg-6 mb-3">
               <div className=" p-4 w-full course-card bg-[#f0fbfc] rounded overflow-hidden shadow-lg">
-                <h3 className="text-[#06BBCC]">Message from head master</h3>
+                <h3>Message from head master</h3>
 
-                <div className="flex mt-3">
+                <div className="flex mt-2">
                   <div className="w-[150px]">
-                    <div className="h-[150px] w-[150px]">
-                      <img
+                    <div className="h-[150px] w-[150px] border border-[black] p-1">
+                      <Image
                         className="w-full h-full object-contain"
-                        src="/uploads/1676365597171default-avatar.png"
+                        src="/uploads/principal.jpg"
                         alt="avatar"
                       />
                     </div>
-                    <div className="mt-2">
-                      <h6 className="text-sm">MD. ABDUR RASHID</h6>
-                      <h6 className="text-sm">Head Master</h6>
+
+                    <div className="mt-3 h-[43px]">
+                      <h6 className="text-sm">MST. NILUFA KHAN</h6>
+                      <h6 className="text-sm">Ass. Head Master</h6>
                     </div>
                   </div>
                   <div className="ml-3">
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Voluptatum reiciendis culpa nisi, assumenda exercitationem
-                      aliquid sapiente provident tempore deserunt tempora! Lorem
-                      ipsum dolor sit amet consectetur adipisicing elit.
-                      Voluptatum reiciendis culpa nisi, assumenda exercitationem
-                      aliquid sapiente provident tempore deserunt tempora!
+                    <p className="text-justify text-[black]">
+                      I hope this message finds you all in good health and high
+                      spirits. As we commence another academic year, I wanted to
+                      take a moment to extend my warmest greetings to each and
+                      every member of our school community. At this school, we
+                      are committed to providing the highest quality education
+                      and fostering an environment of growth, learning, thinking
+                      positive and character development.{" "}
+                      <Link
+                        to="/ass-head-master-speech"
+                        className="text-primary"
+                      >
+                        (Read more)
+                      </Link>
                     </p>
                   </div>
                 </div>

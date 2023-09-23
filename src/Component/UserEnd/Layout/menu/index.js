@@ -114,7 +114,7 @@ export default function Menu() {
   console.log("userData", userData);
 
   return (
-    <div className="navbar-area bg-white shadow sticky top-0">
+    <div className="navbar-area bg-white shadow sticky z-20 top-0">
       <div class="bootstrap-container">
         <div class="row">
           <div class="col-lg-12">
