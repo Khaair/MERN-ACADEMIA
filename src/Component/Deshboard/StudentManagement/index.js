@@ -6,11 +6,7 @@ import StudentReg from "./student-registration";
 
 function StudentManagement() {
   const [logedinData, setLogedinData] = useState([]);
-  const [data, setData] = useState([]);
 
-  const fetchSetData = (e) => {
-    setData(e);
-  };
   useEffect(() => {
     const storedLogedinData = localStorage.getItem("logedinData");
     const fetchLogedinData = JSON.parse(storedLogedinData);
@@ -30,11 +26,7 @@ function StudentManagement() {
                 </>
               )}
 
-              <StudentList
-                fetch={fetchSetData}
-                data={data}
-                logedinData={logedinData}
-              />
+              <StudentList logedinData={logedinData} />
             </div>
           </div>
         </div>

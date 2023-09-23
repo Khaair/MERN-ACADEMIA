@@ -36,6 +36,14 @@ const studentSchema = new Schema({
     type: String,
     required: [true, "gender is required"],
   },
+  class: {
+    type: String,
+    required: [true, "class is required"],
+  },
+  section: {
+    type: String,
+    required: [true, "section is required"],
+  },
 
   file: {
     type: String,

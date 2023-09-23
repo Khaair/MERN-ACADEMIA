@@ -91,6 +91,8 @@ const slideRoutes = require("./app/routes/website/slideManagementRoutes");
 const speechRoutes = require("./app/routes/website/speechManagementRoutes");
 const noticesRoutes = require("./app/routes/website/noticesManagementRoutes");
 const missionVissionRoutes = require("./app/routes/website/missionVissionManagement");
+const classRoutes = require("./app/routes/class-management");
+const attendanceRoutes = require("./app/routes/attendance-management");
 
 app.use("/api/student-manage", studentManagementRoutes);
 app.use("/api/get-user", routesuserget);
@@ -108,6 +110,8 @@ app.use("/api/slide", slideRoutes);
 app.use("/api/speech-manage", speechRoutes);
 app.use("/api/notices-manage", noticesRoutes);
 app.use("/api/mission-vission", missionVissionRoutes);
+app.use("/api/class-manage", classRoutes);
+app.use("/api/attendance-manage", attendanceRoutes);
 
 //http://localhost:8080/api/auth/signup
 

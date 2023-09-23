@@ -524,7 +524,7 @@ function ResultManagement() {
           open={isModalOpen}
           onOk={handleOk}
           onCancel={handleCancel}
-          width={600}
+          width={1200}
           footer={false}
         >
           <>

@@ -38,6 +38,9 @@ import MissionVissionManagement from "../component/Deshboard/WebsiteManagement/M
 import ImageGalleryManagement from "../component/Deshboard/WebsiteManagement/ImageGalleryManagement";
 import VideoGalleryManagement from "../component/Deshboard/WebsiteManagement/VideoGalleryManagement";
 import Home from "../component/UserEnd/home";
+import ClassManagement from "../component/Deshboard/ClassManagement";
+import AttendanceManagement from "../component/Deshboard/AttendanceManagement";
+import AttendanceList from "../component/Deshboard/AttendanceManagement/AttendanceList/index";
 
 const RoutesMain = () => {
   return (
@@ -221,6 +224,30 @@ const RoutesMain = () => {
           element={
             <PrivateRoute>
               <VideoGalleryManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/class-manage"
+          element={
+            <PrivateRoute>
+              <ClassManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/attendance-manage"
+          element={
+            <PrivateRoute>
+              <AttendanceManagement />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/attendance-list"
+          element={
+            <PrivateRoute>
+              <AttendanceList />
             </PrivateRoute>
           }
         />

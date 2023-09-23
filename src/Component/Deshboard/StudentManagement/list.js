@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllStudents } from "../../../statement-management/slices/studentSlices";
 const { Option } = Select;
 
-const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
+const StudentList = ({ logedinData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [singleID, setSingleId] = useState("");
   const [form] = Form.useForm();
@@ -22,7 +22,7 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
   const [filterData, setFilterData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5;
+  const pageSize = 20;
   const dispatch = useDispatch();
 
   const { list } = useSelector((state) => state?.student);
@@ -114,7 +114,6 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
       );
 
       if (!res.data) {
-        // Handle non-OK responses (e.g., 404, 500, etc.)
         console.log("Request failed with status:", res.status);
         return;
       }
@@ -175,17 +174,16 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
         </div>
       </div>
 
-      <table>
+      <table className="table-responsive">
         <thead>
           <tr>
             <th scope="col">Student reg id</th>
             <th scope="col">User name</th>
             <th scope="col">Email</th>
             <th scope="col">Password</th>
-            <th scope="col">Phone</th>
+            <th scope="col">Class</th>
+            <th scope="col">Section</th>
             <th scope="col">Gender</th>
-            <th scope="col">Address</th>
-
             <th scope="col">Image</th>
             {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
               <th scope="col">Action</th>
@@ -203,9 +201,9 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
                       <td>{el?.fullName}</td>
                       <td>{el?.email}</td>
                       <td>{el?.password}</td>
-                      <td>{el?.phoneNumber}</td>
+                      <td>{el?.class}</td>
+                      <td>{el?.section}</td>
                       <td>{el?.gender}</td>
-                      <td>{el?.address}</td>
                       <td className="data-show-img">
                         <img src={`/uploads/${el?.file}`} alt="" />
                       </td>
@@ -266,9 +264,9 @@ const StudentList = ({ logedinData, data, fetchdata, fetch }) => {
                       <td>{el?.fullName}</td>
                       <td>{el?.email}</td>
                       <td>{el?.password}</td>
-                      <td>{el?.phoneNumber}</td>
+                      <td>{el?.class}</td>
+                      <td>{el?.section}</td>
                       <td>{el?.gender}</td>
-                      <td>{el?.address}</td>
                       <td className="data-show-img">
                         <img src={`/uploads/${el?.file}`} alt="" />
                       </td>

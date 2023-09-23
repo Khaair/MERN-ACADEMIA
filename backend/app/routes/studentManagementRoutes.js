@@ -45,6 +45,8 @@ router.post(
     check("dob").not().isEmpty().withMessage("dob is required"),
     check("address").not().isEmpty().withMessage("address is required"),
     check("gender").not().isEmpty().withMessage("gender is required"),
+    check("class").not().isEmpty().withMessage("class is required"),
+    check("section").not().isEmpty().withMessage("section is required"),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -64,6 +66,8 @@ router.post(
         studentId: req.body.studentId,
         address: req.body.address,
         gender: req.body.gender,
+        class: req.body.class,
+        section: req.body.section,
 
         file: req.file.filename,
       });
@@ -148,6 +152,8 @@ router.post(
 
     check("address").not().isEmpty().withMessage("address is required"),
     check("gender").not().isEmpty().withMessage("gender is required"),
+    check("class").not().isEmpty().withMessage("class is required"),
+    check("section").not().isEmpty().withMessage("section is required"),
   ],
   async (req, res) => {
     console.log(req?.body);
@@ -169,6 +175,8 @@ router.post(
           studentId: req.body.studentId,
           address: req.body.address,
           gender: req.body.gender,
+          class: req.body.class,
+          section: req.body.section,
 
           file: req.file.filename,
         },
