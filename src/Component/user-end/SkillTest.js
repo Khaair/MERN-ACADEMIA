@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "./Layout";
 import { Tabs } from "antd";
-import StudentDeshboardLayout from "../CourseEnrollment/Layout";
+import StudentDeshboardLayout from "../course-enrollment/Layout";
 
 export default function SkillTest() {
   const [score, setScore] = useState(0);

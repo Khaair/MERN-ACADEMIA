@@ -11,11 +11,11 @@ const Footer = () => {
                   <li>
                     <h4>Quick Links</h4>
                   </li>
-                  <li>Home</li>
-                  <li>About</li>
-                  <li>My Account</li>
-                  <li>Shop</li>
-                  <li>Cartssss</li>
+                  <li className="text-[black]">Home</li>
+                  <li className="text-[black]">About</li>
+                  <li className="text-[black]">My Account</li>
+                  <li className="text-[black]">Shop</li>
+                  <li className="text-[black]">Cartssss</li>
                 </ul>
               </div>
             </div>
@@ -25,13 +25,12 @@ const Footer = () => {
                   <li>
                     <h4>For Beginer</h4>
                   </li>
-                  <li>HTML</li>
-                  <li>CSS</li>
-                  <li>Bootstrap</li>
+                  <li className="text-[black]">HTML</li>
+                  <li className="text-[black]">CSS</li>
+                  <li className="text-[black]">Bootstrap</li>
 
-                  <li>Basic JavaScript</li>
-                  <li>Basic React</li>
-                  <li></li>
+                  <li className="text-[black]">Basic JavaScript</li>
+                  <li className="text-[black]">Basic React</li>
                 </ul>
               </div>
             </div>
@@ -41,11 +40,11 @@ const Footer = () => {
                   <li>
                     <h4>For Mid lavel</h4>
                   </li>
-                  <li>Advance JavaScript</li>
-                  <li>Advance NodeJS</li>
-                  <li>ExpressJs</li>
-                  <li>MongoDB</li>
-                  <li>AWS</li>
+                  <li className="text-[black]">Advance JavaScript</li>
+                  <li className="text-[black]">Advance NodeJS</li>
+                  <li className="text-[black]">ExpressJs</li>
+                  <li className="text-[black]">MongoDB</li>
+                  <li className="text-[black]">AWS</li>
                 </ul>
               </div>
             </div>

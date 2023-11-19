@@ -14,7 +14,7 @@ const VideoGallery = () => {
           </div>
         </div>
       </div>
-      <div class="career-goal-title-area pt-[100px]  pb-[100px]">
+      <div class="career-goal-title-area bg-[white] pt-[100px]  pb-[100px]">
         <div class="bootstrap-container">
           <div class="row">
             <div class="col-lg-6">
