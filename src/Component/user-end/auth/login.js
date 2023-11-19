@@ -35,7 +35,7 @@ function Login() {
 
   return (
     <>
-      <div class="admin-deshboard-login-area">
+      <div class="admin-deshboard-login-area ">
         <div class="container">
           <div className="row">
             <div className="login-area mb-4">

@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <Layout>
       <Carousel />
-      <div class="about-us-area pt-[100px]">
+      <div class="about-us-area bg-[white] pt-[100px]">
         <div class="bootstrap-container">
           <div class="row">
             <div class="col-lg-6">
@@ -63,12 +63,12 @@ export default function Home() {
         </div>
       </div>
 
-      <div class="principal-and-assistent-princpal-message-area pt-[100px]">
+      <div class="principal-and-assistent-princpal-message-area bg-[white] pt-[100px]">
         <div class="bootstrap-container">
           <div class="row">
             <div class="col-lg-6 mb-3">
               <div className="p-4 w-full course-card bg-[#f0fbfc] rounded overflow-hidden shadow-lg">
-                <h3>Message from head master</h3>
+                <h3 className="text-[black]">Message from head master</h3>
                 <div className="flex mt-2">
                   <div className="w-[150px]">
                     <div className="h-[150px] w-[150px] border border-[black] p-1">
@@ -79,8 +79,8 @@ export default function Home() {
                       />
                     </div>
                     <div className="mt-3 h-[43px]">
-                      <h6 className="text-sm">MD. ABDUR RASHID</h6>
-                      <h6 className="text-sm">Head Master</h6>
+                      <h6 className="text-sm text-[black]">MD. ABDUR RASHID</h6>
+                      <h6 className="text-sm text-[black]">Head Master</h6>
                     </div>
                   </div>
                   <div className="ml-3">
@@ -102,7 +102,7 @@ export default function Home() {
             </div>
             <div class="col-lg-6 mb-3">
               <div className=" p-4 w-full course-card bg-[#f0fbfc] rounded overflow-hidden shadow-lg">
-                <h3>Message from head master</h3>
+                <h3 className="text-[black]">Message from head master</h3>
 
                 <div className="flex mt-2">
                   <div className="w-[150px]">
@@ -115,8 +115,8 @@ export default function Home() {
                     </div>
 
                     <div className="mt-3 h-[43px]">
-                      <h6 className="text-sm">MST. NILUFA KHAN</h6>
-                      <h6 className="text-sm">Ass. Head Master</h6>
+                      <h6 className="text-sm text-[black]">MST. NILUFA KHAN</h6>
+                      <h6 className="text-sm text-[black]">Ass. Head Master</h6>
                     </div>
                   </div>
                   <div className="ml-3">
@@ -143,7 +143,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div class="our-facilities-area pt-[100px]">
+      <div class="our-facilities-area bg-[white] pt-[100px]">
         <div class="bootstrap-container">
           <div class="row">
             <div class="col-lg-3 mb-3">
@@ -194,7 +194,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div class="notices-area pt-[100px]">
+      <div class="notices-area bg-[white] pt-[100px]">
         <div class="bootstrap-container">
           <div class="row">
             <div class="col-lg-12 text-center">
@@ -259,7 +259,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div class="counter-area pt-[100px] pb-[100px]">
+      <div class="counter-area bg-[white] pt-[100px] pb-[100px]">
         <div class="bootstrap-container">
           <div class="row">
             <div class="col-lg-3 mb-3">

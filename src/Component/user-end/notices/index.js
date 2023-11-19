@@ -15,7 +15,7 @@ const Notices = () => {
           </div>
         </div>
       </div>
-      <div class="notices-area pt-[100px] pb-[100px]">
+      <div class="notices-area bg-[white] pt-[100px] pb-[100px]">
         <div class="bootstrap-container">
           <div class="row mt-3">
             <div class="col-lg-6 mb-3">

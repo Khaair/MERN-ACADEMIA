@@ -1,46 +1,46 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Auth from "../component/Authentication";
-import CourseDetails from "../component/UserEnd/CourseDetails";
-import CheckOut from "../component/UserEnd/CheckOut";
-import SkillTest from "../component/UserEnd/SkillTest";
-import PrivateRoute from "../component/Authentication/PrivateRoute";
-import CourseDeshboard from "../component/CourseEnrollment/CourseDeshboard";
-import CourseAccess from "../component/CourseEnrollment/CourseAccess/CourseAccess";
-import StudentProfile from "../component/CourseEnrollment/StudentProfile";
-import Tutorials from "../component/UserEnd/Tutorials";
-import DeshboardManagement from "../component/Deshboard/DeshboardManagement";
-import CourseManagement from "../component/Deshboard/CourseManagement";
-import OrderManage from "../component/Deshboard/OrderManagement";
-import ResultManagement from "../component/Deshboard/ResultManagement";
-import StudentManage from "../component/Deshboard/StudentManagement";
-import StuudentReg from "../component/Deshboard/StudentManagement/student-registration";
-import QuizManage from "../component/Deshboard/QuizManagement";
-import TecherManagement from "../component/Deshboard/TeacherManagement";
-import UserAuth from "../component/UserEnd/auth";
-import UserPrivateRoute from "../component/UserEnd/auth/private-route";
-import AboutUsManagement from "../component/Deshboard/WebsiteManagement/AboutUsManagement";
-import SlideManagement from "../component/Deshboard/WebsiteManagement/SlideManagement";
-import AboutUs from "../component/UserEnd/about-us";
-import Mission from "../component/UserEnd/about-us/mission";
-import Vission from "../component/UserEnd/about-us/vission";
-import ImageGallery from "../component/UserEnd/gallery/image-gallery";
-import VideoGallery from "../component/UserEnd/gallery/video-gallery";
-import HeadMaster from "../component/UserEnd/administration/head-master";
-import AssHeadMaster from "../component/UserEnd/administration/ass-head-master";
-import TeacherListWebView from "../component/UserEnd/administration/teacher-list-web-view";
-import Contact from "../component/UserEnd/contact";
-import Notices from "../component/UserEnd/notices";
-import SpeechManagement from "../component/Deshboard/WebsiteManagement/SpeechManagement";
-import FacilitesManagement from "../component/Deshboard/WebsiteManagement/FacilitiesManagement";
-import NoticesManagement from "../component/Deshboard/WebsiteManagement/NoticesManagement";
-import MissionVissionManagement from "../component/Deshboard/WebsiteManagement/MissionVissionManagement";
-import ImageGalleryManagement from "../component/Deshboard/WebsiteManagement/ImageGalleryManagement";
-import VideoGalleryManagement from "../component/Deshboard/WebsiteManagement/VideoGalleryManagement";
-import Home from "../component/UserEnd/home";
-import ClassManagement from "../component/Deshboard/ClassManagement";
-import AttendanceManagement from "../component/Deshboard/AttendanceManagement";
-import AttendanceList from "../component/Deshboard/AttendanceManagement/AttendanceList/index";
+import Auth from "../component/authentication";
+import CourseDetails from "../component/user-end/CourseDetails";
+import CheckOut from "../component/user-end/CheckOut";
+import SkillTest from "../component/user-end/SkillTest";
+import PrivateRoute from "../component/authentication/PrivateRoute";
+import CourseDeshboard from "../component/course-enrollment/CourseDeshboard";
+import CourseAccess from "../component/course-enrollment/CourseAccess/CourseAccess";
+import StudentProfile from "../component/course-enrollment/StudentProfile";
+import Tutorials from "../component/user-end/Tutorials";
+import DeshboardManagement from "../component/dashboard/DeshboardManagement";
+import CourseManagement from "../component/dashboard/CourseManagement";
+import OrderManage from "../component/dashboard/OrderManagement";
+import ResultManagement from "../component/dashboard/ResultManagement";
+import StudentManage from "../component/dashboard/StudentManagement";
+import StuudentReg from "../component/dashboard/StudentManagement/student-registration";
+import QuizManage from "../component/dashboard/QuizManagement";
+import TecherManagement from "../component/dashboard/TeacherManagement";
+import UserAuth from "../component/user-end/auth";
+import UserPrivateRoute from "../component/user-end/auth/private-route";
+import AboutUsManagement from "../component/dashboard/WebsiteManagement/AboutUsManagement";
+import SlideManagement from "../component/dashboard/WebsiteManagement/SlideManagement";
+import AboutUs from "../component/user-end/about-us";
+import Mission from "../component/user-end/about-us/mission";
+import Vission from "../component/user-end/about-us/vission";
+import ImageGallery from "../component/user-end/gallery/image-gallery";
+import VideoGallery from "../component/user-end/gallery/video-gallery";
+import HeadMaster from "../component/user-end/administration/head-master";
+import AssHeadMaster from "../component/user-end/administration/ass-head-master";
+import TeacherListWebView from "../component/user-end/administration/teacher-list-web-view";
+import Contact from "../component/user-end/contact";
+import Notices from "../component/user-end/notices";
+import SpeechManagement from "../component/dashboard/WebsiteManagement/SpeechManagement";
+import FacilitesManagement from "../component/dashboard/WebsiteManagement/FacilitiesManagement";
+import NoticesManagement from "../component/dashboard/WebsiteManagement/NoticesManagement";
+import MissionVissionManagement from "../component/dashboard/WebsiteManagement/MissionVissionManagement";
+import ImageGalleryManagement from "../component/dashboard/WebsiteManagement/ImageGalleryManagement";
+import VideoGalleryManagement from "../component/dashboard/WebsiteManagement/VideoGalleryManagement";
+import Home from "../component/user-end/home";
+import ClassManagement from "../component/dashboard/ClassManagement";
+import AttendanceManagement from "../component/dashboard/AttendanceManagement";
+import AttendanceList from "../component/dashboard/AttendanceManagement/AttendanceList/index";
 
 const RoutesMain = () => {
   return (
@@ -53,7 +53,7 @@ const RoutesMain = () => {
         <Route path="/tutorials" element={<Tutorials />} />
         {/*Course Public Route End */}
 
-        {/* Userend Public Route Start */}
+        {/* user-end Public Route Start */}
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Auth />} />
         <Route path="/user-auth" element={<UserAuth />} />
@@ -67,9 +67,9 @@ const RoutesMain = () => {
         <Route path="/teacher-list-show" element={<TeacherListWebView />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/notices" element={<Notices />} />
-        {/*Userend Public Route End */}
+        {/*user-end Public Route End */}
 
-        {/* Userend Private Route start */}
+        {/* user-end Private Route start */}
         <Route
           path="/course-access"
           element={
@@ -95,7 +95,7 @@ const RoutesMain = () => {
             </UserPrivateRoute>
           }
         />
-        {/* Userend Private Route end */}
+        {/* user-end Private Route end */}
 
         {/* Deshboard Private Route Start */}
         <Route

@@ -59,7 +59,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <div class="our-facilities-area pt-[100px]">
+      <div class="our-facilities-area bg-[white] pt-[100px]">
         <div class="bootstrap-container">
           <div class="row">
             <div class="col-lg-3 mb-3">
@@ -110,7 +110,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <div class="contact-area pt-[100px] pb-[100px]">
+      <div class="contact-area bg-[white] pt-[100px] pb-[100px]">
         <div class="bootstrap-container">
           <div class="row">
             <div class="col-lg-6">

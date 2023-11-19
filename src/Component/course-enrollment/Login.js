@@ -2,7 +2,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Form, Input } from "antd";
 import { useState } from "react";
-import Layout from "../UserEnd/Layout";
+import Layout from "../user-end/Layout";
 
 function Login() {
   const [errorMsg, setErrorMsg] = useState("");
