@@ -385,6 +385,7 @@ table {
 
 table thead {
   background-color: #f0f8ff;
+  color: black;
 }
 
 table thead tr th {
@@ -643,4 +644,8 @@ table tbody tr td {
 }
 
 /* admin end */
+
+.min-screen-height{
+min-height: 86vh;
+}
 

@@ -40,25 +40,21 @@ function AttendanceManagement() {
   return (
     <Layout>
       <div class="academia-management-area">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card">
-              <div class="add-student-wrapper">
-                <div className="card-title custom-button">
-                  <AppstoreOutlined style={{ fontSize: "20px" }} />
-                  <div class="ml-5">Take Attendance</div>
-                </div>
-              </div>
-              <hr style={{ height: "0.5px" }} className="mt-2" />
-
-              <TakeAttendance
-                fetchSetData={fetchSetData}
-                fetchdata={fetchdata}
-                data={data}
-                logedinData={logedinData}
-              />
+        <div class="card min-screen-height">
+          <div class="add-student-wrapper">
+            <div className="card-title custom-button">
+              <AppstoreOutlined style={{ fontSize: "20px" }} />
+              <div class="ml-5">Take Attendance</div>
             </div>
           </div>
+          <hr style={{ height: "0.5px" }} className="mt-2" />
+
+          <TakeAttendance
+            fetchSetData={fetchSetData}
+            fetchdata={fetchdata}
+            data={data}
+            logedinData={logedinData}
+          />
         </div>
       </div>
     </Layout>

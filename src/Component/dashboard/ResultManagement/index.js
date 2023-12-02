@@ -201,82 +201,79 @@ function ResultManagement() {
   return (
     <Layout>
       <div class="academia-management-area">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card">
-              <div class="add-student-wrapper">
-                <div className="card-title">Result Management</div>
-                <div>
-                  {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-                    <Button onClick={showModal} type="primary" ghost>
-                      Add Result
-                    </Button>
-                  )}
-                </div>
-              </div>
-              <table>
-                <thead>
-                  <tr>
-                    <th scope="col">Sl</th>
-                    <th scope="col">Student name</th>
-                    <th scope="col">Roll number</th>
-
-                    <th scope="col">Exam name</th>
-                    <th scope="col">Passing Year</th>
-
-                    {logedinData?.roles?.join("").toString() ===
-                      "ROLE_ADMIN" && <th scope="col">Action</th>}
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.map((el, ind) => {
-                    return (
-                      <tr key={ind}>
-                        <th scope="row">{ind + 1}</th>
-                        <td>{el?.studentName}</td>
-                        <td>{el?.rollNumber}</td>
-
-                        <td>{el?.examName}</td>
-                        <td>{el?.passingYear}</td>
-
-                        {logedinData?.roles?.join("").toString() ===
-                          "ROLE_ADMIN" && (
-                          <td>
-                            <div>
-                              <Button
-                                onClick={() => showDetailsModal(el?._id)}
-                                type="primary"
-                                ghost
-                              >
-                                Details
-                              </Button>
-                              <Button
-                                className="mx-2"
-                                onClick={() => showEditModal(el?._id)}
-                                type="primary"
-                                ghost
-                              >
-                                Edit
-                              </Button>
-
-                              <Button
-                                onClick={() => deleteMe(el._id)}
-                                type="primary"
-                                ghost
-                                className="mx-2"
-                              >
-                                Delete
-                              </Button>
-                            </div>
-                          </td>
-                        )}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+        <div class="card min-screen-height">
+          <div class="add-student-wrapper">
+            <div className="card-title">Result Management</div>
+            <div>
+              {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
+                <Button onClick={showModal} type="primary" ghost>
+                  Add Result
+                </Button>
+              )}
             </div>
           </div>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Sl</th>
+                <th scope="col">Student name</th>
+                <th scope="col">Roll number</th>
+
+                <th scope="col">Exam name</th>
+                <th scope="col">Passing Year</th>
+
+                {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
+                  <th scope="col">Action</th>
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((el, ind) => {
+                return (
+                  <tr key={ind}>
+                    <th scope="row">{ind + 1}</th>
+                    <td>{el?.studentName}</td>
+                    <td>{el?.rollNumber}</td>
+
+                    <td>{el?.examName}</td>
+                    <td>{el?.passingYear}</td>
+
+                    {logedinData?.roles?.join("").toString() ===
+                      "ROLE_ADMIN" && (
+                      <td>
+                        <div>
+                          <Button
+                            onClick={() => showDetailsModal(el?._id)}
+                            type="primary"
+                            ghost
+                          >
+                            Details
+                          </Button>
+                          <Button
+                            className="mx-2"
+                            onClick={() => showEditModal(el?._id)}
+                            type="primary"
+                            ghost
+                          >
+                            Edit
+                          </Button>
+
+                          <Button
+                            onClick={() => deleteMe(el._id)}
+                            type="primary"
+                            ghost
+                            className="mx-2"
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      </td>
+                    )}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
 
         <div class="result-search-area mt-3">

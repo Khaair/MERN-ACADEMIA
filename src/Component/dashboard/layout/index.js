@@ -1,15 +1,10 @@
 import { useState } from "react";
-import { BiPackage } from "react-icons/bi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { TbDeviceImacQuestion } from "react-icons/tb";
-import { MdOutlineLeaderboard } from "react-icons/md";
-import { RiGitRepositoryPrivateFill } from "react-icons/ri";
-import { FaUserTie } from "react-icons/fa";
 import { Menu, MenuItem, Sidebar, SubMenu } from "react-pro-sidebar";
 import { Link, useLocation } from "react-router-dom";
 import avatar from "../.././../assets/img/MD-ABUL-KHAIR.jpg";
 import logo from "../.././../assets/img/logo-academia.png";
-
 
 const AdminLayout = ({ children }) => {
   const location = useLocation();
@@ -17,6 +12,7 @@ const AdminLayout = ({ children }) => {
   function handleToggle() {
     setIsExpanded(!isExpanded);
   }
+
   return (
     <>
       <div className="admin-header shadow-md bg-[white]">
@@ -28,12 +24,11 @@ const AdminLayout = ({ children }) => {
               </div>
             </Link>
 
-            
             <div className="top-header-right-sidebar ">
               <div className="humberger-menu-icon flex items-center">
                 <button
                   onClick={() => handleToggle()}
-                  className=" bg-[#E8F2FC] px-2 py-[4px] rounded"
+                  className=" bg-[#E8F2FC] px-2 py-[7px] rounded"
                 >
                   <GiHamburgerMenu color="#4D5FAB" size="25px" />
                 </button>
@@ -243,7 +238,7 @@ const AdminLayout = ({ children }) => {
         <Sidebar collapsed={!isExpanded}>
           <Menu>
             <MenuItem
-              component={<Link to="/">Dashboard</Link>}
+              component={<Link to="/deshboard">Dashboard</Link>}
               active={window.location.pathname === "/"}
               icon={
                 <svg
@@ -293,115 +288,135 @@ const AdminLayout = ({ children }) => {
                 </svg>
               }
             >
-              <Link to="/">
+              <Link to="/deshboard">
                 {" "}
                 <span className="text-[#28A0F7] font-bold">Dashboard</span>
               </Link>
             </MenuItem>
 
             <SubMenu
-              label="Define Exams"
+              label="Website Manage"
               defaultOpen={
                 location.pathname === "/admin/job-seekers" ? true : false
               }
               icon={<GiHamburgerMenu />}
             >
+              <MenuItem active={window.location.pathname === "/slide-manage"}>
+                <Link to="/slide-manage">Slide Manage</Link>
+              </MenuItem>
               <MenuItem
-                active={window.location.pathname === "/admin/job-seekers"}
+                active={window.location.pathname === "/about-us-manage"}
               >
-                <Link to="/create-exam-list">Create Exam</Link>
+                <Link to="/about-us-manage">About Us Managee</Link>
+              </MenuItem>
+              <MenuItem active={window.location.pathname === "/speech-manage"}>
+                <Link to="/speech-manage">Speech Manage</Link>
+              </MenuItem>
+              <MenuItem
+                active={window.location.pathname === "/facilites-manage"}
+              >
+                <Link to="/facilites-manage">Facilities Manage</Link>
+              </MenuItem>
+              <MenuItem active={window.location.pathname === "/notices-manage"}>
+                <Link to="/create-exam-list">Notices Manage</Link>
+              </MenuItem>
+              <MenuItem
+                active={window.location.pathname === "/mission-vission-manage"}
+              >
+                <Link to="/mission-vission-manage">Mission and Vission</Link>
+              </MenuItem>
+              <MenuItem
+                active={window.location.pathname === "/image-gallery-manage"}
+              >
+                <Link to="/image-gallery-manage">Image Gallery</Link>
+              </MenuItem>
+              <MenuItem
+                active={window.location.pathname === "/video-gallery-manage"}
+              >
+                <Link to="/video-gallery-manage">Video Gallery</Link>
+              </MenuItem>
+              <MenuItem active={window.location.pathname === "/contact-manage"}>
+                <Link to="/contact-manag">Contact Manage</Link>
               </MenuItem>
             </SubMenu>
-            <SubMenu label="Question Bank" icon={<TbDeviceImacQuestion />}>
+            <SubMenu label="Teacher Manage" icon={<TbDeviceImacQuestion />}>
               <MenuItem>
-                <Link to="/question-bank/bcs-preliminary-list">
-                  BCS Preliminary
-                </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/admin/recruiter/list">BCS Written</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/admin/recruiter/list">NTRC Preliminary</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/admin/recruiter/list">NTRC Written</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/admin/recruiter/list">BANK Preliminary</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/admin/recruiter/list">Bank Written</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/admin/recruiter/list">Primary Preliminary</Link>
-              </MenuItem>
-            </SubMenu>
-            <SubMenu
-              label="Model test & Quiz"
-              defaultOpen={
-                location.pathname === "/admin/govt-jobs"
-                  ? true
-                  : location.pathname === "/admin/govt-job-add"
-                  ? true
-                  : false
-              }
-              icon={<MdOutlineLeaderboard />}
-            >
-              <MenuItem
-                active={
-                  window.location.pathname === "/mock-test/mock-test-list"
-                }
-              >
-                <Link to="/mock-test/mock-test-list">Mock Test</Link>
-              </MenuItem>
-              <MenuItem
-                active={
-                  window.location.pathname === "/model-test/model-test-list"
-                }
-              >
-                <Link to="/model-test/model-test-list">Model Test</Link>
-              </MenuItem>
-              <MenuItem
-                active={window.location.pathname === "/admin/govt-job-add"}
-              >
-                <Link to="/quizes/quizes-list">Quizes</Link>
-              </MenuItem>
-              <MenuItem
-                active={window.location.pathname === "/admin/govt-job-add"}
-              >
-                <Link to="/packages/packages-list">Packages</Link>
+                <Link to="/teacher-manage">Add Teacher</Link>
               </MenuItem>
             </SubMenu>
 
-            <SubMenu
-              label="Teachers"
-              icon={<FaUserTie />}
-              defaultOpen={
-                location.pathname === "/admin/tenders"
-                  ? true
-                  : location.pathname === "/admin/tender/add"
-                  ? true
-                  : false
-              }
-            >
-              <MenuItem active={window.location.pathname === "/admin/tenders"}>
-                <Link to="/teachers/teachers-list">Create Teacher</Link>
+            <SubMenu label="Student Manage" icon={<TbDeviceImacQuestion />}>
+              <MenuItem>
+                <Link to="/student-manage">Add Student</Link>
               </MenuItem>
             </SubMenu>
 
-            <SubMenu label="Courses" icon={<RiGitRepositoryPrivateFill />}>
+            <SubMenu label="CLass Manage" icon={<TbDeviceImacQuestion />}>
               <MenuItem>
-                <Link to="/courses/courses-list">Create Courses</Link>
+                <Link to="/class-manage">Add CLass</Link>
               </MenuItem>
             </SubMenu>
 
-            <SubMenu label="Users & Roles" icon={<BiPackage />}>
+            <SubMenu label="Attendance" icon={<TbDeviceImacQuestion />}>
               <MenuItem>
-                <Link to="/users/user-management-list">User management</Link>
+                <Link to="/attendance-manage">Take Attendance</Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/users/role-management-list">Role management</Link>
+                <Link to="/attendance-list">Attendance list</Link>
+              </MenuItem>
+            </SubMenu>
+
+            <SubMenu label="Result Manage" icon={<TbDeviceImacQuestion />}>
+              <MenuItem>
+                <Link to="/result-manage">Add Result</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/result-list">Result list</Link>
+              </MenuItem>
+            </SubMenu>
+
+            <SubMenu label="Course Manage" icon={<TbDeviceImacQuestion />}>
+              <MenuItem>
+                <Link to="/course-manage">Add Course</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/course-list">Course list</Link>
+              </MenuItem>
+            </SubMenu>
+
+            <SubMenu label="Order Manage" icon={<TbDeviceImacQuestion />}>
+              <MenuItem>
+                <Link to="/order-manage">Add Order</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/order-list">Order list</Link>
+              </MenuItem>
+            </SubMenu>
+
+            <SubMenu label="Quiz Manage" icon={<TbDeviceImacQuestion />}>
+              <MenuItem>
+                <Link to="/quiz-manage">Add Quiz</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/quiz-list">Quiz list</Link>
+              </MenuItem>
+            </SubMenu>
+
+            <SubMenu label="Fee Manage" icon={<TbDeviceImacQuestion />}>
+              <MenuItem>
+                <Link to="/quiz-manage">Add Fee</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/quiz-list">Fee list</Link>
+              </MenuItem>
+            </SubMenu>
+
+            <SubMenu label="Admit card" icon={<TbDeviceImacQuestion />}>
+              <MenuItem>
+                <Link to="/quiz-manage">Create admit card</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/quiz-list">Admit card list</Link>
               </MenuItem>
             </SubMenu>
           </Menu>
@@ -419,248 +434,3 @@ const AdminLayout = ({ children }) => {
 };
 
 export default AdminLayout;
-
-
-
-
-// import React, { useEffect, useState } from "react";
-// import { Link, useNavigate, useLocation } from "react-router-dom";
-
-// import { Button } from "antd";
-// import Search from "antd/es/transfer/search";
-
-// import {
-//   DesktopOutlined,
-//   PieChartOutlined,
-//   TeamOutlined,
-//   UserOutlined,
-//   BellOutlined,
-//   QrcodeOutlined,
-//   LogoutOutlined,
-//   LineChartOutlined,
-//   CopyOutlined,
-//   BlockOutlined,
-//   QuestionCircleOutlined,
-//   AppstoreOutlined,
-// } from "@ant-design/icons";
-// import { Layout, Menu, theme } from "antd";
-// import SubMenu from "antd/es/menu/SubMenu";
-// const { Sider } = Layout;
-// function getItem(label, key, icon, children) {
-//   return {
-//     key,
-//     icon,
-//     children,
-//     label,
-//   };
-// }
-
-// const DeshboardLayout = ({ children }) => {
-//   const [getColorStudentManage, setColorStudentManage] = useState();
-//   const [getColorCourseManage, setColorCourseManage] = useState();
-//   const [getColorOrderManage, setColorOrderManage] = useState();
-//   const [getColorResultManage, setColorResultManage] = useState();
-//   const [getColorQuizManage, setColorQuizManage] = useState();
-//   const [getColorDeshboardManage, setColorDeshboardManage] = useState();
-//   const [getColorTeacherManage, setColorTeacherdManage] = useState();
-//   const [getColorAboutUsManage, setColorAboutUsdManage] = useState();
-//   const [collapsed, setCollapsed] = useState(false);
-//   const {
-//     token: { colorBgContainer },
-//   } = theme.useToken();
-
-//   const items = [
-//     getItem("Deshboard", "deshboard", <PieChartOutlined />),
-//     getItem("Website Manage", "sub1", <DesktopOutlined />, [
-//       getItem("Slide Manage", "slide-manage"),
-//       getItem("About Us Manage", "about-us-manage"),
-//       getItem("Speech Manage", "speech-manage"),
-//       getItem("Facilities Manage", "facilites-manage"),
-//       getItem("Notices Manage", "notices-manage"),
-//       getItem("Mission and Vission", "mission-vission-manage"),
-//       getItem("Image Gallery", "image-gallery-manage"),
-//       getItem("Video Gallery", "video-gallery-manage"),
-//       getItem("Contact Manage", "contact-manage"),
-//     ]),
-//     getItem("Teacher Manage", "teacher-manage", <UserOutlined />),
-//     getItem("Student Manage", "student-manage", <TeamOutlined />),
-//     getItem("Class Manage", "class-manage", <QuestionCircleOutlined />),
-
-//     getItem("Attendance Manage", "sub2", <LineChartOutlined />, [
-//       getItem("Take Attendance", "attendance-manage"),
-//       getItem("Attendance list", "attendance-list"),
-//     ]),
-
-//     getItem("Result Manage", "sub3", <LineChartOutlined />, [
-//       getItem("Add result", "result-manage"),
-//       getItem("Result list", "result-list"),
-//     ]),
-//     getItem("Course Manage", "course-manage", <CopyOutlined />),
-//     getItem("Order Manage", "order-manage", <BlockOutlined />),
-//     getItem("Quiz Manage", "quiz-manage", <QuestionCircleOutlined />),
-
-//     getItem("Fee Manage", "fee-manage", <DesktopOutlined />),
-//     getItem("Admission Manage", "admission-manage", <DesktopOutlined />),
-//     getItem("Admit card Manage", "admit-card-manage", <DesktopOutlined />),
-//   ];
-
-//   const location = useLocation();
-//   const navigate = useNavigate();
-
-//   const handleLogOut = () => {
-//     localStorage.removeItem("accessToken");
-//     localStorage.removeItem("logedinData");
-
-//     navigate("/admin");
-//   };
-
-//   const onSearch = (value) => console.log(value);
-
-//   useEffect(() => {
-//     if (location?.pathname === "/student-manage") {
-//       setColorStudentManage(true);
-//     }
-//     if (location?.pathname === "/course-manage") {
-//       setColorCourseManage(true);
-//     }
-
-//     if (location?.pathname === "/order-manage") {
-//       setColorOrderManage(true);
-//     }
-//     if (location?.pathname === "/result-manage") {
-//       setColorResultManage(true);
-//     }
-//     if (location?.pathname === "/quiz-manage") {
-//       setColorQuizManage(true);
-//     }
-//     if (location?.pathname === "/deshboard") {
-//       setColorDeshboardManage(true);
-//     }
-//     if (location?.pathname === "/teacher-manage") {
-//       setColorTeacherdManage(true);
-//     }
-//     if (location?.pathname === "/about-us-manage") {
-//       setColorAboutUsdManage(true);
-//     }
-//   }, [location?.pathname]);
-
-//   return (
-//     <React.Fragment>
-//       <div class="layer-area">
-//         <div class="container-fluid">
-//           <div className="row">
-//             <div className="nabar-area">
-//               <nav className="navv">
-//                 <div className="top-navbar-wrapper">
-//                   <div className="accademia-logo">
-//                     <Link to="/">
-//                       <AppstoreOutlined
-//                         style={{ fontSize: "35px", color: "#06BBCC" }}
-//                       />
-//                     </Link>
-//                   </div>
-
-//                   <div>
-//                     <Button type="primary" ghost>
-//                       Blog
-//                     </Button>
-//                     <Button className="mx-2" type="primary" ghost>
-//                       Info
-//                     </Button>
-//                     <Button onClick={handleLogOut} type="primary" ghost>
-//                       Event
-//                     </Button>
-//                   </div>
-
-//                   <div className="searchbar-wrapper">
-//                     <Search
-//                       placeholder="input search text"
-//                       allowClear
-//                       onSearch={onSearch}
-//                       style={{
-//                         width: 200,
-//                       }}
-//                     />
-//                   </div>
-
-//                   <div className="top-nav-right-icon d-flex">
-//                     <div className="title-deshboard-wrapper-icon">
-//                       <BellOutlined role="button" />
-//                     </div>
-//                     <div className="title-deshboard-wrapper-icon">
-//                       {" "}
-//                       <QrcodeOutlined role="button" />
-//                     </div>
-//                     <div className="title-deshboard-wrapper-icon">
-//                       {" "}
-//                       <LogoutOutlined onClick={handleLogOut} />
-//                     </div>
-//                   </div>
-//                 </div>
-//               </nav>
-//             </div>
-//             <div className="sub-nabar-area shadow-sm ">
-//               <nav className="navv">
-//                 <Link to="/deshboard">
-//                   <div className="title-deshboard-wrapper text-center text-bold">
-//                     <div className="title-deshboard-wrapper-icon">
-//                       {" "}
-//                       <QrcodeOutlined role="button" />
-//                     </div>
-//                     <div className="deshboar-word">Deshboard</div>
-//                   </div>
-//                 </Link>
-//               </nav>
-//             </div>
-//             <div class="sidebar-area">
-//               <Layout className="bg-white">
-//                 <div class="flex justify-between">
-//                   <div className="shadow">
-//                     <Sider
-//                       width="240px"
-//                       collapsible
-//                       collapsed={collapsed}
-//                       onCollapse={(value) => setCollapsed(value)}
-//                     >
-//                       <Menu
-//                         theme="light"
-//                         defaultSelectedKeys={["1"]}
-//                         mode="inline"
-//                       >
-//                         {items.map((item) =>
-//                           item.children ? (
-//                             <SubMenu
-//                               key={item.key}
-//                               icon={item.icon}
-//                               title={item.label}
-//                             >
-//                               {item.children.map((childItem) => (
-//                                 <Menu.Item key={childItem.key}>
-//                                   <Link to={`/${childItem.key}`}>
-//                                     {childItem.label}
-//                                   </Link>
-//                                 </Menu.Item>
-//                               ))}
-//                             </SubMenu>
-//                           ) : (
-//                             <Menu.Item key={item.key} icon={item.icon}>
-//                               <Link to={`/${item.key}`}>{item.label}</Link>
-//                             </Menu.Item>
-//                           )
-//                         )}
-//                       </Menu>
-//                     </Sider>
-//                   </div>
-//                   <div class="children-deshboard w-[1254px]">
-//                     <Layout className="bg-white">{children}</Layout>
-//                   </div>
-//                 </div>
-//               </Layout>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </React.Fragment>
-//   );
-// };
-// export default DeshboardLayout;

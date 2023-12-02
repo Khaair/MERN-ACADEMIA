@@ -47,7 +47,7 @@ function DeshboardManagement() {
   return (
     <Layout>
       <div class="academia-management-area">
-            <div class="card min-h-screen">
+            <div class="card min-screen-height">
               <div class="row">
                 <div class="col-lg-3">
                   <div class="card bg-danger text-light">
