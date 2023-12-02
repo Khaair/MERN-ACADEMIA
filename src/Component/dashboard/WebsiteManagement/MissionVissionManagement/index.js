@@ -77,79 +77,75 @@ function MissionVissionManagement() {
   return (
     <Layout>
       <div class="academia-management-area">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card">
-              {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-                <>
-                  <div class="add-student-wrapper pt-3">
-                    <div className="card-title custom-button">
-                      <AppstoreOutlined style={{ fontSize: "20px" }} />
-                      <div class="ml-5">Mission and Vission management</div>
-                    </div>
-                  </div>
-                  <hr className="mt-3" />
+        <div class="card min-screen-height">
+          {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
+            <>
+              <div class="add-student-wrapper pt-3">
+                <div className="card-title custom-button">
+                  <AppstoreOutlined style={{ fontSize: "20px" }} />
+                  <div class="ml-5">Mission and Vission management</div>
+                </div>
+              </div>
+              <hr className="mt-3" />
 
-                  <div className="form-area mt-3">
-                    <div className="container">
-                      <div className="row">
-                        <div className="col-lg-12 ">
-                          <Form
-                            className="form-input-item"
-                            form={form}
-                            layout="vertical"
-                          >
-                            <div class="row">
-                              <div class="col-lg-12">
-                                <Form.Item
-                                  name="title"
-                                  label="Title"
-                                  rules={[
-                                    {
-                                      required: true,
-                                      message: "Please input the title!",
-                                    },
-                                  ]}
-                                >
-                                  <Input placeholder="Title" />
-                                </Form.Item>
-                                <Form.Item
-                                  label="Description"
-                                  name="description"
-                                  rules={[
-                                    {
-                                      required: true,
-                                      message: "Please input the description!",
-                                    },
-                                  ]}
-                                >
-                                  <Input.TextArea
-                                    className="other-type-input"
-                                    rows={3}
-                                    placeholder="Description"
-                                    style={{ height: "200px" }}
-                                  />
-                                </Form.Item>
-                                <Form.Item>
-                                  <Button
-                                    type="primary"
-                                    ghost
-                                    onClick={handleSubmit}
-                                  >
-                                    Submit
-                                  </Button>
-                                </Form.Item>
-                              </div>
-                            </div>
-                          </Form>
+              <div className="form-area mt-3">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-lg-12 ">
+                      <Form
+                        className="form-input-item"
+                        form={form}
+                        layout="vertical"
+                      >
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <Form.Item
+                              name="title"
+                              label="Title"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please input the title!",
+                                },
+                              ]}
+                            >
+                              <Input placeholder="Title" />
+                            </Form.Item>
+                            <Form.Item
+                              label="Description"
+                              name="description"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please input the description!",
+                                },
+                              ]}
+                            >
+                              <Input.TextArea
+                                className="other-type-input"
+                                rows={3}
+                                placeholder="Description"
+                                style={{ height: "200px" }}
+                              />
+                            </Form.Item>
+                            <Form.Item>
+                              <Button
+                                type="primary"
+                                ghost
+                                onClick={handleSubmit}
+                              >
+                                Submit
+                              </Button>
+                            </Form.Item>
+                          </div>
                         </div>
-                      </div>
+                      </Form>
                     </div>
                   </div>
-                </>
-              )}
-            </div>
-          </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </Layout>

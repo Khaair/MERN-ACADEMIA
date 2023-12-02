@@ -16,19 +16,15 @@ function TeacherManagement() {
   return (
     <Layout>
       <div class="academia-management-area">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card">
-              {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
-                <>
-                  <TeacherReg />
-                  <AddTeacher />
-                </>
-              )}
+        <div class="card min-screen-height">
+          {logedinData?.roles?.join("").toString() === "ROLE_ADMIN" && (
+            <>
+              <TeacherReg />
+              <AddTeacher />
+            </>
+          )}
 
-              <TeacherList logedinData={logedinData} />
-            </div>
-          </div>
+          <TeacherList logedinData={logedinData} />
         </div>
       </div>
     </Layout>
