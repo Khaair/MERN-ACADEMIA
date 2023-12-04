@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "./tailwind.css";
 import { Provider } from "react-redux";
@@ -19,5 +18,23 @@ function App() {
 }
 
 export default App;
+//Frontend
+//Api folder all
+//env file wise
+//Lazy Loading
+//Add Loader in every page
+//BreadCamp
+//Submit button loader
+//Notification
+//Animation
+//Authentication with redux persistor and make user type,token global
+//Website manage API frontend intrigation
 
-//Attendance management
+//Backend
+//Pagination based list data fetch
+//Filter based data fatch
+//Search
+//Forgot Passord
+//Google Signin and Signup
+//Website manage API have to complete
+

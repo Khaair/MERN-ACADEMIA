@@ -21,7 +21,7 @@ const CarouselEx = () => (
               </h5>
 
               <div class="banner-btn-wrapper mt-4">
-                <button className="mr-4">Read more</button>
+                <button className="mr-4 ">Read more</button>
                 <button>Join now</button>
               </div>
             </div>
