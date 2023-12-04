@@ -146,7 +146,7 @@ export default function Menu() {
                 <Popover.Group className="hidden lg:flex lg:gap-x-12">
                   <Link
                     to="/"
-                    className="text-sm font-semibold text-[black] leading-6 hover:text-[#06BBCC]"
+                    className="text-base font-semibold text-[black] leading-6 hover:text-[#06BBCC]"
                   >
                     Home
                   </Link>
@@ -157,7 +157,7 @@ export default function Menu() {
                   >
                     <Link
                       to="/about-us"
-                      className="text-sm text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
+                      className="text-base text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
                     >
                       About us
                       <span className="inline-block -mt-[5px] ml-2">
@@ -173,7 +173,7 @@ export default function Menu() {
                   >
                     <div
                       role="button"
-                      className="text-sm text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
+                      className="text-base text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
                     >
                       Administration
                       <span className="inline-block -mt-[5px] ml-2">
@@ -189,7 +189,7 @@ export default function Menu() {
                   >
                     <div
                       role="button"
-                      className="text-sm text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
+                      className="text-base text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
                     >
                       Gallery
                       <span className="inline-block -mt-[5px] ml-2">
@@ -199,27 +199,27 @@ export default function Menu() {
                   </Tooltip>
                   <Link
                     to="/contact"
-                    className="text-sm text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
+                    className="text-base text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
                   >
                     Contact us
                   </Link>
                   <Link
                     to="/notices"
                     {...btnProps}
-                    className="text-sm text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
+                    className="text-base text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
                   >
                     Notices
                   </Link>
                   {userData ? (
                     <Link
-                      className="text-sm text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
+                      className="text-base text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
                       to="/student-profile"
                     >
                       profile
                     </Link>
                   ) : (
                     <Link
-                      className="text-sm text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
+                      className="text-base text-[black] font-semibold leading-6  hover:text-[#06BBCC]"
                       to="/user-auth"
                     >
                       Log in

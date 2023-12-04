@@ -13,7 +13,7 @@ const TopHeader = () => {
         <div class="bootstrap-container">
           <div class="row">
             <div class="col-lg-12">
-              <div className="flex justify-between pb-1">
+              <div className="flex justify-between py-[8px]">
                 <div>
                   <FacebookOutlined
                     style={{

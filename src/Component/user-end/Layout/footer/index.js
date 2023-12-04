@@ -4,8 +4,8 @@ const Footer = () => {
     <>
       <div className="footer-area bg-[#f0fbfc]">
         <div class="bootstrap-container">
-          <div className="row">
-            <div className="col-lg-3">
+          <div className="py-[50px]">
+            <div className="flex justify-between">
               <div className="footer-item-wrapper">
                 <ul>
                   <li>
@@ -18,8 +18,6 @@ const Footer = () => {
                   <li className="text-[black]">Cartssss</li>
                 </ul>
               </div>
-            </div>
-            <div className="col-lg-3">
               <div className="footer-item-wrapper">
                 <ul>
                   <li>
@@ -33,8 +31,19 @@ const Footer = () => {
                   <li className="text-[black]">Basic React</li>
                 </ul>
               </div>
-            </div>
-            <div className="col-lg-3">
+              <div className="footer-item-wrapper">
+                <ul>
+                  <li>
+                    <h4>For Mid lavel</h4>
+                  </li>
+                  <li className="text-[black]">Advance JavaScript</li>
+                  <li className="text-[black]">Advance NodeJS</li>
+                  <li className="text-[black]">ExpressJs</li>
+                  <li className="text-[black]">MongoDB</li>
+                  <li className="text-[black]">AWS</li>
+                </ul>
+              </div>
+
               <div className="footer-item-wrapper">
                 <ul>
                   <li>
@@ -48,27 +57,6 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="col-lg-3">
-              <div className="footer-item-wrapper">
-                <ul>
-                  <li>
-                    <h4>Edu Tech BD</h4>
-                  </li>
-                  <li>
-                    <img
-                      src="https://skyblue.com.bd/wp-content/uploads/2019/12/Sky-Blue-on-facebook.jpg"
-                      alt="find us facebook"
-                    />
-                  </li>
-                  <li>
-                    <img
-                      src="https://skyblue.com.bd/wp-content/uploads/2019/12/Instragram.jpg"
-                      alt="find us facebook"
-                    />
-                  </li>
-                </ul>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -77,13 +65,8 @@ const Footer = () => {
         <div class="bootstrap-container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="footer-bottom-item-wrapper">
-                <div>
-                  <p>Copyright © 2022 Edu Tech BD</p>
-                </div>
-                <div>
-                  <p>Powered by Edu Tech BD</p>
-                </div>
+              <div className="text-center primary-card-padding">
+                <p>Copyright © 2022 Edu Tech BD</p>
               </div>
             </div>
           </div>

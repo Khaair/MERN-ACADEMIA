@@ -30,8 +30,8 @@ export default function Home() {
             <div class="col-lg-6">
               <div class="p-4">
                 <div>
-                  <h6 className="text-[#06BBCC] text-base">ABOUT US</h6>
-                  <h2 className="leading-10 mt-3">
+                  <h6 className="text-[#06BBCC] text-lg">ABOUT US</h6>
+                  <h2 className="text-4xl font-bold mt-3">
                     Welcome to Sherpur govt college
                   </h2>
                   <p className="mt-3 text-justify">
@@ -198,7 +198,7 @@ export default function Home() {
         <div class="bootstrap-container">
           <div class="row">
             <div class="col-lg-12 text-center">
-              <h2>Notices</h2>
+              <h2 className="text-4xl font-bold">Notices</h2>
             </div>
           </div>
           <div class="row mt-3">
