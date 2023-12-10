@@ -4,11 +4,15 @@ import axios from "axios";
 import { Button, Form, Input } from "antd";
 import { AppstoreOutlined } from "@ant-design/icons";
 import { notification } from "antd";
+import { addAdminAboutUsHandler } from "../../../../api/about-us";
 
 function AboutUsManagement() {
   const [logedinData, setLogedinData] = useState([]);
   const [data, setData] = useState([]);
   const [id, setId] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [getError, setError] = useState("");
+
   const [form] = Form.useForm();
   const fetchdata = async () => {
     try {
@@ -35,34 +39,39 @@ function AboutUsManagement() {
         message: msg,
       });
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+
+  // onsubmit handler
+  const handleSubmit = async (data) => {
     const values = await form.validateFields();
 
-    try {
-      const response = await fetch(
-        "http://localhost:8080/api/school-about-us/school-about-us-save",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: id,
-            title: values?.title,
-            description: values?.description,
-          }),
-        }
-      );
+    const fields = {
+      id: id,
+      title: values?.title,
+      description: values?.description,
+    };
 
-      const responseData = await response.json();
-      if (responseData?.status === "200") {
-        openNotification(responseData?.message);
-        fetchdata();
-      }
-      console.log(responseData);
-    } catch (error) {
-      console.error("Error submitting form:", error);
+    try {
+      setLoading(true);
+      await addAdminAboutUsHandler(fields)
+        .then((res) => res.json())
+        .then((res) => {
+          if (res?.statusCode === 201) {
+            setLoading(false);
+            setError("");
+            openNotification(res?.message);
+          } else if (res?.statusCode === 400 && res?.status === "error") {
+            setLoading(false);
+            setError(res?.errors?.[0]?.msg?.en);
+          } else if (res?.statusCode === 400) {
+            setLoading(false);
+            setError(res?.message?.en);
+          } else if (res?.statusCode === 500) {
+            setLoading(false);
+            setError(res?.message);
+          }
+        });
+    } catch (e) {
+      console.error(e);
     }
   };
 
