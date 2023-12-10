@@ -51,8 +51,8 @@ export default function SignUp() {
     <>
       <div className="sign-up-area">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
+          <div className="grid grid-cols-1">
+            <div className="shadow bg-[white] primary-card-padding primary-border-radius">
               <div className="login-area mb-4">
                 <h4>Register</h4>
               </div>

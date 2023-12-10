@@ -421,5 +421,59 @@
   .min-screen-height{
   min-height: 86vh;
   }
+
+  //suspance
+
+  .progressbar-loader {
+    position: relative;
+    left: 0;
+    top: 0;
+    animation: move 5s linear infinite;
+    height: 5px;
+    width: 20%;
+    opacity: 0;
+    visibility: hidden;
+    background-color: #007456;
+  }
+  
+  @keyframes move {
+    0% {
+      opacity: 1;
+      visibility: visible;
+      background-color: #007456;
+      width: 20%;
+    }
+    20% {
+      opacity: 1;
+      visibility: visible;
+      background-color: #007456;
+      width: 40%;
+    }
+    40% {
+      opacity: 1;
+      visibility: visible;
+      background-color: #007456;
+      width: 60%;
+    }
+    60% {
+      opacity: 1;
+      visibility: visible;
+      background-color: #007456;
+      width: 80%;
+    }
+    80% {
+      opacity: 1;
+      visibility: visible;
+      background: #007456;
+      width: 90%;
+    }
+    100% {
+      opacity: 1;
+      visibility: visible;
+      background-color: #007456;
+      width: 100%;
+    }
+  }
+  
   
   

@@ -40,7 +40,8 @@ function Login() {
     <>
       <div class="admin-deshboard-login-area">
         <div class="container">
-          <div className="row">
+          <div className="grid grid-cols-1">
+            <div className="shadow bg-[white] primary-card-padding primary-border-radius">
             <div className="login-area mb-4">
               <h4>Log in</h4>
             </div>
@@ -81,6 +82,7 @@ function Login() {
                 </button>
               </Form.Item>
             </Form>
+            </div>
           </div>
         </div>
       </div>
