@@ -73,7 +73,9 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-     <AboutUsContainer/>
+      <div className="mb-20">
+      <AboutUsContainer/>
+      </div>
     </Layout>
   );
 };

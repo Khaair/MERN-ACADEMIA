@@ -8,19 +8,27 @@ const CarouselEx = () => (
         <div class="bootstrap-container">
           <div class="row">
             <div class="col-lg-12 text-white">
-              <h3 className="text-[#06BBCC] font-bold">
+              <h3  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="400" className="text-[#06BBCC] font-bold">
                 ONE OF THE BEST SCHOOL
               </h3>
-              <h1 className="text-6xl font-bold mt-2 leading-tight">
+              <h1  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="800" className="text-6xl font-bold mt-2 leading-tight">
                 Education is <br />
                 the movement from <br /> darkness to light
               </h1>
-              <h5 className="mt-3">
+              <h5  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="1200" className="mt-3">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem,
                 ut.
               </h5>
 
-              <div class="banner-btn-wrapper mt-4">
+              <div  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="1600" class="banner-btn-wrapper mt-4">
                 <button className="mr-4 ">Read more</button>
                 <button>Join now</button>
               </div>
@@ -33,21 +41,29 @@ const CarouselEx = () => (
       <div class="banner-content-area pt-[100px]">
         <div class="bootstrap-container">
           <div class="row">
-            <div class="col-lg-12 text-white">
-              <h3 className="text-[#06BBCC] font-bold">
+          <div class="col-lg-12 text-white">
+              <h3  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="400" className="text-[#06BBCC] font-bold">
                 ONE OF THE BEST SCHOOL
               </h3>
-              <h1 className="text-6xl font-bold mt-2 leading-tight">
+              <h1  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="800" className="text-6xl font-bold mt-2 leading-tight">
                 Education is <br />
                 the movement from <br /> darkness to light
               </h1>
-              <h5 className="mt-3">
+              <h5  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="1200" className="mt-3">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem,
                 ut.
               </h5>
 
-              <div class="banner-btn-wrapper mt-4">
-                <button className="mr-4">Read more</button>
+              <div  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="1600" class="banner-btn-wrapper mt-4">
+                <button className="mr-4 ">Read more</button>
                 <button>Join now</button>
               </div>
             </div>
@@ -59,21 +75,29 @@ const CarouselEx = () => (
       <div class="banner-content-area pt-[100px]">
         <div class="bootstrap-container">
           <div class="row">
-            <div class="col-lg-12 text-white">
-              <h3 className="text-[#06BBCC] font-bold">
+          <div class="col-lg-12 text-white">
+              <h3  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="400" className="text-[#06BBCC] font-bold">
                 ONE OF THE BEST SCHOOL
               </h3>
-              <h1 className="text-6xl font-bold mt-2 leading-tight">
+              <h1  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="800" className="text-6xl font-bold mt-2 leading-tight">
                 Education is <br />
                 the movement from <br /> darkness to light
               </h1>
-              <h5 className="mt-3">
+              <h5  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="1200" className="mt-3">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem,
                 ut.
               </h5>
 
-              <div class="banner-btn-wrapper mt-4">
-                <button className="mr-4">Read more</button>
+              <div  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="1600" class="banner-btn-wrapper mt-4">
+                <button className="mr-4 ">Read more</button>
                 <button>Join now</button>
               </div>
             </div>
@@ -85,21 +109,29 @@ const CarouselEx = () => (
       <div class="banner-content-area pt-[100px]">
         <div class="bootstrap-container">
           <div class="row">
-            <div class="col-lg-12 text-white">
-              <h3 className="text-[#06BBCC] font-bold ">
+          <div class="col-lg-12 text-white">
+              <h3  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="400" className="text-[#06BBCC] font-bold">
                 ONE OF THE BEST SCHOOL
               </h3>
-              <h1 className="text-6xl font-bold mt-2 leading-tight">
+              <h1  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="800" className="text-6xl font-bold mt-2 leading-tight">
                 Education is <br />
                 the movement from <br /> darkness to light
               </h1>
-              <h5 className="mt-3">
+              <h5  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="1200" className="mt-3">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem,
                 ut.
               </h5>
 
-              <div class="banner-btn-wrapper mt-4">
-                <button className="mr-4">Read more</button>
+              <div  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="1600" class="banner-btn-wrapper mt-4">
+                <button className="mr-4 ">Read more</button>
                 <button>Join now</button>
               </div>
             </div>

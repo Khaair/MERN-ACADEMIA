@@ -8,7 +8,9 @@ const Counter = () => {
     <div class="bootstrap-container">
       <div class="row">
         <div class="col-lg-3 mb-3">
-          <div className="bg-[#06BBCC] h-[100px] text-white rounded overflow-hidden shadow-l flex justify-center text-center items-center">
+          <div  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="400" className="bg-[#06BBCC] h-[100px] text-white rounded overflow-hidden shadow-l flex justify-center text-center items-center">
             <div className="text-4xl font-bold">
               <CountUp start={0} end={500} duration={10} separator="," />
               <h4>Teachers</h4>
@@ -16,7 +18,9 @@ const Counter = () => {
           </div>
         </div>
         <div class="col-lg-3 mb-3">
-          <div className="bg-[#06BBCC] h-[100px] text-white rounded overflow-hidden shadow-l flex justify-center text-center items-center">
+          <div  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="800" className="bg-[#06BBCC] h-[100px] text-white rounded overflow-hidden shadow-l flex justify-center text-center items-center">
             <div className="text-4xl font-bold">
               <CountUp start={0} end={500} duration={10} separator="," />
               <h4>Students</h4>
@@ -24,7 +28,9 @@ const Counter = () => {
           </div>
         </div>
         <div class="col-lg-3 mb-3">
-          <div className="bg-[#06BBCC] h-[100px] text-white rounded overflow-hidden shadow-l flex justify-center text-center items-center">
+          <div  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="1200" className="bg-[#06BBCC] h-[100px] text-white rounded overflow-hidden shadow-l flex justify-center text-center items-center">
             <div className="text-4xl font-bold">
               <CountUp start={0} end={500} duration={10} separator="," />
               <h4>Stuffs</h4>
@@ -32,7 +38,9 @@ const Counter = () => {
           </div>
         </div>
         <div class="col-lg-3 mb-3">
-          <div className="bg-[#06BBCC] h-[100px] text-white rounded overflow-hidden shadow-l flex justify-center text-center items-center">
+          <div  data-aos="fade-up"
+              data-aos-duration="1500"
+              data-aos-delay="1600" className="bg-[#06BBCC] h-[100px] text-white rounded overflow-hidden shadow-l flex justify-center text-center items-center">
             <div className="text-4xl font-bold">
               <CountUp start={0} end={500} duration={10} separator="," />
               <h4>Class Rooms</h4>

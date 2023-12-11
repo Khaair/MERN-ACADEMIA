@@ -36,17 +36,18 @@ const AboutUsContainer = () => {
     <div class="about-us-area bg-[white] pt-[100px]">
       <div class="bootstrap-container">
         <div class="row">
-          {/* <pre>
-            <code>{JSON.stringify(getAboutUs?.loading, null, 4)}</code>
-          </pre> */}
           <div class="col-lg-6">
-            <Image.PreviewGroup className="h-[150px]">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="3000"
+              className="h-[300px] w-[500px] border border-[black] p-1 ml-[50px]"
+            >
               <Image
                 className="w-full h-full object-cover"
                 src="/uploads/about-us.jpg"
                 alt="avatar"
               />
-            </Image.PreviewGroup>
+            </div>
           </div>
           <div class="col-lg-6">
             <div class="p-4">
@@ -62,7 +63,7 @@ const AboutUsContainer = () => {
                 <div>
                   {getAboutUs?.data?.map((item, index) => {
                     return (
-                      <>
+                      <div data-aos="fade-up" data-aos-duration="3000">
                         <h6 className="text-[#06BBCC] text-lg">ABOUT US</h6>
 
                         <h2 className="text-4xl font-bold mt-3">
@@ -72,7 +73,7 @@ const AboutUsContainer = () => {
                         <button className="mt-4 bg-[#06BBCC] text-white px-5 py-3">
                           Read more
                         </button>
-                      </>
+                      </div>
                     );
                   })}
                 </div>
